@@ -64,6 +64,7 @@
     }
 }
 @media screen /*and (min-width: 485px)*/ and (max-width: 600px){
+/* For screen lower than 600px */
     .image-company{ 
         display: flex;
         justify-content: center;

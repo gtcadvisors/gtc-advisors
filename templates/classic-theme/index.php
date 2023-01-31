@@ -118,13 +118,13 @@
                   </li>
                   <li class="catgo"><a>Post a Job</a>
                   </li>
-                  <li class="catgo"><a href="login.php">Become an Advisor</a>
+                  <li class="catgo"><a href="<?php url("LOGIN") ?>">Become an Advisor</a>
                   </li>
   
                 </ul>
               </nav>
               <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
-              <a class="mobile_signup_button" href="signup.php">sign up</a>
+              <a class="mobile_signup_button" href="<?php url("SIGNUP") ?>">sign up</a>
             </div>
            
             <div class="lang_selctor_lap d-none d-lg-flex">
@@ -141,8 +141,8 @@
   
             <div class="header-right">
               <div class="block-signin">
-                <a class="catgo text-link-bd-btom ml-10 hover-up" href="login.php">Log In</a>
-                <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="signup.php">Sign Up</a>
+                <a class="catgo text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>"><?php _e("Log In") ?></a>
+                <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>">Sign Up</a>
               </div>
             </div>
           </div>
@@ -155,9 +155,9 @@
         <div class="mobile-header-wrapper-inner">
           <div class="mobile-header-content-area adv-font">
             <div class="perfect-scroll">
-              <a href="signup.php"><span class="signup-btn">Sign Up</span></a>
+              <a href="<?php url("SIGNUP") ?>"><span class="signup-btn">Sign Up</span></a>
               <div class="mobile-menu-wrap pt-40">
-                <a href="login.php"><h6 class="adv-font mb-10 mt-35">Log In</h6></a>
+                <a href="<?php url("LOGIN") ?>"><h6 class="adv-font mb-10 mt-35">Log In</h6></a>
                 <!-- mobile menu start-->
                 <nav>
                   <ul class="mobile-menu adv-font" style="list-style:none;">
@@ -227,10 +227,9 @@
         </div>
         </div>
         <div class="container-fluid d-flex d-md-none flex-row border-bottom border-2 justify-content-evenly">
-            <a href="#" class="pill blue-pill rounded-pill">Tax Pricing</a>
-            <div class="pill blue-pill rounded-pill">Corporations</div>
-            <div class="pill blue-pill rounded-pill">Tax Audits</div>
-            <div class="pill blue-pill rounded-pill">Sales Tax</div>
+        <?php foreach($category2 as $cat){ ?>
+            <a href="<?php echo $cat['link']; ?>" class="pill blue-pill rounded-pill"><?php echo $cat['name']; ?></a>
+            <?php } ?>
         </div>
           <main class="main">
       <section class="section-box">

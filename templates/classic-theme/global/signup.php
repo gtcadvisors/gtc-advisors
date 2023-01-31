@@ -26,7 +26,6 @@ overall_header(__("Register"));
     <div class="row">
         <div class="col-xl-5 offset-xl-3">
             <div class="login-register-page">
-                <!-- Welcome Text -->
                 <div class="welcome-text">
                     <h3 style="font-size: 26px;"><?php _e("Let's create your account!") ?></h3>
                     <span><?php _e("Already have an account?") ?> <a href="<?php url("LOGIN") ?>"><?php _e("Log In!") ?></a></span>

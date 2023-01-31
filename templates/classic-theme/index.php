@@ -1,671 +1,560 @@
-<?php
-overall_header();
-global $config;
-?>
-<!-- Intro Banner
-================================================== -->
-<!-- add class "disable-gradient" to enable consistent background overlay -->
-<div class="intro-banner <?php _esc($config['banner_overlay']);?>" data-background-image="<?php _esc($config['site_url']);?>storage/banner/<?php _esc($config['home_banner']);?>">
-    <!-- Transparent Header Spacer -->
-    <div class="transparent-header-spacer"></div>
-    <div class="container">
-        <!-- Intro Headline -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="banner-headline">
-                    <h3>
-                        <strong><?php _e("Hire the best freelancers for any job, online.") ?></strong>
-                        <br>
-                        <span><?php _e("Work with the best freelance talent from around the world on our secure and cost-effective platform.") ?></span>
-                    </h3>
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="<?php _esc($config['lang_code']);?>" dir="<?php _esc($lang_direction);?>">
+<head>
+    <title><?php _esc($config['site_title']);?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="<?php _esc($config['site_title']);?>">
+    <meta name="keywords" content="<?php _esc($config['meta_keywords']);?>">
+    <meta name="description" content="<?php ($meta_desc == '')?_esc($config['meta_description']):_esc($meta_desc);?>">
 
-        <!-- Search Bar -->
-        <div class="row">
-            <div class="col-md-12">
-                <form autocomplete="off" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
-                    <div class="intro-banner-search-form margin-top-95">
-                    <!-- Search Field -->
-                    <div class="intro-search-field">
-                        <label for="intro-keywords" class="field-title ripple-effect"><?php _e("Find Work") ?></label>
-                        <input id="intro-keywords" type="text" class="qucikad-ajaxsearch-input"
-                               placeholder="<?php _e("Project Title or Keywords") ?>" data-prev-value="0"
-                               data-noresult="<?php _e("More Results For") ?>">
-                        <i class="qucikad-ajaxsearch-close fa fa-times-circle" aria-hidden="true" style="display: none;"></i>
-                        <div id="qucikad-ajaxsearch-dropdown" size="0" tabindex="0">
-                            <ul>
-                                <?php
-                                foreach($category as $cat){
-                                    ?>
-                                    <li class="qucikad-ajaxsearch-li-cats" data-catid="<?php echo $cat['slug']; ?>">
-                                        <?php
-                                        echo ($cat['picture'] == '') ? '<i class="qucikad-as-caticon '.$cat['icon'].'"></i>' : '<img src="'.$cat['picture'].'"/>';
-                                        ?>
-                                        <span class="qucikad-as-cat"><?php echo $cat['name']; ?></span>
-                                    </li>
-                                <?php
-                                }
-                                ?>
-                            </ul>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//google.com">
+    <link rel="dns-prefetch" href="//apis.google.com">
+    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="//gstatic.com">
+    <link rel="dns-prefetch" href="//oss.maxcdn.com">
 
-                            <div style="display:none" id="def-cats">
+    <meta property="fb:app_id" content="<?php _esc($config['facebook_app_id']);?>"/>
+    <meta property="og:site_name" content="<?php _esc($config['site_title']);?>"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:url" content="<?php _esc($page_link);?>"/>
+    <meta property="og:title" content="<?php _esc($page_title); ?>" />
+    <meta property="og:description" content="<?php _esc($meta_desc);?>"/>
+    <meta property="og:type" content="<?php _esc($meta_content);?>"/>
+    <?php if($meta_content == 'article'){ ?>
+        <meta property="article:author" content="#"/>
+        <meta property="article:publisher" content="#"/>
+        <meta property="og:image" content="<?php _esc($meta_image);?>"/>
+        <?php
+    }
+    if($meta_content == 'website'){
+        echo '<meta property="og:image" content="'.$meta_image.'"/>';
+    }
+    ?>
 
-                            </div>
-                        </div>
-                    </div>
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="<?php _esc($page_title);?>">
+    <meta property="twitter:description" content="<?php _esc($meta_desc);?>">
+    <meta property="twitter:domain" content="<?php _esc($config['site_url']);?>">
+    <meta name="twitter:image:src" content="<?php _esc($meta_image);?>"/>
+    <link rel="shortcut icon" href="<?php _esc($config['site_url']);?>storage/logo/<?php _esc($config['site_favicon']);?>">
 
-                    <!-- Button -->
-                    <div class="intro-search-button">
-                        <button class="button ripple-effect"><?php _e("Search") ?></button>
-                    </div>
-                </div>
-                </form>
-            </div>
-        </div>
+    <script async>
+        var themecolor = '<?php _esc($config['theme_color']);?>';
+        var mapcolor = '<?php _esc($config['map_color']);?>';
+        var siteurl = '<?php _esc($config['site_url']);?>';
+        var template_name = '<?php _esc($config['tpl_name']);?>';
+    </script>
 
-        <!-- Stats -->
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="intro-stats margin-top-45 hide-under-992px">
-                    <li>
-                        <strong class="counter"><?php _esc($total_projects);?></strong>
-                        <span><?php _e("Projects Posted") ?></span>
-                    </li>
-                    <li>
-                        <strong class="counter"><?php _esc($total_jobs);?></strong>
-                        <span><?php _e("Jobs Posted") ?></span>
-                    </li>
-                    <li>
-                        <strong class="counter"><?php _esc($total_freelancer);?></strong>
-                        <span><?php _e("Freelancers") ?></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<link href="<?php _esc(TEMPLATE_URL);?>/assets/css/globaltax.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="<?php _esc(TEMPLATE_URL);?>/css/style.css"> -->
+        <!-- CDN Assets -->
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/magnific-popup.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
+        <!-- End CDN -->
 
-    </div>
-</div>
+        <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/vendors/line-awesome.min.css">
+        <link rel="stylesheet" href="<?php _esc(TEMPLATE_URL);?>/assets/vendors/bootstrap.min.css">
+        <link href="<?php _esc(TEMPLATE_URL);?>/assets/vendors/slick-master/slick/slick.css" rel="stylesheet" type="text/css">
+        <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/vendors/style.css" rel="stylesheet" type="text/css">
 
-<!-- Content
-================================================== -->
-<!-- Category Boxes -->
-<?php if($config['show_categories_home']){ ?>
-<!-- Category Boxes -->
-<div class="section gray padding-top-65 padding-bottom-45">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="section-headline centered margin-bottom-15">
-                    <h3><?php _e("Project Categories") ?></h3>
-                </div>
-                <div class="categories-container">
-                    <?php foreach($category as $cat){ ?>
-                        <a href="<?php echo $cat['link']; ?>" class="category-box">
-                            <div class="category-box-icon">
-                                <?php
-                                if($cat['picture'] == '') {
-                                    echo '<div class="category-icon"><i class="'.$cat['icon'].'"></i></div>';
-                                } else{
-                                    echo '<div class="category-icon"><img src="'.$cat['picture'].'"/></div>';
-                                }
-                                ?>
-                            </div>
-                            <div class="category-box-counter"><?php echo $cat['main_ads_count']; ?></div>
-                            <div class="category-box-content">
-                                <h3><?php echo $cat['name']; ?> <small>(<?php echo $cat['main_ads_count']; ?>)</small></h3>
-                            </div>
-                            <div class="category-box-arrow">
-                                <i class="fa fa-chevron-right"></i>
-                            </div>
-                        </a>
-                   <?php } ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<?php } ?>
-<!-- Category Boxes / End -->
+        <script async>var ajaxurl = "<?php _esc($config['app_url']);?>user-ajax.php";</script>
+    <script async type="text/javascript">
+        $(document).ready(function() {
+            $('.resend').click(function(e) { 						// Button which will activate our modal
+                var the_id = $(this).attr('id');						//get the id
+                // show the spinner
+                $(this).html("<i class='fa fa-spinner fa-pulse'></i>");
+                $.ajax({											//the main ajax request
+                    type: "POST",
+                    data: "action=email_verify&id="+$(this).attr("id"),
+                    url: ajaxurl,
+                    success: function(data)
+                    {
+                        $("span#resend_count"+the_id).html(data);
+                        //fadein the vote count
+                        $("span#resend_count"+the_id).fadeIn();
+                        //remove the spinner
+                        $("a.resend_buttons"+the_id).remove();
 
-
-    <!-- Icon Boxes -->
-    <div class="section padding-top-65 padding-bottom-65">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-xl-12">
-                    <!-- Section Headline -->
-                    <div class="section-headline centered margin-top-0 margin-bottom-5">
-                        <h3><?php _e('How It Works?')?></h3>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-4">
-                    <!-- Icon Box -->
-                    <div class="icon-box with-line">
-                        <!-- Icon -->
-                        <div class="icon-box-circle">
-                            <div class="icon-box-circle-inner">
-                                <i class="icon-line-awesome-lock"></i>
-                                <div class="icon-box-check"><i class="icon-material-outline-check"></i></div>
-                            </div>
-                        </div>
-                        <h3><?php _e('Create an Account')?></h3>
-                        <p><?php _e('Bring to the table win-win survival strategies to ensure proactive domination going forward.')?></p>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-4">
-                    <!-- Icon Box -->
-                    <div class="icon-box with-line">
-                        <!-- Icon -->
-                        <div class="icon-box-circle">
-                            <div class="icon-box-circle-inner">
-                                <i class="icon-line-awesome-legal"></i>
-                                <div class="icon-box-check"><i class="icon-material-outline-check"></i></div>
-                            </div>
-                        </div>
-                        <h3><?php _e('Post a Task')?></h3>
-                        <p><?php _e('Efficiently unleash cross-media information without. Quickly maximize return on investment.')?></p>
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-4">
-                    <!-- Icon Box -->
-                    <div class="icon-box">
-                        <!-- Icon -->
-                        <div class="icon-box-circle">
-                            <div class="icon-box-circle-inner">
-                                <i class=" icon-line-awesome-trophy"></i>
-                                <div class="icon-box-check"><i class="icon-material-outline-check"></i></div>
-                            </div>
-                        </div>
-                        <h3><?php _e('Choose an Expert')?></h3>
-                        <p><?php _e('Nanotechnology immersion along the information highway will close the loop on focusing solely.')?></p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- Icon Boxes / End -->
-
-<!-- Latest Projects -->
-<div class="section gray margin-top-45 padding-top-65 padding-bottom-75">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-
-                <!-- Section Headline -->
-                <div class="section-headline margin-top-0 margin-bottom-35">
-                    <h3><?php _e("Latest Projects") ?></h3>
-                    <a href="<?php url("SEARCH_PROJECTS") ?>" class="headline-link"><?php _e("Browse All Projects") ?></a>
-                </div>
-
-                <!-- Jobs Container -->
-                <div class="tasks-list-container compact-list margin-top-35">
-                    <?php
-                    foreach($items as $project){
-                    ?>
-                    <!-- Task -->
-                    <a href="<?php _esc($project['link']);?>" class="task-listing <?php if($project['highlight']){ echo 'highlight';} ?>">
-                        <!-- Job Listing Details -->
-                        <div class="task-listing-details">
-                            <!-- Details -->
-                            <div class="task-listing-description">
-                                <h3 class="task-listing-title"><?php _esc($project['product_name']);?></h3>
-                                <?php if($project['featured'] == 1){ ?>
-                                <div class="dashboard-status-button blue"> <?php _e("Featured") ?></div>
-                                <?php }
-                                if($project['urgent'] == 1){ ?>
-                                <div class="dashboard-status-button yellow"> <?php _e("Urgent") ?></div>
-                                <?php } ?>
-                                <ul class="task-icons">
-                                    <li><i class="icon-material-outline-gavel"></i> <?php _esc($project['bids_count']);?> Bids</li>
-                                    <li><i class="icon-material-outline-account-balance-wallet"></i> <?php _esc($project['avg_bid']);?> <?php _e("Avg bid") ?></li>
-                                    <li><i class="icon-material-outline-access-time"></i> <?php _esc($project['created_at']);?></li>
-                                </ul>
-                                <div class="task-tags margin-top-15">
-                                    <?php _esc($project['skills']);?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="task-listing-bid">
-                            <div class="task-listing-bid-inner">
-                                <div class="task-offers">
-                                    <strong><?php _esc($project['salary_min']);?> - <?php _esc($project['salary_max']);?> </strong>
-                                    <span><?php _esc($project['salary_type']);?></span>
-                                </div>
-                                <span class="button button-sliding-icon ripple-effect"><?php _e("Bid Now") ?> <i class="icon-material-outline-arrow-right-alt"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                   <?php } ?>
-
-                </div>
-                <!-- Jobs Container / End -->
-
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Latest Projects / End -->
-<?php if($config['show_latest_jobs_home']){ ?>
-<!-- Latest Jobs -->
-<div class="section padding-top-65 padding-bottom-75">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="section-headline margin-top-0 margin-bottom-35">
-                    <h3><?php _e("Latest Jobs") ?></h3>
-                    <a href="<?php url("LISTING") ?>" class="headline-link"><?php _e("Browse All Jobs") ?></a>
-                </div>
-                <div class="listings-container compact-list-layout margin-top-35">
-                    <?php
-                    foreach($item2 as $job){
-                    ?>
-                        <div class="job-listing <?php if($job['highlight']){ echo 'highlight'; } ?>">
-                            <div class="job-listing-details">
-                                <div class="job-listing-company-logo">
-                                    <img src="<?php _esc($config['site_url']);?>storage/products/<?php _esc($job['image'])?>"
-                                         alt="<?php _esc($job['product_name'])?>">
-                                </div>
-                                <div class="job-listing-description">
-                                    <h3 class="job-listing-title"><a href="<?php _esc($job['link'])?>"><?php _esc($job['product_name'])?></a>
-                                        <?php if($job['featured'] == 1){ ?>
-                                            <div class="dashboard-status-button blue"> <?php _e("Featured") ?></div>
-                                        <?php }
-                                        if($job['urgent'] == 1){ ?>
-                                            <div class="dashboard-status-button yellow"> <?php _e("Urgent") ?></div>
-                                        <?php } ?>
-                                    </h3>
-
-                                    <div class="job-listing-footer">
-                                        <ul>
-                                            <?php if($config['company_enable']){ ?>
-                                            <li><i class="la la-building"></i> <?php _esc($job['company_name'])?></li>
-                                            <?php } ?>
-                                            <li><i class="la la-map-marker"></i> <?php _esc($job['location'])?></li>
-                                            <?php if($job['salary_min'] != 0){ ?>
-                                                <li><i class="la la-credit-card"></i> <?php _esc($job['salary_min'])?>
-                                                    -<?php _esc($job['salary_max'])?> <?php _e("Per") ?> <?php _esc($job['salary_type'])?></li>
-                                            <?php } ?>
-                                            <li><i class="la la-clock-o"></i> <?php _esc($job['created_at'])?></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <span class="job-type"><?php _esc($job['product_type'])?></span>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Latest Jobs / End -->
-<?php } ?>
-
-<!-- Highest Rated Freelancers -->
-<div class="section gray padding-top-65 padding-bottom-70 full-width-carousel-fix">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-xl-12">
-                <!-- Section Headline -->
-                <div class="section-headline margin-top-0 margin-bottom-25">
-                    <h3><?php _e('Highest Rated Freelancers')?></h3>
-                    <a href="<?php url("FREELANCERS") ?>" class="headline-link"><?php _e('Browse All Freelancers')?></a>
-                </div>
-            </div>
-
-            <div class="col-xl-12">
-                <div class="default-slick-carousel freelancers-container freelancers-grid-layout">
-
-                    <!--Freelancer -->
-                    <?php
-                    foreach($freelancers as $freelancer){
-                    ?>
-                    <div class="freelancer">
-                        <!-- Overview -->
-                        <div class="freelancer-overview">
-                            <div class="freelancer-overview-inner">
-                                <!-- Avatar -->
-                                <div class="freelancer-avatar">
-                                    <div class="verified-badge"></div>
-                                    <a href="<?php url("PROFILE") ?>/<?php _esc($freelancer['username']) ?>">
-                                        <img src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($freelancer['image']) ?>" alt="<?php _esc($freelancer['name']) ?>">
-                                    </a>
-                                </div>
-
-                                <!-- Name -->
-                                <div class="freelancer-name">
-                                    <h4><a href="<?php url("PROFILE") ?>/<?php _esc($freelancer['username']) ?>"><?php _esc($freelancer['name']) ?> <div class="flag flag-<?php _esc($freelancer['country_code']) ?>"></a></h4>
-                                    <?php
-                                    if($freelancer['category'] != ""){
-                                        echo "<span>";
-                                        _esc($freelancer['category']);
-                                        if($freelancer['subcategory'] != ""){
-                                            echo " / ";
-                                            _esc($freelancer['subcategory']);
-                                        }
-                                        echo "</span>";
-                                    }
-                                    ?>
-                                </div>
-                                <!-- Rating -->
-                                <div class="freelancer-rating">
-                                    <div class="star-rating" data-rating="<?php _esc($freelancer['rating']) ?>"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Details -->
-                        <div class="freelancer-details">
-                            <div class="freelancer-details-list">
-                                <ul>
-                                    <li><?php _e("Hourly Rate") ?> <strong><?php _esc($freelancer['hourly_rate']) ?></strong></li>
-                                    <li><?php _e("Won Bid") ?> <strong><?php _esc($freelancer['win_project']) ?></strong></li>
-                                    <li><?php _e("Rehired") ?> <strong><?php _esc($freelancer['rehired']) ?></strong></li>
-                                </ul>
-                            </div>
-                            <a href="<?php url("PROFILE") ?>/<?php _esc($freelancer['username']) ?>" class="button button-sliding-icon ripple-effect"><?php _e("View Profile") ?> <i class="icon-material-outline-arrow-right-alt"></i></a>
-                        </div>
-                    </div>
-                    <?php } ?>
-                    <!-- Freelancer / End -->
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- Highest Rated Freelancers / End-->
-
-<?php if($config['show_membershipplan_home']){ ?>
-<!-- Membership Plans -->
-<div class="section padding-top-60 padding-bottom-75">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-xl-12">
-                <!-- Section Headline -->
-                <div class="section-headline centered margin-top-0 margin-bottom-75">
-                    <h3><?php _e("Membership Plan") ?></h3>
-                </div>
-            </div>
-
-
-            <div class="col-xl-12">
-                <form name="form1" method="post" action="<?php url("MEMBERSHIP") ?>">
-                    <div class="billing-cycle-radios margin-bottom-70">
-                        <?php
-                        if($total_monthly){
-                        ?>
-                        <div class="radio billed-monthly-radio">
-                            <input id="radio-monthly" name="billed-type" type="radio" value="monthly" checked="">
-                            <label for="radio-monthly"><span class="radio-label"></span> <?php _e("Monthly") ?></label>
-                        </div>
-                        <?php
-                        }
-                        if($total_annual){
-                        ?>
-                        <div class="radio billed-yearly-radio">
-                            <input id="radio-yearly" name="billed-type" type="radio" value="yearly">
-                            <label for="radio-yearly"><span class="radio-label"></span> <?php _e("Yearly") ?></label>
-                        </div>
-                        <?php
-                        }
-                        if($total_lifetime){
-                        ?>
-                        <div class="radio billed-lifetime-radio">
-                            <input id="radio-lifetime" name="billed-type" type="radio" value="lifetime">
-                            <label for="radio-lifetime"><span class="radio-label"></span> <?php _e("Lifetime") ?></label>
-                        </div>
-                        <?php } ?>
-                    </div>
-                    <!-- Pricing Plans Container -->
-                    <div class="pricing-plans-container">
-                        <?php
-                        foreach($sub_types as $plan){
-                        ?>
-                            <!-- Plan -->
-                            <div class='pricing-plan <?php if(isset($plan['recommended']) && $plan['recommended']=="yes"){ echo 'recommended';} ?>'>
-
-                                <?php
-                                if(isset($plan['recommended']) && $plan['recommended']=="yes"){
-                                    echo '<div class="recommended-badge">'.__("Recommended").'</div> ';
-                                }
-                                ?>
-                                <h3><?php _esc($plan['title'])?></h3>
-                                <?php
-                                if($plan['id']=="free" || $plan['id']=="trial"){
-                                    ?>
-                                    <div class="pricing-plan-label"><strong>
-                                            <?php
-                                            if($plan['id']=="free")
-                                                _e("Free");
-                                            else
-                                                _e("Trial");
-                                            ?>
-                                        </strong></div>
-
-                                    <?php
-                                }
-                                else{
-                                    if($total_monthly != 0)
-                                        echo '<div class="pricing-plan-label billed-monthly-label"><strong>'._esc($plan['monthly_price'],false).'</strong>/ '.__("Monthly").'</div>';
-                                    if($total_annual != 0)
-                                        echo '<div class="pricing-plan-label billed-yearly-label"><strong>'._esc($plan['annual_price'],false).'</strong>/ '.__("Yearly").'</div>';
-                                    if($total_lifetime != 0)
-                                        echo '<div class="pricing-plan-label billed-lifetime-label"><strong>'._esc($plan['lifetime_price'],false).'</strong>/ '.__("Lifetime").'</div>';
-                                }
-                                ?>
-
-                                <div class="pricing-plan-features">
-                                    <strong><?php _e("Features of") ?> <?php _esc($plan['title'])?></strong>
-                                    <ul>
-                                        <li><?php _e("Project Fee") ?> <?php _esc($plan['freelancer_commission'])?>%</li>
-                                        <li><?php _esc($plan['bids'])?> <?php _e("Bids") ?></li>
-                                        <li><?php _esc($plan['skills'])?> <?php _e("Skills") ?></li>
-                                        <?php _esc($plan['custom_settings'])?>
-                                    </ul>
-                                </div>
-                                <?php
-                                if($plan['Selected'] == 0){
-                                    echo '<button type="submit" class="button full-width margin-top-20 ripple-effect" name="upgrade" value="'._esc($plan['id'],false).'">'.__("Upgrade").'</button>';
-                                }
-                                if($plan['Selected'] == 1){
-                                    echo '<a href="javascript:void(0);" class="button full-width margin-top-20 ripple-effect">'.__("Current Plan").'</a>';
-                                }
-                                ?>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Membership Plans / End-->
-<?php } ?>
-
-<!-- Testimonials -->
-<?php if($config['testimonials_enable'] && $config['show_testimonials_home']){ ?>
-<div class="section gray padding-top-65 padding-bottom-55">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <!-- Section Headline -->
-                <div class="section-headline centered margin-top-0 margin-bottom-5">
-                    <h3><?php _e("Testimonials") ?></h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Categories Carousel -->
-    <div class="fullwidth-carousel-container margin-top-20">
-        <div class="testimonial-carousel testimonials">
-
-            <!-- Item -->
-            <?php
-            foreach($testimonials as $testimonial){
-            ?>
-            <div class="fw-carousel-review">
-                <div class="testimonial-box">
-                    <div class="testimonial-avatar">
-                        <img src="<?php _esc($config['site_url']);?>storage/testimonials/<?php _esc($testimonial['image']) ?>" alt="<?php _esc($testimonial['name']) ?>">
-                    </div>
-                    <div class="testimonial-author">
-                        <h4><?php _esc($testimonial['name']) ?></h4>
-                        <span><?php _esc($testimonial['designation']) ?></span>
-                    </div>
-                    <div class="testimonial"><?php _esc($testimonial['content']) ?></div>
-                </div>
-            </div>
-            <?php } ?>
-        </div>
-    </div>
-    <!-- Categories Carousel / End -->
-
-</div>
-<?php } ?>
-<!-- Testimonials / End -->
-
-<!-- Counters -->
-<div class="section padding-top-70 padding-bottom-75">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-xl-12">
-                <div class="counters-container">
-
-                    <!-- Counter -->
-                    <div class="single-counter">
-                        <i class="icon-line-awesome-legal"></i>
-                        <div class="counter-inner">
-                            <h3><span class="counter"><?php _esc($total_projects);?></span></h3>
-                            <span class="counter-title"><?php _e("Projects Posted") ?></span>
-                        </div>
-                    </div>
-                    <!-- Counter -->
-                    <div class="single-counter">
-                        <i class="icon-line-awesome-suitcase"></i>
-                        <div class="counter-inner">
-                            <h3><span class="counter"><?php _esc($total_jobs);?></span></h3>
-                            <span class="counter-title"><?php _e("Jobs Posted") ?></span>
-                        </div>
-                    </div>
-                    <!-- Counter -->
-                    <div class="single-counter">
-                        <i class="icon-line-awesome-user"></i>
-                        <div class="counter-inner">
-                            <h3><span class="counter"><?php _esc($total_freelancer);?></span></h3>
-                            <span class="counter-title"><?php _e("Freelancers") ?></span>
-                        </div>
-                    </div>
-                    <!-- Counter -->
-                    <div class="single-counter">
-                        <i class="icon-line-awesome-trophy"></i>
-                        <div class="counter-inner">
-                            <h3><?php _esc($config['currency_sign']);?><span class="counter"><?php _esc($community_earning);?></span></h3>
-                            <span class="counter-title"><?php _e("Community Earnings") ?></span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Counters / End -->
-
-<!-- Recent Blog Posts -->
-<?php if($config['blog_enable'] && $config['show_blog_home']){ ?>
-<div class="section gray padding-top-65 padding-bottom-50">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-
-                <!-- Section Headline -->
-                <div class="section-headline margin-top-0 margin-bottom-45">
-                    <h3><?php _e("Recent Blog") ?></h3>
-                    <a href="<?php url("BLOG") ?>" class="headline-link"><?php _e('View Blog')?></a>
-                </div>
-
-                <div class="row">
-                    <!-- Blog Post Item -->
-                    <?php
-                    foreach($recent_blog as $blog){
-                        ?>
-                    <div class="col-xl-4">
-                        <a href="<?php _esc($blog['link']) ?>" class="blog-compact-item-container">
-                            <div class="blog-compact-item">
-                                <img src="<?php _esc($config['site_url']);?>storage/blog/<?php _esc($blog['image']) ?>"
-                                     alt="{RECENT_BLOG.title}">
-                                <span class="blog-item-tag"><?php _esc($blog['author']) ?></span>
-                                <div class="blog-compact-item-content">
-                                    <ul class="blog-post-tags">
-                                        <li><?php _esc($blog['created_at']) ?></li>
-                                    </ul>
-                                    <h3><?php _esc($blog['title']) ?></h3>
-                                    <p><?php _esc($blog['description']) ?></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <?php } ?>
-                    <!-- Blog post Item / End -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<?php } ?>
-<!-- Recent Blog Posts / End -->
-
-<?php if($config['show_partner_logo_home']){ ?>
-<div class="section border-top padding-top-45 padding-bottom-45">
-    <!-- Logo Carousel -->
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <!-- Carousel -->
-                <div class="col-md-12">
-                    <div class="logo-carousel">
-                        <?php
-                        $dir = ROOTPATH.'/storage/partner/';
-                        $i = 0;
-                        foreach (glob($dir . '*') as $path) {
-                            ?>
-                            <div class="carousel-item">
-                                <img src="<?php _esc($config['site_url']);?>storage/partner/<?php _esc(basename($path))?>">
-                            </div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-                </div>
-                <!-- Carousel / End -->
-            </div>
-        </div>
-    </div>
-</div>
-<?php } ?>
-    <script>
-        var transparent_header = "<?php _esc($config['transparent_header'])?>";
-        $(document).ready(function () {
-            if(transparent_header != '0'){
-                $("#wrapper").addClass('wrapper-with-transparent-header');
-                $("#header-container").addClass('transparent-header');
-            }
+                    }
+                });
+                return false;
+            });
         });
     </script>
-<?php
-overall_footer();
-?>
+      </head>
+  <body data-role="page" class="<?php _esc($lang_direction);?>" id="page" data-ipapi="<?php _esc($config['live_location_api']);?>" data-showlocationicon="<?php _esc($config['location_track_icon']);?>">
+    <!-- <div id="preloader-active">
+      <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+          <div class="text-center">
+            <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/loading.gif"></div>
+        </div>
+      </div>
+    </div> -->
+    <header class="header">
+        <div class="container">
+          <div class="main_header_dash_bg main-header">
+            <div class="header-left">
+              <div class="header-logo"><a class="navbar-header flex-grow-1 d-flex" href="<?php url("INDEX") ?>">
+              <?php
+                 $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
+                $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
+                ?>
+              <img class="landing-logo" src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>"></a></div>
+            </div>
+            <div class="header-nav">
+              <nav class="nav-main-menu">
+                <ul class="main-menu">
+  
+                  <li class="catgo"><a href="category.php">Category</a>
+                  </li>
+                  <li class="catgo"><a>Post a Job</a>
+                  </li>
+                  <li class="catgo"><a href="login.php">Become an Advisor</a>
+                  </li>
+  
+                </ul>
+              </nav>
+              <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
+              <a class="mobile_signup_button" href="signup.php">sign up</a>
+            </div>
+           
+            <div class="lang_selctor_lap d-none d-lg-flex">
+              <i class="fas fa-globe" style="font-size:17px!important;"></i>
+              <select>
+              <option value="1">English</option>
+              <option value="2">العربيّة</option>
+              <option value="3">Arabic</option>
+              <option value="3">Deutsch</option>
+              <option value="3">简体中文</option>
+              </select>
+              </div>
+              
+  
+            <div class="header-right">
+              <div class="block-signin">
+                <a class="catgo text-link-bd-btom ml-10 hover-up" href="login.php">Log In</a>
+                <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="signup.php">Sign Up</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    
+      <!-- Mobile Version -->
+    <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+        <div class="mobile-header-wrapper-inner">
+          <div class="mobile-header-content-area adv-font">
+            <div class="perfect-scroll">
+              <a href="signup.php"><span class="signup-btn">Sign Up</span></a>
+              <div class="mobile-menu-wrap pt-40">
+                <a href="login.php"><h6 class="adv-font mb-10 mt-35">Log In</h6></a>
+                <!-- mobile menu start-->
+                <nav>
+                  <ul class="mobile-menu adv-font" style="list-style:none;">
+                    <li class="adv-font has-children"><a href="#">Expertise</a>
+                      <ul class="adv-font sub-menu">
+                      <?php foreach($category as $cat){ ?>
+                        <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?></a>
+                        </li>
+                        <!-- <li><a href="">Tax Compliance</a></li>
+                        <li><a href="">Corporate Income Tax</a></li>
+                        <li><a href="">Personal Income Tax</a></li>
+                        <li><a href="">Transfer Pricing</a></li>
+                        <li><a href="">Tax Dispute</a></li>
+                        <li><a href="">Value Added Tax</a></li> -->
+                        <?php } ?>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+                
+              </div>
+              <div class="mobile-account">
+                <ul class="mobile-menu font-heading">
+                  <li><a href="#">Become an Advisor</a></li>
+                  <li class="border-bottom"><a href="#">General</a></li>
+                  <li class="pt-20"><a href="index.php">Home</a></li>
+  
+                  <li>
+                    <div class="lang_selctor-m">
+                      <i class="fas fa-globe"></i>
+                      <select>
+                      <option value="1">English</option>
+                      <option value="2">العربيّة</option>
+                      <option value="3">Arabic</option>
+                      <option value="3">Deutsch</option>
+                      <option value="3">简体中文</option>
+                      </select>
+                      </div>
+                  </li>
+                </ul>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile End -->
+      <div class="bdrd-top"></div>
+      <div class="container-fluid d-none d-md-flex flex-row justify-content-evenly border-bottom border-2 p-3">
+        <div class="text-center">
+          <div class="list-tabs">
+            <ul class="nav nav-tabs" role="tablist">
+            <?php foreach($category as $cat){ ?>
+            <li class="mt-3 mb-3"><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?>
+            </a>
+            </li>
+              <!-- <li class="mt-3 mb-3"><a  href="#"> Sales Tax</a></li>
+              <li class="mt-3 mb-3"><a  href="#"> International</a></li>
+              <li class="mt-3 mb-3"><a href="#"> Financial Planning</a></li>
+              <li class="mt-3 mb-3"><a  href="#"> Corporations</a></li>
+              <li class="mt-3 mb-3"><a  href="#"> IRS Representation</a></li>
+              <li class="mt-3 mb-3"><a  href="#"> Individual Tax Preparation</a></li> -->
+              <?php } ?>
+              <a class="pr-30" href="category.php"> See All</a>
+            </ul>
+          </div>
+        </div>
+        </div>
+        <div class="container-fluid d-flex d-md-none flex-row border-bottom border-2 justify-content-evenly">
+            <a href="#" class="pill blue-pill rounded-pill">Tax Pricing</a>
+            <div class="pill blue-pill rounded-pill">Corporations</div>
+            <div class="pill blue-pill rounded-pill">Tax Audits</div>
+            <div class="pill blue-pill rounded-pill">Sales Tax</div>
+        </div>
+          <main class="main">
+      <section class="section-box">
+        <div class="banner-hero hero-2" style="background-image: url(<?php _esc($config['site_url']);?>storage/banner/<?php _esc($config['home_banner']);?>);">
+          <div class="banner-inner">
+            <div class="block-banner">
+              <h1 class="text-42 color-white"><?php _e("Hire the perfect tax") ?> <br class="d-none d-lg-block"><?php _e("advisors for your business") ?></h1>
+              <div class="font-lg font-regular color-white mt-20"><?php _e("Get access to millions of tax advisors who are verified, reliable, and experienced on Global Tax Compliance - your one-stop-shop for seamless tax advice services.") ?></div>
+              <div class="form-find mt-40">
+                <form autocomplete="off" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
+                    <input class="form-input input-keysearch color-white" type="text" name="" placeholder="<?php _e("What service are you looking for today?") ?>">
+                     <button class="btn btn-default font-sm search-button"><li class="fa-2xxx fa fa-search" style="color:#2C76DC!important;"></i></button>
+                   </form>
+              </div>
+              <div class="list-tags-banner mt-20 d-none d-lg-flex flex-row justify-content-evenly" data-wow-delay=".3s"><strong>Trending Searches:</strong><a href="#">Tax Audits</a>, <a href="#">Financial Planning</a>, <a href="#">Corporations</a>, <a href="#">Individual Tax Preparation</a></div>
+              <!-- Mobile show -->
+               <div class="mt-30 d-block d-lg-none trending-searches-container text-white" data-wow-delay=".3s" style="font-size: 0.625rem;">
+                  <div class="row align-items-center justify-content-center gx-1">
+                      <div class="col-auto me-2">Trending Searches:</div>
+                      <div class="col-auto border border-light rounded-pill p-1 ps-2 pe-2 me-1 mb-1">Tax Pricing</div>
+                      <div class="col-auto border border-light rounded-pill p-1 ps-2 pe-2 me-1 mb-1">Personal Income Tax</div>
+                      <div class="col-auto border border-light rounded-pill p-1 ps-2 pe-2 me-1 mb-1">Sales Tax</div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div class="container mt-60">
+          <div class="d-none d-lg-flex left-trust col-lg-2 col-md-3 col-sm-3 col-3">
+         <h6 class="d-none d-lg-flexcolor-text-paragraph-2 text-18">Trusted by:</h6>
+          </div>
+        <div class="trusted-logos slider">
+      <div class="slide"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/trust/African centre for tax compliance 1.png" style="width:146px !important; height:56px !important" alt=""></div>
+      <div class="slide"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/trust/MN_INNOVA_LOGO 1.png" style="width:200px !important; height:56px !important" alt=""></div>
+      <div class="slide"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/trust/aton1 2.png" style="width:120px !important; height:56px !important;" alt=""></div>
+      <div class="slide"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/trust/Kiota_Property_Logo 1.png" style="width:120px !important; height:56px !important" alt=""></div>
+      <div class="slide"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/trust/Table Tennis Academy 2.png" style="width:150px !important; height:56px !important" alt=""></div>
+   </div>
+       </div>
+   </section>
+
+            </div>
+        </div>
+      </section>
+
+      <section class="section-box mt-50">
+        <div class="services-wrapper py-5">
+          <div class="container">
+            <div class="text-start">
+              <h3 class="areaofexperts section-title mb-20">Areas of expertise</h3>
+            </div>
+          <div class="row service-slider">
+          <div class="col-6">
+          <div class="service">
+          <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/expertise/pexels-ekaterina-bolovtsova-6077123 1.png">
+          <h3><span class="tax-serv color-white font-xs">Abide by the law</span> <span class="tax-text color-white mb-5">Tax Compliance</span></h3>
+          </div>
+          </div>
+          <div class="col-6">
+            <div class="service">
+            <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/expertise/pexels-nataliya-vaitkevich-6863202 2.png">
+            <h3><span class="tax-serv color-white font-xs">Want to learn about tax?</span> <span class="tax-text color-white mb-5">Tax Law Research</span></h3>
+            </div>
+            </div>
+          <div class="col-6">
+          <div class="service">
+          <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/expertise/pexels-fauxels-3183197 1.png">
+          <h3><span class="tax-serv color-white font-xs">Want to cut operations cost?</span> <span class="tax-text color-white mb-5">Tax Planning</span></h3>
+          </div>
+          </div>
+          <div class="col-6">
+          <div class="service">
+          <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/expertise/pexels-monstera-5849579 1.png">
+          <h3><span class="tax-serv color-white font-xs">Contractual or administrative trouble?</span> <span class="tax-text color-white mb-5">Tax Dispute</span></h3>
+          </div>
+          </div>
+            <div class="col-6">
+            <div class="service">
+            <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/expertise/pexels-olya-kobruseva-8962469 2.png" style="width:304px; height:380px;">
+            <h3><span class="tax-serv color-white font-xs">Tax Dispute</span><span class="tax-text color-white mb-5"> Personal Income Tax</span></h3>
+            </div>
+            </div>
+        
+          </div>
+          </div>
+          </div>
+      </section>
+
+
+      <section class="section-box verified-user-home-bg mt-50 mb-30 bg-border-3 pt-100">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="pl-30">
+                <h5 class="verified-title color-brand-2 mb-15 mt-15 text-white mb-32">Verified, Screened Advisors</h5>
+                
+                <img class="verified-expert-badge" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/Verified-Expert-Badge.png">
+                <p class="d-md-none d-xl-block verified-subtext font-lg verified-sub-text-smll-screen color-text-paragraph-2 text-left text-white text-md-left mt-32"><?php _e("Our advisors have been vetted and screened using best practices to ensure that they are real, reliable, and accredited advisors. On Global Tax Compliance, you have access to a catalogue of vetted advisors, making it easy to choose the best advisor for you and your business . ") ?></p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="back-line"></div>
+              <img class="verified-user-home" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/unsplash_wmFFRa51OoA.png" alt="">
+              <div class="pl-30 mt-30 mb-40">
+                <br /><br />
+              <p class="mt-234 font-lg verified-sub-text-desktop verified-sub-text-mobile color-text-paragraph-2 text-left text-white text-md-left"><?php _e("Our advisors have been vetted and screened using best practices to ensure that they are real, reliable, and accredited advisors. On Global Tax Compliance, you have access to a catalogue of vetted advisors, making it easy to choose the best advisor for you and your business . ") ?></p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="userback-button-container" id="userback_button_container">
+        <div class="userback-button userback-button-e" style="min-width: 120px;">Feedback</div></div>
+
+        <section class="section-box bg-white mt-50 mb-30 bg-border-3 pt-10 pb-6">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6">
+              <a href="#headerPopup" id="headerVideoLink" target="_blank" class="video-bttn position-relative d-block popup-modal">
+              <img class="tab-img bdrd-10" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/pexels-daniel-xavier-1121796 1.png" alt="">
+            </a>
+            </div>
+          <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
+        <iframe class="embed-responsive-item" width="854" height="480" src="https://www.youtube.com/embed/TdwqdNLByMQ?" frameborder="0" allow="; encrypted-media" allowfullscreen></iframe>
+      </div>
+              <div class="col-lg-6">
+                <div class="pl-20 pl-lg-30">
+                  <span class="tmonial_title"><?php _e("Mustapha Ndajiwo, Co-Founder |") ?></span><span><img class="tmonial_logo" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/MN_INNOVA_LOGO.png"></span>
+                  <p class="tmonial_sub_title font-lg color-text-paragraph-2"><?php _e(" “We started this company in order to provide a seamless avenue for people to get direct contact with resources and professionals that can solve their tax problems ” ") ?></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+       
+        <section class="section-box taxguid-bg mt-50">
+          <div class="container">
+            <div class="text-start">
+              <h2 class="section-title mb-10">Tax Guides <div class="color-primary d-none d-sm-block float-right"><a href="#" style="color:#2C76DC;font-family:Proxima Soft; font-style: normal; font-weight:400; font-size: 16px;">See More Guides <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/arrow.png" alt=""></a></div></h2>
+            </div>
+          <div>
+
+          <div class="row">
+          <div class="col-lg-4">
+          <div class="blog grid-blog aos aos-init aos-animate" data-aos="fade-up">
+          <div class="blog-image">
+          <a href="#">
+          <img class="img-fluid" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/tax-guides/pexels-pixabay-209151 1.png" alt="">
+        </a>
+          </div>
+          <div class="blog-content">
+          <h3 class="tax-guid-txt">
+            <a href="#"><?php _e("Become a Tax advisor and work from home") ?></a></h3>
+          <p class="mb-0 tax-guid-sub"><?php _e(" A complete guide to becoming a Tax Advisor ") ?></p>
+          </div>
+        </div>
+        </div>
+
+          <div class="col-lg-4">
+          <div class="blog grid-blog aos aos-init aos-animate" data-aos="fade-up">
+          <div class="blog-image">
+          <a href="#">
+            <img class="img-fluid" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/tax-guides/pexels-anna-shvets-3727456 1.png" alt="">
+          </a>
+          </div>
+          <div class="blog-content">
+          <h3 class="tax-guid-txt">
+            <a href="#"><?php _e("Personal Income Tax made easy ")?></a></h3>
+          <p class="mb-0 tax-guid-sub"><?php _e("A practical guide to understand what is personal income tax.") ?></p>
+          </div>
+          </div>
+          
+          </div>
+          <div class="col-lg-4">
+          
+          <div class="blog grid-blog aos aos-init aos-animate" data-aos="fade-up">
+          <div class="blog-image">
+          <a href="#">
+          <img class="img-fluid" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/tax-guides/pexels-karolina-grabowska-4386367 1.png" alt="Post Image">
+        </a>
+          </div>
+          <div class="blog-content">
+          <h3 class="tax-guid-txt">
+          <a href="#">Pay Tax for your busineses</a></h3>
+          <p class="mb-0 tax-guid-sub">A step-by-step guide to pay your tax</p>
+          </div>
+          </div>
+          
+          </div>
+          </div>
+          </div>
+          <div class="color-primary d-sm-block d-xl-none "><a href="#" style="color:#2C76DC;font-family:Proxima Soft; font-style: normal; font-weight:400; font-size: 16px;">See More Guides <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/arrow.png" alt=""></a></div>
+          </div>
+          </section>
+    </main>
+
+   <!-- footer start -->
+<footer class="footer mt-50">
+      <div class="container">
+        <div class="row">
+          <div class="d-none d-lg-flex footer-col-1 col-md-8 col-sm-12">
+            <a href="#">
+            <?php
+            $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
+            $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
+            ?>
+            <img alt="" src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>"></a>
+            <div class="mt-20 mb-20 font-xs color-text-paragraph-2 text-white"> </div>
+          </div>
+          <div class="footer-col-2 col-md-4 col-xs-6">
+            <h6 class="mb-20 text-white">Company</h6>
+            <ul class="menu-footer">
+              <li><a href="<?php url("INDEX") ?>">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Privacy policy</a></li>
+              <li><a href="#">Terms and conditions</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-3 col-md-4 col-xs-6">
+            <h6 class="mb-20 text-white">Services</h6>
+            <ul class="menu-footer">
+              <li><a href="category.php">Categories</a></li>
+              <?php
+                if($config['country_type'] == "multi") {
+                echo '<li><a href="'.url("COUNTRIES",false).'">'.__("Countries").'</a></li>';
+                }
+            ?>
+              <li><a href="become_advisor.php">Become an Advisor</a></li>
+              <li><a href="category.php">Hire an Advisor</a></li>
+              <li><a href="#">Post a job</a></li>
+            </ul>
+          </div>
+          <div class="footer-col-4 footer-middle col-md-4 col-xs-6">
+            <h6 class="mb-20 text-white">Products</h6>
+            <ul class="menu-footer">
+              <li><a href="#">Tax guides</a></li>
+              <li><a href="#">Chrome Extensions</a></li>
+              <li><a href="#">Tax portals</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom mt-50">
+          <div class="row justify-content-center">
+            <div class="d-flex d-lg-none"><img class="footer-logo" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/gtclogo.png" alt="gtclogo" style="width:120px;height:40.31px;top:5.96px;left:425px;"> </div>
+            <div class="col-12 col-md-6 footer-last-col"> 
+            <span class="copyright-text">
+              &copy; 2022 Global Tax Compliance inc. all rights reserved.</span></div>
+            <div class="col-12 col-md-6 footer-social-icons text-center">
+                <div class="row gy-2">
+              <div class="footer-social col-auto text-center">
+                <a class="icon-socials lab la-twitter" href="#"></a> 
+                 <a class="icon-socials lab la-facebook" href="#"></a> 
+                <a class="icon-socials lab la-instagram" href="#"></a>  
+                <a class="icon-socials lab la-linkedin" href="#"></a>
+              </div>
+                <div class="lang_selctor-footer col-auto">
+                  <img class="lang-img" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" alt="">
+                  <select class="text-uppercase">
+                  <option value="1">English</option>
+                  <option value="2">العربيّة</option>
+                  <option value="3">Arabic</option>
+                  <option value="3">Deutsch</option>
+                  <option value="3">简体中文</option>
+                  </select> 
+                </div>
+            </div>    
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer> 
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/waypoints.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/wow.js"></script>
+
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/vendors/slick-master/slick/slick.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/custom.js"></script>
+ 
+    
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/magnific-popup.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/select2.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/isotope.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/scrollup.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/swiper-bundle.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/counterup.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/main.js?ver=<?php _esc($config['version']);?>"></script>
+    <script>
+      $(document).ready(function(){
+    $('.trusted-logos').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 4
+            }
+        }, {
+            breakpoint: 520,
+            settings: {
+                slidesToShow: 3
+            }
+        }]
+    });
+});
+    </script>
+    <script>
+  $( document ).ready(function() {
+	$('#headerVideoLink').magnificPopup({
+	type:'inline',
+	midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+	});
+});
+   
+</script>
+  </body>
+</html>

@@ -68,6 +68,39 @@ foreach ($result as $info) {
 
 }
 
+//mobile cat
+$result = ORM::for_table($config['db']['pre'].'catagory_main')
+        ->order_by_asc('cat_order')
+        ->limit(3)
+        ->find_many();
+foreach ($result as $info) {
+    if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
+        $maincat = get_category_translation("main",$info['cat_id']);
+        $info['cat_name'] = $maincat['title'];
+        $info['slug'] = $maincat['slug'];
+    }
+    $category2[$info['cat_id']]['slug'] = $info['slug'];
+    $category2[$info['cat_id']]['name'] = $info['cat_name'];
+    $category2[$info['cat_id']]['main_id'] = $info['cat_id'];
+    $category2[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
+
+    if(trim($config['home_page']) == "home-freelance"){
+        $totalAdsMaincat = ORM::for_table($config['db']['pre'].'project')
+            ->where(array(
+                'category'=> $info['cat_id'],
+                'status'=> 'open'
+                ))
+            ->count();
+    }
+    else{
+        $totalAdsMaincat = get_items_count(false,"active",false,null,$info['cat_id'],true);
+    }
+
+    $category2[$info['cat_id']]['main_ads_count'] = $totalAdsMaincat;
+    $count = 1;
+
+}
+
 $result1 = ORM::for_table($config['db']['pre'] . 'user')
     ->where(array(
         'status' => '1',
@@ -345,69 +378,6 @@ if($config['show_membershipplan_home']) {
  * End
  */
 
-/**
- * RECENT blogs
- * Start
- */
-$recent_blog = array();
-if($config['show_blog_home']){
-    $sql = "SELECT
-b.*, u.name, u.username, u.image author_pic, GROUP_CONCAT(c.title) categories, GROUP_CONCAT(c.slug) cat_slugs
-FROM `".$config['db']['pre']."blog` b
-LEFT JOIN `".$config['db']['pre']."admins` u ON u.id = b.author
-LEFT JOIN `" . $config['db']['pre'] . "blog_cat_relation` bc ON bc.blog_id = b.id
-LEFT JOIN `" . $config['db']['pre'] . "blog_categories` c ON bc.category_id = c.id
-WHERE b.status = 'publish' GROUP BY b.id ORDER BY b.created_at DESC LIMIT 3";
-    $rows = ORM::for_table($config['db']['pre'].'blog')->raw_query($sql)->find_many();
-    foreach ($rows as $info) {
-        $recent_blog[$info['id']]['id'] = $info['id'];
-        $recent_blog[$info['id']]['title'] = $info['title'];
-        $recent_blog[$info['id']]['image'] = !empty($info['image'])?$info['image']:'default.png';
-        $recent_blog[$info['id']]['description'] = strlimiter(strip_tags(stripslashes($info['description'])),100);
-        $recent_blog[$info['id']]['author'] = $info['name'];
-        $recent_blog[$info['id']]['author_link'] = $link['BLOG-AUTHOR'].'/'.$info['username'];
-        $recent_blog[$info['id']]['author_pic'] = !empty($info['author_pic'])?$info['author_pic']:'default_user.png';
-        $recent_blog[$info['id']]['created_at'] = timeAgo($info['created_at']);
-        $recent_blog[$info['id']]['link'] = $link['BLOG-SINGLE'].'/'.$info['id'].'/'.create_slug($info['title']);
-
-        $categories = explode(',',$info['categories']);
-        $cat_slugs = explode(',',$info['cat_slugs']);
-        $arr = array();
-        for($i = 0; $i < count($categories); $i++){
-            $arr[] = '<a href="'.$link['BLOG-CAT'].'/'.$cat_slugs[$i].'">'.$categories[$i].'</a>';
-        }
-        $recent_blog[$info['id']]['categories'] = implode(', ',$arr);
-    }
-}
-
-/**
- * RECENT blogs
- * END
- */
-
-/**
- * TESTIMONIALS
- * Start
- */
-$testimonials = array();
-if($config['show_testimonials_home']){
-    $rows = ORM::for_table($config['db']['pre'] . 'testimonials')
-        ->order_by_desc('id')
-        ->limit(5)
-        ->find_many();
-
-    foreach ($rows as $row) {
-        $testimonials[$row['id']]['id'] = $row['id'];
-        $testimonials[$row['id']]['name'] = $row['name'];
-        $testimonials[$row['id']]['designation'] = $row['designation'];
-        $testimonials[$row['id']]['content'] = $row['content'];
-        $testimonials[$row['id']]['image'] = !empty($row['image']) ? $row['image'] : 'default_user.png';
-    }
-}
-/**
- * TESTIMONIALS
- * End
- */
 
 $total_freelancer = $count = ORM::for_table($config['db']['pre'].'user')->where('user_type','user')->count();
 $total_jobs = $count = ORM::for_table($config['db']['pre'].'product')->count();
@@ -431,13 +401,12 @@ HtmlTemplate::display($home_page, array(
     'items' => $item,
     'item2' => $item2,
     'category' => $category,
+    'category2' => $category2,
     'freelancers' => $freelancers,
     'total_freelancer' => number_format($total_freelancer),
     'total_jobs' => number_format($total_jobs),
     'total_projects' => number_format($total_projects),
     'community_earning' => number_format($community_earning),
-    'recent_blog' => $recent_blog,
-    'testimonials' => $testimonials,
     'sub_types' => $sub_types,
     'total_monthly' => $total_monthly,
     'total_annual' => $total_annual,

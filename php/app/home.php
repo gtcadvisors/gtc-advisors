@@ -35,9 +35,10 @@ if($config['show_latest_jobs_home']){
     $item2 = get_items("","active",false,1,$limit,"p.id",true);
 }
 
+
 $result = ORM::for_table($config['db']['pre'].'catagory_main')
         ->order_by_asc('cat_order')
-        ->limit(8)
+        ->limit(7)
         ->find_many();
 foreach ($result as $info) {
     if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
@@ -46,10 +47,8 @@ foreach ($result as $info) {
         $info['slug'] = $maincat['slug'];
     }
     $category[$info['cat_id']]['slug'] = $info['slug'];
-    $category[$info['cat_id']]['icon'] = $info['icon'];
     $category[$info['cat_id']]['name'] = $info['cat_name'];
     $category[$info['cat_id']]['main_id'] = $info['cat_id'];
-    $category[$info['cat_id']]['picture'] = $info['picture'];
     $category[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
 
     if(trim($config['home_page']) == "home-freelance"){
@@ -76,6 +75,7 @@ $result1 = ORM::for_table($config['db']['pre'] . 'user')
     ))
     ->limit(6)
     ->find_many();
+
 //Loop for list view
 $freelancers = array();
 if (!empty($result1)) {

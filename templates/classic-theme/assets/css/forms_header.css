@@ -1,0 +1,286 @@
+/* THIS IS THE CSS CODE FOR THE LOGIN, REGISTRATION AND THE SIGNUP PAGES */
+.header {
+    padding: 20px 0;
+    float: left;
+    width: 100%;
+    background: #FFFFFF;
+     border-bottom: 1px solid #E1E6EF;
+  }
+  .header .main-header {
+    display: flex;
+    align-items: center;
+  }
+  .header .main-header .header-right {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+  }
+  .header .main-header .header-nav {
+    display: inline-block;
+    width: 100%;
+    text-align: start;
+  }
+  .header .main-header .header-left {
+    display: flex;
+    align-items: center;
+  }
+  .header .main-header .header-left .header-logo {
+    margin-right: 0;
+    min-width: 139px;
+  }
+  .header .nav-main-menu {
+    display: inline-block;
+    width: auto;
+    padding: 0px;
+    text-align: left;
+  }
+  .header .main-menu li {
+    float: left;
+    padding: 10px 22px;
+    position: relative;
+  }
+  .header .main-menu li.dashboard a {
+    border: 1px dashed #3C65F5;
+    padding: 5px 8px;
+    border-radius: 4px;
+  }
+  .header .main-menu li.has-children > a::after {
+    content: "\f151";
+    font-family: uicons-regular-rounded !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1 !important;
+    font-size: 18px;
+    opacity: 1;
+    margin-left: 4px;
+    position: absolute;
+    top: 1px;
+    right: -19px;
+    color: #A0ABB8;
+  }
+  .header .main-menu li.hr {
+    padding: 0px 22px;
+  }
+  .header .main-menu li.hr span {
+    background-color: #E0E6F6;
+    height: 1px;
+    width: 100%;
+    display: block;
+    margin: 5px 0;
+  }
+  .header .main-menu li a {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #05264E;
+    display: block;
+    padding: 0px;
+    text-decoration: none;
+    position: relative;
+  }
+  .header .main-menu li a:hover, .header .main-menu li a.active {
+    color: #3C65F5;
+  }
+  .header .main-menu li a:hover::before, .header .main-menu li a.active::before {
+    content: "";
+    height: 2px;
+    width: 100%;
+    background-color: #3C65F5;
+    position: absolute;
+    bottom: -10px;
+    left: 0px;
+  }
+  .header .main-menu li a i {
+    font-size: 10px;
+    opacity: 0.5;
+    margin-left: 3px;
+  }
+  .header .main-menu li ul {
+    opacity: 0;
+    visibility: hidden;
+    transition-duration: 0.2s;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    z-index: 999;
+    min-width: 220px;
+    border-radius: 10px;
+    border: 1px solid #ececec;
+    box-shadow: 0px 10px 20px -5px rgba(10, 42, 105, 0.06);
+    background-color: #ffffff;
+    padding: 10px 0px 15px 0;
+  }
+  .header .main-menu li ul li {
+    width: 100%;
+    padding: 0px;
+  }
+  .header .main-menu li ul li a {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+    color: #253D4E;
+    position: relative;
+    padding: 14px 22px 10px 35px;
+    transition: 0.3s;
+  }
+  .header .main-menu li ul li a::after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    background-color: #05264E;
+    border-radius: 50%;
+    opacity: 0.7;
+    transition-duration: 0.2s;
+  }
+  .header .main-menu li ul li a:hover, .header .main-menu li ul li a.active {
+    padding-left: 38px;
+    transition: 0.5s;
+  }
+  .header .main-menu li ul li a:hover::after, .header .main-menu li ul li a.active::after {
+    opacity: 1;
+    transition-duration: 0.3s;
+  }
+  .header .main-menu li ul li a:hover::before, .header .main-menu li ul li a.active::before {
+    display: none;
+  }
+  .header .main-menu li ul li ul {
+    top: 0px;
+    left: 100%;
+  }
+  .header .main-menu li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 15px;
+  }
+  .header .main-menu li:hover > ul li {
+    width: 100%;
+  }
+  .header .text-link-bd-btom {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+    color: #05264E;
+    margin: 2px auto;
+    display: inline-block;
+    position: relative;
+    text-decoration-line: none;
+  }
+  .header .text-link-bd-btom:hover {
+    color: #3C65F5;
+  }
+  .header .block-signin .btn-shadow {
+    box-shadow: 0px 18px 40px rgba(25, 15, 9, 0.1);
+  }
+  .header.stick {
+    padding: 14px 0px;
+  }
+  .header.header-2 {
+    background-color: #F8FAFF;
+  }
+  .header-signup{
+    position: absolute;
+    width: max-content;
+    height: fit-content;
+    top: 15px;
+    right: 25px;
+    z-index: 9;
+    cursor: pointer;
+  }
+  .header-bg,
+.bg-banner-about {
+  background-color: #F8FAFF;
+}
+.header-brand-2 {
+    background: #3C65F5;
+  }
+  .header-brand-2.sticky-bar.stick {
+    background: #3C65F5;
+  }
+  .header-brand-2 .main-menu > li > a {
+    color: #E0E6F6;
+  }
+  .header-brand-2 .main-menu > li > a:hover {
+    color: #ffffff;
+  }
+  .header-brand-2 .main-menu > li > a:hover::before, .header-brand-2 .main-menu > li > a .active::before {
+    background-color: #ffffff;
+  }
+  .header-brand-2 .main-menu li a, .header-brand-2 .main-menu li a.active {
+    color: #ffffff;
+  }
+  .header-brand-2 .main-menu li a:hover::before, .header-brand-2 .main-menu li a .active::before, .header-brand-2 .main-menu li a.active:hover::before, .header-brand-2 .main-menu li a.active .active::before {
+    background-color: #ffffff;
+  }
+  .header-brand-2 .main-menu li a {
+    color: #E0E6F6;
+  }
+  .header-brand-2 .main-menu li a:hover, .header-brand-2 .main-menu li a.active {
+    color: #ffffff;
+  }
+  .header-brand-2 .main-menu li a:hover::before, .header-brand-2 .main-menu li a.active::before {
+    background-color: #ffffff;
+  }
+  .header-brand-2 .main-menu li ul li a:hover {
+    color: #3C65F5;
+  }
+  .header-brand-2 .text-link-bd-btom {
+    color: #ffffff;
+  }
+  .header-brand-2 .btn-default {
+    background-color: #ffffff;
+    color: #3C65F5;
+    font-weight: 500;
+  } 
+
+  @media (max-width: 1199.98px) {
+    .header .main-header .header-right {
+        display: none;
+      }
+      .header .container {
+        position: relative;
+      }
+      .header .nav-main-menu {
+        display: none;
+      } 
+  }
+
+  @media (max-width: 991.98px) {
+    .header .main-header .header-left .header-logo {
+        margin-right: 0px;
+      }
+      .header .main-header .header-nav {
+        width: 0%;
+      }
+      .header-right {
+    padding-right: 20px;
+  }
+      
+  }
+
+  @media (max-width: 767.98px) {
+    .header .main-header .header-right {
+        display: none;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+        .header.sticky-bar .col-lg-7 .burger-icon {
+            right: 15px;
+          } 
+        }
+
+        /*OTHER SCREEN*/
+@media screen and (min-width: 1200px) and (max-width: 1440px) {
+    .header-right {
+      display: none;
+    }
+  }

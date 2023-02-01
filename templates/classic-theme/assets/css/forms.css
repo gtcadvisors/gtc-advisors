@@ -9239,4 +9239,12 @@ ul li:last-child .card-list-4 {
     margin-left: 266px !important;
 }
 }
+
+.status-available{
+  color: green;
+}
+
+.status-not-available{
+  color: red;
+}
 /*# sourceMappingURL=style.css.map */

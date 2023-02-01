@@ -1,4 +1,7 @@
 <?php
+
+use Stripe\Terminal\Location;
+
 if(isset($_GET['confirm']))
 {
     $check_confirm = 0;
@@ -54,29 +57,29 @@ if(isset($_POST["submit"])) {
     $name_field = $_POST['name'];
     $username_field = $_POST['username'];
     $email_field = $_POST['email'];
-    $name_length = strlen(utf8_decode($_POST['name']));
+    // $name_length = strlen(utf8_decode($_POST['name']));
 
-    if(empty($_POST["user-type"])) {
-        $errors++;
-        $type_error = "<span class='status-not-available'> ".__("Please select a user type.")."</span>";
-    }else{
-        if(!in_array($_POST["user-type"], array(1,2))){
-            $errors++;
-            $type_error = "<span class='status-not-available'> ".__("Invalid user type.")."</span>";
-        }
-    }
+    // if(empty($_POST["user-type"])) {
+    //     $errors++;
+    //     $type_error = "<span class='status-not-available'> ".__("Please select a user type.")."</span>";
+    // }else{
+    //     if(!in_array($_POST["user-type"], array(1,2))){
+    //         $errors++;
+    //         $type_error = "<span class='status-not-available'> ".__("Invalid user type.")."</span>";
+    //     }
+    // }
 
-    if(empty($_POST["name"])) {
-        $errors++;
-        $name_error = __("Enter your full name.");
-        $name_error = "<span class='status-not-available'> ".$name_error."</span>";
-    }
-    elseif( ($name_length < 4) OR ($name_length > 21) )
-    {
-        $errors++;
-        $name_error = __("Name must be between 4 and 20 characters long.");
-        $name_error = "<span class='status-not-available'> ".$name_error.".</span>";
-    }
+    // if(empty($_POST["name"])) {
+    //     $errors++;
+    //     $name_error = __("Enter your full name.");
+    //     $name_error = "<span class='status-not-available'> ".$name_error."</span>";
+    // }
+    // elseif( ($name_length < 4) OR ($name_length > 21) )
+    // {
+    //     $errors++;
+    //     $name_error = __("Name must be between 4 and 20 characters long.");
+    //     $name_error = "<span class='status-not-available'> ".$name_error.".</span>";
+    // }
     /*elseif(preg_match('/[^A-Za-z\s]/',$_POST['name']))
     {
         $errors++;
@@ -174,7 +177,6 @@ if(isset($_POST["submit"])) {
     }
 
     if($errors == 0) {
-
         $confirm_id = get_random_id();
         $location = getLocationInfoByIp();
         $password = $_POST["password"];
@@ -183,12 +185,12 @@ if(isset($_POST["submit"])) {
 
         $insert_user = ORM::for_table($config['db']['pre'].'user')->create();
         $insert_user->status = '0';
-        $insert_user->name = $_POST["name"];
-        if($_POST["user-type"] == 1){
-            $insert_user->user_type = 'user';
-        }else{
-            $insert_user->user_type = 'employer';
-        }
+        // $insert_user->name = $_POST["name"];
+        // if($_POST["user-type"] == 1){
+        //     $insert_user->user_type = 'user';
+        // }else{
+        //     $insert_user->user_type = 'employer';
+        // }
         $insert_user->username = $_POST["username"];
         $insert_user->password_hash = $pass_hash;
         $insert_user->email = $_POST['email'];
@@ -222,11 +224,11 @@ HtmlTemplate::display('global/signup', array(
     'name_field' => $name_field,
     'username_field' => $username_field,
     'email_field' => $email_field,
-    'type_error' => $type_error,
-    'name_error' => $name_error,
+    // 'type_error' => $type_error,
+    // 'name_error' => $name_error,
     'username_error' => $username_error,
     'email_error' => $email_error,
     'password_error' => $password_error,
-    'recaptcha_error' => $recaptcha_error
+    // 'recaptcha_error' => $recaptcha_error
 ));
 exit;

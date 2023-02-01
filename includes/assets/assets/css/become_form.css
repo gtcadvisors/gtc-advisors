@@ -1,0 +1,506 @@
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-SemiBold.eot');
+  src: local('Proxima Soft SemiBold'), local('ProximaSoft-SemiBold'),
+      url('fonts/ProximaSoft-SemiBold.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-SemiBold.woff2') format('woff2'),
+      url('fonts/ProximaSoft-SemiBold.woff') format('woff'),
+      url('fonts/ProximaSoft-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-BoldIt.eot');
+  src: local('Proxima Soft Bold Italic'), local('ProximaSoft-BoldIt'),
+      url('fonts/ProximaSoft-BoldIt.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-BoldIt.woff2') format('woff2'),
+      url('fonts/ProximaSoft-BoldIt.woff') format('woff'),
+      url('fonts/ProximaSoft-BoldIt.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-Light.eot');
+  src: local('Proxima Soft Light'), local('ProximaSoft-Light'),
+      url('fonts/ProximaSoft-Light.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-Light.woff2') format('woff2'),
+      url('fonts/ProximaSoft-Light.woff') format('woff'),
+      url('fonts/ProximaSoft-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-Thin.eot');
+  src: local('Proxima Soft Thin'), local('ProximaSoft-Thin'),
+      url('fonts/ProximaSoft-Thin.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-Thin.woff2') format('woff2'),
+      url('fonts/ProximaSoft-Thin.woff') format('woff'),
+      url('fonts/ProximaSoft-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-LightIt.eot');
+  src: local('Proxima Soft Light Italic'), local('ProximaSoft-LightIt'),
+      url('fonts/ProximaSoft-LightIt.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-LightIt.woff2') format('woff2'),
+      url('fonts/ProximaSoft-LightIt.woff') format('woff'),
+      url('fonts/ProximaSoft-LightIt.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-Medium.eot');
+  src: local('Proxima Soft Medium'), local('ProximaSoft-Medium'),
+      url('fonts/ProximaSoft-Medium.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-Medium.woff2') format('woff2'),
+      url('fonts/ProximaSoft-Medium.woff') format('woff'),
+      url('fonts/ProximaSoft-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-SemiBoldIt.eot');
+  src: local('Proxima Soft SemiBold Italic'), local('ProximaSoft-SemiBoldIt'),
+      url('fonts/ProximaSoft-SemiBoldIt.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-SemiBoldIt.woff2') format('woff2'),
+      url('fonts/ProximaSoft-SemiBoldIt.woff') format('woff'),
+      url('fonts/ProximaSoft-SemiBoldIt.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-Bold.eot');
+  src: local('Proxima Soft Bold'), local('ProximaSoft-Bold'),
+      url('fonts/ProximaSoft-Bold.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-Bold.woff2') format('woff2'),
+      url('fonts/ProximaSoft-Bold.woff') format('woff'),
+      url('fonts/ProximaSoft-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-Black.eot');
+  src: local('Proxima Soft Black'), local('ProximaSoft-Black'),
+      url('fonts/ProximaSoft-Black.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-Black.woff2') format('woff2'),
+      url('fonts/ProximaSoft-Black.woff') format('woff'),
+      url('fonts/ProximaSoft-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-RegularIt.eot');
+  src: local('Proxima Soft Regular Italic'), local('ProximaSoft-RegularIt'),
+      url('fonts/ProximaSoft-RegularIt.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-RegularIt.woff2') format('woff2'),
+      url('fonts/ProximaSoft-RegularIt.woff') format('woff'),
+      url('fonts/ProximaSoft-RegularIt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-Regular.eot');
+  src: local('Proxima Soft Regular'), local('ProximaSoft-Regular'),
+      url('fonts/ProximaSoft-Regular.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-Regular.woff2') format('woff2'),
+      url('fonts/ProximaSoft-Regular.woff') format('woff'),
+      url('fonts/ProximaSoft-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-MediumIt.eot');
+  src: local('Proxima Soft Medium Italic'), local('ProximaSoft-MediumIt'),
+      url('fonts/ProximaSoft-MediumIt.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-MediumIt.woff2') format('woff2'),
+      url('fonts/ProximaSoft-MediumIt.woff') format('woff'),
+      url('fonts/ProximaSoft-MediumIt.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-BlackIt.eot');
+  src: local('Proxima Soft Black Italic'), local('ProximaSoft-BlackIt'),
+      url('fonts/ProximaSoft-BlackIt.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-BlackIt.woff2') format('woff2'),
+      url('fonts/ProximaSoft-BlackIt.woff') format('woff'),
+      url('fonts/ProximaSoft-BlackIt.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-ExtraBoldIt.eot');
+  src: local('Proxima Soft ExtraBold Italic'), local('ProximaSoft-ExtraBoldIt'),
+      url('fonts/ProximaSoft-ExtraBoldIt.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-ExtraBoldIt.woff2') format('woff2'),
+      url('fonts/ProximaSoft-ExtraBoldIt.woff') format('woff'),
+      url('fonts/ProximaSoft-ExtraBoldIt.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-ThinIt.eot');
+  src: local('Proxima Soft Thin Italic'), local('ProximaSoft-ThinIt'),
+      url('fonts/ProximaSoft-ThinIt.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-ThinIt.woff2') format('woff2'),
+      url('fonts/ProximaSoft-ThinIt.woff') format('woff'),
+      url('fonts/ProximaSoft-ThinIt.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Proxima Soft';
+  src: url('fonts/ProximaSoft-ExtraBold.eot');
+  src: local('Proxima Soft ExtraBold'), local('ProximaSoft-ExtraBold'),
+      url('fonts/ProximaSoft-ExtraBold.eot?#iefix') format('embedded-opentype'),
+      url('fonts/ProximaSoft-ExtraBold.woff2') format('woff2'),
+      url('fonts/ProximaSoft-ExtraBold.woff') format('woff'),
+      url('fonts/ProximaSoft-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+
+body{
+    color: #495C77 !important;
+    width: 100% !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    font-size: 0.75rem !important;
+    font-family: 'Proxima Soft', sans-serif !important;
+}
+
+.container-fluid{
+    width: 100%!important;
+}
+
+h3{
+    font-weight: 500;
+    line-height: 32px;
+}
+
+a{
+    text-decoration: none !important;
+    color: #495C77 !important;
+}
+
+.text{
+    font-size: 14px !important;
+}
+
+.subheader-text{
+    font-size: 14px!important;
+}
+
+.light-text{
+    font-style: italic;
+    font-size: 10px;
+}
+
+.header-text{
+    font-size: 14px;
+}
+
+.circle{
+    color: #495C77;
+    font-size: 20px;
+    margin-top: 100px;
+}
+
+.circle-active{
+    font-size: 20px;
+    color: #2C76DC;
+
+}
+
+.hidden{
+    display: none !important;
+}
+
+.img-circle{
+    border-radius: 65px !important;
+    height: 130px !important;;
+    padding-top: 33px;
+    padding-left: 45px !important;
+    background: #E1E6EF;
+    background-size: cover !important;
+    width: 130px !important;
+}
+
+
+.img-circle i{
+    color: #495C77;
+    font-size: 2.5rem !important;
+    cursor: pointer;
+}
+
+.grey-btn{
+    background: #F3F4F4 !important;
+}
+
+.button-3{
+    background: #E1E6EF !important;
+}
+
+#upload-delete{
+    display: none;
+}
+
+.form-input{
+    display: block;
+    border-radius: 4px;
+    border: none;
+    background-color: #EEF5FC;
+    padding: 16px 20px;
+    /*width: 325px;*/
+    width: 100%;
+    height: 56px;
+}
+
+.form-input:focus{
+    outline: none !important;
+    border: 2px solid #2C76DC;
+
+}
+
+.required{
+    outline: none !important;
+    border: 2px solid #E02B1D!important;
+}
+
+.required-focus:focus{
+    outline: none !important;
+    border: 2px solid #E02B1D!important;
+}
+
+.error{
+    color: #E02B1D!important;
+    display: block;
+}
+
+.file-error{
+    color: #E02B1D!important;
+    display: block!important;
+}
+
+textarea{
+    display: block;
+    border-radius: 4px;
+    /*width: 350px;*/
+    width: 100%;
+    background: #EEF5FC;
+    border: none;
+    padding: 20px;
+}
+
+textarea:focus{
+    outline: none !important;
+    border: 2px solid #2C76DC;
+}
+
+
+textarea::-webkit-scrollbar-track{
+	background-color: #e2e2e2;
+}
+
+textarea::-webkit-scrollbar{
+	width: 6px;
+	background-color: #F5F5F5;
+
+}
+
+textarea::-webkit-scrollbar-thumb{
+	border-radius: 100px;
+	background-color: rgba(116, 118, 126, 0.3);
+
+}
+
+#bio{
+    height: 80px;
+}
+
+#description{
+    height: 108px;
+}
+
+.mult-select-tag .body{
+    background: #EEF5FC !important;
+    border-radius: 4px !important;
+    width: 100% !important;
+    min-height: 56px !important;
+    padding: 5px 20px !important;
+    color: #495C77 !important;
+}
+
+.mult-select-tag .item-container{
+    border-radius: 8px !important;
+    padding: 6px 8px !important;
+    background: #FFFFFF !important;
+    width: 87px !important;
+    height: 36px !important;
+    border: none !important;
+}
+
+.mult-select-tag .item-label{
+    color: #000000 !important;
+}
+
+.mult-select-tag ul{
+    color: #000000;
+    font-size: 14px !important;
+}
+
+
+.mult-select-tag .item-close-svg{
+    color: #495C77;
+    background: #EEF5FC;
+    border-radius: 50%;
+    padding: 1px;
+}
+
+.mult-select-tag .drawer{
+    width: 100% !important;
+    position: relative !important;
+}
+
+input[type="radio"], input[type="checkbox"]{
+    border: 1px solid #495C77 !important;
+}
+
+.form-input-2{
+    width: 100%;
+    padding: 10px;
+    border: 2px solid rgba(137, 147, 158, 30%);
+    border-radius: 8px;
+}
+
+.form-input-2:focus{
+    outline: none !important;
+    border-color: #2C76DC;
+}
+
+#add-new-expertise{
+    cursor: pointer;
+}
+
+
+.container-1{
+    background: #F0FAFF;
+    border-radius: 4px;
+    border: 1px solid #2C76DC;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.03);
+    min-height: 480px;
+}
+.container-1 img{
+    width: 250px;
+    height: 200px;
+}
+
+th{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px!important;
+    color: #2C76DC;
+}
+
+td{
+    font-weight: 400;
+    font-size: 14px;
+    /*line-height: 15px!important;*/
+    color: #495C77;
+}
+
+tr:hover{
+    background: rgba(111, 169, 255, 0.3);
+}
+
+
+.delete-btn-2{
+    background: #E02B1D !important;
+    border-radius: 8px !important;
+    color: #FFFFFF !important;
+}
+.delete-btn-2:hover{
+    border: 1px solid white!important;
+}
+
+/*.resume-section{*/
+/*    margin-top: 100px!important;*/
+/*}*/
+
+
+
+@media screen and (min-width: 750px) {
+    body{
+        font-size: 0.875rem !important;
+    }
+    .text{
+        font-size: 16px!important;
+    }
+
+    .light-text{
+        font-style: italic;
+        font-size: 12px;
+    }
+
+    .header-text{
+        font-size: 16px;
+    }
+    .subheader-text{
+        font-size: 16px!important;
+    }
+
+    .circle, .circle-active{
+        font-size: 24px;
+    }
+
+}
+
+@media screen and (min-width: 1024px){
+    .light-text{
+        font-style: italic;
+        font-size: 14px;
+    }
+
+    .subheader-text{
+        font-size: 18px!important;
+    }
+
+    .header-text{
+        font-size: 18px;
+    }
+    .circle, .circle-active{
+        font-size: 30px;
+    }
+}
+

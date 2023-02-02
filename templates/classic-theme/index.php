@@ -164,7 +164,7 @@
                     <li class="adv-font has-children"><a href="#">Expertise</a>
                       <ul class="adv-font sub-menu">
                       <?php foreach($category as $cat){ ?>
-                        <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?></a>
+                        <li><a href="<?php echo $cat['link']; ?>"> </a>
                         </li>
                         <!-- <li><a href="">Tax Compliance</a></li>
                         <li><a href="">Corporate Income Tax</a></li>

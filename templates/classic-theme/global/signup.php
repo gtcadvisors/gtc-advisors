@@ -99,8 +99,8 @@
           <div class="header-right">
             <div class="block-signin">
               <a class="text-link-bd-btom hover-up" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';"><img src="../forms/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px;">English</a>
-              <a class="text-link-bd-btom ml-10 hover-up" href="page-register.html" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Log In</a>
-              <a class="btn btn-default btn-shadow d-block d-md-block d-lg-none ml-40 hover-up" href="page-signin.html">Sign Up</a>
+              <a class="text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN")?>" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Log In</a>
+              <a class="btn btn-default btn-shadow d-block d-md-block d-lg-none ml-40 hover-up" href="<?php url("SIGNUP")?>">Sign Up</a>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@
             <div class="mobile-search mobile-header-border mb-30">
               
               
-                <a class="btn btn-default btn-shadow ml-40 hover-up" href="page-signin.html">Sign Up</a>
+                <a class="btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP")?>">Sign Up</a>
             
     
             </div>
@@ -122,7 +122,7 @@
               <!-- mobile menu start-->
               <nav>
                 <ul class="mobile-menu font-heading">
-                  <li class="has-children"><a class="active" href="index.html">Log In</a></li>
+                  <li class="has-children"><a class="active" href="<?php url("LOGIN")?>">Log In</a></li>
                   <li class="has-children"><a href="jobs-grid.html">Expertise</a>
                     <ul class="sub-menu">
                     <?php foreach($category as $cat){ ?>
@@ -161,11 +161,11 @@
             <div class="col-lg-4 col-md-8 col-sm-12 col-11 mx-4 mx-md-auto mx-lg-auto bg-white mb-100 pb-60 pl-60 pt-40 pr-60" id="login-register">
               <div class="text-center">
                <h6 class="mb-20 text-brand-1"> Sign Up on Global Tax Compliance</h6> 
-               <button class="btn text-white social-login hover-up mb-20 text-center sign-up-1" style="background-color: #4267B2;font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">
+               <button class="btn text-white social-login hover-up mb-20 text-center sign-up-1 <?php echo((isset($page))? "d-none": "");?>" style="background-color: #4267B2;font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">
                <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/fb.png" alt="gtc" id="imgicon"><strong class="text-center">Continue with Facebook</strong></button>
-                <button class="btn social-login hover-up mb-20 text-center sign-up-1" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">
+                <button class="btn social-login hover-up mb-20 text-center sign-up-1 <?php echo((isset($page))? "d-none": "");?>" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">
                 <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/icon-google.svg" alt="gtc" id="imgicon1"><strong>Continue with Google</strong></button>
-                <button class="btn social-login hover-up mb-20 text-center sign-up-1" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/apple.png" alt="gtc" id="imgicon2"><strong>Continue with Apple</strong></button>
+                <button class="btn social-login hover-up mb-20 text-center sign-up-1 <?php echo((isset($page))? "d-none": "");?>" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/apple.png" alt="gtc" id="imgicon2"><strong>Continue with Apple</strong></button>
                 <style>
                   img#imgicon1,img#imgicon2{ 
                      margin-right: 50px;
@@ -174,12 +174,12 @@
                      margin-right: 30px;
                   }
                  </style>
-                <div class="divider-text-center sign-up-1"><span>Or</span></div>
+                <div class="divider-text-center sign-up-1 <?php echo((isset($page))? "d-none": "");?>"><span>Or</span></div>
               </div>
               <form class="login-register text-start mt-20" method="post" id="register-account-form" action="#" accept-charset="UTF-8"> 
                 
                 
-                <div class="sign-up-1">
+                <div class="sign-up-1 <?php echo((isset($page))? "d-none": "");?>">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="<?php _e("Enter Your Email") ?>" value="<?php _esc($email_field)?>" name="email" id="email" oninput="checkAvailabilityEmail()" required/>
                     <span id="email-availability-status"><?php if($email_error != ""){ _esc($email_error) ; }?></span>
@@ -191,11 +191,10 @@
                       <p style="font-size: 10px; text-align:center" class="mt-10">By joining I agree to receive emails from Global Tax Compliance</p>
                     </div>
                     <hr>
-                    <div class="text-muted text-center mb-20">Already a Member? <a href="page-signin.html" class="text-primary">Log in</a></div>
+                    <div class="text-muted text-center mb-20">Already a Member? <a href="<?php url("LOGIN") ?>" class="text-primary">Log in</a></div>
                 </div>
 
-                
-                <div class="sign-up-2 d-none">
+                <div class="sign-up-2 <?php echo((isset($page))? : "d-none");?>">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="<?php _e("Username") ?>" value="<?php _esc($username_field)?>" id="Rusername" name="username" oninput="checkAvailabilityUsername()" required/>
                   
@@ -223,7 +222,7 @@
                   as well as to receive occassional emails from us.</p>
                   </div>
                   <hr>
-                  <div class="text-muted text-center mb-20">Already a Member? <a href="page-signin.html" class="text-primary">Log in</a></div>
+                  <div class="text-muted text-center mb-20">Already a Member? <a href="<?php url("LOGIN") ?>" class="text-primary">Log in</a></div>
                 </div>  
                  
                   
@@ -345,7 +344,7 @@
             }
         });
     }
-    
+
     function displayForm2(){      
       if(document.querySelector("#email-availability-status span").classList.contains("status-available")){
         const form1components = document.querySelectorAll(".sign-up-1")

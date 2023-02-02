@@ -38,15 +38,15 @@ if(isset($_POST["name"])) {
 if(isset($_POST["username"])) {
 
     if(empty($_POST["username"])) {
-        $username_error = __("Please enter an username");
+        $username_error = __("Please enter a username");
         echo "<span class='status-not-available'> ".$username_error."</span>";
         exit;
     }
 
     if(preg_match('/[^A-Za-z0-9]/',$_POST['username']))
     {
-        $username_error = __("Username may only contain alphanumeric characters");
-        echo "<span class='status-not-available'> ".$username_error." [A-Z,a-z,0-9]</span>";
+        $username_error = __("Username should not contain any special characters");
+        echo "<span class='status-not-available'> ".$username_error."</span>";
         exit;
     }
     elseif( (strlen($_POST['username']) < 4) OR (strlen($_POST['username']) > 16) )
@@ -154,14 +154,20 @@ if(isset($_POST["password"])) {
         echo "<span class='status-not-available'> ".$password_error."</span>";
         exit;
     }
-    elseif( (strlen($_POST['password']) < 5) OR (strlen($_POST['password']) > 21) )
+    elseif( (strlen($_POST['password']) <= 8))
     {
-        $password_error = __("Password must be between 4 and 20 characters long");
-        echo "<span class='status-not-available'> ".__("Password must be between 4 and 20 characters long").".</span>";
+        $password_error = __("Password must be 8 characters or longer");
+        echo "<span class='status-not-available'> ".__("Password must be 8 characters or longer").".</span>";
+        exit;
+    }
+    elseif(!(preg_match('/[a-z]/', $_POST["password"]) && preg_match('/[A-Z]/', $_POST["password"]) && preg_match('/[0-9]/', $_POST["password"])))
+    {
+        $password_error = __("Password must contain at least one lowercase letter, one uppercase letter, and one number");
+        echo "<span class='status-not-available'> ".__("Password must contain at least one lowercase letter, one uppercase letter, and one number").".</span>";
         exit;
     }
     else{
-        echo "<span class='status-available'>".__("Success")."</span>";
+        echo "<span class='status-available'>".__("Strong")."</span>";
         exit;
     }
 

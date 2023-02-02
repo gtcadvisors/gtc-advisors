@@ -11,6 +11,7 @@ $link['MYJOBS']             = $config['site_url'] . 'my-jobs';
 $link['COMPANIES']          = $config['site_url'] . 'companies';
 $link['COMPANY-DETAIL']     = $config['site_url'] . 'company';
 $link['MYCOMPANIES']        = $config['site_url'] . 'my-companies';
+$link['MYACCOUNT']          = $config['site_url'] . 'myaccount';
 $link['CREATE-COMPANY']     = $config['site_url'] . 'create-company';
 $link['EDIT-COMPANY']       = $config['site_url'] . 'edit-company';
 $link['EXPERIENCES']        = $config['site_url'] . 'my-experiences';

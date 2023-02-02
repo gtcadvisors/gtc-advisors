@@ -142,7 +142,7 @@
             <div class="header-right">
               <div class="block-signin">
                 <a class="catgo text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>"><?php _e("Log In") ?></a>
-                <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>">Sign Up</a>
+                <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>" style="font-size:16px;">Sign Up</a>
               </div>
             </div>
           </div>
@@ -166,12 +166,6 @@
                       <?php foreach($category as $cat){ ?>
                         <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?></a>
                         </li>
-                        <!-- <li><a href="">Tax Compliance</a></li>
-                        <li><a href="">Corporate Income Tax</a></li>
-                        <li><a href="">Personal Income Tax</a></li>
-                        <li><a href="">Transfer Pricing</a></li>
-                        <li><a href="">Tax Dispute</a></li>
-                        <li><a href="">Value Added Tax</a></li> -->
                         <?php } ?>
                       </ul>
                     </li>
@@ -181,9 +175,9 @@
               </div>
               <div class="mobile-account">
                 <ul class="mobile-menu font-heading">
-                  <li><a href="#">Become an Advisor</a></li>
+                  <li><a href="<?php url("LOGIN") ?>">Become an Advisor</a></li>
                   <li class="border-bottom"><a href="#">General</a></li>
-                  <li class="pt-20"><a href="index.php">Home</a></li>
+                  <li class="pt-20"><a href="<?php url("INDEX") ?>">Home</a></li>
   
                   <li>
                     <div class="lang_selctor-m">
@@ -214,12 +208,6 @@
             <li class="mt-3 mb-3"><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?>
             </a>
             </li>
-              <!-- <li class="mt-3 mb-3"><a  href="#"> Sales Tax</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> International</a></li>
-              <li class="mt-3 mb-3"><a href="#"> Financial Planning</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> Corporations</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> IRS Representation</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> Individual Tax Preparation</a></li> -->
               <?php } ?>
               <a class="pr-30" href="category.php"> See All</a>
             </ul>

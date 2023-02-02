@@ -1,26 +1,159 @@
-<?php
-overall_header(__("Register"));
-?>
-<!-- Titlebar
-================================================== -->
-<div id="titlebar" class="gradient">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<!DOCTYPE html>
+<html lang="<?php _esc($config['lang_code']);?>" dir="<?php _esc($lang_direction);?>">
+<head>
+    <title><?php _esc($config['site_title']);?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="<?php _esc($config['site_title']);?>">
+    <meta name="keywords" content="<?php _esc($config['meta_keywords']);?>">
+    <meta name="description" content="<?php ($meta_desc == '')?_esc($config['meta_description']):_esc($meta_desc);?>">
 
-                <h2><?php _e("Register") ?></h2>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//google.com">
+    <link rel="dns-prefetch" href="//apis.google.com">
+    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="//gstatic.com">
+    <link rel="dns-prefetch" href="//oss.maxcdn.com">
 
-                <!-- Breadcrumbs -->
-                <nav id="breadcrumbs" class="dark">
-                    <ul>
-                        <li><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a></li>
-                        <li><?php _e("Register") ?></li>
-                    </ul>
-                </nav>
+    <meta property="fb:app_id" content="<?php _esc($config['facebook_app_id']);?>"/>
+    <meta property="og:site_name" content="<?php _esc($config['site_title']);?>"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:url" content="<?php _esc($page_link);?>"/>
+    <meta property="og:title" content="<?php _esc($page_title); ?>" />
+    <meta property="og:description" content="<?php _esc($meta_desc);?>"/>
+    <meta property="og:type" content="<?php _esc($meta_content);?>"/>
+    <?php if($meta_content == 'article'){ ?>
+        <meta property="article:author" content="#"/>
+        <meta property="article:publisher" content="#"/>
+        <meta property="og:image" content="<?php _esc($meta_image);?>"/>
+        <?php
+    }
+    if($meta_content == 'website'){
+        echo '<meta property="og:image" content="'.$meta_image.'"/>';
+    }
+    ?>
 
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="<?php _esc($page_title);?>">
+    <meta property="twitter:description" content="<?php _esc($meta_desc);?>">
+    <meta property="twitter:domain" content="<?php _esc($config['site_url']);?>">
+    <meta name="twitter:image:src" content="<?php _esc($meta_image);?>"/>
+    <link rel="shortcut icon" href="<?php _esc($config['site_url']);?>storage/logo/<?php _esc($config['site_favicon']);?>">
+
+    <script async>
+        var themecolor = '<?php _esc($config['theme_color']);?>';
+        var mapcolor = '<?php _esc($config['map_color']);?>';
+        var siteurl = '<?php _esc($config['site_url']);?>';
+        var template_name = '<?php _esc($config['tpl_name']);?>';
+    </script>
+
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/forms.css?version=4.1" rel="stylesheet"> 
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/forms_header.css?version=4.1" rel="stylesheet"> 
+    <title>GTC | Signup</title>
+  </head>
+  <body>   
+    <!-- ############### THIS IS THE HEADER OF THE SIGNUP PAGE ###################-->
+    <header class="header sticky-bar">
+      <div class="container">
+        <div class="main-header">
+          <div class="burger-icon burger-icon-white float-left"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
+         
+          <div class="header-left">
+          <?php
+                 $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
+                $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
+                ?>
+            <div class="header-logo mr-30 d-none d-md-none d-lg-block">
+            <a class="d-flex" href="<?php url("INDEX") ?>">
+            <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
+            </a></div>
+            <div class="ml-140 d-block d-md-none d-lg-none">
+            <a class="d-flex" href="<?php url("INDEX") ?>">
+            <img src="<?php _esc($logo_dark); ?>" alt="<?php _esc($config['site_title']);?>">
+        </a></div>
+            <div class="header-logo d-none d-md-block d-lg-none" style="margin-left: 240px;">
+            <a class="d-flex" href="<?php url("INDEX") ?>">     
+            <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
+        </a></div>
+          </div>
+
+          <div class="header-nav">
+            <nav class="nav-main-menu">
+              <ul class="main-menu"> 
+                <li class="ml-30"><a class="#" href="#" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Expertise</a>
+                  
+                </li>
+                <li class="#"><a href="jobs-grid.html" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Post a Job</a>
+                   
+                </li>
+                <li class="#"><a href="companies-grid.html" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Become an Advisor</a>
+                   
+                </li>  
+              </ul> 
+            </nav>
+            
+             </div>
+          <div class="header-right">
+            <div class="block-signin">
+              <a class="text-link-bd-btom hover-up" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';"><img src="../forms/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px;">English</a>
+              <a class="text-link-bd-btom ml-10 hover-up" href="page-register.html" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Log In</a>
+              <a class="btn btn-default btn-shadow d-block d-md-block d-lg-none ml-40 hover-up" href="page-signin.html">Sign Up</a>
             </div>
+          </div>
         </div>
+      </div>
+    </header>
+    <!-- THE SIDEBAR FOR THE SIGNUP PAGE -->
+    <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+      <div class="mobile-header-wrapper-inner">
+        <div class="mobile-header-content-area">
+          <div class="perfect-scroll">
+            <div class="mobile-search mobile-header-border mb-30">
+              
+              
+                <a class="btn btn-default btn-shadow ml-40 hover-up" href="page-signin.html">Sign Up</a>
+            
+    
+            </div>
+            <div class="mobile-menu-wrap mobile-header-border">
+              <!-- mobile menu start-->
+              <nav>
+                <ul class="mobile-menu font-heading">
+                  <li class="has-children"><a class="active" href="index.html">Log In</a></li>
+                  <li class="has-children"><a href="jobs-grid.html">Expertise</a>
+                    <ul class="sub-menu">
+                    <?php foreach($category as $cat){ ?>
+                        <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?></a>
+                        </li>
+                      <!-- <li><a href="#">Tax Audit</a></li>
+                      <li><a href="#">Tax Compliance</a></li>
+                      <li><a href="#">Corporate Inconme Tax</a></li>
+                      <li><a href="#">Personal Income Tax</a></li>
+                      <li><a href="#">Transfer Pricing</a></li>
+                      <li><a href="#">Tax Dispute</a></li>
+                      <li><a href="#">Value Added Tax</a></li> -->
+                      <?php } ?>
+                    </ul>
+                  </li>
+                  <li class="has-children"><a href="companies-grid.html">Become An Advisor</a></li> 
+                    <li><h6 class="mb-10">General</h6></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="mobile-account">
+                <ul class="mobile-menu font-heading">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">English <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px; margin-top: 5px;"></a></li> 
+              </ul>
+            </div> 
+          </div>
+        </div>
+      </div>
     </div>
+<<<<<<< HEAD
 </div>
 <div class="container">
     <div class="row">
@@ -30,113 +163,120 @@ overall_header(__("Register"));
                 <div class="welcome-text">
                     <h3 style="font-size: 26px;"><?php _e("Let's create your account!") ?></h3>
                     <span><?php _e("Already have an account?") ?> <a href="<?php url("LOGIN") ?>"><?php _e("Log In!") ?></a></span>
+=======
+    <!-- ####### THIS IS THE MAIN SIGN FORM ################# -->
+    <main class="main">
+      <section class="pt-100 login-register">
+        <div class="container-fluid"> 
+          <div class="row login-register-cover">
+            <div class="col-lg-4 col-md-8 col-sm-12 col-11 mx-4 mx-md-auto mx-lg-auto bg-white mb-100 pb-60 pl-60 pt-40 pr-60" id="login-register">
+              <div class="text-center">
+               <h6 class="mb-20 text-brand-1"> Sign Up on Global Tax Compliance</h6> 
+               <button class="btn text-white social-login hover-up mb-20 text-center sign-up-1" style="background-color: #4267B2;font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">
+               <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/fb.png" alt="gtc" id="imgicon"><strong class="text-center">Continue with Facebook</strong></button>
+                <button class="btn social-login hover-up mb-20 text-center sign-up-1" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">
+                <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/icon-google.svg" alt="gtc" id="imgicon1"><strong>Continue with Google</strong></button>
+                <button class="btn social-login hover-up mb-20 text-center sign-up-1" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/apple.png" alt="gtc" id="imgicon2"><strong>Continue with Apple</strong></button>
+                <style>
+                  img#imgicon1,img#imgicon2{ 
+                     margin-right: 50px;
+                  }
+                  img#imgicon{ 
+                     margin-right: 30px;
+                  }
+                 </style>
+                <div class="divider-text-center sign-up-1"><span>Or</span></div>
+              </div>
+              <form class="login-register text-start mt-20" method="post" id="register-account-form" action="#" accept-charset="UTF-8"> 
+                
+                
+                <div class="sign-up-1">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="<?php _e("Enter Your Email") ?>" value="<?php _esc($email_field)?>" name="email" id="email" oninput="checkAvailabilityEmail()" required/>
+                    <span id="email-availability-status"><?php if($email_error != ""){ _esc($email_error) ; }?></span>
+                  </div>
+                    <div class="login_footer form-group d-flex justify-content-between">
+                    </div>
+                    <div class="form-group">
+                      <button class="btn btn-brand-1 hover-up w-100" type="button" name="login" style="background-color:  #2C76DC;" onclick="displayForm2()">Continue</button>
+                      <p style="font-size: 10px; text-align:center" class="mt-10">By joining I agree to receive emails from Global Tax Compliance</p>
+                    </div>
+                    <hr>
+                    <div class="text-muted text-center mb-20">Already a Member? <a href="page-signin.html" class="text-primary">Log in</a></div>
+>>>>>>> ddd5125c0e02d70310ab67b8c97a0eb1dc9db11a
                 </div>
-                <?php if($config['facebook_app_id'] != "" && $config['google_app_id'] != ""){ ?>
-                    <div class="social-login-buttons">
-                        <?php if($config['facebook_app_id'] != ""){ ?>
-                        <button class="facebook-login ripple-effect" onclick="fblogin()"><i class="fa fa-facebook"></i> <?php _e("Log In via Facebook") ?>
-                        </button>
-                        <?php } ?>
 
-                        <?php if($config['google_app_id'] != ""){ ?>
-                        <button class="google-login ripple-effect" onclick="gmlogin()"><i class="fa fa-google"></i> <?php _e("Log In via Google") ?>
-                        </button>
-                        <?php } ?>
-                    </div>
-                    <div class="social-login-separator"><span><?php _e("or") ?></span></div>
-                <?php } ?>
-                <form method="post" id="register-account-form" action="#" accept-charset="UTF-8">
-                    <!-- Account Type -->
-                    <div class="account-type">
-                        <div>
-                            <input type="radio" name="user-type" id="freelancer-radio" class="account-type-radio" value="1" checked/>
-                            <label for="freelancer-radio" class="ripple-effect-dark"><i class="la la-user"></i> <?php _e("Freelancer") ?></label>
-                        </div>
-                        <div>
-                            <input type="radio" name="user-type" id="employer-radio" class="account-type-radio" value="2" />
-                            <label for="employer-radio" class="ripple-effect-dark"><i class="la la-suitcase"></i> <?php _e("Employer") ?></label>
-                        </div>
-                    </div>
-                    <span id="type-status"><?php if($type_error != ""){ _esc($type_error) ; }?></span>
+                
+                <div class="sign-up-2 d-none">
                     <div class="form-group">
-                        <div class="input-with-icon-left">
-                            <i class="la la-user"></i>
-                            <input type="text" class="input-text with-border" placeholder="<?php _e("Full Name") ?>" value="<?php _esc($name_field)?>" id="name" name="name" onBlur="checkAvailabilityName()" required/>
-                        </div>
-                        <span id="name-availability-status"><?php if($name_error != ""){ _esc($name_error) ; }?></span>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-with-icon-left">
-                            <i class="la la-user"></i>
-                            <input type="text" class="input-text with-border" placeholder="<?php _e("Username") ?>" value="<?php _esc($username_field)?>" id="Rusername" name="username" onBlur="checkAvailabilityUsername()" required/>
-                        </div>
+                        <input type="text" class="form-control" placeholder="<?php _e("Username") ?>" value="<?php _esc($username_field)?>" id="Rusername" name="username" oninput="checkAvailabilityUsername()" required/>
+                  
                         <span id="user-availability-status"><?php if($username_error != ""){ _esc($username_error) ; }?></span>
                     </div>
-                    <div class="form-group">
-                        <div class="input-with-icon-left">
-                            <i class="la la-envelope"></i>
-                            <input type="text" class="input-text with-border" placeholder="<?php _e("Email Address") ?>" value="<?php _esc($email_field)?>" name="email" id="email" onBlur="checkAvailabilityEmail()" required/>
-                        </div>
-                        <span id="email-availability-status"><?php if($email_error != ""){ _esc($email_error) ; }?></span>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-with-icon-left">
-                            <i class="la la-unlock"></i>
-                            <input type="password" class="input-text with-border" placeholder="<?php _e("Password") ?>" id="Rpassword" name="password" onBlur="checkAvailabilityPassword()" required/>
-                        </div>
-                        <span id="password-availability-status"><?php if($password_error != ""){ _esc($password_error) ; }?></span>
-                    </div>
-                    <div class="form-group">
-                        <div class="text-center">
-                            <?php
-                            if($config['recaptcha_mode'] == '1'){
-                                echo '<div class="g-recaptcha" data-sitekey="'._esc($config['recaptcha_public_key'],false).'"></div>';
-                            }
-                            ?>
-                        </div>
-                        <span><?php if($recaptcha_error != ""){ _esc($recaptcha_error) ; }?></span>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" id="agree_for_term" name="agree_for_term" value="1" required>
-                        <label for="agree_for_term"><span class="checkbox-icon"></span> <?php _e("By clicking on “Register” button you are agree to our") ?> <?php _e("Terms & Condition") ?></label>
-                    </div>
-                    <button class="button full-width button-sliding-icon ripple-effect margin-top-10" name="submit" type="submit"><?php _e("Register") ?> <i class="icon-feather-arrow-right"></i></button>
-                </form>
+                    <div class="form-group"> 
+                      <input type="password" class="input-text with-border" placeholder="<?php _e("Password") ?>" id="Rpassword" name="password" oninput="checkAvailabilityPassword()" required/>
+                      <i class="fa fi-rr-eye-crossed" id="ieye" style="display: block;"></i>
+                      <span id="password-availability-status"><?php if($password_error != ""){ _esc($password_error) ; }?></span>
+                      <style>
+                        i#ieye{
+                            position: absolute;
+                            right: 20px;
+                            left: auto;
+                        }
+                      </style>
+                  </div>
+                    <span style="font-size: 11px;">8 characters or longer. Combine upper and lowercase letters and numbers</span>
+                  <div class="login_footer form-group d-flex justify-content-between">
+                    
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-brand-1 hover-up w-100" name="submit" type="submit" style="background-color:  #2C76DC;"><?php _e("Join")?></button> 
+                    <p style="font-size: 10px; text-align:center" class="mt-10">By joining you agree to Global Tax Compliance's <a href="#" style="color: blue; font-size: 10px">Terms of Service</a>,
+                  as well as to receive occassional emails from us.</p>
+                  </div>
+                  <hr>
+                  <div class="text-muted text-center mb-20">Already a Member? <a href="page-signin.html" class="text-primary">Log in</a></div>
+                </div>  
+                 
+                  
+              
+              </form>
             </div>
+         </div>
         </div>
-    </div>
-</div>
-<div class="margin-top-70"></div>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script>
+      </section>
+    </main>
+                  
+    <script>
 
     var error = "";
+    let check = false;
 
-    function checkAvailabilityName() {
-        $("#loaderIcon").show();
-        jQuery.ajax({
-            url: "<?php _esc($config['app_url'])?>check_availability.php",
-            data: 'name=' + $("#name").val(),
-            type: "POST",
-            success: function (data) {
-                if (data != "success") {
-                    error = 1;
-                    $("#name").removeClass('has-success');
-                    $("#name-availability-status").html(data);
-                    $("#name").addClass('has-error mar-zero');
-                }
-                else {
-                    error = 0;
-                    $("#name").removeClass('has-error mar-zero');
-                    $("#name-availability-status").html("");
-                    $("#name").addClass('has-success');
-                }
-                $("#loaderIcon").hide();
-            },
-            error: function () {
-            }
-        });
-    }
+    // function checkAvailabilityName() {
+    //     $("#loaderIcon").show();
+    //     jQuery.ajax({
+    //         url: "<?php _esc($config['app_url'])?>check_availability.php",
+    //         data: 'name=' + $("#name").val(),
+    //         type: "POST",
+    //         success: function (data) {
+    //             if (data != "success") {
+    //                 error = 1;
+    //                 $("#name").removeClass('has-success');
+    //                 $("#name-availability-status").html(data);
+    //                 $("#name").addClass('has-error mar-zero');
+    //             }
+    //             else {
+    //                 error = 0;
+    //                 $("#name").removeClass('has-error mar-zero');
+    //                 $("#name-availability-status").html("");
+    //                 $("#name").addClass('has-success');
+    //             }
+    //             $("#loaderIcon").hide();
+    //         },
+    //         error: function () {
+    //         }
+    //     });
+    // }
     function checkAvailabilityUsername() {
         var $item = $("#Rusername").closest('.form-group');
         $("#loaderIcon").show();
@@ -175,20 +315,24 @@ overall_header(__("Register"));
                     $("#email").removeClass('has-success');
                     $("#email-availability-status").html(data);
                     $("#email").addClass('has-error mar-zero');
+                    
                 }
                 else {
                     error = 0;
                     $("#email").removeClass('has-error mar-zero');
                     $("#email-availability-status").html("");
                     $("#email").addClass('has-success');
+                    
                 }
                 $("#loaderIcon").hide();
             },
             error: function () {
+              
             }
         });
     }
     function checkAvailabilityPassword() {
+        toggleFunc()
         $("#loaderIcon").show();
         jQuery.ajax({
             url: "<?php _esc($config['app_url'])?>check_availability.php",
@@ -213,7 +357,42 @@ overall_header(__("Register"));
             }
         });
     }
+    
+    function displayForm2(){      
+      if(document.querySelector("#email-availability-status span").classList.contains("status-available")){
+        const form1components = document.querySelectorAll(".sign-up-1")
+        for(let component of form1components){
+          component.classList.add("d-none")
+        }
+        document.querySelector(".sign-up-2").classList.remove("d-none") 
+        }
+     }
+
+     var ieye = document.getElementById("ieye");
+                        
+      function toggleFunc() {
+          if (ieye.style.display == "block"){
+              ieye.style.display = "none";
+          }
+      }
+      
 
 </script>
-<?php
-overall_footer();
+
+    <!-- JAVASCRIPT LIBRARIES AND SCRIPTS EXTERNAL LINKING -->
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/waypoints.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/wow.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/magnific-popup.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/select2.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/isotope.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/scrollup.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/swiper-bundle.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/main.js?v=4.1"></script>
+  </body>
+</html>
+

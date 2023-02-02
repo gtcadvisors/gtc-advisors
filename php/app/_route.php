@@ -13,6 +13,7 @@ $router->map('GET|POST','/my-resumes/[*:page]?/?', $app_dir.'my-resumes.php');
 $router->map('GET|POST','/add-resume/?', $app_dir.'resume.php');
 $router->map('GET|POST','/edit-resume/[i:id]?', $app_dir.'resume.php');
 $router->map('GET|POST','/my-companies/[*:page]?/?', $app_dir.'my-companies.php');
+$router->map('GET|POST','/myaccount/?', $app_dir.'myaccount.php');
 $router->map('GET|POST','/create-company/?', $app_dir.'add-company.php');
 $router->map('GET|POST','/edit-company/[i:id]?', $app_dir.'add-company.php');
 $router->map('GET|POST','/my-jobs/[*:page]?/?', $app_dir.'my-jobs.php');

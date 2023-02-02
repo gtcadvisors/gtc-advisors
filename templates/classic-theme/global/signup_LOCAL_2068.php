@@ -1,12 +1,13 @@
-<?php
-overall_header(__("Register"));
-?>
-<!-- Titlebar
-================================================== -->
-<div id="titlebar" class="gradient">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<!DOCTYPE html>
+<html lang="<?php _esc($config['lang_code']);?>" dir="<?php _esc($lang_direction);?>">
+<head>
+    <title><?php _esc($config['site_title']);?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="<?php _esc($config['site_title']);?>">
+    <meta name="keywords" content="<?php _esc($config['meta_keywords']);?>">
+    <meta name="description" content="<?php ($meta_desc == '')?_esc($config['meta_description']):_esc($meta_desc);?>">
 
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//google.com">
@@ -152,7 +153,6 @@ overall_header(__("Register"));
         </div>
       </div>
     </div>
-<<<<<<< HEAD
     <!-- ####### THIS IS THE MAIN SIGN FORM ################# -->
     <main class="main">
       <section class="pt-100 login-register">
@@ -192,17 +192,6 @@ overall_header(__("Register"));
                     </div>
                     <hr>
                     <div class="text-muted text-center mb-20">Already a Member? <a href="<?php url("LOGIN") ?>" class="text-primary">Log in</a></div>
-=======
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-xl-5 offset-xl-3">
-            <div class="login-register-page">
-                <!-- Welcome Text -->
-                <div class="welcome-text">
-                    <h3 style="font-size: 26px;"><?php _e("Let's create your account!") ?></h3>
-                    <span><?php _e("Already have an account?") ?> <a href="<?php url("LOGIN") ?>"><?php _e("Log In!") ?></a></span>
->>>>>>> main
                 </div>
 
                 <div class="sign-up-2 <?php echo((isset($page))? : "d-none");?>">

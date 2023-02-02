@@ -141,13 +141,8 @@
   
             <div class="header-right">
               <div class="block-signin">
-<<<<<<< HEAD
-                <a class="catgo text-link-bd-btom ml-10 hover-up" href="login.php">Log In</a>
-                <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>">Sign Up</a>
-=======
                 <a class="catgo text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>"><?php _e("Log In") ?></a>
                 <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>" style="font-size:16px;">Sign Up</a>
->>>>>>> main
               </div>
             </div>
           </div>

@@ -54,7 +54,8 @@ $recaptcha_error = '';
 
 if(isset($_POST["submit"])) {
     $errors = 0;
-    $name_field = $_POST['name'];
+    $page = 1;
+    // $name_field = $_POST['name'];
     $username_field = $_POST['username'];
     $email_field = $_POST['email'];
     // $name_length = strlen(utf8_decode($_POST['name']));
@@ -92,14 +93,14 @@ if(isset($_POST["submit"])) {
     if(empty($_POST["username"]))
     {
         $errors++;
-        $username_error = __("Please enter an username");
+        $username_error = __("Please enter a username");
         $username_error = "<span class='status-not-available'> ".$username_error."</span>";
     }
     elseif(preg_match('/[^A-Za-z0-9]/',$_POST['username']))
     {
         $errors++;
-        $username_error = __("Username may only contain alphanumeric characters");
-        $username_error = "<span class='status-not-available'> ".$username_error." [A-Z,a-z,0-9]</span>";
+        $username_error = __("Username should not contain any special characters");
+        $username_error = "<span class='status-not-available'> ".$username_error."</span>";
     }
     elseif( (strlen($_POST['username']) < 4) OR (strlen($_POST['username']) > 16) )
     {
@@ -112,7 +113,8 @@ if(isset($_POST["submit"])) {
         if($user_count>0) {
             $errors++;
             $username_error = __("Username not available");
-            $username_error = "<span class='status-not-available'>".$username_error."</span>";
+            $username_error = "<span class='status-not-available'> ".$username_error."</span>";
+          
         }
         else {
             $username_error = __("Username available");
@@ -150,31 +152,40 @@ if(isset($_POST["submit"])) {
         $errors++;
         $password_error = __("Please enter password");
         $password_error = "<span class='status-not-available'> ".$password_error."</span>";
+        
     }
-    elseif( (strlen($_POST['password']) < 4) OR (strlen($_POST['password']) > 21) )
+    elseif((strlen($_POST['password']) <= 8))
     {
         $errors++;
-        $password_error = __("Password must be between 4 and 20 characters long");
+        $password_error = __("Password must be 8 characters or longer");
         $password_error = "<span class='status-not-available'> ".$password_error.".</span>";
+      
     }
-    if($config['recaptcha_mode'] == 1) {
-        if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-            //your site secret key
-            $secret = $config['recaptcha_private_key'];
-            //get verify response data
-            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
-            $responseData = json_decode($verifyResponse);
-            if (!$responseData->success) {
-                $errors++;
-                $recaptcha_error = __("reCAPTCHA verification failed, please try again.");
-                $recaptcha_error = "<span class='status-not-available'> " . $recaptcha_error . ".</span>";
-            }
-        } else {
-            $errors++;
-            $recaptcha_error = __("Please click on the reCAPTCHA box.");
-            $recaptcha_error = "<span class='status-not-available'> " . $recaptcha_error . ".</span>";
-        }
+    elseif(!(preg_match('/[a-z]/', $_POST["password"]) && preg_match('/[A-Z]/', $_POST["password"]) && preg_match('/[0-9]/', $_POST["password"])))
+    {
+        $errors++;
+        $password_error = __("Password must contain at least one lowercase letter, one uppercase letter, and one number");
+        $password_error = "<span class='status-not-available'> ".$password_error.".</span>";
+       
     }
+    // if($config['recaptcha_mode'] == 1) {
+    //     if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+    //         //your site secret key
+    //         $secret = $config['recaptcha_private_key'];
+    //         //get verify response data
+    //         $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+    //         $responseData = json_decode($verifyResponse);
+    //         if (!$responseData->success) {
+    //             $errors++;
+    //             $recaptcha_error = __("reCAPTCHA verification failed, please try again.");
+    //             $recaptcha_error = "<span class='status-not-available'> " . $recaptcha_error . ".</span>";
+    //         }
+    //     } else {
+    //         $errors++;
+    //         $recaptcha_error = __("Please click on the reCAPTCHA box.");
+    //         $recaptcha_error = "<span class='status-not-available'> " . $recaptcha_error . ".</span>";
+    //     }
+    // }
 
     if($errors == 0) {
         $confirm_id = get_random_id();
@@ -229,6 +240,7 @@ HtmlTemplate::display('global/signup', array(
     'username_error' => $username_error,
     'email_error' => $email_error,
     'password_error' => $password_error,
+    'page' => $page
     // 'recaptcha_error' => $recaptcha_error
 ));
 exit;

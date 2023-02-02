@@ -1,12 +1,13 @@
-<?php
-overall_header(__("Register"));
-?>
-<!-- Titlebar
-================================================== -->
-<div id="titlebar" class="gradient">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<!DOCTYPE html>
+<html lang="<?php _esc($config['lang_code']);?>" dir="<?php _esc($lang_direction);?>">
+<head>
+    <title><?php _esc($config['site_title']);?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="<?php _esc($config['site_title']);?>">
+    <meta name="keywords" content="<?php _esc($config['meta_keywords']);?>">
+    <meta name="description" content="<?php ($meta_desc == '')?_esc($config['meta_description']):_esc($meta_desc);?>">
 
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//google.com">
@@ -152,7 +153,6 @@ overall_header(__("Register"));
         </div>
       </div>
     </div>
-<<<<<<< HEAD
     <!-- ####### THIS IS THE MAIN SIGN FORM ################# -->
     <main class="main">
       <section class="pt-100 login-register">
@@ -188,21 +188,10 @@ overall_header(__("Register"));
                     </div>
                     <div class="form-group">
                       <button class="btn btn-brand-1 hover-up w-100" type="button" name="login" style="background-color:  #2C76DC;" onclick="displayForm2()">Continue</button>
-                      <p style="font-size: 10px; text-align:center" class="mt-10">By joining I agree to receive emails from Global Tax Compliance</p>
+                      <p style="font-size: 12px; text-align:center" class="mt-10">By joining I agree to receive emails from Global Tax Compliance</p>
                     </div>
                     <hr>
                     <div class="text-muted text-center mb-20">Already a Member? <a href="<?php url("LOGIN") ?>" class="text-primary">Log in</a></div>
-=======
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-xl-5 offset-xl-3">
-            <div class="login-register-page">
-                <!-- Welcome Text -->
-                <div class="welcome-text">
-                    <h3 style="font-size: 26px;"><?php _e("Let's create your account!") ?></h3>
-                    <span><?php _e("Already have an account?") ?> <a href="<?php url("LOGIN") ?>"><?php _e("Log In!") ?></a></span>
->>>>>>> main
                 </div>
 
                 <div class="sign-up-2 <?php echo((isset($page))? : "d-none");?>">
@@ -223,13 +212,13 @@ overall_header(__("Register"));
                         }
                       </style>
                   </div>
-                    <span style="font-size: 11px;">8 characters or longer. Combine upper and lowercase letters and numbers</span>
+                    <span style="font-size: 12px;">8 characters or longer. Combine upper and lowercase letters and numbers</span>
                   <div class="login_footer form-group d-flex justify-content-between">
                     
                   </div>
                   <div class="form-group">
                     <button class="btn btn-brand-1 hover-up w-100" name="submit" type="submit" style="background-color:  #2C76DC;"><?php _e("Join")?></button> 
-                    <p style="font-size: 10px; text-align:center" class="mt-10">By joining you agree to Global Tax Compliance's <a href="#" style="color: blue; font-size: 10px">Terms of Service</a>,
+                    <p style="font-size: 12px; text-align:center" class="mt-10">By joining you agree to Global Tax Compliance's <a href="#" style="color: blue; font-size: 10px">Terms of Service</a>,
                   as well as to receive occassional emails from us.</p>
                   </div>
                   <hr>
@@ -393,4 +382,3 @@ overall_header(__("Register"));
     <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/main.js?v=4.1"></script>
   </body>
 </html>
-

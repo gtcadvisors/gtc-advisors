@@ -6,7 +6,7 @@
           <div class="header-left">
             <div class="header-logo2">
               <a class="d-flex" href="index.html">
-                <img alt="" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/gtclogo.png"></a>
+                <img alt="" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/gtclogo.png"></a>
             </div>
           </div>
           <div class="header-nav">
@@ -55,7 +55,7 @@
                     <div class="dropdown-divider"></div>
                     <!-- Example Message 1  -->
                     <a class="dropdown-item dropdown-notifications-item" href="#">
-                        <img class="dropdown-notifications-item-img" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/inbox/Ellipse 14.png" />
+                        <img class="dropdown-notifications-item-img" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/inbox/Ellipse 14.png" />
                         <div class="dropdown-notifications-item-content">
                           <div class="dropdown-notifications-item-content-details">Juan Rodrick</div>
                           <div class="dropdown-notifications-item-content-text text-truncate" style="width:15rem;">Hello you requested for a tax consultant</div>
@@ -63,7 +63,7 @@
                         </div>
                     </a>
                     <a class="dropdown-item dropdown-notifications-item" href="#">
-                      <img class="dropdown-notifications-item-img" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/inbox/Ellipse 10.png" />
+                      <img class="dropdown-notifications-item-img" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/inbox/Ellipse 10.png" />
                       <div class="dropdown-notifications-item-content">
                         <div class="dropdown-notifications-item-content-details">Juan Rodrick</div>
                         <div class="dropdown-notifications-item-content-text text-truncate" style="width:15rem;">Hello you requested for a tax consultant</div>
@@ -71,7 +71,7 @@
                       </div>
                   </a>
                   <a class="dropdown-item dropdown-notifications-item" href="#">
-                    <img class="dropdown-notifications-item-img" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/inbox/Ellipse 11.png" />
+                    <img class="dropdown-notifications-item-img" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/inbox/Ellipse 11.png" />
                     <div class="dropdown-notifications-item-content">
                       <div class="dropdown-notifications-item-content-details">Juan Rodrick</div>
                       <div class="dropdown-notifications-item-content-text text-truncate" style="width:15rem;">Hello you requested for a tax consultant</div>
@@ -107,7 +107,7 @@
             <li class="nav-item dropdown mr--1 no-caret dropdown-user pl-10">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="icon-container">
-                  <img class="img-fluid" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/user-img/user-8.png" style="max-width:45px;" /><div class="status-circle"></div></div></a>
+                  <img class="img-fluid" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/user-img/user-8.png" style="max-width:45px;" /><div class="status-circle"></div></div></a>
                 <div class="dropdown-menu dropdown-menu-end border-0" aria-labelledby="navbarDropdownUserImage">
                    
                     <a class="dropdown-item" href="#">

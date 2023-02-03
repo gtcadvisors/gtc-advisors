@@ -36,6 +36,7 @@ $router->map('GET|POST','/post-job/[a:lang]?/[a:country]?/[a:action]?/?', $app_d
 $router->map('GET|POST','/edit-job/[i:id]?/[a:lang]?/[a:country]?/[a:action]?/?', $app_dir.'edit-job.php');
 $router->map('GET|POST','/listing/?', $app_dir.'listing.php');
 $router->map('GET|POST','/freelancers/?', $app_dir.'freelancers.php');
+$router->map('GET|POST','/category/?', $app_dir.'category.php');
 $router->map('GET|POST','/category/[*:cat]?/[*:subcat]?/?', $app_dir.'listing.php');
 $router->map('GET|POST','/sub-category/[*:subcat]?/[*:slug]?/?', $app_dir.'listing.php');
 $router->map('GET|POST','/city/[i:city]?/[*:slug]?/?', $app_dir.'listing.php');

@@ -1,8 +1,8 @@
 <?php
 // if job seekers is disable
-// if(!$config['job_seeker_enable']){
-//     error(__("Page Not Found"), __LINE__, __FILE__, 1);
-// }
+if(!$config['job_seeker_enable']){
+    error(__("Page Not Found"), __LINE__, __FILE__, 1);
+}
 
 if(!isset($_GET['page']))
     $page_number = 1;
@@ -164,7 +164,7 @@ elseif(!empty($keywords)){
     $Pagetitle = ucfirst($keywords);
 }
 else{
-    $Pagetitle = __("category");
+    $Pagetitle = __("Freelancers");
 }
 
 $cat_dropdown = get_categories_dropdown($lang);
@@ -178,7 +178,7 @@ if(count($_GET) >= 1){
 }
 $country_code = check_user_country();
 //Print Template
-HtmlTemplate::display('category', array(
+HtmlTemplate::display('freelancers', array(
     'pagetitle' => $Pagetitle,
     'items' => $items,
     'usersfound' => $total,

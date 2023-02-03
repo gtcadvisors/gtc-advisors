@@ -11,15 +11,14 @@
     <meta name="description" content="Index page"> 
     <meta name="keywords" content="index, page">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/template/favicon.svg"> 
-    <link href="assets/css/stylez.css" rel="stylesheet">
-    <link href="assets/css/forms.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/template/favicon.svg"> 
+    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/stylez.css" rel="stylesheet">
+    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/forms.css" rel="stylesheet">
     <title>GTC - Category Page</title>                 
   </head> 
   <body>
-<?php
+<?php  
 include('header_2.php');
-overall_header($pagetitle);
 ?>
 
 
@@ -97,7 +96,7 @@ overall_header($pagetitle);
         </div>
       <!-- <hr> -->
       <div id="cat_header_under">
-        <p class="mt-3 mb-3 ml-10"><i class=""></i> <img src="assets/imgs/home-2.png" alt="" width="17px" class="mr-5">Home &#10095; Area of expertise &#10095; <a id="under_1"> Personal Income Tax</a>
+        <p class="mt-3 mb-3 ml-10"><i class=""></i> <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/home-2.png" alt="" width="17px" class="mr-5">Home &#10095; Area of expertise &#10095; <a id="under_1"> Personal Income Tax</a>
           <hr class="d-block d-md-none d-lg-none">
           <p class="mt-3 mb-3 ml-10" id="under_2 text-center text-md-start text-lg-start">Personal Income Tax is a type of income that is levied on an individual's wages, salaries, and other types of income. </p> 
         </p>
@@ -114,443 +113,52 @@ overall_header($pagetitle);
           <div class="content-page"> 
             
   <div class="row display-list m-0">
-  <div class="col-xl-12 col-12" style="width: max-content;">
-                      <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list">
-                        
-                        <div class="image-box d-none d-md-block d-lg-block"><img src="assets/imgs/Ellipse 11.png" alt="logo" id="user"></div>
-
-                        <div class="dropdown d-block d-md-none d-lg-none"> 
-                          <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
-                            <li class="nav-item dropdown"> 
+                    
+            <div class="col-xl-12 col-12" style="width: max-content;">
+                <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list">
+                <div class="image-box d-none d-md-block d-lg-block"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
+                <div class="dropdown d-block d-md-none d-lg-none"> 
+                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
+                    <li class="nav-item dropdown">
+                    <i class="fa fa-heart text-danger fa-2x love mt-4"></i>
+                    </li>
+                </ul>
+                    <div class="image-box"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
+                </div>
+                <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
+                    <div class="d-flex flex-row justify-content-between">
+                        <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start" id="name">GTC Advisors & Co <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Vector (3).png" alt="">
+                        </p>
+                        <div class="dropdown d-none d-md-block d-lg-block"> 
+                        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                            <li class="nav-item dropdown">
                             <i class="fa fa-heart text-danger fa-2x love mt-4"></i>
                             </li>
-                        </ul> 
-                        <div class="image-box"><img src="assets/imgs/Ellipse 11.png" alt="logo" id="user"></div>
-                       </div>
-                         
-
-                        <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column"> 
-                          <div class="d-flex flex-row justify-content-between">
-                            <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start" id="name">Juan Rodrick <img src="assets/imgs/User.png" alt="">
-                            </p>
-                              <!-- <img src="assets/imgs/Vector (2).png" alt=""  class="" onmouseover="dropdown()" onclick="dropup()"> -->
-                             
-                              <div class="dropdown d-none d-md-block d-lg-block"> 
-                                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                                  <li class="nav-item dropdown">
-                                  <i class="fa fa-heart text-danger fa-2x love mt-4"></i>
-                                  </li>
-                              </ul> 
-                             </div>
-                          </div>
-                              
-                         
-                           
-                          <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-                            <div class="d-flex flex-row justify-content-evenly">
-                              <a class="m-1 ml-0" href="#">IRS Represntation</a>
-                              <a class="m-1" href="#">Tax Dispute</a> 
-                            </div> 
-                            <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-                              <a class="ml-0" href="#">Financial Planning</a>
-                              <a class="m-1" href="#" id="cat_header2_a">+3</a>
-                            </div>
-                            
-                          </div>
-                          <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
-                          <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Abuja, Nigeria</span></p>
-                          <div class="d-flex flex-row justify-content-lg-start justify-content-md-start justify-content-center ml-20 mt-20 mb-20">
-                            <img src="assets/imgs/verified.png" alt="acca-logo" id="b">
-                            <img src="assets/imgs/acca-logo 1.png" alt="acca-logo" class="ml-40 " id="b">
-                          </div>
-                        </div> 
-                    </div>
-                    </div> 
-
-  <div class="col-xl-12 col-12" style="width: max-content;">
-  <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list">
-  <div class="image-box d-none d-md-block d-lg-block"><img src="assets/imgs/Ellipse 12.png" alt="logo" id="user"></div>
-  <div class="dropdown d-block d-md-none d-lg-none"> 
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
-      <li class="nav-item dropdown">
-          <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-          <ul class="dropdown-menu dropdown-menu-right bg-white" id="drop_d" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-              <li><hr class="dropdown-divider text-dark" /></li>
-              <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-          </ul>
-      </li>
-  </ul>
-  <div class="image-box"><img src="assets/imgs/Ellipse 12.png" alt="logo" id="user"></div>
-      
-  </div>
-
-  <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-    <div class="d-flex flex-row justify-content-between mx-auto">
-        <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start">Juan Rodrick <img src="assets/imgs/User.png" alt="">
-        </p>
-        <div class="dropdown d-none d-md-block d-lg-block"> 
-          <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                <ul class="dropdown-menu dropdown-menu-end  bg-white" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                    <li><hr class="dropdown-divider text-dark" /></li>
-                    <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                </ul>
-            </li>
-        </ul>
-          
-        </div>
-        </div> 
-    <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-      <div class="d-flex flex-row   justify-content-evenly"> 
-      <a class="m-1 ml-0" href="#">IRS Represntation</a>
-      <a class="m-1" href="#">Tax Dispute</a>
-    </div>
-    <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-      <a class="ml-0" href="#">Financial Planning</a>
-      <a class="m-1" href="#" id="cat_header2_a">+6</a>
-    </div>
-  </div>
-    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
-    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Kano, Nigeria</span></p>
-    <div class="d-flex flex-row justify-content-lg-start justify-content-md-start justify-content-center ml-20 mt-20 mb-20">
-      <img src="assets/imgs/verified.png" alt="acca-logo" id="b">
-      <img src="assets/imgs/acca-logo 1.png" alt="acca-logo" class="ml-40" id="b">
-    </div>
-  </div>
-  </div>
-  </div>  
-    <div class="col-xl-12 col-12" style="width: max-content;">
-      <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list">
-        <div class="image-box d-none d-md-block d-lg-block"><img src="assets/imgs/Ellipse 11.png" alt="logo" id="user"></div>
-        <div class="dropdown d-block d-md-none d-lg-none"> 
-          <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
-            <li class="nav-item dropdown">
-                <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                <ul class="dropdown-menu dropdown-menu-right bg-white" id="drop_d" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                    <li><hr class="dropdown-divider text-dark" /></li>
-                    <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                </ul>
-            </li>
-        </ul>
-          <div class="image-box"><img src="assets/imgs/Ellipse 12.png" alt="logo" id="user"></div>
-        </div>
-        <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-          <div class="d-flex flex-row justify-content-between mx-auto">
-              <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start">Juan Rodrick Alpha <img src="assets/imgs/User.png" alt="">
-              </p>
-              <div class="dropdown d-none d-md-block d-lg-block"> 
-                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                  <li class="nav-item dropdown">
-                      <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                      <ul class="dropdown-menu dropdown-menu-end  bg-white" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                          <li><hr class="dropdown-divider text-dark" /></li>
-                          <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                      </ul>
-                  </li>
-              </ul>
-                
-              </div>
-            </div>  
-          <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-            <div class="d-flex flex-row   justify-content-evenly">
-            <a class="m-1 ml-0" href="#">IRS Represntation</a>
-            <a class="m-1" href="#">Tax Dispute</a>
-          </div>
-          <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-            <a class="ml-0" href="#">Financial Planning</a>
-            <a class="m-1" href="#" id="cat_header2_a">+6</a>
-          </div>
-          </div>
-          <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
-          <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Kano, Nigeria</span></p>
-          <div class="d-flex flex-row justify-content-lg-start justify-content-center justify-content-md-start ml-20 mt-20 mb-20">
-            <img src="assets/imgs/verified.png" alt="acca-logo" id="b">
-            <img src="assets/imgs/citn_logo 4.png" alt="acca-logo" class="ml-40" id="b">
-          </div>
-        </div>
-      </div>
-    </div> 
- 
-<div class="col-xl-12 col-12" style="width: max-content;">
-  <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list">
-    <div class="image-box d-none d-md-block d-lg-block"><img src="assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
-    <div class="dropdown d-block d-md-none d-lg-none"> 
-      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
-        <li class="nav-item dropdown">
-            <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-            <ul class="dropdown-menu dropdown-menu-right bg-white" id="drop_d" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                <li><hr class="dropdown-divider text-dark" /></li>
-                <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-            </ul>
-        </li>
-    </ul>
-      <div class="image-box"><img src="assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
-    </div>
-    <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-      <div class="d-flex flex-row justify-content-between mx-auto">
-          <p class="ml-lg-5 fs-5 mt-30 text-dark text-lg-start">GTC Advisors & Co <img src="assets/imgs/Vector (3).png" alt="">
-          </p>
-          <div class="dropdown d-none d-md-block d-lg-block"> 
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-              <li class="nav-item dropdown">
-                  <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                  <ul class="dropdown-menu dropdown-menu-left  bg-white" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                      <li><hr class="dropdown-divider text-dark" /></li>
-                      <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                  </ul>
-              </li>
-          </ul>
-            
-          </div>
-        </div>  
-    
-      <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-        <div class="d-flex flex-row   justify-content-evenly"> 
-        <a class="ml-0" href="#">Corporate Income Tax</a>
-        <a class="ml-2" href="#">Tax Dispute</a>
-      </div>
-      <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-        <a class="ml-0" href="#">Personal Income Tax</a>
-        <a class="ml-2" href="#" id="cat_header2_a">+2</a>
-      </div>
-    </div>
-      <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
-      <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Abuja, Nigeria</span></p>
-      <div class="d-flex flex-row justify-content-lg-start justify-content-center justify-content-md-start ml-20 mt-20 mb-20">
-        <img src="assets/imgs/verified.png" alt="acca-logo" id="b">
-        <img src="assets/imgs/acca-logo 1.png" alt="acca-logo" class="ml-40" id="b">
-      </div>
-    </div>
-  </div>
-</div> 
-
-              <div class="col-xl-12 col-12" style="width: max-content;">
-                <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list">
-                  <div class="image-box d-none d-md-block d-lg-block"><img src="assets/imgs/Ellipse 12.png" alt="logo" id="user"></div>
-                  <div class="dropdown d-block d-md-none d-lg-none"> 
-                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
-                      <li class="nav-item dropdown">
-                          <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                          <ul class="dropdown-menu dropdown-menu-right bg-white" id="drop_d" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                              <li><hr class="dropdown-divider text-dark" /></li>
-                              <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                          </ul>
-                      </li>
-                  </ul>
-                   <div class="image-box"><img src="assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
-                  </div>
-                  <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-                    <div class="d-flex flex-row justify-content-between mx-auto">
-                        <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start">Juan Rodrick <img src="assets/imgs/User.png" alt="">
-                        </p>
-                        <div class="dropdown d-none d-md-block d-lg-block"> 
-                          <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                                <ul class="dropdown-menu dropdown-menu-end  bg-white" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                                    <li><hr class="dropdown-divider text-dark" /></li>
-                                    <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                                </ul>
-                            </li>
                         </ul>
-                          
-                       </div>
-                      </div>  
-                    
+                        
+                        </div>
+                    </div>  
+                
                     <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-                      <div class="d-flex flex-row   justify-content-evenly"> 
-                      <a class="m-1 ml-0" href="#">IRS Represntation</a>
-                      <a class="m-1" href="#">Tax Dispute</a>
+                    <div class="d-flex flex-row   justify-content-evenly"> 
+                    <a class="ml-0" href="#">Corporate Income Tax</a>
+                    <a class="ml-2" href="#">Tax Dispute</a>
                     </div>
                     <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-                      <a class="ml-0" href="#">Financial Planning</a>
-                      <a class="m-1" href="#" id="cat_header2_a">+3</a>
+                    <a class="ml-0" href="#">Personal Income Tax</a>
+                    <a class="ml-2" href="#" id="cat_header2_a">+2</a>
                     </div>
-                    </div>
-                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
-                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Abuja, Nigeria</span></p>
-                    <div class="d-flex flex-row justify-content-lg-start justify-content-center justify-content-md-start  ml-20 mt-20 mb-20">
-                      <img src="assets/imgs/verified.png" alt="acca-logo" id="b">
-                      <img src="assets/imgs/acca-logo 1.png" alt="acca-logo" class="ml-40" id="b">
-                    </div>
-                  </div>
                 </div>
-              </div>
-
-              <div class="col-xl-12 col-12" style="width: max-content;">
-                <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list">
-                  <div class="image-box d-none d-md-block d-lg-block"><img src="assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
-                  <div class="dropdown d-block d-md-none d-lg-none"> 
-                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
-                      <li class="nav-item dropdown">
-                          <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                          <ul class="dropdown-menu dropdown-menu-right bg-white" id="drop_d" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                              <li><hr class="dropdown-divider text-dark" /></li>
-                              <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                          </ul>
-                      </li>
-                  </ul>
-                   <div class="image-box"><img src="assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
-                  </div>
-                  <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-                    <div class="d-flex flex-row justify-content-between mx-auto">
-                        <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start">GTC Advisors & Co <img src="assets/imgs/Vector (3).png" alt="">
-                        </p>
-                        <div class="dropdown d-none d-md-block d-lg-block"> 
-                          <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                                <ul class="dropdown-menu dropdown-menu-end  bg-white" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                                    <li><hr class="dropdown-divider text-dark" /></li>
-                                    <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                          
-                       </div>
-                        </div>
-                   
-                        <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-                        <div class="d-flex flex-row   justify-content-evenly"> 
-                        <a class="ml-0" href="#">Corporate Income Tax</a>
-                        <a class="ml-2" href="#">Tax Pricing</a>
-                      </div>
-                      <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-                        <a class="ml-0" href="#">Personal Income Tax</a>
-                        <a class="ml-2" href="#" id="cat_header2_a">+2</a>
-                      </div>
-                  </div>
                     <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
                     <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Abuja, Nigeria</span></p>
                     <div class="d-flex flex-row justify-content-lg-start justify-content-center justify-content-md-start ml-20 mt-20 mb-20">
-                      <img src="assets/imgs/verified.png" alt="acca-logo" id="b">
-                      <img src="assets/imgs/acca-logo 1.png" alt="acca-logo" class="ml-40" id="b">
+                    <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/verified.png" alt="acca-logo" id="b">
+                    <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/acca-logo 1.png" alt="acca-logo" class="ml-40" id="b">
                     </div>
-                  </div>
                 </div>
-              </div>  
+                </div>
+            </div>  
 
-              <div class="col-xl-12 col-12" style="width: max-content;">
-                <div class="d-flex  flex-column flex-lg-row flex-md-row" id="cat_list">
-                  <div class="image-box d-none d-md-block d-lg-block"><img src="assets/imgs/Ellipse 84.png" alt="logo" id="user"></div>
-                  <div class="dropdown d-block d-md-none d-lg-none"> 
-                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
-                      <li class="nav-item dropdown">
-                          <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                          <ul class="dropdown-menu dropdown-menu-right bg-white" id="drop_d" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                              <li><hr class="dropdown-divider text-dark" /></li>
-                              <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                          </ul>
-                      </li>
-                  </ul>
-                   <div class="image-box"><img src="assets/imgs/Ellipse 84.png" alt="logo" id="user"></div>
-                  </div>
-                  <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-                    <div class="d-flex flex-row justify-content-between mx-auto"> 
-                        <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-center">Juan Rodrick <img src="assets/imgs/User.png" alt="">
-                        </p>
-                        <div class="dropdown d-none d-md-block d-lg-block"> 
-                          <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                                <ul class="dropdown-menu dropdown-menu-end  bg-white" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                                    <li><hr class="dropdown-divider text-dark" /></li>
-                                    <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                          
-                       </div>
-                      </div>
-                    
-                    <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-                      <div class="d-flex flex-row   justify-content-evenly"> 
-                      <a class="m-1 ml-0" href="#">Tax Compliance</a>
-                      <a class="m-1" href="#">Tax Dispute</a>
-                    </div>
-                    <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-                      <a class="m-1 ml-0" href="#">Financial Planning</a>
-                      <a class="m-1" href="#" id="cat_header2_a">+3</a>
-                    </div>
-                  </div>
-                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
-                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Abuja, Nigeria</span></p>
-                    <div class="d-flex flex-row justify-content-lg-start justify-content-md-start justify-content-center ml-20 mt-20 mb-20">
-                      <img src="assets/imgs/verified.png" alt="acca-logo" id="b">
-                      <img src="assets/imgs/citn_logo 4.png" alt="acca-logo" class="ml-40" id="b">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-xl-12 col-12" style="width: max-content;">
-                <div class="d-flex  flex-column flex-lg-row flex-md-row" id="cat_list">
-                  <div class="image-box d-none d-md-block d-lg-block"><img src="assets/imgs/Ellipse 12.png" alt="logo" id="user"></div>
-                  <div class="dropdown d-block d-md-none d-lg-none"> 
-                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
-                      <li class="nav-item dropdown">
-                          <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                          <ul class="dropdown-menu dropdown-menu-right bg-white" id="drop_d" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                              <li><hr class="dropdown-divider text-dark" /></li>
-                              <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                          </ul>
-                      </li>
-                  </ul>
-                   <div class="image-box"><img src="assets/imgs/Ellipse 12.png" alt="logo" id="user"></div>
-                  </div>
-                  <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-                    <div class="d-flex flex-row justify-content-between mx-auto" > 
-                        <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-center">Juan Rodrick <img src="assets/imgs/User.png" alt="">
-                        </p>
-                        <div class="dropdown d-none d-md-block d-lg-block"> 
-                          <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                                <ul class="dropdown-menu dropdown-menu-end  bg-white" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
-                                    <li><hr class="dropdown-divider text-dark" /></li>
-                                    <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                          
-                       </div>
-                      </div>
-                    
-                    <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-                      <div class="d-flex flex-row   justify-content-evenly"> 
-                      <a class="m-1 ml-0" href="#">Tax Compliance</a>
-                      <a class="m-1" href="#">Tax Dispute</a>
-                    </div>
-                    <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-                      <a class="m-1 ml-0" href="#">Financial Planning</a>
-                      <a class="m-1" href="#" id="cat_header2_a">+3</a>
-                    </div>
-                  </div>
-                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
-                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Abuja, Nigeria</span></p>
-                    <div class="d-flex flex-row justify-content-lg-start justify-content-md-start justify-content-center ml-20 mt-20 mb-20">
-                      <img src="assets/imgs/verified.png" alt="acca-logo" id="b">
-                      <img src="assets/imgs/citn_logo 4.png" alt="acca-logo" class="ml-40" id="b">
-                    </div>
-                  </div>
-                </div>
-              </div>
-               
             </div>
           </div> 
         </div> 
@@ -916,20 +524,20 @@ overall_header($pagetitle);
   </section> 
 </main>
    <!-- JAVASCRIPT LIBRARIES AND SCRIPT LINKING -->
-    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/plugins/waypoints.js"></script>
-    <script src="assets/js/plugins/wow.js"></script>
-    <script src="assets/js/plugins/magnific-popup.js"></script>
-    <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/plugins/select2.min.js"></script>
-    <script src="assets/js/plugins/isotope.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/swiper-bundle.min.js"></script>
-    <script src="assets/js/noUISlider.js"></script>
-    <script src="assets/js/slider.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/plugins/waypoints.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/plugins/wow.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/plugins/magnific-popup.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/plugins/select2.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/plugins/isotope.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/plugins/scrollup.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/plugins/swiper-bundle.min.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/noUISlider.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/slider.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/main.js"></script>
   </body>
 </html>

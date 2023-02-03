@@ -43,3 +43,4 @@ $link['WITHDRAW']           = $config['site_url'] . 'withdraw';
 $link['BIDDER']             = $config['site_url'] . 'bidder';
 $link['MILESTONE']          = $config['site_url'] . 'milestone';
 $link['NOTIFICATIONS']      = $config['site_url'] . 'notifications';
+$link['CATEGORY']        = $config['site_url'] . 'category';

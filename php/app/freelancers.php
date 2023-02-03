@@ -164,7 +164,7 @@ elseif(!empty($keywords)){
     $Pagetitle = ucfirst($keywords);
 }
 else{
-    $Pagetitle = __("Freelancers");
+    $Pagetitle = __("category");
 }
 
 $cat_dropdown = get_categories_dropdown($lang);
@@ -178,7 +178,7 @@ if(count($_GET) >= 1){
 }
 $country_code = check_user_country();
 //Print Template
-HtmlTemplate::display('freelancers', array(
+HtmlTemplate::display('category', array(
     'pagetitle' => $Pagetitle,
     'items' => $items,
     'usersfound' => $total,

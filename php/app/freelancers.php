@@ -1,8 +1,8 @@
 <?php
 // if job seekers is disable
-if(!$config['job_seeker_enable']){
-    error(__("Page Not Found"), __LINE__, __FILE__, 1);
-}
+// if(!$config['job_seeker_enable']){
+//     error(__("Page Not Found"), __LINE__, __FILE__, 1);
+// }
 
 if(!isset($_GET['page']))
     $page_number = 1;

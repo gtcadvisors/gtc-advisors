@@ -44,3 +44,4 @@ $link['BIDDER']             = $config['site_url'] . 'bidder';
 $link['MILESTONE']          = $config['site_url'] . 'milestone';
 $link['NOTIFICATIONS']      = $config['site_url'] . 'notifications';
 $link['CATEGORY']        = $config['site_url'] . 'category';
+$link['SAVED_EXPERTS']        = $config['site_url'] . 'saved_experts';

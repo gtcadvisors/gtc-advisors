@@ -102,7 +102,7 @@
             <nav class="nav-main-menu">
               <ul class="main-menu">
                 <!-- Each li-tag has a class attr of (has-children for a drop down menu) -->
-                <li class="ml-30" ><a style="font-family: 'Proxima Soft';" href="#">Expertise</a>
+                <li class="ml-30" ><a style="font-family: 'Proxima Soft';" href="<?php url("CATEGORY") ?>">Expertise</a>
                    </li>
                 <li class="#"><a href="#" style="font-family: 'Proxima Soft';">Post a Job</a>
                  </li>
@@ -132,10 +132,45 @@
               
               
                 <a class="btn btn-default btn-shadow ml-40 hover-up d-block d-md-block d-lg-none" style="width: 100px;" href="<?php url("SIGNUP") ?>"> Sign Up</a>
-            
-    
+          
             </div>
             <div class="mobile-menu-wrap mobile-header-border">
+              <!-- Categories for mobile sidebar list -->
+<?php
+
+$result = ORM::for_table($config['db']['pre'].'catagory_main')
+->order_by_asc('cat_order')
+->limit(15)
+->find_many();
+foreach ($result as $info) {
+if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
+$maincat = get_category_translation("main",$info['cat_id']);
+$info['cat_name'] = $maincat['title'];
+$info['slug'] = $maincat['slug'];
+}
+$category[$info['cat_id']]['slug'] = $info['slug'];
+$category[$info['cat_id']]['name'] = $info['cat_name'];
+$category[$info['cat_id']]['main_id'] = $info['cat_id'];
+$category[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
+
+if(trim($config['home_page']) == "home-freelance"){
+$totalAdsMaincat = ORM::for_table($config['db']['pre'].'project')
+    ->where(array(
+        'category'=> $info['cat_id'],
+        'status'=> 'open'
+        ))
+    ->count();
+}
+else{
+$totalAdsMaincat = get_items_count(false,"active",false,null,$info['cat_id'],true);
+}
+
+$category[$info['cat_id']]['main_ads_count'] = $totalAdsMaincat;
+$count = 1;
+
+}
+
+?>
               <!-- mobile menu start-->
               <nav>
                 <ul class="mobile-menu font-heading">
@@ -199,6 +234,7 @@
                     echo '<span class="status-not-available">'.$error.'</span>';
                 }
                 ?>
+                <div id="login-status" class="notification error" style="display:none"></div>
               <form method="post" class="login-register text-start mt-20"> 
                 <div class="form-group"> 
                   <input class="form-control" id="input-2" id="username" type="text" required="" name="username" placeholder="<?php _e("Enter Username or") ?> / <?php _e("Email Address") ?>">

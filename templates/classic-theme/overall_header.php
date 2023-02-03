@@ -306,8 +306,45 @@
                     </ul>
                   </div>
                   <div class="mobile-menu-wrap pt-10">
-                    <nav>
-                      <ul class="mobile-menu adv-font" style="list-style:none;">
+
+<!-- Categories for mobile sidebar list -->
+<?php
+
+$result = ORM::for_table($config['db']['pre'].'catagory_main')
+->order_by_asc('cat_order')
+->limit(15)
+->find_many();
+foreach ($result as $info) {
+if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
+$maincat = get_category_translation("main",$info['cat_id']);
+$info['cat_name'] = $maincat['title'];
+$info['slug'] = $maincat['slug'];
+}
+$category[$info['cat_id']]['slug'] = $info['slug'];
+$category[$info['cat_id']]['name'] = $info['cat_name'];
+$category[$info['cat_id']]['main_id'] = $info['cat_id'];
+$category[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
+
+if(trim($config['home_page']) == "home-freelance"){
+$totalAdsMaincat = ORM::for_table($config['db']['pre'].'project')
+    ->where(array(
+        'category'=> $info['cat_id'],
+        'status'=> 'open'
+        ))
+    ->count();
+}
+else{
+$totalAdsMaincat = get_items_count(false,"active",false,null,$info['cat_id'],true);
+}
+
+$category[$info['cat_id']]['main_ads_count'] = $totalAdsMaincat;
+$count = 1;
+
+}
+
+?>
+         <nav>
+        <ul class="mobile-menu adv-font" style="list-style:none;">
                         <li class="adv-font has-children">
                           <a href="#">Expertise</a>
                           <ul class="adv-font sub-menu">

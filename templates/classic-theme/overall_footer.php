@@ -5,13 +5,17 @@
       <div class="container">
         <div class="row">
           <div class="d-none d-lg-flex footer-col-1 col-md-8 col-sm-12">
-            <a href="#"><img alt="" src="assets/imgs/template/gtclogo.png"></a>
+          <?php
+            $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
+            $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
+            ?>
+            <a href="<?php url("INDEX") ?>"><img alt="" src="<?php _esc($config['site_url']);?>storage/logo/<?php _esc($config['site_logo_footer']);?>"></a>
             <div class="mt-20 mb-20 font-xs color-text-paragraph-2 text-white"> </div>
           </div>
           <div class="footer-col-2 col-md-4 col-xs-6">
             <h6 class="mb-20 text-white">Company</h6>
             <ul class="menu-footer">
-              <li><a href="#">Home</a></li>
+              <li><a href="<?php url("INDEX") ?>">Home</a></li>
               <li><a href="#">About Us</a></li>
               <li><a href="#">Privacy policy</a></li>
               <li><a href="#">Terms and conditions</a></li>
@@ -20,10 +24,14 @@
           <div class="footer-col-3 col-md-4 col-xs-6">
             <h6 class="mb-20 text-white">Services</h6>
             <ul class="menu-footer">
-              <li><a href="category.php">Categories</a></li>
-              <li><a href="#">Countries</a></li>
-              <li><a href="become_advisor.php">Become an Advisor</a></li>
-              <li><a href="category.php">Hire an Advisor</a></li>
+              <li><a href="<?php url("CATEGORY") ?>">Categories</a></li>
+              <?php
+             if($config['country_type'] == "multi") {
+            echo '<li><a href="'.url("COUNTRIES",false).'">'.__("Countries").'</a></li>';
+             }
+         ?>
+              <li><a href="<?php url("BECOME-AN-ADVISOR") ?>">Become an Advisor</a></li>
+              <li><a href="<?php url("CATEGORY") ?>">Hire an Advisor</a></li>
               <li><a href="#">Post a job</a></li>
             </ul>
           </div>
@@ -38,7 +46,12 @@
         </div>
         <div class="footer-bottom mt-50">
           <div class="row justify-content-center">
-            <div class="d-flex d-lg-none"><img class="footer-logo" src="assets/imgs/template/gtclogo.png" alt="gtclogo" style="width:120px;height:40.31px;top:5.96px;left:425px;"> </div>
+            <div class="d-flex d-lg-none">
+            <?php
+            $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
+             $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
+             ?>
+            <img class="footer-logo" src="<?php _esc($config['site_url']);?>storage/logo/<?php _esc($config['site_logo_footer']);?>" alt="gtclogo" style="width:120px;height:40.31px;top:5.96px;left:425px;"> </div>
             <div class="col-12 col-md-6 footer-last-col"> 
             <span class="copyright-text">
               &copy; 2022 Global Tax Compliance inc. all rights reserved.</span></div>

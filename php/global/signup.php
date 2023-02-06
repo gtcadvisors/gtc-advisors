@@ -189,20 +189,20 @@ if(isset($_POST["submit"])) {
 
     if($errors == 0) {
         $confirm_id = get_random_id();
-        $location = "";
+        $location = getLocationInfoByIp();
         $password = $_POST["password"];
         $pass_hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 13]);
         $now = date("Y-m-d H:i:s");
 
         $insert_user = ORM::for_table($config['db']['pre'].'user')->create();
         $insert_user->status = '0';
-        
         // $insert_user->name = $_POST["name"];
         // if($_POST["user-type"] == 1){
         //     $insert_user->user_type = 'user';
         // }else{
         //     $insert_user->user_type = 'employer';
         // }
+        $insert_user->user_type = 'user';
         $insert_user->username = $_POST["username"];
         $insert_user->password_hash = $pass_hash;
         $insert_user->email = $_POST['email'];

@@ -212,7 +212,7 @@ if (checkloggedin()) {
     }
 
     //Print Template
-    HtmlTemplate::display('profile-edit', array(
+    HtmlTemplate::display('become-an-advisor-form', array(
         'authoruname' => ucfirst($ses_userdata['username']),
         'authorname' => ucfirst($ses_userdata['name']),
         'lastactive' => $author_lastactive,

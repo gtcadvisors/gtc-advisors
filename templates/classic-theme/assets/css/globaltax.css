@@ -1910,13 +1910,13 @@ margin-top: -50px;
 
 .status-circle-big-img {
   width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: #ffffff;
-  border: 3px solid #2C76DC;
-  bottom: -11px;
-  right: -11px;
-  position: absolute;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 3px solid #2C76DC;
+    bottom: -37px;
+    right: -34px;
+    position: absolute;
 }
 /* user online status end */
 

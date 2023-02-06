@@ -124,7 +124,7 @@
             </div>
           </div>
           <div class="header-nav">
-            <div class="loged-form-find d-none d-lg-block wow animate__animated animate__fadeIn" data-wow-delay=".2s">
+            <div class="loged-form-find d-none d-lg-block">
             <form autocomplete="off" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
                  <input class="loged-form-input input-keysearch color-white mr-1" type="text" name="" placeholder="<?php _e("What service are you looking for today?") ?>">
                   <button class="btn btn-default font-sm loged-search-button"><li class="fa-22x fas fa-search fa-lg"></i></button>

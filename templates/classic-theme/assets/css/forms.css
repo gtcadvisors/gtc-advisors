@@ -9245,13 +9245,6 @@ span.status-available, span.status-not-available {display: block;padding: 5px;fo
 span.status-available {background: #e0f5d7;color: #449626;}
 span.status-not-available {background-color: #ffe6e6;color: #ea5252;}
 
-/* 
-.status-available{
-  color: green;
-}
 
-.status-not-available{
-  color: red;
-} */
 
 /*# sourceMappingURL=style.css.map */

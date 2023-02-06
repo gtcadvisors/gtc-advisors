@@ -11,6 +11,11 @@ btn-update-pic[type="file"]{
     padding:12px 10px;
     width: 20% !important;
 }
+input[type="text"]:disabled {
+  background: #EEF5FC;
+ color:#FC4438;
+
+}
 
 .form-group select, input {
     background: #fff;
@@ -23,7 +28,8 @@ btn-update-pic[type="file"]{
 }
 .form-group select {
     background: #fff;
-    border: 1px solid #E0E6F6;
+    borderContact GitHub
+: 1px solid #E0E6F6;
     height: 56px !important;
     box-shadow: none;
     padding-left: 20px;
@@ -176,7 +182,7 @@ btn-update-pic[type="file"]{
       
                           <div class="form-group">
                             <label class="form-edit font-sm mb-10">Email</label>
-                            <input class="mb-15 form-field-bg form-control" type="text" id="email" name="email" value="<?php _esc($email)?>" onBlur="checkAvailabilityEmail()" readonly>
+                            <input class="mb-15 form-control" data-toggle="tooltip" title="You can't edit email" type="text" id="email" name="email" value="<?php _esc($email)?>" onBlur="checkAvailabilityEmail()" disabled>
                             <span id="email-availability-status"><?php if($email_error != ""){ _esc($email_error) ; }?></span>
                           </div>
 

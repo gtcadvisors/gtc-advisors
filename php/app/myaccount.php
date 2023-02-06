@@ -1,210 +1,415 @@
-          <div class="bdrd-top"></div>
-          <div class="container-fluid d-none d-md-flex flex-row justify-content-evenly border-bottom border-2 p-3">
-        <div class="text-center">
-          <div class="list-tabs">
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="mt-3 mb-3"><a href="#"> Tax Audits</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> Sales Tax</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> International</a></li>
-              <li class="mt-3 mb-3"><a href="#"> Financial Planning</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> Corporations</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> IRS Representation</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> Individual Tax Preparation</a></li>
-              <a class="pr-30" href="category.php"> See All</a>
-            </ul>
-          </div>
-        </div>
-        </div>
-        <div class="container-fluid d-flex d-md-none flex-row border-bottom border-2 justify-content-evenly">
-            <a href="#" class="pill blue-pill rounded-pill">Tax Pricing</a>
-            <div class="pill blue-pill rounded-pill">Corporations</div>
-            <div class="pill blue-pill rounded-pill">Tax Audits</div>
-            <div class="pill blue-pill rounded-pill">Sales Tax</div>
-        </div>
 
-    <main class="main">
-      <section class="section-box">
-        <div class="banner-hero hero-2">
-          <div class="banner-inner">
-            <div class="block-banner">
-              <h1 class="text-42 color-white">Hire the perfect tax <br class="d-none d-lg-block">advisors for your business</h1>
-              <div class="font-lg font-regular color-white mt-20">Get access to millions of tax advisors who are verified, reliable, and experienced on Global Tax Compliance - your one-stop-shop for seamless tax advice services.</div>
-              <div class="list-tags-banner mt-20 d-none d-lg-flex flex-row justify-content-evenly" data-wow-delay=".3s"><strong>Trending Searches:</strong><a href="#">Tax Audits</a>, <a href="#">Financial Planning</a>, <a href="#">Corporations</a>, <a href="#">Individual Tax Preparation</a></div>
-              <!-- Mobile show -->
-              <div class="mt-30 d-block d-lg-none trending-searches-container text-white" data-wow-delay=".3s" style="font-size: 0.625rem;">
-                  <div class="row align-items-center justify-content-center gx-1">
-                      <div class="col-auto me-2">Trending Searches:</div>
-                      <div class="col-auto border border-light rounded-pill p-1 ps-2 pe-2 me-1 mb-1">Tax Pricing</div>
-                      <div class="col-auto border border-light rounded-pill p-1 ps-2 pe-2 me-1 mb-1">Personal Income Tax</div>
-                      <div class="col-auto border border-light rounded-pill p-1 ps-2 pe-2 me-1 mb-1">Sales Tax</div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          </div>
+<?php
+global $config,$lang,$link;
+if (checkloggedin()) {
+    headerRedirect($link['']);
+}
+$start = microtime(true);
+$limit = 6;
 
-          <div class="container mt-60">
-          <div class="d-none d-lg-flex left-trust col-lg-2 col-md-3 col-sm-3 col-3">
-         <h6 class="d-none d-lg-flexcolor-text-paragraph-2 text-18">Trusted by:</h6>
-          </div>
-        <div class="trusted-logos slider">
-      <div class="slide"><img src="assets/imgs/trust/African centre for tax compliance 1.png" style="width:146px !important; height:56px !important" alt=""></div>
-      <div class="slide"><img src="assets/imgs/trust/MN_INNOVA_LOGO 1.png" style="width:200px !important; height:56px !important" alt=""></div>
-      <div class="slide"><img src="assets/imgs/trust/aton1 2.png" style="width:120px !important; height:56px !important;" alt=""></div>
-      <div class="slide"><img src="assets/imgs/trust/Kiota_Property_Logo 1.png" style="width:120px !important; height:56px !important" alt=""></div>
-      <div class="slide"><img src="assets/imgs/trust/Table Tennis Academy 2.png" style="width:150px !important; height:56px !important" alt=""></div>
-   </div>
-       </div>
-      </section>
+if(isset($match['params']['country'])) {
+    if ($match['params']['country'] != ""){
+        change_user_country($match['params']['country']);
+    }
+}
 
-      <section class="section-box mt-50">
-        <div class="services-wrapper py-5">
-          <div class="container">
-            <div class="text-start">
-              <h3 class="areaofexperts section-title mb-20">Areas of expertise</h3>
-            </div>
-          <div class="row service-slider">
-          <div class="col-6">
-          <div class="service">
-          <img src="assets/imgs/expertise/pexels-ekaterina-bolovtsova-6077123 1.png">
-          <h3><span class="tax-serv color-white font-xs">Abide by the law</span> <span class="tax-text color-white mb-5">Tax Compliance</span></h3>
-          </div>
-          </div>
-          <div class="col-6">
-            <div class="service">
-            <img src="assets/imgs/expertise/pexels-nataliya-vaitkevich-6863202 2.png">
-            <h3><span class="tax-serv color-white font-xs">Want to learn about tax?</span> <span class="tax-text color-white mb-5">Tax Law Research</span></h3>
-            </div>
-            </div>
-          <div class="col-6">
-          <div class="service">
-          <img src="assets/imgs/expertise/pexels-fauxels-3183197 1.png">
-          <h3><span class="tax-serv color-white font-xs">Want to cut operations cost?</span> <span class="tax-text color-white mb-5">Tax Planning</span></h3>
-          </div>
-          </div>
-          <div class="col-6">
-          <div class="service">
-          <img src="assets/imgs/expertise/pexels-monstera-5849579 1.png">
-          <h3><span class="tax-serv color-white font-xs">Contractual or administrative trouble?</span> <span class="tax-text color-white mb-5">Tax Dispute</span></h3>
-          </div>
-          </div>
-            <div class="col-6">
-            <div class="service">
-            <img src="assets/imgs/expertise/pexels-olya-kobruseva-8962469 2.png" style="width:304px; height:380px;">
-            <h3><span class="tax-serv color-white font-xs">Tax Dispute</span><span class="tax-text color-white mb-5"> Personal Income Tax</span></h3>
-            </div>
-            </div>
-        
-          </div>
-          </div>
-          </div>
-      </section>
+$country_code = check_user_country();
+
+if($latlong = get_lat_long_of_country($country_code)){
+    $mapLat     =  $latlong['lat'];
+    $mapLong    =  $latlong['lng'];
+}else{
+    $mapLat     =  get_option("home_map_latitude");
+    $mapLong    =  get_option("home_map_longitude");
+}
+$item = array();
+if(trim($config['home_page']) == "home-freelance"){
+    $item = get_projects("","open",false,1,$limit,"p.id",true,true,"DESC");
+}else{
+    if($config['show_featured_jobs_home']){
+        $item = get_items("","active",true,1,$limit,"p.id",true);
+    }
+}
+
+$item2 = array();
+if($config['show_latest_jobs_home']){
+    $item2 = get_items("","active",false,1,$limit,"p.id",true);
+}
 
 
-      <section class="section-box verified-user-home-bg mt-50 mb-30 bg-border-3 pt-100">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="pl-30">
-                <h5 class="verified-title color-brand-2 mb-15 mt-15 text-white mb-32">Verified, Screened Advisors</h5>
-                
-                <img class="verified-expert-badge" src="assets/imgs/Verified-Expert-Badge.png">
-                <p class="d-md-none d-xl-block verified-subtext font-lg verified-sub-text-smll-screen color-text-paragraph-2 text-left text-white text-md-left mt-32">Our advisors have been vetted and screened using best practices to ensure that they are real, reliable, and accredited advisors. On Global Tax Compliance, you have access to a catalogue of vetted advisors, making it easy to choose the best advisor for you and your business . </p>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="back-line"></div>
-              <img class="verified-user-home" src="assets/imgs/unsplash_wmFFRa51OoA.png" alt="">
-              <div class="pl-30 mt-30 mb-40">
-                <br /><br />
-              <p class="mt-234 font-lg verified-sub-text-desktop verified-sub-text-mobile color-text-paragraph-2 text-left text-white text-md-left">Our advisors have been vetted and screened using best practices to ensure that they are real, reliable, and accredited advisors. On Global Tax Compliance, you have access to a catalogue of vetted advisors, making it easy to choose the best advisor for you and your business . </p>
-            </div>
-            </div>
-          </div>
-        </div>
-      </section>
+$result = ORM::for_table($config['db']['pre'].'catagory_main')
+        ->order_by_asc('cat_order')
+        ->limit(7)
+        ->find_many();
+foreach ($result as $info) {
+    if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
+        $maincat = get_category_translation("main",$info['cat_id']);
+        $info['cat_name'] = $maincat['title'];
+        $info['slug'] = $maincat['slug'];
+    }
+    $category[$info['cat_id']]['slug'] = $info['slug'];
+    $category[$info['cat_id']]['name'] = $info['cat_name'];
+    $category[$info['cat_id']]['main_id'] = $info['cat_id'];
+    $category[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
 
-      <div class="userback-button-container" id="userback_button_container">
-        <div class="userback-button userback-button-e" style="min-width: 120px;">Feedback</div></div>
+    if(trim($config['home_page']) == "home-freelance"){
+        $totalAdsMaincat = ORM::for_table($config['db']['pre'].'project')
+            ->where(array(
+                'category'=> $info['cat_id'],
+                'status'=> 'open'
+                ))
+            ->count();
+    }
+    else{
+        $totalAdsMaincat = get_items_count(false,"active",false,null,$info['cat_id'],true);
+    }
 
-        <section class="section-box bg-white mt-50 mb-30 bg-border-3 pt-10 pb-6">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6">
-              <a href="#headerPopup" id="headerVideoLink" target="_blank" class="video-bttn position-relative d-block popup-modal">
-              <img class="tab-img bdrd-10" src="assets/imgs/pexels-daniel-xavier-1121796 1.png" alt="">
-            </a>
-            </div>
-          <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
-        <iframe class="embed-responsive-item" width="854" height="480" src="https://www.youtube.com/embed/TdwqdNLByMQ?" frameborder="0" allow="; encrypted-media" allowfullscreen></iframe>
-      </div>
-              <div class="col-lg-6">
-                <div class="pl-20 pl-lg-30">
-                  <span class="tmonial_title">Mustapha Ndajiwo, Co-Founder |</span><span><img class="tmonial_logo" src="assets/imgs/MN_INNOVA_LOGO.png"></span>
-                  <p class="tmonial_sub_title font-lg color-text-paragraph-2">“We started this company in order to provide a seamless avenue for people to get direct contact with resources and professionals that can solve their tax problems ”</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-       
-        <section class="section-box taxguid-bg mt-50">
-          <div class="container">
-            <div class="text-start">
-              <h2 class="section-title mb-10">Tax Guides <div class="color-primary d-none d-sm-block float-right"><a href="#" style="color:#2C76DC;font-family:Proxima Soft; font-style: normal; font-weight:400; font-size: 16px;">See More Guides <img src="assets/imgs/arrow.png" alt=""></a></div></h2>
-            </div>
-          <div>
+    $category[$info['cat_id']]['main_ads_count'] = $totalAdsMaincat;
+    $count = 1;
 
-          <div class="row">
-          <div class="col-lg-4">
-          <div class="blog grid-blog aos aos-init aos-animate" data-aos="fade-up">
-          <div class="blog-image">
-          <a href="#">
-          <img class="img-fluid" src="assets/imgs/tax-guides/pexels-pixabay-209151 1.png" alt="">
-        </a>
-          </div>
-          <div class="blog-content">
-          <h3 class="tax-guid-txt">
-            <a href="#">Become a Tax advisor and work from home</a></h3>
-          <p class="mb-0 tax-guid-sub">A complete guide to becoming a Tax Advisor</p>
-          </div>
-        </div>
-        </div>
+}
 
-          <div class="col-lg-4">
-          <div class="blog grid-blog aos aos-init aos-animate" data-aos="fade-up">
-          <div class="blog-image">
-          <a href="#">
-            <img class="img-fluid" src="assets/imgs/tax-guides/pexels-anna-shvets-3727456 1.png" alt="">
-          </a>
-          </div>
-          <div class="blog-content">
-          <h3 class="tax-guid-txt">
-            <a href="#">Personal Income Tax made easy</a></h3>
-          <p class="mb-0 tax-guid-sub">A practical guide to understand what is personal income tax.</p>
-          </div>
-          </div>
-          
-          </div>
-          <div class="col-lg-4">
-          
-          <div class="blog grid-blog aos aos-init aos-animate" data-aos="fade-up">
-          <div class="blog-image">
-          <a href="#">
-          <img class="img-fluid" src="assets/imgs/tax-guides/pexels-karolina-grabowska-4386367 1.png" alt="Post Image">
-        </a>
-          </div>
-          <div class="blog-content">
-          <h3 class="tax-guid-txt">
-          <a href="#">Pay Tax for your busineses</a></h3>
-          <p class="mb-0 tax-guid-sub">A step-by-step guide to pay your tax</p>
-          </div>
-          </div>
-          
-          </div>
-          </div>
-          </div>
-          <div class="color-primary d-sm-block d-xl-none "><a href="#" style="color:#2C76DC;font-family:Proxima Soft; font-style: normal; font-weight:400; font-size: 16px;">See More Guides <img src="assets/imgs/arrow.png" alt=""></a></div>
-          </div>
-          </section>
-    </main>
+//mobile cat
+$result = ORM::for_table($config['db']['pre'].'catagory_main')
+        ->order_by_asc('cat_order')
+        ->limit(3)
+        ->find_many();
+foreach ($result as $info) {
+    if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
+        $maincat = get_category_translation("main",$info['cat_id']);
+        $info['cat_name'] = $maincat['title'];
+        $info['slug'] = $maincat['slug'];
+    }
+    $category2[$info['cat_id']]['slug'] = $info['slug'];
+    $category2[$info['cat_id']]['name'] = $info['cat_name'];
+    $category2[$info['cat_id']]['main_id'] = $info['cat_id'];
+    $category2[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
+
+    if(trim($config['home_page']) == "home-freelance"){
+        $totalAdsMaincat = ORM::for_table($config['db']['pre'].'project')
+            ->where(array(
+                'category'=> $info['cat_id'],
+                'status'=> 'open'
+                ))
+            ->count();
+    }
+    else{
+        $totalAdsMaincat = get_items_count(false,"active",false,null,$info['cat_id'],true);
+    }
+
+    $category2[$info['cat_id']]['main_ads_count'] = $totalAdsMaincat;
+    $count = 1;
+
+}
+
+$result1 = ORM::for_table($config['db']['pre'] . 'user')
+    ->where(array(
+        'status' => '1',
+        'user_type' => 'user'
+    ))
+    ->limit(6)
+    ->find_many();
+
+//Loop for list view
+$freelancers = array();
+if (!empty($result1)) {
+    // output data of each row
+    foreach ($result1 as $info) {
+        $freelancers[$info['id']]['id'] = $info['id'];
+        $freelancers[$info['id']]['username'] = $info['username'];
+        $freelancers[$info['id']]['name'] = !empty($info['name'])?$info['name']:$info['username'];
+        $freelancers[$info['id']]['description'] = !empty($info['tagline'])?$info['tagline']:strlimiter(strip_tags($info['description']),200);
+        $freelancers[$info['id']]['sex'] = $info['sex'];
+        $freelancers[$info['id']]['image'] = !empty($info['image'])?$info['image']:'default_user.png';
+        $freelancers[$info['id']]['country_code'] = strtolower($info['country_code']);
+
+        $freelancers[$info['id']]['category'] = $freelancers[$info['id']]['subcategory'] = null;
+        if(!empty($info['category'])){
+            $get_cat = get_maincat_by_id($info['category']);
+            $freelancers[$info['id']]['category'] = $get_cat['cat_name'];
+        }
+        if(!empty($info['subcategory'])){
+            $get_cat = get_subcat_by_id($info['subcategory']);
+            $freelancers[$info['id']]['subcategory'] = $get_cat['sub_cat_name'];
+        }
+
+        $user_id = $info['id'];
+        $freelancers[$info['id']]['rating'] = averageRating($user_id,$info['user_type']);
+
+        $hourly_rate = price_format(get_user_option($user_id,'hourly_rate','0'));
+        $freelancers[$info['id']]['hourly_rate'] = ($hourly_rate)? $hourly_rate: '-';
+
+        $win_project = $rehired_count = 0;
+
+        $win_project = ORM::for_table($config['db']['pre'].'project')
+            ->where('freelancer_id' , $user_id)
+            ->count();
+        $freelancers[$info['id']]['win_project'] = $win_project;
+        $rehired = ORM::for_table($config['db']['pre'].'project')
+            ->select_many_expr('user_id, COUNT(user_id) as hired')
+            ->where('freelancer_id' , $user_id)
+            ->group_by('user_id')
+            ->having_raw('COUNT(user_id) > 1')
+            ->find_many();
+
+        $i = 0;
+        foreach($rehired as $info1){
+            $i+=$info1['hired']-1;
+        }
+        $rehired_count = $i;
+        $freelancers[$info['id']]['rehired'] = $rehired_count;
+    }
+}
+
+
+    $country_code = check_user_country();
+    $countryName = get_countryName_by_code($country_code);
+
+    $popular = array();
+    $count = 1;
+
+    $result = ORM::for_table($config['db']['pre'].'cities')
+        ->select_many('id','asciiname')
+        ->where(array(
+                'country_code' => $country_code,
+                'active' => '1'
+            ))
+        ->order_by_desc('population')
+        ->limit(18)
+        ->find_many();
+    foreach ($result as $info) {
+        $id = $info['id'];
+        $name = $info['asciiname'];
+        $popular[$count]['tpl'] =  '<li><a href="#" class="selectme" data-id="'.$id.'" data-name="'.$name.'" data-type="city"><span>'.$name.'</span></a></li>';
+        $count++;
+    }
+
+    $states = array();
+    $count = 1;
+
+    $result = ORM::for_table($config['db']['pre'].'subadmin1')
+        ->select_many('id','code','asciiname')
+        ->where(array(
+            'country_code' => $country_code,
+            'active' => '1'
+        ))
+        ->order_by_asc('asciiname')
+        ->find_many();
+
+    foreach ($result as $info) {
+        $states[$count]['tpl'] = "";
+        $id = $info['id'];
+        $code = $info['code'];
+        $name = $info['asciiname'];
+        if($count == 1){
+            $states[$count]['tpl'] =  '<li class="selected"><a href="#" class="selectme" data-id="'.$country_code.'" data-name="'.__("All").' '.$countryName.'" data-type="country"><strong>'.__("All").' '.$countryName.'</strong></a></li>';
+        }
+        $states[$count]['tpl'] .= '<li class=""><a href="#" id="region'.$code.'" class="statedata" data-id="'.$code.'" data-name="'.$name.'"><span>'.$name.' <i class="fa fa-angle-right"></i></span></a></li>';
+        $count++;
+    }
+
+/**
+ * Memebrship Plans
+ * Start
+ */
+$sub_types = array();
+$total_monthly = $total_annual = $total_lifetime = 0;
+if($config['show_membershipplan_home']) {
+
+    $sub_info = get_user_membership_detail(isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : null);
+
+// custom settings
+    $plan_custom = ORM::for_table($config['db']['pre'] . 'plan_options')
+        ->where('active', 1)
+        ->order_by_asc('position')
+        ->find_many();
+
+    $plan = json_decode(get_option('free_membership_plan'), true);
+    if ($plan['status']) {
+        if ($plan['id'] == $sub_info['id']) {
+            $sub_types[$plan['id']]['Selected'] = 1;
+        } else {
+            $sub_types[$plan['id']]['Selected'] = 0;
+        }
+
+        $sub_types[$plan['id']]['id'] = $plan['id'];
+        $sub_types[$plan['id']]['title'] = $plan['name'];
+        $sub_types[$plan['id']]['monthly_price'] = price_format(0);
+        $sub_types[$plan['id']]['annual_price'] = price_format(0);
+        $sub_types[$plan['id']]['lifetime_price'] = price_format(0);
+
+        $settings = $plan['settings'];
+        $sub_types[$plan['id']]['employer_commission'] = $settings['employer_commission'];
+        $sub_types[$plan['id']]['freelancer_commission'] = $settings['freelancer_commission'];
+        $sub_types[$plan['id']]['bids'] = $settings['bids'];
+        $sub_types[$plan['id']]['skills'] = $settings['skills'];
+        $sub_types[$plan['id']]['limit'] = ($settings['ad_limit'] == "999") ? __("Unlimited") : $settings['ad_limit'];
+        $sub_types[$plan['id']]['duration'] = $settings['ad_duration'];
+        $sub_types[$plan['id']]['featured_fee'] = $settings['featured_project_fee'];
+        $sub_types[$plan['id']]['urgent_fee'] = $settings['urgent_project_fee'];
+        $sub_types[$plan['id']]['highlight_fee'] = $settings['highlight_project_fee'];
+        $sub_types[$plan['id']]['featured_duration'] = $settings['featured_duration'];
+        $sub_types[$plan['id']]['urgent_duration'] = $settings['urgent_duration'];
+        $sub_types[$plan['id']]['highlight_duration'] = $settings['highlight_duration'];
+        $sub_types[$plan['id']]['top_search_result'] = $settings['top_search_result'];
+        $sub_types[$plan['id']]['show_on_home'] = $settings['show_on_home'];
+        $sub_types[$plan['id']]['show_in_home_search'] = $settings['show_in_home_search'];
+
+        $sub_types[$plan['id']]['custom_settings'] = '';
+        if (!empty($plan_custom)) {
+            foreach ($plan_custom as $custom) {
+                if (!empty($custom['title']) && trim($custom['title']) != '') {
+                    $tpl = '<li><span class="icon-text no"><i class="icon-feather-x-circle margin-right-2"></i></span> ' . $custom['title'] . '</li>';
+
+                    if (isset($settings['custom'][$custom['id']]) && $settings['custom'][$custom['id']] == '1') {
+                        $tpl = '<li><span class="icon-text yes"><i class="icon-feather-check-circle margin-right-2"></i></span> ' . $custom['title'] . '</li>';
+                    }
+                    $sub_types[$plan['id']]['custom_settings'] .= $tpl;
+                }
+            }
+        }
+    }
+
+    $plan = json_decode(get_option('trial_membership_plan'), true);
+    if ($plan['status']) {
+        if ($plan['id'] == $sub_info['id']) {
+            $sub_types[$plan['id']]['Selected'] = 1;
+        } else {
+            $sub_types[$plan['id']]['Selected'] = 0;
+        }
+
+        $sub_types[$plan['id']]['id'] = $plan['id'];
+        $sub_types[$plan['id']]['title'] = $plan['name'];
+        $sub_types[$plan['id']]['monthly_price'] = price_format(0);
+        $sub_types[$plan['id']]['annual_price'] = price_format(0);
+        $sub_types[$plan['id']]['lifetime_price'] = price_format(0);
+
+        $settings = $plan['settings'];
+        $sub_types[$plan['id']]['employer_commission'] = $settings['employer_commission'];
+        $sub_types[$plan['id']]['freelancer_commission'] = $settings['freelancer_commission'];
+        $sub_types[$plan['id']]['bids'] = $settings['bids'];
+        $sub_types[$plan['id']]['skills'] = $settings['skills'];
+        $sub_types[$plan['id']]['limit'] = ($settings['ad_limit'] == "999") ? $lang['UNLIMITED'] : $settings['ad_limit'];
+        $sub_types[$plan['id']]['duration'] = $settings['ad_duration'];
+        $sub_types[$plan['id']]['featured_fee'] = $settings['featured_project_fee'];
+        $sub_types[$plan['id']]['urgent_fee'] = $settings['urgent_project_fee'];
+        $sub_types[$plan['id']]['highlight_fee'] = $settings['highlight_project_fee'];
+        $sub_types[$plan['id']]['featured_duration'] = $settings['featured_duration'];
+        $sub_types[$plan['id']]['urgent_duration'] = $settings['urgent_duration'];
+        $sub_types[$plan['id']]['highlight_duration'] = $settings['highlight_duration'];
+        $sub_types[$plan['id']]['top_search_result'] = $settings['top_search_result'];
+        $sub_types[$plan['id']]['show_on_home'] = $settings['show_on_home'];
+        $sub_types[$plan['id']]['show_in_home_search'] = $settings['show_in_home_search'];
+
+        $sub_types[$plan['id']]['custom_settings'] = '';
+        if (!empty($plan_custom)) {
+            foreach ($plan_custom as $custom) {
+                if (!empty($custom['title']) && trim($custom['title']) != '') {
+                    $tpl = '<li><span class="icon-text no"><i class="icon-feather-x-circle margin-right-2"></i></span> ' . $custom['title'] . '</li>';
+
+                    if (isset($settings['custom'][$custom['id']]) && $settings['custom'][$custom['id']] == '1') {
+                        $tpl = '<li><span class="icon-text yes"><i class="icon-feather-check-circle margin-right-2"></i></span> ' . $custom['title'] . '</li>';
+                    }
+                    $sub_types[$plan['id']]['custom_settings'] .= $tpl;
+                }
+            }
+        }
+    }
+
+    $total_monthly = $total_annual = $total_lifetime = 0;
+
+    $rows = ORM::for_table($config['db']['pre'] . 'plans')
+        ->where('status', '1')
+        ->find_many();
+
+    foreach ($rows as $plan) {
+        if ($plan['id'] == $sub_info['id']) {
+            $sub_types[$plan['id']]['Selected'] = 1;
+        } else {
+            $sub_types[$plan['id']]['Selected'] = 0;
+        }
+
+        $sub_types[$plan['id']]['id'] = $plan['id'];
+        $sub_types[$plan['id']]['title'] = $plan['name'];
+        $sub_types[$plan['id']]['recommended'] = $plan['recommended'];
+
+        $total_monthly += $plan['monthly_price'];
+        $total_annual += $plan['annual_price'];
+        $total_lifetime += $plan['lifetime_price'];
+
+        $sub_types[$plan['id']]['monthly_price'] = price_format($plan['monthly_price']);
+        $sub_types[$plan['id']]['annual_price'] = price_format($plan['annual_price']);
+        $sub_types[$plan['id']]['lifetime_price'] = price_format($plan['lifetime_price']);
+
+        $settings = json_decode($plan['settings'], true);
+        $sub_types[$plan['id']]['employer_commission'] = $settings['employer_commission'];
+        $sub_types[$plan['id']]['freelancer_commission'] = $settings['freelancer_commission'];
+        $sub_types[$plan['id']]['bids'] = $settings['bids'];
+        $sub_types[$plan['id']]['skills'] = $settings['skills'];
+        $sub_types[$plan['id']]['limit'] = ($settings['ad_limit'] == "999") ? $lang['UNLIMITED'] : $settings['ad_limit'];
+        $sub_types[$plan['id']]['duration'] = $settings['ad_duration'];
+        $sub_types[$plan['id']]['featured_fee'] = $settings['featured_project_fee'];
+        $sub_types[$plan['id']]['urgent_fee'] = $settings['urgent_project_fee'];
+        $sub_types[$plan['id']]['highlight_fee'] = $settings['highlight_project_fee'];
+        $sub_types[$plan['id']]['featured_duration'] = $settings['featured_duration'];
+        $sub_types[$plan['id']]['urgent_duration'] = $settings['urgent_duration'];
+        $sub_types[$plan['id']]['highlight_duration'] = $settings['highlight_duration'];
+        $sub_types[$plan['id']]['top_search_result'] = $settings['top_search_result'];
+        $sub_types[$plan['id']]['show_on_home'] = $settings['show_on_home'];
+        $sub_types[$plan['id']]['show_in_home_search'] = $settings['show_in_home_search'];
+
+        $sub_types[$plan['id']]['custom_settings'] = '';
+        if (!empty($plan_custom)) {
+            foreach ($plan_custom as $custom) {
+                if (!empty($custom['title']) && trim($custom['title']) != '') {
+                    $tpl = '<li><span class="icon-text no"><i class="icon-feather-x-circle margin-right-2"></i></span> ' . $custom['title'] . '</li>';
+
+                    if (isset($settings['custom'][$custom['id']]) && $settings['custom'][$custom['id']] == '1') {
+                        $tpl = '<li><span class="icon-text yes"><i class="icon-feather-check-circle margin-right-2"></i></span> ' . $custom['title'] . '</li>';
+                    }
+                    $sub_types[$plan['id']]['custom_settings'] .= $tpl;
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Memebrship Plans
+ * End
+ */
+
+
+$total_freelancer = $count = ORM::for_table($config['db']['pre'].'user')->where('user_type','user')->count();
+$total_jobs = $count = ORM::for_table($config['db']['pre'].'product')->count();
+$total_projects = $count = ORM::for_table($config['db']['pre'].'project')->count();
+$community_earn = ORM::for_table($config['db']['pre'].'user')
+    ->select_expr('SUM(balance)', 'balance')
+    ->where('user_type','user')
+    ->find_one();
+$community_earning = $community_earn['balance'];
+
+if(trim($config['myaccount_page']) == "home-freelance"){
+    $myaccount_page = 'myaccount';
+}
+else{
+    $myaccount_page = 'myaccount';
+}
+//Print Template 'Home/index Page'
+HtmlTemplate::display($myaccount_page, array(
+    'popular' => $popular,
+    'states' => $states,
+    'items' => $item,
+    'item2' => $item2,
+    'category' => $category,
+    'category2' => $category2,
+    'freelancers' => $freelancers,
+    'total_freelancer' => number_format($total_freelancer),
+    'total_jobs' => number_format($total_jobs),
+    'total_projects' => number_format($total_projects),
+    'community_earning' => number_format($community_earning),
+    'sub_types' => $sub_types,
+    'total_monthly' => $total_monthly,
+    'total_annual' => $total_annual,
+    'total_lifetime' => $total_lifetime
+));

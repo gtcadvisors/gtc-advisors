@@ -1,6 +1,8 @@
 <?php
 $link['INDEX1']             = $config['site_url'] . 'index1';
 $link['INDEX2']             = $config['site_url'] . 'index2';
+$link['BECOME-ADVISOR']     = $config['site_url'] . 'become-an-advisor';
+$link['BECOME-ADVISOR-FORM']= $config['site_url'] . 'become-an-advisor-form';
 $link['DASHBOARD']          = $config['site_url'] . 'dashboard';
 $link['LISTING']            = $config['site_url'] . 'listing';
 $link['FREELANCERS']        = $config['site_url'] . 'freelancers';
@@ -43,3 +45,4 @@ $link['WITHDRAW']           = $config['site_url'] . 'withdraw';
 $link['BIDDER']             = $config['site_url'] . 'bidder';
 $link['MILESTONE']          = $config['site_url'] . 'milestone';
 $link['NOTIFICATIONS']      = $config['site_url'] . 'notifications';
+$link['CATEGORY']        = $config['site_url'] . 'category';

@@ -102,7 +102,9 @@
             <nav class="nav-main-menu">
               <ul class="main-menu">
                 <!-- Each li-tag has a class attr of (has-children for a drop down menu) -->
+
                 <li class="ml-30" ><a style="font-family: 'Proxima Soft';" href="<?php url("CATEGORY") ?>">Expertise</a>
+
                    </li>
                 <li class="#"><a href="#" style="font-family: 'Proxima Soft';">Post a Job</a>
                  </li>
@@ -118,6 +120,7 @@
               <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px;">English</a>
               <a class="text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Log In</a>
               <a class="btn btn-default btn-shadow ml-40 hover-up d-block d-md-block d-lg-none" href="<?php url("SIGNUP") ?>" style="background-color: #2C76DC;">Sign Up</a>
+
             </div>
           </div>
         </div>
@@ -198,6 +201,7 @@ $count = 1;
           </div>
         </div>
       </div>
+
     </div>
     <!-- ####### THIS IS THE MAIN LOGIN FORM ################# -->
     <main class="main">
@@ -234,7 +238,9 @@ $count = 1;
                     echo '<span class="status-not-available">'.$error.'</span>';
                 }
                 ?>
+
                 <div id="login-status" class="notification error" style="display:none"></div>
+
               <form method="post" class="login-register text-start mt-20"> 
                 <div class="form-group"> 
                   <input class="form-control" id="input-2" id="username" type="text" required="" name="username" placeholder="<?php _e("Enter Username or") ?> / <?php _e("Email Address") ?>">
@@ -266,7 +272,6 @@ $count = 1;
                 <div class="form-group">
                   <button class="btn btn-brand-1 hover-up w-100" type="submit" name="submit" style="background-color:#2C76DC;font-family:'Proxima Soft';">Continue</button>
                 </div>
-
 
                    <div class="d-flex justify-content-between" style="font-size: 12px;">
                     <div class="form-check">

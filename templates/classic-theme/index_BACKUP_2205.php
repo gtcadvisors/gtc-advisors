@@ -141,10 +141,13 @@
   
             <div class="header-right">
               <div class="block-signin">
-                <a class="catgo text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>"><?php _e("Log In") ?></a>
-
+<<<<<<< HEAD
+                <a class="catgo text-link-bd-btom ml-10 hover-up" href="login.php">Log In</a>
                 <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>">Sign Up</a>
-
+=======
+                <a class="catgo text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>"><?php _e("Log In") ?></a>
+                <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>" style="font-size:16px;">Sign Up</a>
+>>>>>>> main
               </div>
             </div>
           </div>
@@ -166,7 +169,7 @@
                     <li class="adv-font has-children"><a href="#">Expertise</a>
                       <ul class="adv-font sub-menu">
                       <?php foreach($category as $cat){ ?>
-                        <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?> </a>
+                        <li><a href="<?php echo $cat['link']; ?>"> </a>
                         </li>
                         <?php } ?>
                       </ul>
@@ -217,9 +220,10 @@
         </div>
         </div>
         <div class="container-fluid d-flex d-md-none flex-row border-bottom border-2 justify-content-evenly">
-          <?php foreach ($category2 as $cat){ ?>
-            <div href="<?php echo $cat['link']; ?>" class="pill blue-pill rounded-pill"><?php echo $cat['name']; ?></div>
-            <?php } ?>
+            <a href="#" class="pill blue-pill rounded-pill">Tax Pricing</a>
+            <div class="pill blue-pill rounded-pill">Corporations</div>
+            <div class="pill blue-pill rounded-pill">Tax Audits</div>
+            <div class="pill blue-pill rounded-pill">Sales Tax</div>
         </div>
           <main class="main">
       <section class="section-box">

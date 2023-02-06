@@ -3,3 +3,4 @@
 //Print Template
 HtmlTemplate::display('category', array( 
 ));
+ 

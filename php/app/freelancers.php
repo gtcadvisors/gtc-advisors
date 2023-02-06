@@ -183,7 +183,7 @@ HtmlTemplate::display('freelancers', array(
     'items' => $items,
     'usersfound' => $total,
     'cat_dropdown' => $cat_dropdown,
-    'user_country' => strtolower($country_code),
+    'user_country' => strtolower($country_code), 
     'default_country_id' => $country_code,
     'category' => $GetCategory,
     'maincat' => $category,

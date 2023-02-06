@@ -15,7 +15,7 @@
     <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/stylez.css" rel="stylesheet">
     <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/forms.css" rel="stylesheet">
     <title>GTC - Category Page</title>                 
-  </head> 
+  </head>  
   <body>
 <?php  
 include('header_2.php');

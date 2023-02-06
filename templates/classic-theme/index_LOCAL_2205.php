@@ -141,10 +141,8 @@
   
             <div class="header-right">
               <div class="block-signin">
-                <a class="catgo text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>"><?php _e("Log In") ?></a>
-
+                <a class="catgo text-link-bd-btom ml-10 hover-up" href="login.php">Log In</a>
                 <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>">Sign Up</a>
-
               </div>
             </div>
           </div>
@@ -166,8 +164,14 @@
                     <li class="adv-font has-children"><a href="#">Expertise</a>
                       <ul class="adv-font sub-menu">
                       <?php foreach($category as $cat){ ?>
-                        <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?> </a>
+                        <li><a href="<?php echo $cat['link']; ?>"> </a>
                         </li>
+                        <!-- <li><a href="">Tax Compliance</a></li>
+                        <li><a href="">Corporate Income Tax</a></li>
+                        <li><a href="">Personal Income Tax</a></li>
+                        <li><a href="">Transfer Pricing</a></li>
+                        <li><a href="">Tax Dispute</a></li>
+                        <li><a href="">Value Added Tax</a></li> -->
                         <?php } ?>
                       </ul>
                     </li>
@@ -177,9 +181,9 @@
               </div>
               <div class="mobile-account">
                 <ul class="mobile-menu font-heading">
-                  <li><a href="<?php url("LOGIN") ?>">Become an Advisor</a></li>
+                  <li><a href="#">Become an Advisor</a></li>
                   <li class="border-bottom"><a href="#">General</a></li>
-                  <li class="pt-20"><a href="<?php url("INDEX") ?>">Home</a></li>
+                  <li class="pt-20"><a href="index.php">Home</a></li>
   
                   <li>
                     <div class="lang_selctor-m">
@@ -210,6 +214,12 @@
             <li class="mt-3 mb-3"><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?>
             </a>
             </li>
+              <!-- <li class="mt-3 mb-3"><a  href="#"> Sales Tax</a></li>
+              <li class="mt-3 mb-3"><a  href="#"> International</a></li>
+              <li class="mt-3 mb-3"><a href="#"> Financial Planning</a></li>
+              <li class="mt-3 mb-3"><a  href="#"> Corporations</a></li>
+              <li class="mt-3 mb-3"><a  href="#"> IRS Representation</a></li>
+              <li class="mt-3 mb-3"><a  href="#"> Individual Tax Preparation</a></li> -->
               <?php } ?>
               <a class="pr-30" href="category.php"> See All</a>
             </ul>
@@ -217,9 +227,10 @@
         </div>
         </div>
         <div class="container-fluid d-flex d-md-none flex-row border-bottom border-2 justify-content-evenly">
-          <?php foreach ($category2 as $cat){ ?>
-            <div href="<?php echo $cat['link']; ?>" class="pill blue-pill rounded-pill"><?php echo $cat['name']; ?></div>
-            <?php } ?>
+            <a href="#" class="pill blue-pill rounded-pill">Tax Pricing</a>
+            <div class="pill blue-pill rounded-pill">Corporations</div>
+            <div class="pill blue-pill rounded-pill">Tax Audits</div>
+            <div class="pill blue-pill rounded-pill">Sales Tax</div>
         </div>
           <main class="main">
       <section class="section-box">

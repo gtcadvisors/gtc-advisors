@@ -109,19 +109,19 @@ if (checkloggedin()) {
             $user_update->set('sex', validate_input($gender));
             $user_update->set('tagline', isset($_POST["tagline"]) ? validate_input(strlimiter($_POST["tagline"], 200)) : null);
             $user_update->set('description', validate_input($_POST["aboutme"],true));
-            $user_update->set('website', validate_input($_POST["website"]));
-            $user_update->set('facebook', validate_input($_POST["facebook"]));
-            $user_update->set('twitter', validate_input($_POST["twitter"]));
-            $user_update->set('instagram', validate_input($_POST["instagram"]));
-            $user_update->set('linkedin', validate_input($_POST["linkedin"]));
-            $user_update->set('youtube', validate_input($_POST["youtube"]));
+            //$user_update->set('website', validate_input($_POST["website"]));
+            //$user_update->set('facebook', validate_input($_POST["facebook"]));
+            // $user_update->set('twitter', validate_input($_POST["twitter"]));
+            // $user_update->set('instagram', validate_input($_POST["instagram"]));
+            // $user_update->set('linkedin', validate_input($_POST["linkedin"]));
+            // $user_update->set('youtube', validate_input($_POST["youtube"]));
             $user_update->set('city_code', $city);
             $user_update->set('state_code', $state);
             $user_update->set('country_code', $country);
             $user_update->set('category', validate_input($category));
             $user_update->set('subcategory', validate_input($subcategory));
-            $user_update->set('salary_min', $salary_min);
-            $user_update->set('salary_max', $salary_max);
+            // $user_update->set('salary_min', $salary_min);
+            // $user_update->set('salary_max', $salary_max);
             $user_update->set('dob', $dob);
             $user_update->set('updated_at', $now);
             if ($avatarName) {

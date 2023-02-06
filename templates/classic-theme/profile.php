@@ -1,4 +1,4 @@
-<?php overall_header($pagetitle) ?>
+<?php include_once TEMPLATE_PATH.'/header.php'; ?>
 <!-- Titlebar
 ================================================== -->
 <div class="single-page-header freelancer-header" data-background-image="<?php _esc(TEMPLATE_URL);?>/images/single-freelancer.jpg">
@@ -315,4 +315,4 @@
 <!-- Spacer -->
 <div class="margin-top-15"></div>
 <!-- Spacer / End-->
-<?php overall_footer(); ?>
+<?php include_once TEMPLATE_PATH.'/footer.php'; ?>

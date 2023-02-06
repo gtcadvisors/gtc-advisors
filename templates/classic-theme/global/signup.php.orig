@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="<?php _esc($config['lang_code']);?>" dir="<?php _esc($lang_direction);?>">
 <head>
-    <title><?php _esc($page_title); ?></title>
+    <title><?php _esc($config['site_title']);?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -50,28 +50,12 @@
         var template_name = '<?php _esc($config['tpl_name']);?>';
     </script>
 
-    <!--Loop for Theme Color codes-->
-    <style>
-        :root{
-        <?php
-        $themecolor = $config['theme_color'];
-        $colors = array();
-        list($r, $g, $b) = sscanf($themecolor, "#%02x%02x%02x");
-        $i = 0.01;
-        while($i <= 1){
-            echo "--theme-color-".str_replace('.','_',$i).": rgba($r,$g,$b,$i);";
-            $i += 0.01;
-        }
-        echo "--theme-color-1: rgba($r,$g,$b,1);";
-        ?>
-        }
-    </style>
-    <!--Loop for Theme Color codes-->
-    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/forms_header.css?ver=<?php _esc($config['version']);?>" rel="stylesheet"> 
-    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/forms.css?ver=<?php _esc($config['version']);?>" rel="stylesheet">
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/forms.css?version=4.1" rel="stylesheet"> 
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/forms_header.css?version=4.1" rel="stylesheet"> 
+    <title>GTC | Signup</title>
   </head>
-  <body> 
-    <!-- ############### THIS IS THE HEADER OF THE SIGNUP PAGE ##########################################-->
+  <body>   
+    <!-- ############### THIS IS THE HEADER OF THE SIGNUP PAGE ###################-->
     <header class="header sticky-bar">
       <div class="container">
         <div class="main-header">
@@ -79,51 +63,50 @@
          
           <div class="header-left">
           <?php
-         $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
-         $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
-         ?>
+                 $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
+                $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
+                ?>
             <div class="header-logo mr-30 d-none d-md-none d-lg-block">
             <a class="d-flex" href="<?php url("INDEX") ?>">
             <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
             </a></div>
-            
-            <div class="ml-140 d-md-none d-block d-lg-none">
+            <div class="ml-140 d-block d-md-none d-lg-none">
             <a class="d-flex" href="<?php url("INDEX") ?>">
-            <img  src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
-            </a></div>
-           
+            <img src="<?php _esc($logo_dark); ?>" alt="<?php _esc($config['site_title']);?>">
+        </a></div>
             <div class="header-logo d-none d-md-block d-lg-none" style="margin-left: 240px;">
-            <a class="d-flex" href="<?php url("INDEX") ?>">
+            <a class="d-flex" href="<?php url("INDEX") ?>">     
             <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
-           </a></div>
+        </a></div>
           </div>
 
           <div class="header-nav">
             <nav class="nav-main-menu">
-              <ul class="main-menu">
-                <!-- Each li-tag has a class attr of (has-children for a drop down menu) -->
-                <li class="ml-30" ><a style="font-family: 'Proxima Soft';" href="#">Expertise</a>
-                   </li>
-                <li class="#"><a href="#" style="font-family: 'Proxima Soft';">Post a Job</a>
-                 </li>
-                <li class="#"><a href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Become an Advisor</a>
-                 </li> 
-                </ul> 
+              <ul class="main-menu"> 
+                <li class="ml-30"><a class="#" href="#" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Expertise</a>
+                  
+                </li>
+                <li class="#"><a href="jobs-grid.html" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Post a Job</a>
+                   
+                </li>
+                <li class="#"><a href="companies-grid.html" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Become an Advisor</a>
+                   
+                </li>  
+              </ul> 
             </nav>
-             
-              </div>
+            
+             </div>
           <div class="header-right">
             <div class="block-signin">
-              <a class="text-link-bd-btom hover-up" style="font-family: 'Proxima Soft';">
-              <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px;">English</a>
-              <a class="text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Log In</a>
-              <a class="btn btn-default btn-shadow ml-40 hover-up d-block d-md-block d-lg-none" href="<?php url("SIGNUP") ?>" style="background-color: #2C76DC;">Sign Up</a>
+              <a class="text-link-bd-btom hover-up" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';"><img src="../forms/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px;">English</a>
+              <a class="text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN")?>" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">Log In</a>
+              <a class="btn btn-default btn-shadow d-block d-md-block d-lg-none ml-40 hover-up" href="<?php url("SIGNUP")?>">Sign Up</a>
             </div>
           </div>
         </div>
       </div>
     </header>
-    <!-- This is the sidebar of the mobile -->
+    <!-- THE SIDEBAR FOR THE SIGNUP PAGE -->
     <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
       <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-content-area">
@@ -131,7 +114,7 @@
             <div class="mobile-search mobile-header-border mb-30">
               
               
-                <a class="btn btn-default btn-shadow ml-40 hover-up d-block d-md-block d-lg-none" style="width: 100px;" href="<?php url("SIGNUP") ?>"> Sign Up</a>
+                <a class="btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP")?>">Sign Up</a>
             
     
             </div>
@@ -139,24 +122,30 @@
               <!-- mobile menu start-->
               <nav>
                 <ul class="mobile-menu font-heading">
-                  <li class="has-children">
-                  <a class="active" href="<?php url("LOGIN") ?>">Log In</a></li>
-                  <li class="has-children"><a href="#">Expertise</a>
+                  <li class="has-children"><a class="active" href="<?php url("LOGIN")?>">Log In</a></li>
+                  <li class="has-children"><a href="jobs-grid.html">Expertise</a>
                     <ul class="sub-menu">
                     <?php foreach($category as $cat){ ?>
                         <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?></a>
                         </li>
-                    <?php } ?>
+                      <!-- <li><a href="#">Tax Audit</a></li>
+                      <li><a href="#">Tax Compliance</a></li>
+                      <li><a href="#">Corporate Inconme Tax</a></li>
+                      <li><a href="#">Personal Income Tax</a></li>
+                      <li><a href="#">Transfer Pricing</a></li>
+                      <li><a href="#">Tax Dispute</a></li>
+                      <li><a href="#">Value Added Tax</a></li> -->
+                      <?php } ?>
                     </ul>
                   </li>
-                  <li class="has-children"><a href="become">Become An Advisor</a></li> 
+                  <li class="has-children"><a href="companies-grid.html">Become An Advisor</a></li> 
                     <li><h6 class="mb-10">General</h6></li>
                 </ul>
               </nav>
             </div>
             <div class="mobile-account">
                 <ul class="mobile-menu font-heading">
-                <li><a href="<?php url("INDEX") ?>">Home</a></li>
+                <li><a href="#">Home</a></li>
                 <li><a href="#">English <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px; margin-top: 5px;"></a></li> 
               </ul>
             </div> 
@@ -164,7 +153,18 @@
         </div>
       </div>
     </div>
-    <!-- ####### THIS IS THE MAIN LOGIN FORM ################# -->
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-5 offset-xl-3">
+            <div class="login-register-page">
+                <!-- Welcome Text -->
+                <div class="welcome-text">
+                    <h3 style="font-size: 26px;"><?php _e("Let's create your account!") ?></h3>
+                    <span><?php _e("Already have an account?") ?> <a href="<?php url("LOGIN") ?>"><?php _e("Log In!") ?></a></span>
+
+    <!-- ####### THIS IS THE MAIN SIGN FORM ################# -->
     <main class="main">
       <section class="pt-100 login-register">
         <div class="container-fluid"> 
@@ -199,10 +199,23 @@
                     </div>
                     <div class="form-group">
                       <button class="btn btn-brand-1 hover-up w-100" type="button" name="login" style="background-color:  #2C76DC;" onclick="displayForm2()">Continue</button>
-                      <p style="font-size: 12px; text-align:center" class="mt-10">By joining I agree to receive emails from Global Tax Compliance</p>
+                      <p style="font-size: 10px; text-align:center" class="mt-10">By joining I agree to receive emails from Global Tax Compliance</p>
                     </div>
                     <hr>
+
+
                     <div class="text-muted text-center mb-20">Already a Member? <a href="<?php url("LOGIN") ?>" class="text-primary">Log in</a></div>
+                    
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-5 offset-xl-3">
+            <div class="login-register-page">
+                <!-- Welcome Text -->
+                <div class="welcome-text">
+                    <h3 style="font-size: 26px;"><?php _e("Let's create your account!") ?></h3>
+                    <span><?php _e("Already have an account?") ?> <a href="<?php url("LOGIN") ?>"><?php _e("Log In!") ?></a></span>
+
                 </div>
 
                 <div class="sign-up-2 <?php echo((isset($page))? : "d-none");?>">
@@ -223,15 +236,13 @@
                         }
                       </style>
                   </div>
-                    <span style="font-size: 12px;">8 characters or longer. Combine upper and lowercase letters and numbers</span>
+                    <span style="font-size: 11px;">8 characters or longer. Combine upper and lowercase letters and numbers</span>
                   <div class="login_footer form-group d-flex justify-content-between">
                     
                   </div>
                   <div class="form-group">
                     <button class="btn btn-brand-1 hover-up w-100" name="submit" type="submit" style="background-color:  #2C76DC;"><?php _e("Join")?></button> 
-                    
-                    <p style="font-size: 12px; text-align:center" class="mt-10">By joining you agree to Global Tax Compliance's <a href="#" style="color: blue; font-size: 10px">Terms of Service</a>,
-
+                    <p style="font-size: 10px; text-align:center" class="mt-10">By joining you agree to Global Tax Compliance's <a href="#" style="color: blue; font-size: 10px">Terms of Service</a>,
                   as well as to receive occassional emails from us.</p>
                   </div>
                   <hr>
@@ -392,6 +403,7 @@
     <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/isotope.js"></script>
     <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/scrollup.js"></script>
     <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/swiper-bundle.min.js"></script>
-    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/main.js"></script>
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/main.js?v=4.1"></script>
   </body>
 </html>
+

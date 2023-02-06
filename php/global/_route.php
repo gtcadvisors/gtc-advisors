@@ -3,6 +3,7 @@ $app_dir = basename(dirname(__FILE__)).'/';
 
 $router->map('GET|POST','/signup/?', $app_dir.'signup.php');
 $router->map('GET|POST','/index1/?', $app_dir.'index1.php');
+$router->map('GET|POST','/myaccount?', $app_dir.'myaccount.php');
 $router->map('GET|POST','/index2/?', $app_dir.'index2.php');
 $router->map('GET|POST','/login/?', $app_dir.'login.php');
 $router->map('GET|POST','/logout/?', $app_dir.'logout.php');

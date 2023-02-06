@@ -118,7 +118,7 @@
                   </li>
                   <li class="catgo"><a>Post a Job</a>
                   </li>
-                  <li class="catgo"><a href="login.php">Become an Advisor</a>
+                  <li class="catgo"><a href="<?php url("LOGIN") ?>">Become an Advisor</a>
                   </li>
   
                 </ul>
@@ -142,9 +142,7 @@
             <div class="header-right">
               <div class="block-signin">
                 <a class="catgo text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>"><?php _e("Log In") ?></a>
-
-                <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>">Sign Up</a>
-
+                <a class="catgo btn btn-default btn-shadow ml-40 hover-up" href="<?php url("SIGNUP") ?>" style="font-size:16px;">Sign Up</a>
               </div>
             </div>
           </div>
@@ -157,16 +155,16 @@
         <div class="mobile-header-wrapper-inner">
           <div class="mobile-header-content-area adv-font">
             <div class="perfect-scroll">
-              <a href=""><span class="signup-btn">Sign Up</span></a>
+              <a href="<?php url("SIGNUP") ?>"><span class="signup-btn">Sign Up</span></a>
               <div class="mobile-menu-wrap pt-40">
-                <a href="login.php"><h6 class="adv-font mb-10 mt-35">Log In</h6></a>
+                <a href="<?php url("LOGIN") ?>"><h6 class="adv-font mb-10 mt-35">Log In</h6></a>
                 <!-- mobile menu start-->
                 <nav>
                   <ul class="mobile-menu adv-font" style="list-style:none;">
                     <li class="adv-font has-children"><a href="#">Expertise</a>
                       <ul class="adv-font sub-menu">
                       <?php foreach($category as $cat){ ?>
-                        <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?> </a>
+                        <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?></a>
                         </li>
                         <?php } ?>
                       </ul>
@@ -217,8 +215,8 @@
         </div>
         </div>
         <div class="container-fluid d-flex d-md-none flex-row border-bottom border-2 justify-content-evenly">
-          <?php foreach ($category2 as $cat){ ?>
-            <div href="<?php echo $cat['link']; ?>" class="pill blue-pill rounded-pill"><?php echo $cat['name']; ?></div>
+        <?php foreach($category2 as $cat){ ?>
+            <a href="<?php echo $cat['link']; ?>" class="pill blue-pill rounded-pill"><?php echo $cat['name']; ?></a>
             <?php } ?>
         </div>
           <main class="main">

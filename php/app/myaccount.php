@@ -1,3 +1,4 @@
+
 <?php
 global $config,$lang,$link;
 if (checkloggedin()) {

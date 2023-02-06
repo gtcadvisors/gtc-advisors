@@ -153,7 +153,7 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
+
 </div>
 <div class="container">
     <div class="row">
@@ -163,7 +163,7 @@
                 <div class="welcome-text">
                     <h3 style="font-size: 26px;"><?php _e("Let's create your account!") ?></h3>
                     <span><?php _e("Already have an account?") ?> <a href="<?php url("LOGIN") ?>"><?php _e("Log In!") ?></a></span>
-=======
+
     <!-- ####### THIS IS THE MAIN SIGN FORM ################# -->
     <main class="main">
       <section class="pt-100 login-register">
@@ -202,12 +202,20 @@
                       <p style="font-size: 10px; text-align:center" class="mt-10">By joining I agree to receive emails from Global Tax Compliance</p>
                     </div>
                     <hr>
-<<<<<<< HEAD
-                    <div class="text-muted text-center mb-20">Already a Member? <a href="page-signin.html" class="text-primary">Log in</a></div>
->>>>>>> ddd5125c0e02d70310ab67b8c97a0eb1dc9db11a
-=======
+
+
                     <div class="text-muted text-center mb-20">Already a Member? <a href="<?php url("LOGIN") ?>" class="text-primary">Log in</a></div>
->>>>>>> a1b680601ccda1feb0e01e4dc070674fe370e2e5
+                    
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-5 offset-xl-3">
+            <div class="login-register-page">
+                <!-- Welcome Text -->
+                <div class="welcome-text">
+                    <h3 style="font-size: 26px;"><?php _e("Let's create your account!") ?></h3>
+                    <span><?php _e("Already have an account?") ?> <a href="<?php url("LOGIN") ?>"><?php _e("Log In!") ?></a></span>
+
                 </div>
 
                 <div class="sign-up-2 <?php echo((isset($page))? : "d-none");?>">

@@ -5,6 +5,8 @@ $router->map('GET|POST','/home/[a:lang]?/?', $app_dir.'home.php');
 $router->map('GET|POST','/home/[a:lang]?/[a:country]?/?', $app_dir.'home.php');
 $router->map('GET|POST','/index2/?', $app_dir.'index2.php');
 $router->map('GET|POST','/dashboard/?', $app_dir.'dashboard.php');
+$router->map('GET|POST','/become-an-advisor/?', $app_dir.'become-an-advisor.php');
+$router->map('GET|POST','/become-an-advisor-form/?', $app_dir.'become-an-advisor-form.php');
 $router->map('GET|POST','/profile-edit/?', $app_dir.'profile-edit.php');
 $router->map('GET|POST','/my-experiences/[*:page]?/?', $app_dir.'my-experiences.php');
 $router->map('GET|POST','/add-experience/?', $app_dir.'user-experience.php');
@@ -34,6 +36,7 @@ $router->map('GET|POST','/post-job/[a:lang]?/[a:country]?/[a:action]?/?', $app_d
 $router->map('GET|POST','/edit-job/[i:id]?/[a:lang]?/[a:country]?/[a:action]?/?', $app_dir.'edit-job.php');
 $router->map('GET|POST','/listing/?', $app_dir.'listing.php');
 $router->map('GET|POST','/freelancers/?', $app_dir.'freelancers.php');
+$router->map('GET|POST','/category/?', $app_dir.'category.php');
 $router->map('GET|POST','/category/[*:cat]?/[*:subcat]?/?', $app_dir.'listing.php');
 $router->map('GET|POST','/sub-category/[*:subcat]?/[*:slug]?/?', $app_dir.'listing.php');
 $router->map('GET|POST','/city/[i:city]?/[*:slug]?/?', $app_dir.'listing.php');

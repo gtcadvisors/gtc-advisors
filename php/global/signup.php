@@ -37,7 +37,7 @@ if(isset($_GET['confirm']))
 
 if(checkloggedin())
 {
-    header("Location: ".$config['site_url']."dashboard");
+    header("Location: ".$config['site_url']."myaccount");
     exit;
 }
 // Check if this is an Name availability check from signup page using ajax
@@ -226,7 +226,7 @@ if(isset($_POST["submit"])) {
 
         create_user_session($loggedin['id'],$loggedin['username'],$loggedin['password'], $loggedin['user_type']);
 
-        message(__("Welcome"),__("Welcome to our site. Get experience to post free job jobs. Thanks"),'dashboard',false);
+        message(__("Welcome"),__("Welcome to our site. Get experience to post free job jobs. Thanks"),'myaccount',false);
         exit;
     }
 }

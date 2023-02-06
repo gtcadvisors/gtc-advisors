@@ -58,7 +58,6 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 	</head>
 	<body>
-    <?php echo($data)?>
 		<form method="post" action="#" enctype="multipart/form-data" id="advisor-form">
 			<div class="container-fluid border-bottom border-top p-3">
 				<div class="row align-items-center ms-lg-2">
@@ -155,7 +154,7 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-6 col-xs-12">
 								<label class="text-dark fw-bold text mt-4" for="username">Username</label>
-								<input class="form-input mt-3" id="username" name="userName" type="text" placeholder="Username">
+								<input class="form-input mt-3" id="username" name="userName" type="text" placeholder="Username" value="<?php _esc($username)?>">
 								<label class="mt-2">Your Global Tax Complaince URL: https://gtc.co/faridahux</label>
 							</div>
 						</div>

@@ -11,6 +11,11 @@ btn-update-pic[type="file"]{
     padding:12px 10px;
     width: 20% !important;
 }
+input[type="text"]:disabled {
+  background: #EEF5FC;
+ color:#FC4438;
+
+}
 
 .form-group select, input {
     background: #fff;
@@ -23,7 +28,8 @@ btn-update-pic[type="file"]{
 }
 .form-group select {
     background: #fff;
-    border: 1px solid #E0E6F6;
+    borderContact GitHub
+: 1px solid #E0E6F6;
     height: 56px !important;
     box-shadow: none;
     padding-left: 20px;
@@ -88,6 +94,36 @@ btn-update-pic[type="file"]{
     padding: 13px 16px;
     height: 58.5px !important;
     font-size: 13px;
+}
+
+.mult-select-tag .body{
+    background: #EEF5FC !important;
+    border-radius: 4px !important;
+    width: 100% !important;
+    min-height: 56px !important;
+    padding: 5px 20px !important;
+    color: #495C77 !important;
+}
+
+.mult-select-tag .item-container{
+    border-radius: 8px !important;
+    padding: 6px 8px !important;
+    background: #FFFFFF !important;
+    width: 87px !important;
+    height: 36px !important;
+    border: none !important;
+}
+
+.mult-select-tag .item-close-svg{
+    color: #495C77;
+    background: #EEF5FC;
+    border-radius: 50%;
+    padding: 1px;
+}
+
+.mult-select-tag .drawer{
+    width: 100% !important;
+    position: relative !important;
 }
 </style>
 
@@ -176,13 +212,14 @@ btn-update-pic[type="file"]{
       
                           <div class="form-group">
                             <label class="form-edit font-sm mb-10">Email</label>
-                            <input class="mb-15 form-field-bg form-control" type="text" id="email" name="email" value="<?php _esc($email)?>" onBlur="checkAvailabilityEmail()" readonly>
+                            <input class="mb-15 form-control" type="text" id="email" name="email" value="<?php _esc($email)?>" onBlur="checkAvailabilityEmail()" disabled>
                             <span id="email-availability-status"><?php if($email_error != ""){ _esc($email_error) ; }?></span>
                           </div>
 
                           <div class="form-group" id="coun">
                             <label class="form-edit font-sm color-text-mutted mb-10">Country</label>
-                            <input class="mb-15 form-field-bg-2 form-control" type="text" value="" placeholder="Nigeria" readonly>
+                        
+                            <input class="mb-15 form-field-bg-2 form-control" type="text" value="<?php _esc($country) ?>" readonly>
                             <button class="btn btn-detect-country">Detect</button>
                           </div>
                           
@@ -215,10 +252,18 @@ btn-update-pic[type="file"]{
                             <span class="pt-20 form-sub-text">Brief description for your profile</span>
                           </div>
 
-                          <div class="form-group">
+                        <div class="form-group">
                               <label class="form-edit font-sm color-text-mutted mb-10">Languages</label>
-                              <input class="mb-15 form-field-bg form-control" type="text" value="" name="" placeholder="Fluent Languages">
+                              <select id="languages" class="ml-2- mb-15 form-field-bg form-control select" multiple name="languages[]">
+									<option value="arabic">Arabic</option>
+									<option value="english">English</option>
+									<option value="bengali">Bengali</option>
+									<option value="french">French</option>
+									<option value="spanish">Spanish</option>
+								</select>
+                              <!-- <input class="mb-15 form-field-bg form-control" type="text" value="" name="" placeholder="Fluent Languages"> -->
                             </div>
+
                           <div class="box-button mt-15">
                             <button type="submit" name="submit" class="btn btn-primary btn-md d-flex justify-content justify-content-end">Save Profile</button>
                           </div>
@@ -229,6 +274,7 @@ btn-update-pic[type="file"]{
                   
 
                   <div class="tab-pane" id="password" role="tabpanel" aria-labelledby="password">
+                  <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
                     <div class="row mr--20">
                         <div class="col-lg-7 col-md-12">
                           <div class="form-group">
@@ -242,10 +288,11 @@ btn-update-pic[type="file"]{
                               <span class="pt-20 form-sub-text">8 characters or longer. Combine upper and lowercase letters and numbers</span>
                           </div>
                           <div class="box-button mt-15">
-                            <button class="btn float-lg-left btn-save-profile">Change</button>
+                            <button class="btn float-lg-left btn-save-profile"><?php _e("Save Changes") ?></button>
                           </div>
                          </div>
                          </div>
+                         </form>
                          </div>
 
                   <!-- Notification settings Tab -->
@@ -372,7 +419,32 @@ btn-update-pic[type="file"]{
             }
           } 
           }
-          
+
+
+    function validateForm(formSectionId){
+    const languageSelect = $(`#${formSectionId} #languages`)
+    let validate = true
+
+    // validate select
+    if(languageSelect.length > 0){
+        if(languageSelect[0].value === ""){
+            console.log("yes")
+            const container = $(".mult-select-tag .body");
+            if(container.hasClass("required") === false){
+                container.addClass("required")
+                container.after("<span class='error'>Required</span>")
+            }
+            validate = false
+            return validate
+        }
+        else{
+            $(".error").remove()
+            $(".mult-select-tag .body").removeClass("required")
+        }
+    }
+}
+
+
           </script>
          <!-- <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/plugins/select2.min.css" rel="stylesheet"/> -->
             <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/select2.min.js"></script>

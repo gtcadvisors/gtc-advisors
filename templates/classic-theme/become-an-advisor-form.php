@@ -108,7 +108,7 @@
 							
 						<div class="row">
 							<div class="col-lg-4 col-md-6 col-xs-12">
-								<label class="text-dark fw-bold text mt-4" for="username">Username</label>
+							<label class="text-dark fw-bold text mt-4" for="username">Username</label>
 								<input class="form-input mt-3" id="username" name="userName" type="text" placeholder="Username">
 								<label class="mt-2">Your Global Tax Complaince URL: https://gtc.co/faridahux</label>
 							</div>
@@ -117,7 +117,7 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-6 col-xs-12">
 								<label class="text-dark fw-bold text mt-4" for="email">Email <span class="text text-danger">*</span></label>
-								<input class="form-input mt-3 text-required" id="email" name="email" type="email" placeholder="Email">
+								<input class="form-input mt-3 text-required" id="email" name="email" type="email" value="<?php _esc($email)?>">
 							</div>
 						</div>
 							

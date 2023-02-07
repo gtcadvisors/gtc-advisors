@@ -504,3 +504,6 @@ tr:hover{
     }
 }
 
+span.status-available, span.status-not-available {display: block;padding: 5px;font-size: 14px;text-align: center;border-radius: 4px;margin-top: 5px;}
+span.status-available {background: #e0f5d7;color: #449626;}
+span.status-not-available {background-color: #ffe6e6;color: #ea5252;}

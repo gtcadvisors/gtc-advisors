@@ -19,7 +19,7 @@ $("#profile-image-upload").change(function () {
 
 
 function previewProfileImage(uploader){
-    if ( uploader.files && uploader.files[0] && checkFileInput($("#profile-image-upload"), "picture") === true ){
+    if ( uploader.files && uploader.files[0]){
       $("#profile-picture").css("background", `url('${window.URL.createObjectURL(uploader.files[0])}')`)
       $("#upload-delete-cntr").removeClass("hidden")
       $("#upload-pic-cntr").addClass("hidden")
@@ -87,7 +87,7 @@ $("#add-certificate-btn").click(function (){
     const certificateName = $("#certificate-name")
     const certificateFrom = $("#certificate-from")
     const certificateFile = $(".certificate")
-    if(checkInput(certificateName) && checkInput(certificateFrom) && checkFileInput(certificateFile, "file")){
+    if(true){
         $("#close-cert-modal").click()
         certificateCount ++
         addCertificate(certificateCount, certificateName, certificateFrom, certificateFile)
@@ -283,125 +283,125 @@ function validateForm(formSectionId){
     let validate = true
 
     // validate profile picture
-    if(profileImageFileInput.length > 0){
-        if (checkFileInput(profileImageFileInput, "picture") === false) {
-            validate = false
-            document.querySelector("#profile-picture").scrollIntoView(alignToTop = false)
-            return validate
-        }
-    }
+    // if(profileImageFileInput.length > 0){
+    //     if (checkFileInput(profileImageFileInput, "picture") === false) {
+    //         validate = false
+    //         document.querySelector("#profile-picture").scrollIntoView(alignToTop = false)
+    //         return validate
+    //     }
+    // }
 
-    // validate text inputs
-    if (textInputs.length > 0){
-        for(let input of textInputs){
-            if(input.value === ""){
-                validate = false
-                input.focus()
-                if(input.classList.contains("required-focus") === false){
-                    $("#"+input.id).after("<span class='error empty-error'>Required</span>").addClass("required-focus")
-                }
-                return validate
-            }
+    // // validate text inputs
+    // if (textInputs.length > 0){
+    //     for(let input of textInputs){
+    //         if(input.value === ""){
+    //             validate = false
+    //             input.focus()
+    //             if(input.classList.contains("required-focus") === false){
+    //                 $("#"+input.id).after("<span class='error empty-error'>Required</span>").addClass("required-focus")
+    //             }
+    //             return validate
+    //         }
 
-        }
+    //     }
 
-    }
+    // }
 
-    // validate email
-    if($("#email").length >0){
-        const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if(!($("#email").val().match(validRegex))){
-            if($("#email").hasClass("required-focus") === false){
-                $("#email").focus()
-                $("#email").after("<span class='error empty-error'>Invalid Email</span>").addClass("required-focus")
-            }
-            validate = false
-            return  validate
-        }
+    // // validate email
+    // if($("#email").length >0){
+    //     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    //     if(!($("#email").val().match(validRegex))){
+    //         if($("#email").hasClass("required-focus") === false){
+    //             $("#email").focus()
+    //             $("#email").after("<span class='error empty-error'>Invalid Email</span>").addClass("required-focus")
+    //         }
+    //         validate = false
+    //         return  validate
+    //     }
 
-    }
+    // }
 
-    // validate select
-    if(languageSelect.length > 0){
-        if(languageSelect[0].value === ""){
-            console.log("yes")
-            const container = $(".mult-select-tag .body");
-            if(container.hasClass("required") === false){
-                container.addClass("required")
-                container.after("<span class='error'>Required</span>")
-            }
-            validate = false
-            return validate
-        }
-        else{
-            $(".error").remove()
-            $(".mult-select-tag .body").removeClass("required")
-        }
-    }
+    // // validate select
+    // if(languageSelect.length > 0){
+    //     if(languageSelect[0].value === ""){
+    //         console.log("yes")
+    //         const container = $(".mult-select-tag .body");
+    //         if(container.hasClass("required") === false){
+    //             container.addClass("required")
+    //             container.after("<span class='error'>Required</span>")
+    //         }
+    //         validate = false
+    //         return validate
+    //     }
+    //     else{
+    //         $(".error").remove()
+    //         $(".mult-select-tag .body").removeClass("required")
+    //     }
+    // }
 
-    // validate resume
-    if(resume.length>0){
-        if(checkFileInput(resume, "file") === false){
-            console.log("yok")
-            validate = false
-            $("#add-resume-btn").click()
-            return validate
-        }
+    // // validate resume
+    // if(resume.length>0){
+    //     if(checkFileInput(resume, "file") === false){
+    //         console.log("yok")
+    //         validate = false
+    //         $("#add-resume-btn").click()
+    //         return validate
+    //     }
 
-    }
-
-
-    // validate radio buttons
-    if(radioButtons.length > 0){
-        const checkedRadioButtons = $("input[type=radio]:checked")
-        if(checkedRadioButtons.length === 0){
-            console.log("yes")
-            validate = false
-            $(".contractor-radio-error").removeClass("hidden")
-            console.log($(".contractor-radio-error"))
-            return validate
-        }
-        else{
-            $(".contractor-radio-error").addClass("hidden")
-        }
-
-    }
+    // }
 
 
-    // validate check boxes
-    if(checkBoxes.length>0){
-        const checkedCheckBoxes =  $(`#${formSectionId} input[type=checkbox]:checked`)
-        console.log(checkedCheckBoxes.length)
-         if(formSectionId === 4 && checkedCheckBoxes.length < 2){
-             validate = false
-             $(".checkbox-error").removeClass("hidden")
-             return validate
-        }
+    // // validate radio buttons
+    // if(radioButtons.length > 0){
+    //     const checkedRadioButtons = $("input[type=radio]:checked")
+    //     if(checkedRadioButtons.length === 0){
+    //         console.log("yes")
+    //         validate = false
+    //         $(".contractor-radio-error").removeClass("hidden")
+    //         console.log($(".contractor-radio-error"))
+    //         return validate
+    //     }
+    //     else{
+    //         $(".contractor-radio-error").addClass("hidden")
+    //     }
 
-        else if(checkedCheckBoxes.length === 0){
-            validate = false
-            $(".checkbox-error").removeClass("hidden")
-            return validate
-        }
+    // }
 
-        else{
-            $(".checkbox-error").addClass("hidden")
-        }
-    }
 
-    //validate certificate and licenses
-    if(fileDataList.length > 0){
-        const fileData =  $(`#${formSectionId} tbody tr`)
-        if(fileData.length === 0){
-            validate = false
-            $(`#${formSectionId} .add-file`).click()
-            $(".file-error").text("Required").removeClass("hidden")
-            return validate
-        }
-        else{
-            $(".files-table-empty-error").addClass("hidden")
-        }
-    }
+    // // validate check boxes
+    // if(checkBoxes.length>0){
+    //     const checkedCheckBoxes =  $(`#${formSectionId} input[type=checkbox]:checked`)
+    //     console.log(checkedCheckBoxes.length)
+    //      if(formSectionId === 4 && checkedCheckBoxes.length < 2){
+    //          validate = false
+    //          $(".checkbox-error").removeClass("hidden")
+    //          return validate
+    //     }
+
+    //     else if(checkedCheckBoxes.length === 0){
+    //         validate = false
+    //         $(".checkbox-error").removeClass("hidden")
+    //         return validate
+    //     }
+
+    //     else{
+    //         $(".checkbox-error").addClass("hidden")
+    //     }
+    // }
+
+    // //validate certificate and licenses
+    // if(fileDataList.length > 0){
+    //     const fileData =  $(`#${formSectionId} tbody tr`)
+    //     if(fileData.length === 0){
+    //         validate = false
+    //         $(`#${formSectionId} .add-file`).click()
+    //         $(".file-error").text("Required").removeClass("hidden")
+    //         return validate
+    //     }
+    //     else{
+    //         $(".files-table-empty-error").addClass("hidden")
+    //     }
+    // }
 
 
     return validate

@@ -599,7 +599,7 @@ function get_subcat_of_maincat($category_id, $adcount=false, $selected="", $sele
 
     return $subcat;
 }
-
+ 
 /**
  * Get categories dropdown
  *
@@ -608,8 +608,7 @@ function get_subcat_of_maincat($category_id, $adcount=false, $selected="", $sele
  */
 function get_categories_dropdown($lang){
     global $config;
-    $dropdown = '<ul class="dropdown-menu category-change" id="category-change">
-                          <li><a href="#" class="no-arrow" data-cat-type="all"><i class="fa fa-th"></i>'.__("All Categories").'</a></li>';
+    $dropdown = '';
 
     $result1 = ORM::for_table($config['db']['pre'].'catagory_main')
         ->order_by_asc('cat_order')
@@ -639,30 +638,32 @@ function get_categories_dropdown($lang){
             ->order_by_asc('cat_order')
             ->find_many();
         if(count($result) > 0){
-            $dropdown .= '<li><a href="#" data-ajax-id="'.$cat_id.'" data-cat-type="maincat">'.$icon.' '.$catname.'</a><span class="dropdown-arrow"><i class="fa fa-angle-right"></i></span><ul>';
+            $dropdown .= '<li data-ajax-id="'.$cat_id.'" data-cat-type="maincat"> 
+            <label class="cb-container"> 
+              <input type="checkbox" name="category" value="'.$cat_id.'"> 
+              <span class="text-small">'.$catname.'</span><span class="checkmark"></span>
+          </li>';
         }else{
-            $dropdown .= '<li><a href="#" class="no-arrow" data-ajax-id="'.$cat_id.'" data-cat-type="maincat">'.$icon.' '.$catname.'</a>';
+            $dropdown .= '<li data-ajax-id="'.$cat_id.'" data-cat-type="maincat"> 
+            <label class="cb-container"> 
+              <input type="checkbox" > 
+              <span class="text-small">'.$catname.'</span><span class="checkmark"></span>
+          </li>';
         }
-        foreach($result as $info){
-            $subcat_id = $info['sub_cat_id'];
+        // foreach($result as $info){
+        //     $subcat_id = $info['sub_cat_id'];
 
-            if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
-                $subcat = get_category_translation("sub",$info['sub_cat_id']);
-                $subcat_name = $subcat['title'];
-            }else{
-                $subcat_name = $info['sub_cat_name'];
-            }
+        //     if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
+        //         $subcat = get_category_translation("sub",$info['sub_cat_id']);
+        //         $subcat_name = $subcat['title'];
+        //     }else{
+        //         $subcat_name = $info['sub_cat_name'];
+        //     }
 
-            $dropdown .= '<li><a href="#" data-ajax-id="'.$subcat_id.'" data-cat-type="subcat">'.$subcat_name.'</a></li>';
-        }
-        if(count($result) > 0){
-            $dropdown .= '</ul>';
-        }
-
-        $dropdown .= '</li>';
-    }
-
-    $dropdown .= '</ul>';
+        //     $dropdown .= '<li><a href="#" data-ajax-id="'.$subcat_id.'" data-cat-type="subcat">'.$subcat_name.'</a></li>';
+        // } 
+        $dropdown .= '';
+    } 
 
     return $dropdown;
 }

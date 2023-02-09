@@ -29,8 +29,7 @@ overall_header($pagetitle);
                         <div class="intro-search-field">
                             <div class="dropdown category-dropdown">
                                 <a data-toggle="dropdown" href="#">
-                                    <span class="change-text"><?php _e("Select") ?> <?php _e("Category") ?></span><i
-                                            class="fa fa-navicon"></i>
+                                    <span class="change-text"><?php _e("Select") ?> <?php _e("Category") ?></span>                                           class="fa fa-navicon"></i>
                                 </a>
                                 <?php _esc($cat_dropdown) ?>
                             </div>

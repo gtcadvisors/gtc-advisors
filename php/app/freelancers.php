@@ -35,6 +35,7 @@ if(isset($_GET['subcat']) && !empty($_GET['subcat'])){
 }
 
 
+
 if(isset($_GET['city']) && !empty($_GET['city'])){
     $city = $_GET['city'];
 }else{

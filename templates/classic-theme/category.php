@@ -99,10 +99,10 @@ include('header_2.php');
         <p class="mt-3 mb-3 ml-10"><i class=""></i> <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/home-2.png" alt="" width="17px" class="mr-5"><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a>&#10095; Area of Services &#10095; <a id="under_1"> 
           <?php
             if($maincategory != ""){
-                echo '<li>'._esc($maincategory,false).'</li>';
+                echo _esc($maincategory,false);
             }
             if($subcategory != ""){
-                echo '<li>'._esc($subcategory,false).'</li>';
+                echo _esc($subcategory,false);
             }
             if($maincategory == "" && $subcategory == ""){
                 echo __("All Categories");
@@ -236,16 +236,13 @@ include('header_2.php');
                   <p class="mb-20 mt-10 ml-10">Expertise</p> <i class="fa fi-rr-angle-down mb-20 mt-10 mr-20" id="arrow_down1" onclick="show_down('expertise')"></i>
                 </div>
               
-              
+                
                 <div class="form-group category-dropdown" style="display: none;" id="expertise">
+                 
                   <ul class="list-checkbox">
                     <?php _esc($cat_dropdown) ?> 
-                  </ul>
-                 <?php
+                  </ul> 
                  
-                 
-                 ?>
-                  
                 </div>
 
                 <div class="d-flex flex-row justify-content-between" id="filter_next">
@@ -497,8 +494,10 @@ include('header_2.php');
                   </select>  <i class="fi-rr-search" id="search_select"></i>
                 </div> 
               </div>
-              <input type="hidden" id="input-maincat" name="cat" value="<?php _esc($maincat) ?>"/>
-          <button id="button_apply" class="bg-primary button ripple-effect d-flex justify-content-center mb-40 mt-40">Apply</button>
+              
+              <input type="hidden" id="input-maincat" name="cat" value="<?php  _esc($maincat) ?>"/>
+              <button id="button_apply" class="bg-primary button ripple-effect d-flex justify-content-center mb-40 mt-40">Apply</button>
+                      
             </div>     
               </div> 
           

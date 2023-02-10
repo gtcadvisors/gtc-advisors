@@ -642,11 +642,11 @@ function get_categories_dropdown($lang){
             <label class="cb-container"> 
               <input type="checkbox" name="category" value="'.$cat_id.'"> 
               <span class="text-small">'.$catname.'</span><span class="checkmark"></span>
-          </li>';
+          </li>'; 
         }else{
             $dropdown .= '<li data-ajax-id="'.$cat_id.'" data-cat-type="maincat"> 
             <label class="cb-container"> 
-              <input type="checkbox" > 
+              <input type="checkbox" name="category" value="'.$cat_id.'"> 
               <span class="text-small">'.$catname.'</span><span class="checkmark"></span>
           </li>';
         }

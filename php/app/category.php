@@ -27,7 +27,9 @@ if(isset($_GET['subcat']) && !empty($_GET['subcat'])){
 }elseif(isset($_GET['category']) && !empty($_GET['category'])){
     if(is_numeric($_GET['category'])){
         if(check_category_exists($_GET['category'])){
+            $category = array();
             $category = $_GET['category'];
+            echo '<script>console.log('.$category.')</script>';
         }
     }else{
         $category = get_category_id_by_slug($_GET['category']);

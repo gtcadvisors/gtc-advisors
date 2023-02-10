@@ -137,7 +137,7 @@ include('header_2.php');
                     <div class="image-box"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
                 </div>
                 <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-lg-between justify-content-md-between justify-content-center">
                         <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start" id="name">GTC Advisors & Co <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Vector (3).png" alt="">
                         </p>
                         <div class="dropdown d-none d-md-block d-lg-block"> 
@@ -495,7 +495,7 @@ include('header_2.php');
                 </div> 
               </div>
               
-              <input type="hidden" id="input-maincat" name="cat" value="<?php  _esc($maincat) ?>"/>
+              <input type="hidden" id="input-maincat" name="cat" value="<?php _esc($maincat) ?>">
               <button id="button_apply" class="bg-primary button ripple-effect d-flex justify-content-center mb-40 mt-40">Apply</button>
                       
             </div>     

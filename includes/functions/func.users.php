@@ -776,7 +776,7 @@ function get_user_data($username=null, $userid=null){
         $userinfo['id']         = $info['id'];
         $userinfo['username']   = $info['username'];
         $userinfo['user_type']  = $info['user_type'];
-        $userinfo['balance']  = $info['balance'];
+        $userinfo['balance']    = $info['balance'];
         $userinfo['name']       = $info['name'];
         $userinfo['email']      = $info['email'];
         $userinfo['confirm']    = $info['confirm'];
@@ -787,7 +787,10 @@ function get_user_data($username=null, $userid=null){
         $userinfo['image']      = $info['image'];
         $userinfo['tagline']    = stripslashes($info['tagline']);
         $userinfo['description']= stripslashes($info['description']);
+        $userinfo['bio']        = stripslashes($info['bio']);
+        $userinfo['languages']  = $info['languages'];
         $userinfo['category']   = $info['category'];
+        $userinfo['others']     = $info['others'];
         $userinfo['subcategory']= $info['subcategory'];
         $userinfo['salary_min'] = $info['salary_min'];
         $userinfo['salary_max'] = $info['salary_max'];

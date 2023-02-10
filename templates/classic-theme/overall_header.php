@@ -67,14 +67,16 @@
         }
     </style>
     <!--Loop for Theme Color codes-->
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/globaltax.css" rel="stylesheet">
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/mobile.css">
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/litepicker.css" rel="stylesheet" />
+    <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/feather.min.js"></script>
 
-    <link rel="stylesheet" href="<?php _esc($config['site_url']);?>includes/assets/plugins/flags/flags.min.css">
-    <link rel="stylesheet" href="<?php _esc($config['site_url']);?>includes/assets/css/icons.css">
-    <link rel="stylesheet" href="<?php _esc(TEMPLATE_URL);?>/css/style.css?ver=<?php _esc($config['version']);?>">
-    <link rel="stylesheet" href="<?php _esc(TEMPLATE_URL);?>/css/color.css?ver=<?php _esc($config['version']);?>">
-    <?php if($lang_direction == 'rtl') {
-        echo '<link rel="stylesheet" href="'.TEMPLATE_URL.'/css/rtl.css?ver='.$config['version'].'">';
-    }?>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/vendors/line-awesome.min.css">
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/vendors/slick-master/slick/slick.css" rel="stylesheet" type="text/css">
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/vendors/style.css" rel="stylesheet" type="text/css">
     <script src="<?php _esc(TEMPLATE_URL);?>/js/jquery-3.4.1.min.js"></script>
     <script async>var ajaxurl = "<?php _esc($config['app_url']);?>user-ajax.php";</script>
     <script async type="text/javascript">
@@ -105,398 +107,295 @@
     <!-- ===External Code=== -->
     <?php _esc($config['external_code']);?>
     <!-- ===/External Code=== -->
-</head>
-<body data-role="page" class="<?php _esc($lang_direction);?>" id="page" data-ipapi="<?php _esc($config['live_location_api']);?>" data-showlocationicon="<?php _esc($config['location_track_icon']);?>">
-<!--[if lt IE 8]>
-<p class="browserupgrade">
-    You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.
-</p>
-<![endif]-->
-<!--Country-Cities-changes-Model-->
-<a class="popup-with-zoom-anim hidden" href="#citiesModal" id="change-city"><?php _e("City") ?></a>
-<div class="zoom-anim-dialog mfp-hide popup-dialog big-dialog" id="citiesModal">
-    <div class="popup-tab-content padding-0">
-        <div class="quick-states" id="country-popup" data-country-id="<?php _esc($country_code);?>" style="display: block;">
-            <div id="regionSearchBox" class="title clr">
-                <div class="clr">
-                    <div class="locationrequest smallBox br5 col-sm-4">
-                        <div class="rel input-container">
-                            <div class="input-with-icon">
-                                <input id="inputStateCity" class="with-border" type="text" placeholder="<?php _e("Search city") ?>">
-                                <i class="la la-map-marker"></i>
-                            </div>
-                            <div id="searchDisplay"></div>
-                            <div class="suggest bottom abs small br3 error hidden"><span
-                                        class="target abs icon"></span>
+  </head>
+  <body class="<?php _esc($lang_direction);?>" id="page" data-ipapi="<?php _esc($config['live_location_api']);?>" data-showlocationicon="<?php _esc($config['location_track_icon']);?>" style="overflow-x: hidden !important">
 
-                                <p></p>
-                            </div>
-                        </div>
-                        <div id="lastUsedCities" class="last-used binded" style="display: none;"><?php _e("Popular cities") ?>
-                            <ul id="last-locations-ul">
-                            </ul>
-                        </div>
-                    </div>
-                    <?php if($config['country_type'] == 'multi'){ ?>
-                        <span style="line-height: 30px;">
-                            <span class="flag flag-<?php _esc($user_country);?>"></span> <a href="#countryModal" class="popup-with-zoom-anim"><?php _e("Change Country") ?></a>
-                        </span>
-                    <?php } ?>
-                </div>
-            </div>
-            <div class="popular-cities clr">
-                <p><?php _e("Popular cities") ?></p>
-
-                <div class="list row">
-
-                    <ul class="col-lg-12 col-md-12 popularcity">
-                        <?php foreach ($popularcity as $city){
-                            _esc($city['tpl']);
-                        } ?>
-                    </ul>
-                </div>
-            </div>
-            <div class="viewport">
-                <div class="full" id="getCities">
-                    <div class="col-sm-12 col-md-12 loader" style="display: none"></div>
-                    <div id="results" class="animate-bottom">
-                        <ul class="column cities">
-                            <?php foreach ($states as $state){
-                                _esc($state['tpl']);
-                            } ?>
-                        </ul>
-                    </div>
-                </div>
-                <div class="table full subregionslinks hidden" id="subregionslinks"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--Country-Cities-changes-Model-->
-<!-- Country Picker -->
-<div class="zoom-anim-dialog mfp-hide dialog-with-tabs popup-dialog big-dialog" id="countryModal">
-    <ul class="popup-tabs-nav">
-        <li><a href="#country"><i class="icon-feather-map-pin"></i> <?php _e("Select your country") ?></a></li>
-    </ul>
-    <div class="popup-tabs-container">
-        <div class="popup-tab-content" id="country">
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="input-with-icon margin-bottom-30">
-                        <input class="with-border" type="text" placeholder="<?php _e("Search") ?>..." id="country-modal-search">
-                        <i class="icon-feather-search"></i>
-                    </div>
-                </div>
-                <ul id="countries" class="column col-md-12 col-sm-12 cities">
-                    <?php foreach ($countrylist as $country){ ?>
-                    <li data-name="<?php _esc($country['name']);?>">
-                        <span class="flag flag-<?php _esc($country['lowercase_code']);?>"></span>
-                        <a href="<?php url("HOME") ?>/<?php _esc($country['lang']);?>/<?php _esc($country['lowercase_code']);?>"
-                                data-id="<?php _esc($country['id']);?>"
-                                data-name="<?php _esc($country['name']);?>"> <?php _esc($country['name']);?></a></li>
-                    <?php } ?>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<?php if($config['transparent_header'] == 'transparent-header') {
-    $wrapper_class = 'wrapper-with-transparent-header';
-    $header_class = 'transparent-header';
-}else{
-    $wrapper_class = '';
-    $header_class = '';
-}
-?>
-<!-- Wrapper -->
-<div id="wrapper" class="">
-    <!-- Header Container
-    ================================================== -->
-    <header id="header-container" class="fullwidth <?php _esc($config['header_sticky']);?>">
-        <!-- Header -->
-        <div id="header">
-            <div class="container">
-                <!-- Left Side Content -->
-                <div class="left-side">
-
-                    <!-- Logo -->
-                    <div id="logo">
-                        <a href="<?php url("INDEX") ?>">
-                            <?php
+   <header class="header">
+      <div class="container">
+        <div class="loged-header main-header">
+          <div class="header-left">
+            <div class="header-logo2">
+              <a class="navbar-header-2 d-flex" href="<?php url("INDEX") ?>">
+              <?php
                             $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
                             $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
                             ?>
-                            <img src="<?php _esc($logo_dark);?>" data-sticky-logo="<?php _esc($logo_dark);?>" data-transparent-logo="<?php _esc($logo_white);?>" alt="<?php _esc($config['site_title']);?>">
-                        </a>
-                    </div>
+                <img class="logo-left" src="<?php _esc($logo_dark);?>" data-sticky-logo="<?php _esc($logo_dark);?>" data-transparent-logo="<?php _esc($logo_white);?>" alt="<?php _esc($config['site_title']);?>"></a>
+            </div>
+          </div>
+          <div class="header-nav">
+            <div class="loged-form-find d-none d-lg-block">
+            <form autocomplete="off" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
+                 <input class="loged-form-input input-keysearch color-white mr-1" type="text" name="" placeholder="<?php _e("What service are you looking for today?") ?>">
+                  <button class="btn btn-default font-sm loged-search-button"><li class="fa-22x fas fa-search fa-lg"></i></button>
+                </form>
+              </div>
+            <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
+          </div>
+          <?php
+            if($is_login){
+             ?>
 
-                    <!-- Main Navigation -->
-                    <nav id="navigation">
-                        <ul id="responsive">
-                            <?php
-                            if($config['country_type'] == 'multi'){
-                                ?>
-                                <li>
-                                    <a href="#countryModal" class="country-flag popup-with-zoom-anim"
-                                       title="<?php _e("Change Country") ?>"
-                                       data-tippy-placement="right">
+          <div class="header-right">
+            <nav class="topnav navbar navbar-expand justify-content-between justify-content-sm-start navbar-light">
+            
+           <!-- Navbar Items-->
+           <ul class="navbar-nav align-items-center ms-auto">
+            <!-- favorite Dropdown-->
+            <li class="nav-item no-caret d-none d-sm-block mr--1 dropdown-notifications">
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" href="saved_experts.php"><i class="fa-regular fa fa-heart fa-2x"></i></a>
+            </li>
 
-                                        <img src="<?php _esc($config['site_url']);?>includes/assets/plugins/flags/images/<?php _esc($user_country);?>.png"/>
-                                    </a>
-                                </li>
-                            <?php } ?>
-                            <li><a href="<?php url("SEARCH_PROJECTS") ?>"><i class="icon-feather-list"></i>  <?php _e("Browse Projects") ?></a></li>
-                            <li><a href="<?php url("LISTING") ?>"><i class="icon-feather-list"></i> <?php _e("Find") ?> <?php _e("Jobs") ?></a></li>
-                            <?php
-                            if($config['job_seeker_enable']){
-                                ?>
-                                <li><a href="<?php url("FREELANCERS") ?>"><?php _e("Find Freelancers") ?></a></li>
-                                <?php
-                            }
-                            if($config['company_enable']){
-                                ?>
-                                <li><a href="<?php url("COMPANIES") ?>"><?php _e("Companies") ?></a></li>
-                            <?php } ?>
-                        </ul>
-                    </nav>
-                    <div class="clearfix"></div>
-                    <!-- Main Navigation / End -->
-
-                </div>
-                <!-- Left Side Content / End -->
-
-
-                <!-- Right Side Content / End -->
-                <div class="right-side">
-                    <?php
-                    if($is_login){
-                        ?>
-                        <!--  User Notifications -->
-                        <div class="header-widget hide-on-mobile">
-
-                            <!-- Notifications -->
-                            <div class="header-notifications">
-
-                                <!-- Trigger -->
-                                <div class="header-notifications-trigger">
-                                    <a href="#"><i class="icon-feather-bell"></i>
-                                        <?php
-                                        if($unread_note_count != 0){
-                                            echo '<span>'.$unread_note_count.'</span>';
-                                        } ?>
-                                    </a>
-                                </div>
-
-                                <!-- Dropdown -->
-                                <div class="header-notifications-dropdown">
-
-                                    <div class="header-notifications-headline">
-                                        <h4><?php _e("Notifications") ?></h4>
-                                        <button class="mark-as-read ripple-effect-dark" title="Mark all as read" data-tippy-placement="left">
-                                            <i class="icon-feather-check-square"></i>
-                                        </button>
-                                    </div>
-
-                                    <div class="header-notifications-content">
-                                        <div class="header-notifications-scroll" data-simplebar>
-                                            <ul>
-                                                <?php
-                                                foreach($notification as $note){
-                                                    $id = $note['product_id'];
-                                                    $sender = $note['sender_name'];
-                                                    $title = $note['product_title'];
-                                                    $msg = $note['message'];
-                                                    ?>
-                                                    <li class="notifications-not-read">
-                                                        <?php if($note['type'] == "milestone_created"){ ?>
-                                                            <a href="<?php url("MILESTONE") ?>/<?php _esc($id) ?>">
-                                                                <span class="notification-icon"><i class="icon-material-outline-assignment"></i></span>
-                                                                <span class="notification-text"><strong><?php _esc($sender) ?></strong> <?php _e("created a milestone") ?> <?php _esc($msg) ?> <?php _e("for") ?> <span class="color"><?php _esc($title) ?></span></span>
-                                                            </a>
-                                                        <?php }elseif($note['type'] == "milestone_request_release"){ ?>
-                                                            <a href="<?php url("MILESTONE") ?>/<?php _esc($id) ?>">
-                                                                <span class="notification-icon"><i class="icon-material-outline-assignment"></i></span>
-                                                                <span class="notification-text"><strong><?php _esc($sender) ?></strong> <?php _e("Request for release") ?> <?php _e("Milestone") ?> <?php _esc($msg) ?> <?php _e("for") ?> <span class="color"><?php _esc($title) ?></span></span>
-                                                            </a>
-                                                        <?php }elseif($note['type'] == "milestone_released"){ ?>
-                                                            <a href="<?php url("MILESTONE") ?>/<?php _esc($id) ?>">
-                                                                <span class="notification-icon"><i class="icon-material-outline-assignment"></i></span>
-                                                                <span class="notification-text"><strong><?php _esc($sender) ?></strong> <?php _e("Milestone") ?> <?php _e("Released") ?> <?php _esc($msg) ?> <?php _e("for") ?> <span class="color"><?php _esc($title) ?></span></span>
-                                                            </a>
-                                                        <?php }elseif($note['type'] == "deposit"){ ?>
-                                                            <a href="javascript:void(0);">
-                                                                <span class="notification-icon"><i class="icon-material-outline-monetization-on"></i></span>
-                                                                <span class="notification-text"><strong><?php _esc($sender) ?></strong> <?php _e("Deposit") ?> <?php _esc($msg) ?> <?php _e("to") ?> <span class="color"><?php _e("Wallet") ?></span></span>
-                                                            </a>
-                                                        <?php }else{ ?>
-
-                                                            </a>
-                                                        <?php } ?>
-                                                    </li>
-                                                <?php } ?>
-                                                <!-- Notification -->
-                                                <a href="<?php url("NOTIFICATIONS") ?>" class="header-notifications-button ripple-effect button-sliding-icon"><?php _e("View All") ?><i class="icon-material-outline-arrow-right-alt"></i></a>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Messages -->
-                            <div class="header-notifications">
-                                <div class="header-notifications-trigger">
-                                    <a href="#"><i class="icon-feather-mail"></i>
-                                        <?php
+             <!-- Messages Dropdown-->
+             <li class="nav-item dropdown no-caret d-none d-sm-block mr--1 dropdown-notifications">
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-regular fa fa-envelope fa-2x"></i></a>
+                <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
+                    <h6 class="dropdown-header dropdown-notifications-header">
+                        <i class="me-2 fa-regular fa fa-envelope fa-1xx"></i>
+                        <?php _e("Inbox") ?> (<?php
                                         if($unread_message != 0){
                                             echo '<span>'.$unread_message.'</span>';
-                                        } ?>
-                                    </a>
-                                </div>
-
-                                <!-- Dropdown -->
-                                <div class="header-notifications-dropdown">
-
-                                    <div class="header-notifications-headline">
-                                        <h4><?php _e("Messages") ?></h4>
-                                        <button class="mark-as-read ripple-effect-dark" title="Mark all as read" data-tippy-placement="left">
-                                            <i class="icon-feather-check-square"></i>
-                                        </button>
-                                    </div>
-
-                                    <div class="header-notifications-content">
-                                        <div class="header-notifications-scroll" data-simplebar>
-                                            <ul>
-                                                <?php foreach($chat as $msg){ ?>
-                                                    <li class="notifications-not-read">
-                                                        <a href="<?php url("MESSAGE") ?>">
-                                                            <span class="notification-avatar status-<?php _esc($msg['status']) ?>"><img src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($msg['image']) ?>" alt=""></span>
-                                                            <div class="notification-text">
-                                                                <strong><?php _esc($msg['from_name']) ?></strong><br>
-                                                                <div class="zechat-message"><i class="fa fa-file-text-o"></i>
-                                                                    <?php _esc($msg['post_title']) ?>
-                                                                </div>
-                                                                <p class="notification-msg-text"><?php _esc($msg['message']) ?></p><br>
-                                                                <span class="color"><?php _esc($msg['time']) ?></span>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                <?php } ?>
-                                                <!-- Notification -->
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <a href="<?php url("MESSAGE") ?>" class="header-notifications-button ripple-effect button-sliding-icon"><?php _e("View All Messages") ?><i class="icon-material-outline-arrow-right-alt"></i></a>
-                                </div>
-                            </div>
-
+                                        } ?>)
+                    </h6>
+                    <div class="dropdown-divider"></div>
+                    <?php foreach($chat as $msg){ ?>
+                    <a class="dropdown-item dropdown-notifications-item" href="<?php url("MESSAGE") ?>">
+                        <img class="dropdown-notifications-item-img status-<?php _esc($msg['status']) ?>" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($msg['image']) ?>" />
+                        <div class="dropdown-notifications-item-content">
+                          <div class="dropdown-notifications-item-content-details"><?php _esc($msg['from_name']) ?></div>
+                          <div class="dropdown-notifications-item-content-text text-truncate" style="width:15rem;"><?php _esc($msg['message']) ?></div>
+                          <div class="dropdown-notifications-item-date"><?php _esc($msg['time']) ?></div>
                         </div>
-                        <!--  User Notifications / End -->
-
-                        <!-- User Menu -->
-                        <div class="header-widget">
-
-                            <!-- Messages -->
-                            <div class="header-notifications user-menu">
-                                <div class="header-notifications-trigger">
-                                    <a href="#"><div class="user-avatar status-online"><img src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>"></div></a>
-                                </div>
-
-                                <!-- Dropdown -->
-                                <div class="header-notifications-dropdown">
-
-                                    <!-- User Status -->
-                                    <div class="user-status">
-
-                                        <!-- User Name / Avatar -->
-                                        <div class="user-details">
-                                            <div class="user-avatar status-online"><img src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>"></div>
-                                            <div class="user-name">
-                                                <?php _esc($fullname);?> <span>
-                                                    <?php
-                                                    $usertype = $usertype == 'user' ? 'Freelancer': 'Employer';
-                                                    _esc($usertype);
-                                                    ?></span>
-                                                <div class="dashboard-status-button balance yellow"><?php _esc($config['currency_sign'])?><?php _esc($balance);?></div>
-                                            </div>
-
-                                        </div>
-
-                                        <!-- User Status Switcher -->
-                                        <div class="status-switch hidden" id="snackbar-user-status">
-                                            <label class="user-online current-status"><?php url("Online") ?></label>
-                                            <label class="user-invisible"><?php url("Invisible") ?></label>
-                                            <!-- Status Indicator -->
-                                            <span class="status-indicator" aria-hidden="true"></span>
-                                        </div>
-                                    </div>
-
-                                    <ul class="user-menu-small-nav">
-                                        <li><a href="<?php url("DASHBOARD") ?>"><i class="icon-material-outline-dashboard"></i> <?php _e("Dashboard") ?></a></li>
-                                        <?php
-                                        if($config['quickchat_ajax_on_off'] == 'on' || $config['quickchat_socket_on_off'] == 'on'){
-                                            ?>
-                                            <li><a href="<?php url("MESSAGE") ?>"><i class="icon-feather-message-circle"></i> <?php _e("Message") ?></a></li>
-                                        <?php } ?>
-                                        <li><a href="<?php url("ACCOUNT_SETTING") ?>"><i class="icon-material-outline-settings"></i> <?php _e("Account Setting") ?></a></li>
-                                        <li><a href="<?php url("LOGOUT") ?>"><i class="icon-material-outline-power-settings-new"></i> <?php _e("Logout") ?></a></li>
-                                    </ul>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- User Menu / End -->
+                    </a>
                     <?php } ?>
-
-                    <div class="header-widget d-none d-lg-block">
-                        <nav id="navigation">
-                            <ul>
-                                <?php
-                                if(!$is_login){
-                                    ?>
-                                    <li>
-                                        <a href="#sign-in-dialog" class="popup-with-zoom-anim"><i
-                                                    class="icon-feather-log-in"></i> <?php _e("Login") ?></a>
-                                    </li>
-                                    <li><a href="<?php url("SIGNUP") ?>"><?php _e("Register") ?></a></li>
-                                    <li><a href="<?php url("POST-PROJECT") ?>" class="button ripple-effect post-job"><?php _e("Post Project") ?></a>
-                                    </li>
-                                    <?php
-                                }
-                                if($usertype == 'employer'){
-                                    ?>
-                                    <li><a href="<?php url("POST-PROJECT") ?>" class="button ripple-effect post-job"><?php _e("Post Project") ?></a>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!-- Mobile Navigation Button -->
-                    <span class="mmenu-trigger">
-                            <button class="hamburger hamburger--collapse" type="button">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-				        </span>
-
+                    <a class="dropdown-item dropdown-notifications-footer" href="<?php url("MESSAGE") ?>"><?php _e("See all in Inbox") ?></a>
                 </div>
-                <!-- Right Side Content / End -->
+            </li>
 
-            </div>
+            <!-- Alerts Dropdown-->
+            <li class="nav-item dropdown no-caret d-none d-sm-block mr--1 dropdown-notifications">
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-regular fa fa-bell bx-tada fa-2x"></i></a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAlerts">
+                    <h6 class="dropdown-header dropdown-notifications-header">
+                        <i class="fa-regular fa fa-bell fa-1xx me-2"></i>
+                        Notifications (<?php
+                                        if($unread_note_count != 0){
+                                            echo '<span>'.$unread_note_count.'</span>';
+                                        } ?>)
+                    </h6>
+                    <div class="dropdown-divider"></div>
+                    <!-- Example Alert 1-->
+                    <?php
+                    foreach($notification as $note){
+                    $id = $note['product_id'];
+                    $sender = $note['sender_name'];
+                    $title = $note['product_title'];
+                    $msg = $note['message'];
+                    ?>
+                    <?php if($note['type'] == "milestone_created"){ ?>
+                    <a class="dropdown-item dropdown-notifications-item" href="<?php url("MILESTONE") ?>/<?php _esc($id) ?>">
+                        <div class="dropdown-notifications-item-icon bg-warning">
+                          <i class="fa-regular fa fa-bell fa-2xx"></i></div>
+                        <div class="dropdown-notifications-item-content">
+                            <div class="dropdown-notifications-item-content-details">Update</div>
+                            <div class="dropdown-notifications-item-content-text  text-truncate" style="width:15rem;"><?php _esc($sender) ?> <?php _e("created a milestone") ?> <?php _esc($msg) ?> <?php _e("for") ?> <span class="color"><?php _esc($title) ?></span></div>
+                           <div class="dropdown-notifications-item-date">4 Months</div> 
+                        </div>
+                    </a>
+                    <?php }elseif($note['type'] == "milestone_request_release"){ ?>
+
+                    <a class="dropdown-item dropdown-notifications-item" href="<?php url("MILESTONE") ?>/<?php _esc($id) ?>">
+                        <div class="dropdown-notifications-item-icon bg-warning">
+                          <i class="fa-regular fa fa-bell fa-2xx"></i></div>
+                        <div class="dropdown-notifications-item-content">
+                            <div class="dropdown-notifications-item-content-details">Update</div>
+                            <div class="dropdown-notifications-item-content-text  text-truncate" style="width:15rem;"><?php _esc($sender) ?> <?php _e("Request for release") ?> <?php _e("Milestone") ?> <?php _esc($msg) ?> <?php _e("for") ?> <span class="color"><?php _esc($title) ?></span></div>
+                           <div class="dropdown-notifications-item-date">4 Months</div> 
+                        </div>
+                    </a>
+                    <?php }elseif($note['type'] == "milestone_released"){ ?>
+                    <a class="dropdown-item dropdown-notifications-item" href="<?php url("MILESTONE") ?>/<?php _esc($id) ?>">
+                        <div class="dropdown-notifications-item-icon bg-warning">
+                          <i class="fa-regular fa fa-bell fa-2xx"></i></div>
+                        <div class="dropdown-notifications-item-content">
+                            <div class="dropdown-notifications-item-content-details">Update</div>
+                            <div class="dropdown-notifications-item-content-text  text-truncate" style="width:15rem;"><?php _esc($sender) ?> <?php _e("Milestone") ?> <?php _e("Released") ?> <?php _esc($msg) ?> <?php _e("for") ?> <span class="color"><?php _esc($title) ?></span></div>
+                           <div class="dropdown-notifications-item-date">4 Months</div> 
+                        </div>
+                    </a>
+                    <?php }else{ ?>
+
+                </a>
+                <?php } ?>
+                <?php } ?>
+
+                    <a class="dropdown-item dropdown-notifications-footer" href="<?php url("NOTIFICATIONS") ?>"><?php _e("See all Notifications") ?></a>
+                </div>
+            </li>
+           
+            <!-- User Dropdown-->
+            <li class="nav-item dropdown mr--1 no-caret dropdown-user">
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="icon-container">
+                  <img class="rounded-circle" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>" style="width: 45px; height: 45px" /><div class="status-circle"></div></div></a>
+                <div class="dropdown-menu dropdown-menu-end border-0" aria-labelledby="navbarDropdownUserImage">
+                    <a class="dropdown-item" href="<?php url("PROFILE") ?>/<?php _esc($username)?>">
+                      <div class="dropdown-item-icon"><i class=""></i></div>
+                      Profile
+                  </a>
+                  <a class="dropdown-item" href="<?php url("BECOME-AN-ADVISOR") ?>">
+                    <div class="dropdown-item-icon"><i class=""></i></div>
+                    Become an Advisor
+                </a>
+                <a class="dropdown-item" href="<?php url("CATEGORY") ?>">
+                  <div class="dropdown-item-icon"><i class=""></i></div>
+                  Hire an Advisor
+                </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<?php url("EDITPROFILE") ?>">
+                      <div class="dropdown-item-icon"><i class=""></i></div>
+                      <?php _e("Account Settings") ?>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <div class="dropdown-item-icon"><i class=""></i></div>
+                      Help & Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        English <div class="ml-5 dropdown-item-icon"></div>
+                    </a>
+                    <a class="dropdown-item" href="<?php url("LOGOUT") ?>">
+                        <div class="dropdown-item-icon"><i class="fa-regular fa fa-log-out"></i></div>
+                        <?php _e("Logout") ?>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+ </div>
         </div>
-        <!-- Header / End -->
-
+      </div>
+      <!-- Mobile Search -->
+      <div class="mobile-form-find mb-30 d-xxl-none d-lg-block wow animate__animated animate__fadeIn" data-wow-delay=".2s">
+      <form autocomplete="off" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
+         <input class="mobile-form-input input-keysearch color-white mr-1" type="text" name="" placeholder="Find services">
+          <button class="btn btn-default font-sm mobile-search-button"><li class="fa-22x fas fa-search fa-lg"></i></button>
+        </form>
+      </div>
+      <!-- end Mobile search -->
     </header>
-    <div class="clearfix"></div>
-    <!-- Header Container / End -->
+          <!-- Mobile Version -->
+          <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+            <div class="mobile-header-wrapper-inner">
+
+              <div class="icon-container">
+                <img class="rounded-circle mobi-profile-img" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>" style="max-width:68px;" /><div class="status-circle-1"></div></div></a>
+                <div class="name-title pb-20"><?php _esc($fullname);?><span style="color:black;font-size:16px;font-style:italic;"><br><?php
+                 $usertype = $usertype == 'user' ? 'Advisor': 'Employer';
+                _esc($usertype);
+                ?></span></div>
+
+              <div class="mobile-header-content-area adv-font">
+                <div class="perfect-scroll mt--10">
+                  <div class="mobile-account">
+                    <ul class="mobile-menu font-heading">
+                      <li><a href="<?php url("INDEX") ?>">Home</a></li>
+                      <li><a href="<?php url("MESSAGE") ?>">Inbox</a></li>
+                      <li><a href="saved_experts.php">Saved Experts</a></li>
+                      <li><a href="<?php url("NOTIFICATIONS") ?>">Notifications</a></li>
+                    </ul>
+                  </div>
+                  <div class="mobile-menu-wrap pt-10">
+
+<!-- Categories for mobile sidebar list -->
+<?php
+
+$result = ORM::for_table($config['db']['pre'].'catagory_main')
+->order_by_asc('cat_order')
+->limit(15)
+->find_many();
+foreach ($result as $info) {
+if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
+$maincat = get_category_translation("main",$info['cat_id']);
+$info['cat_name'] = $maincat['title'];
+$info['slug'] = $maincat['slug'];
+}
+$category[$info['cat_id']]['slug'] = $info['slug'];
+$category[$info['cat_id']]['name'] = $info['cat_name'];
+$category[$info['cat_id']]['main_id'] = $info['cat_id'];
+$category[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
+
+if(trim($config['home_page']) == "home-freelance"){
+$totalAdsMaincat = ORM::for_table($config['db']['pre'].'project')
+    ->where(array(
+        'category'=> $info['cat_id'],
+        'status'=> 'open'
+        ))
+    ->count();
+}
+else{
+$totalAdsMaincat = get_items_count(false,"active",false,null,$info['cat_id'],true);
+}
+
+$category[$info['cat_id']]['main_ads_count'] = $totalAdsMaincat;
+$count = 1;
+
+}
+
+?>
+         <nav>
+        <ul class="mobile-menu adv-font" style="list-style:none;">
+                        <li class="adv-font has-children">
+                          <a href="#">Expertise</a>
+                          <ul class="adv-font sub-menu">
+                          <?php foreach($category as $cat){ ?>
+                        <li><a href="<?php echo $cat['link']; ?>"> <?php echo $cat['name']; ?></a>
+                        </li>
+                        <?php } ?>
+                          </ul>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                  <div class="mobile-account border-bottom pb-20 pt-20">
+                  <ul>
+                    <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>">My Profile</a></li>
+                  </ul>
+                  </div>
+
+                  <div class="mobile-account border-bottom pb-20">
+                    <ul>
+                      <li class="pb-20"><a href="<?php url("BECOME-AN-ADVISOR") ?>">Become an Advisor</a></li>
+                      <li class="pb-20"><a href="<?php url("CATEGORY") ?>">Hire an Advisor</a></li>
+                      <li class="pb-20"><a href="#">General</a></li>
+                    </ul>
+                    </div>
 
 
-
-
-
+                  <div class="mobile-account">
+                    <ul class="mobile-menu font-heading">
+                      <li><a href="<?php url("EDITPROFILE") ?>">Settings</a></li>
+                      <li><a href="#">Help & Support</a></li>
+      
+                      <li>
+                        <div class="lang_selctor-m">
+                          <i class="fas fa-globe"></i>
+                          <select>
+                          <option value="1">English</option>
+                          <option value="2">العربيّة</option>
+                          <option value="3">Arabic</option>
+                          <option value="3">Deutsch</option>
+                          <option value="3">简体中文</option>
+                          </select>
+                          </div>
+                      </li>
+                      <li><a href="<?php url("LOGOUT") ?>">Log Out</a></li>
+                    </ul>
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Mobile End -->
+          <?php } ?>

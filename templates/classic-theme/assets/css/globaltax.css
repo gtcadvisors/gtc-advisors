@@ -1910,13 +1910,13 @@ margin-top: -50px;
 
 .status-circle-big-img {
   width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: #ffffff;
-  border: 3px solid #2C76DC;
-  bottom: -11px;
-  right: -11px;
-  position: absolute;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 3px solid #2C76DC;
+    bottom: -37px;
+    right: -34px;
+    position: absolute;
 }
 /* user online status end */
 
@@ -4063,7 +4063,7 @@ font-size:21px
 }
 
 .input-keysearch {
-color: #fff !important;
+color: #000 !important;
 }
 .banner-hero .block-banner .list-tags-banner {
   position: relative;
@@ -11060,8 +11060,8 @@ color: #FFFFFF !important;
   border-radius: 50%;
   background-color: #ffffff;
   border: 3px solid #2C76DC;
-  bottom: -74px;
-  right: -67px;
+  bottom: -87px;
+  right: -64px;
   position: absolute;
 }
 

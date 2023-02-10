@@ -7,7 +7,7 @@ if(checkloggedin())
 {
 	update_lastactive();
 	$ses_userdata = get_user_data($_SESSION['user']['username']);
-	if($ses_userdata['user_type'] != 'user'){
+	if($ses_userdata['user_type'] == 'freelancer'){
 		headerRedirect($link['DASHBOARD']);
 	}
 	$id = $name = $error = $resume_file = '';

@@ -1,6 +1,4 @@
-<?php
-overall_header(__("My Resumes"));
-?>
+<?php include_once TEMPLATE_PATH.'/header.php'; ?>
 <!-- Dashboard Container -->
 <div class="dashboard-container">
 

@@ -2,7 +2,9 @@
 
 if(checkloggedin())
 {
-    header("Location: ".$config['site_url']."index2");
+
+    header("Location: ".$config['site_url']."myaccount");
+
     exit;
 }
 
@@ -281,7 +283,9 @@ if(isset($_GET['fstart']))
 
 if(!isset($_POST['submit'])) {
     if(!isset($_GET['ref'])) {
-        $_GET['ref'] = 'index2';
+
+        $_GET['ref'] = 'myaccount';
+
     }
     $error = '';
     //Print Template
@@ -293,7 +297,9 @@ if(!isset($_POST['submit'])) {
 else
 {
     $loggedin = userlogin($_POST['username'], $_POST['password']);
-    $ref = isset($_GET['ref'])? $_GET['ref'] : $link['INDEX2'];
+
+    $ref = isset($_GET['ref'])? $_GET['ref'] : $link['MYACCOUNT'];
+
     if(!is_array($loggedin))
     {
 

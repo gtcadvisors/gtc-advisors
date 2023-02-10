@@ -5,6 +5,8 @@ $router->map('GET|POST','/home/[a:lang]?/?', $app_dir.'home.php');
 $router->map('GET|POST','/home/[a:lang]?/[a:country]?/?', $app_dir.'home.php');
 $router->map('GET|POST','/index2/?', $app_dir.'index2.php');
 $router->map('GET|POST','/dashboard/?', $app_dir.'dashboard.php');
+$router->map('GET|POST','/become-an-advisor/?', $app_dir.'become-an-advisor.php');
+$router->map('GET|POST','/become-an-advisor-form/?', $app_dir.'become-an-advisor-form.php');
 $router->map('GET|POST','/profile-edit/?', $app_dir.'profile-edit.php');
 $router->map('GET|POST','/my-experiences/[*:page]?/?', $app_dir.'my-experiences.php');
 $router->map('GET|POST','/add-experience/?', $app_dir.'user-experience.php');

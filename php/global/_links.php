@@ -1,6 +1,7 @@
 <?php
 $link['INDEX']              = $config['site_url'];
 $link['HOME']               = $config['site_url'] . 'home';
+$link['MYACCOUNT']          = $config['site_url'] . 'myaccount';
 $link['LOGIN']              = $config['site_url'] . 'login';
 $link['LOGOUT']             = $config['site_url'] . 'logout';
 $link['SIGNUP']             = $config['site_url'] . 'signup';

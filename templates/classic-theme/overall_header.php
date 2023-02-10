@@ -67,8 +67,8 @@
         }
     </style>
     <!--Loop for Theme Color codes-->
-    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/globaltax.css" rel="stylesheet">
-    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/mobile.css">
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/globaltax.css" rel="stylesheet"> 
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/mobile.css"> 
     <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/litepicker.css" rel="stylesheet" />
     <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/feather.min.js"></script>
 

@@ -15,7 +15,7 @@
     <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/stylez.css" rel="stylesheet">
     <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/forms.css" rel="stylesheet">
     <title>GTC - Category Page</title>                 
-  </head> 
+  </head>  
   <body>
 <?php  
 include('header_2.php');
@@ -96,12 +96,23 @@ include('header_2.php');
         </div>
       <!-- <hr> -->
       <div id="cat_header_under">
-        <p class="mt-3 mb-3 ml-10"><i class=""></i> <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/home-2.png" alt="" width="17px" class="mr-5">Home &#10095; Area of expertise &#10095; <a id="under_1"> Personal Income Tax</a>
+        <p class="mt-3 mb-3 ml-10"><i class=""></i> <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/home-2.png" alt="" width="17px" class="mr-5"><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a>&#10095; Area of Services &#10095; <a id="under_1"> 
+          <?php
+            if($maincategory != ""){
+                echo _esc($maincategory,false);
+            }
+            if($subcategory != ""){
+                echo _esc($subcategory,false);
+            }
+            if($maincategory == "" && $subcategory == ""){
+                echo __("All Categories");
+            }
+            ?></a>
           <hr class="d-block d-md-none d-lg-none">
           <p class="mt-3 mb-3 ml-10" id="under_2 text-center text-md-start text-lg-start">Personal Income Tax is a type of income that is levied on an individual's wages, salaries, and other types of income. </p> 
         </p>
       </div>
-          
+          <form method="get" action="<?php url("CATEGORY") ?>" name="locationForm">
   <section class="section-box mt-30">
     <div class="container-fluid container-lg mx-lg-auto mx-md-auto mx-0">
       <div class="row flex-row-reverse flex-md-row-reverse m-0">
@@ -225,42 +236,13 @@ include('header_2.php');
                   <p class="mb-20 mt-10 ml-10">Expertise</p> <i class="fa fi-rr-angle-down mb-20 mt-10 mr-20" id="arrow_down1" onclick="show_down('expertise')"></i>
                 </div>
               
-              
-                <div class="form-group" style="display: none;" id="expertise">
+                
+                <div class="form-group category-dropdown" style="display: none;" id="expertise">
+                 
                   <ul class="list-checkbox">
-                    <li>
-                      <label class="cb-container"> 
-                        <input type="radio" > 
-                        <span class="text-small">Tax Audit</span><span class="checkmark"></span>
-                    </li>
-                    <li>
-                      <label class="cb-container">
-                        <input type="checkbox" ><span class="text-small">Tax Compliance</span><span class="checkmark"></span>
-                    </li>
-                    <li>
-                      <label class="cb-container">
-                        <input type="checkbox" ><span class="text-small"> Corporate Income Tax</span><span class="checkmark"></span>
-                    </li>
-                    <li>
-                      <label class="cb-container">
-                        <input type="checkbox" ><span class="text-small">Personal Income Tax</span><span class="checkmark"></span>
-                    </li>
-                    <li>
-                      <label class="cb-container">
-                        <input type="checkbox" >
-                        <span class="text-small">Tax Pricing</span><span class="checkmark"></span>
-                    </li>
-                    <li>
-                      <label class="cb-container">
-                        <input type="checkbox" ><span class="text-small">Tax  Dispute</span><span class="checkmark"></span>
-                    </li>
-                    <li>
-                      <label class="cb-container">
-                        <input type="checkbox" ><span class="text-small">Value Added Tax</span><span class="checkmark"></span>
-                    </li>
-                    
-                  </ul>
-                  
+                    <?php _esc($cat_dropdown) ?> 
+                  </ul> 
+                 
                 </div>
 
                 <div class="d-flex flex-row justify-content-between" id="filter_next">
@@ -512,8 +494,10 @@ include('header_2.php');
                   </select>  <i class="fi-rr-search" id="search_select"></i>
                 </div> 
               </div>
-                
-          <button id="button_apply" class="bg-primary d-flex justify-content-center mb-40 mt-40">Apply</button>
+              
+              <input type="hidden" id="input-maincat" name="cat" value="<?php  _esc($maincat) ?>"/>
+              <button id="button_apply" class="bg-primary button ripple-effect d-flex justify-content-center mb-40 mt-40">Apply</button>
+                      
             </div>     
               </div> 
           
@@ -522,6 +506,7 @@ include('header_2.php');
       </div>
     </div>
   </section> 
+  </form>
 </main>
    <!-- JAVASCRIPT LIBRARIES AND SCRIPT LINKING -->
     <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/vendor/modernizr-3.6.0.min.js"></script>

@@ -7,18 +7,18 @@
     <meta name="description" content="Index page">
     <meta name="keywords" content="index, page">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/template/favicon.svg">
-    <link href="assets/css/e2.css" rel="stylesheet">
-    <link href="assets/css/e-mobile.css">
-    <link href="assets/css/litepicker.css" rel="stylesheet" />
-    <script src="assets/js/feather.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/template/favicon.svg">
+    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/e2.css" rel="stylesheet">
+    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/e-mobile.css">
+    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/litepicker.css" rel="stylesheet" />
+    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/feather.min.js"></script>
 
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link href="assets/css/vendors/line-awesome.min.css">
-    <link href="assets/vendors/slick-master/slick/slick.css" rel="stylesheet" type="text/css">
-    <!--<link href="assets/css/vendors/style.css" rel="stylesheet" type="text/css">-->
-    <link href="assets/css/e.css" rel="stylesheet" type="text/css">
+    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/vendors/line-awesome.min.css">
+    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/vendors/slick-master/slick/slick.css" rel="stylesheet" type="text/css">
+    <!--<link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/vendors/style.css" rel="stylesheet" type="text/css">-->
+    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/e.css" rel="stylesheet" type="text/css">
     <title>Expert Profile Agency </title>
   </head>
   <body>
@@ -29,7 +29,7 @@
           <div class="header-left">
             <div class="header-logo2">
               <a class="navbar-header-2 d-flex" href="index.php">
-                <img class="logo-left" src="assets/imgs/template/gtclogo.png" alt="logo"></a>
+                <img class="logo-left" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/template/gtclogo.png" alt="logo"></a>
             </div>
           </div>
           <div class="header-nav">
@@ -64,7 +64,7 @@
                     <div class="dropdown-divider"></div>
                     <!-- Example Message 1  -->
                     <a class="dropdown-item dropdown-notifications-item" href="inbox.php">
-                        <img class="dropdown-notifications-item-img" src="assets/imgs/inbox/Ellipse 14.png" />
+                        <img class="dropdown-notifications-item-img" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/inbox/Ellipse 14.png" />
                         <div class="dropdown-notifications-item-content">
                           <div class="dropdown-notifications-item-content-details">Juan Rodrick</div>
                           <div class="dropdown-notifications-item-content-text text-truncate" style="width:15rem;">Hello you requested for a tax consultant</div>
@@ -72,7 +72,7 @@
                         </div>
                     </a>
                     <a class="dropdown-item dropdown-notifications-item" href="inbox.php">
-                      <img class="dropdown-notifications-item-img" src="assets/imgs/inbox/Ellipse 10.png" />
+                      <img class="dropdown-notifications-item-img" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/inbox/Ellipse 10.png" />
                       <div class="dropdown-notifications-item-content">
                         <div class="dropdown-notifications-item-content-details">Juan Rodrick</div>
                         <div class="dropdown-notifications-item-content-text text-truncate" style="width:15rem;">Hello you requested for a tax consultant</div>
@@ -80,7 +80,7 @@
                       </div>
                   </a>
                   <a class="dropdown-item dropdown-notifications-item" href="inbox.php">
-                    <img class="dropdown-notifications-item-img" src="assets/imgs/inbox/Ellipse 11.png" />
+                    <img class="dropdown-notifications-item-img" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/inbox/Ellipse 11.png" />
                     <div class="dropdown-notifications-item-content">
                       <div class="dropdown-notifications-item-content-details">Juan Rodrick</div>
                       <div class="dropdown-notifications-item-content-text text-truncate" style="width:15rem;">Hello you requested for a tax consultant</div>
@@ -130,10 +130,10 @@
             <li class="nav-item dropdown mr--1 no-caret dropdown-user">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="icon-container">
-                  <img class="img-fluid" src="assets/imgs/user-img/user-8.png" style="max-width:45px;" /><div class="status-circle"></div></div></a>
+                  <img class="img-fluid" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/user-img/user-8.png" style="max-width:45px;" /><div class="status-circle"></div></div></a>
                 <div class="dropdown-menu dropdown-menu-end border-0" aria-labelledby="navbarDropdownUserImage">
                     <!-- <h6 class="dropdown-header d-flex align-items-center">
-                        <img class="dropdown-user-img" src="assets/imgs/user-img/user-8.png" />
+                        <img class="dropdown-user-img" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/user-img/user-8.png" />
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-details-name">Valerie Luna</div>
                             <div class="dropdown-user-details-email"><a href="">Email</a></div>
@@ -189,7 +189,7 @@
             <div class="mobile-header-wrapper-inner">
 
               <div class="icon-container">
-                <img class="mobi-profile-img" src="assets/imgs/user-img/user-8.png" style="max-width:68px;" /><div class="status-circle-1"></div></div></a>
+                <img class="mobi-profile-img" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/user-img/user-8.png" style="max-width:68px;" /><div class="status-circle-1"></div></div></a>
                 <div class="name-title pb-20">Valerie</div>
 
               <div class="mobile-header-content-area adv-font">

@@ -29,8 +29,7 @@ overall_header($pagetitle);
                         <div class="intro-search-field">
                             <div class="dropdown category-dropdown">
                                 <a data-toggle="dropdown" href="#">
-                                    <span class="change-text"><?php _e("Select") ?> <?php _e("Category") ?></span><i
-                                            class="fa fa-navicon"></i>
+                                    <span class="change-text"><?php _e("Select") ?> <?php _e("Category") ?></span>                                           class="fa fa-navicon"></i>
                                 </a>
                                 <?php _esc($cat_dropdown) ?>
                             </div>
@@ -121,7 +120,7 @@ overall_header($pagetitle);
                                 <div class="job-listing-company-logo">
                                     <a href="<?php url("PROFILE") ?>/<?php _esc($item['username'])?>">
                                         <img src="<?php _esc($config['site_url'])?>storage/profile/<?php _esc($item['image'])?>" alt="<?php _esc($item['name'])?>">
-                                    </a>
+                                    </a>  
                                 </div>
                                 <div class="job-listing-description">
                                     <h3 class="job-listing-title"><a href="<?php url("PROFILE") ?>/<?php _esc($item['username'])?>"><?php _esc($item['name'])?></a>

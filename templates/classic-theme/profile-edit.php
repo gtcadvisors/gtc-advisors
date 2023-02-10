@@ -28,8 +28,7 @@ input[type="text"]:disabled {
 }
 .form-group select {
     background: #fff;
-    borderContact GitHub
-: 1px solid #E0E6F6;
+    border: 1px solid #E0E6F6;
     height: 56px !important;
     box-shadow: none;
     padding-left: 20px;
@@ -219,7 +218,10 @@ input[type="text"]:disabled {
                           <div class="form-group" id="coun">
                             <label class="form-edit font-sm color-text-mutted mb-10">Country</label>
                         
-                            <input class="mb-15 form-field-bg-2 form-control" type="text" value="<?php _esc($country) ?>" readonly>
+                            <input class="mb-15 form-field-bg-2 form-control" type="text" value="<?php
+$ip = $_REQUEST['REMOTE_ADDR']; $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ip));
+if($query && $query['status'] == 'success') { echo ''.$query['country'].', '.$query['city'].''; } else {
+  echo 'Unable to get location'; } ?>" readonly>
                             <button class="btn btn-detect-country">Detect</button>
                           </div>
                           

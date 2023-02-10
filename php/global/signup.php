@@ -202,6 +202,7 @@ if(isset($_POST["submit"])) {
         // }else{
         //     $insert_user->user_type = 'employer';
         // }
+        $insert_user->user_type = 'user';
         $insert_user->username = $_POST["username"];
         $insert_user->password_hash = $pass_hash;
         $insert_user->email = $_POST['email'];

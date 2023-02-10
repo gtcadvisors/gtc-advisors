@@ -1635,6 +1635,22 @@ function resumes_count($id){
 }
 
 /**
+ * get cert count
+ *
+ * @param int $id
+ * @return int
+ */
+function cert_count($id){
+    global $config;
+    $num_rows = ORM::for_table($config['db']['pre'].'certificates')
+        ->where('user_id' , $id)
+        ->count();
+    return $num_rows;
+}
+
+
+
+/**
  * get companies count
  *
  * @param int $id

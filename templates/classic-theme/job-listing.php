@@ -1,6 +1,4 @@
-<?php
-overall_header($pagetitle);
-?>
+<?php include_once TEMPLATE_PATH.'/header.php'; ?>
 <form method="get" action="<?php url("LISTING") ?>" name="locationForm" id="ListingForm">
     <div id="titlebar">
         <div class="container">
@@ -333,4 +331,4 @@ overall_header($pagetitle);
         }
     });
 </script>
-<?php overall_footer(); ?>
+<?php include_once TEMPLATE_PATH.'/footer.php'; ?>

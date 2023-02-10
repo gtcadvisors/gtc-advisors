@@ -1,31 +1,6 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Index page">
-    <meta name="keywords" content="index, page">
-    <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/template/favicon.svg">
-    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/expro2.css" rel="stylesheet">
-    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/mobile.css">
-    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/litepicker.css" rel="stylesheet" />
-    <script src="<?php _esc(TEMPLATE_URL); ?>/assets/js/feather.min.js"></script>
-
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/vendors/line-awesome.min.css">
-    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/vendors/slick-master/slick/slick.css" rel="stylesheet" type="text/css">
-    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/vendors/style.css" rel="stylesheet" type="text/css">
-    <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/expro.css" rel="stylesheet" type="text/css">
-    <title>Expert Profile Agency </title>
-  </head> 
-  <body> -->
-<?php   
-  include ('overall_header.php');
-  
-?>
+<?php
+  include('header_expert.php');
+  ?>
 <div class="container-fluid d-none d-lg-flex flex-row justify-content-evenly border-bottom border-2 p-3">
         <div class="text-center">
           <div class="list-tabs">
@@ -557,5 +532,6 @@
 
 
 <?php
-include('footer.php');
+// include('footer.php');
+overall_footer();
 ?>

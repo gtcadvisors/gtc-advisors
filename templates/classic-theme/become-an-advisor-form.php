@@ -133,9 +133,10 @@
 					
 
 				<!--#########################  PERSONAL INFORMATION  #############################-->
-
 			<div id="0" class="form-section active">
-	
+			<span class=<?php echo( $inputError? "error-message": "hidden") ?>><?php  _esc($inputError) ?></span>
+			<span class=<?php echo( $profileImageError? "error-message": "hidden") ?>><?php  _esc($profileImageError) ?></span>
+			<span class=<?php echo( $languageSelectError? "error-message": "hidden") ?>><?php  _esc($languageSelectError) ?></span>
 				<div class="container-fluid ms-md-4 p-4 pt-lg-5 pb-lg-5">
 					<div class="row section-2">
 						<div class="col-lg-6 col-sm-8">
@@ -161,7 +162,7 @@
 							<div class="col-auto"><input type="button" class="btn btn-light btn-md ps-3 pt-2 pb-2 pe-3 rounded-3 grey-btn" id="delete-pic-btn" value="Delete"></div>
 						</div>							
 						<input type="file" id="profile-image-upload" name="profileImage" class="hidden" accept="image/*">
-						<span class="file-error ms-1 mt-2 <?php echo(isset($profileImageError)?"":"hidden") ?>"><?php _esc($profileImageError) ?></span>
+						<span class="file-error ms-1 mt-2"></span>
 
 						<div class="row mt-3">
 							<div class="col-lg-4 col-md-6 col-xs-12">
@@ -174,7 +175,7 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-6 col-xs-12">
 							<label class="text-dark fw-bold text mt-4" for="username">Username</label>
-								<input class="form-input mt-3" id="username" name="userName" type="text" placeholder="Username" value="<?php _esc($userName)?>">
+								<input class="form-input mt-3 disabled" id="username" name="userName" type="text" placeholder="Username" value="<?php _esc($userName)?>" disabled>
 								<label class="mt-2">Your Global Tax Complaince URL: https://gtc.co/faridahux</label>
 							</div>
 						</div>
@@ -182,7 +183,7 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-6 col-xs-12">
 								<label class="text-dark fw-bold text mt-4" for="email">Email <span class="text text-danger">*</span></label>
-								<input class="form-input mt-3 text-required" id="email" name="email" type="email" value="<?php _esc($email)?>">
+								<input class="form-input mt-3 text-required disabled" id="email" name="email" type="email" value="<?php _esc($email)?>" disabled>
 							</div>
 						</div>
 							
@@ -240,9 +241,10 @@
 
 
 			<!--############################  PROFESSIONAL INFORMATION  ###############################-->
-
 			<div id="1" class="form-section hidden">
 
+			<span class=<?php echo( $contractorTypeError? "error-message": "hidden") ?>><?php  _esc($contractorTypeError) ?></span>
+			<span class=<?php echo( $expertiseListError? "error-message": "hidden") ?>><?php  _esc($expertiseListError) ?></span>
 
 				<div class="container-fluid ms-md-4 p-4 pt-lg-5 pb-lg-5">
 					<div class="row section-2">
@@ -355,6 +357,7 @@
 			<!--################################ CERTIFICATIONS #########################-->
 
 			<div id="2" class="form-section hidden">
+			<span class=<?php echo( $certficateFileError? "error-message": "hidden") ?>><?php  _esc($certficateFileError) ?></span>
 
 				<div class="row justify-content-center mt-5">
 					<div class="col-10 col-md-9">
@@ -390,6 +393,7 @@
 						</div>
 					</div>
 				</div>
+		
 
 				<div class="row justify-content-center mt-2">
 					<div class="container-1 col-10 col-md-9 overflow-y-auto">
@@ -409,7 +413,7 @@
 								<img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/inbox.png" alt="">
 								<h2>Your certificates would appear here</h2>
 						</div>
-					</div>
+					</div>	
 				</div>
 				<div class="row justify-content-center mt-5">
 					<div class="col-10 col-md-9">
@@ -432,6 +436,7 @@
 			<!--############################  LICENCES ############################-->
 
 			<div id="3" class="form-section hidden">
+			<span class=<?php echo( $licenseFileError? "error-message": "hidden") ?>><?php  _esc($licenseFileError) ?></span>
 				<div class="row justify-content-center mt-5">
 					<div class="col-10 col-md-9">
 						<div class="row">
@@ -507,7 +512,8 @@
 
 
 			<!--###########################  RESUME  ###########################-->
-			<div id="4" class="form-section hidden">
+			<div id="4" class="form-section hidden"> 
+			<span class=<?php echo( $resumeError? "error-message": "hidden") ?>><?php  _esc($resumeError) ?></span>
 
 				<div class="container-fluid resume-section mt-5 ms-2">
 

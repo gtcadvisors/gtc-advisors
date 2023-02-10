@@ -28,8 +28,7 @@ input[type="text"]:disabled {
 }
 .form-group select {
     background: #fff;
-    borderContact GitHub
-: 1px solid #E0E6F6;
+    border: 1px solid #E0E6F6;
     height: 56px !important;
     box-shadow: none;
     padding-left: 20px;

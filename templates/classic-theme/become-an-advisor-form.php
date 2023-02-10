@@ -1,6 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
+<html lang="<?php _esc($config['lang_code']);?>" dir="<?php _esc($lang_direction);?>">
+<head>
+    <title><?php _esc($page_title); ?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="<?php _esc($config['site_title']);?>">
+    <meta name="keywords" content="<?php _esc($config['meta_keywords']);?>">
+    <meta name="description" content="<?php ($meta_desc == '')?_esc($config['meta_description']):_esc($meta_desc);?>">
+
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//google.com">
+    <link rel="dns-prefetch" href="//apis.google.com">
+    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="//gstatic.com">
+    <link rel="dns-prefetch" href="//oss.maxcdn.com">
+
+    <meta property="fb:app_id" content="<?php _esc($config['facebook_app_id']);?>"/>
+    <meta property="og:site_name" content="<?php _esc($config['site_title']);?>"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:url" content="<?php _esc($page_link);?>"/>
+    <meta property="og:title" content="<?php _esc($page_title); ?>" />
+    <meta property="og:description" content="<?php _esc($meta_desc);?>"/>
+    <meta property="og:type" content="<?php _esc($meta_content);?>"/>
+    <?php if($meta_content == 'article'){ ?>
+        <meta property="article:author" content="#"/>
+        <meta property="article:publisher" content="#"/>
+        <meta property="og:image" content="<?php _esc($meta_image);?>"/>
+        <?php
+    }
+    if($meta_content == 'website'){
+        echo '<meta property="og:image" content="'.$meta_image.'"/>';
+    }
+    ?>
+
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="<?php _esc($page_title);?>">
+    <meta property="twitter:description" content="<?php _esc($meta_desc);?>">
+    <meta property="twitter:domain" content="<?php _esc($config['site_url']);?>">
+    <meta name="twitter:image:src" content="<?php _esc($meta_image);?>"/>
+    <link rel="shortcut icon" href="<?php _esc($config['site_url']);?>storage/logo/<?php _esc($config['site_favicon']);?>">
+
+    <script async>
+        var themecolor = '<?php _esc($config['theme_color']);?>';
+        var mapcolor = '<?php _esc($config['map_color']);?>';
+        var siteurl = '<?php _esc($config['site_url']);?>';
+        var template_name = '<?php _esc($config['tpl_name']);?>';
+    </script>
+
+    <!--Loop for Theme Color codes-->
+    <style>
+        :root{
+        <?php
+        $themecolor = $config['theme_color'];
+        $colors = array();
+        list($r, $g, $b) = sscanf($themecolor, "#%02x%02x%02x");
+        $i = 0.01;
+        while($i <= 1){
+            echo "--theme-color-".str_replace('.','_',$i).": rgba($r,$g,$b,$i);";
+            $i += 0.01;
+        }
+        echo "--theme-color-1: rgba($r,$g,$b,1);";
+        ?>
+        }
+    </style>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1"/>
 		<title>Become an Advisor</title>
@@ -12,7 +77,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 	</head>
 	<body>
-		<form method="post" action="./process.php" enctype="multipart/form-data" id="advisor-form">
+		<form method="post" action="#" enctype="multipart/form-data" id="advisor-form">
 
 			<div class="container-fluid border-bottom border-top p-3">
 				<div class="row align-items-center ms-lg-2">
@@ -59,7 +124,7 @@
 								</div>
 						</div>
 						<div class="col-1 ms-auto text-end me-2 exit-btn mt-auto mt-lg-1">
-							<a href="./become_advisor.php" class="">Exit</a>
+							<a href="<?php url("BECOME-ADVISOR") ?>" class="">Exit</a>
 						</div>
 				</div>
 			</div>
@@ -68,9 +133,10 @@
 					
 
 				<!--#########################  PERSONAL INFORMATION  #############################-->
-
 			<div id="0" class="form-section active">
-	
+			<span class=<?php echo( $inputError? "error-message": "hidden") ?>><?php  _esc($inputError) ?></span>
+			<span class=<?php echo( $profileImageError? "error-message": "hidden") ?>><?php  _esc($profileImageError) ?></span>
+			<span class=<?php echo( $languageSelectError? "error-message": "hidden") ?>><?php  _esc($languageSelectError) ?></span>
 				<div class="container-fluid ms-md-4 p-4 pt-lg-5 pb-lg-5">
 					<div class="row section-2">
 						<div class="col-lg-6 col-sm-8">
@@ -86,18 +152,18 @@
 					<div class="row ms-md-5 mt-4">
 						<span class="text-dark fw-bold text mb-2">Profile Picture <span class="text text-danger">*</span></span>
 						<span class="mb-4">Add a profile picture of yourself so customers will know exactly who you are</span>
-						<div class="img-circle mb-4" id="profile-picture"><i class="bi bi-camera"></i></div>
+						<div class="img-circle mb-4" id="profile-picture"><i class="bi bi-camera"></i>
+					</div>
 						<div class="row" id="upload-pic-cntr">
 							<div class="col-auto"><input class="btn btn-md btn-primary ps-3 pt-2 pb-2 pe-3" id="upload-pic-btn" type="button" value="Upload a picture"></div>
 						</div>
-						<div class="row 	hidden" id="upload-delete-cntr">
+						<div class="row hidden" id="upload-delete-cntr">
 							<div class="col-auto"><input type="button" class="btn btn-md btn-primary ps-3 pt-2 pb-2 pe-3 rounded-3" id="upload-new-pic-btn" value="Upload new picture"></div>
 							<div class="col-auto"><input type="button" class="btn btn-light btn-md ps-3 pt-2 pb-2 pe-3 rounded-3 grey-btn" id="delete-pic-btn" value="Delete"></div>
-						</div>
-							<span class="file-error hidden ms-1 mt-1"></span>
-								
+						</div>							
 						<input type="file" id="profile-image-upload" name="profileImage" class="hidden" accept="image/*">
-							
+						<span class="file-error ms-1 mt-2"></span>
+
 						<div class="row mt-3">
 							<div class="col-lg-4 col-md-6 col-xs-12">
 								<label class="text-dark fw-bold fs-6 text mt-2" for="fullname">Name <span class="text text-danger">*</span></label>
@@ -109,7 +175,7 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-6 col-xs-12">
 							<label class="text-dark fw-bold text mt-4" for="username">Username</label>
-								<input class="form-input mt-3" id="username" name="userName" type="text" placeholder="Username">
+								<input class="form-input mt-3 disabled" id="username" name="userName" type="text" placeholder="Username" value="<?php _esc($userName)?>" disabled>
 								<label class="mt-2">Your Global Tax Complaince URL: https://gtc.co/faridahux</label>
 							</div>
 						</div>
@@ -117,7 +183,7 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-6 col-xs-12">
 								<label class="text-dark fw-bold text mt-4" for="email">Email <span class="text text-danger">*</span></label>
-								<input class="form-input mt-3 text-required" id="email" name="email" type="email" value="<?php _esc($email)?>">
+								<input class="form-input mt-3 text-required disabled" id="email" name="email" type="email" value="<?php _esc($email)?>" disabled>
 							</div>
 						</div>
 							
@@ -175,9 +241,10 @@
 
 
 			<!--############################  PROFESSIONAL INFORMATION  ###############################-->
-
 			<div id="1" class="form-section hidden">
 
+			<span class=<?php echo( $contractorTypeError? "error-message": "hidden") ?>><?php  _esc($contractorTypeError) ?></span>
+			<span class=<?php echo( $expertiseListError? "error-message": "hidden") ?>><?php  _esc($expertiseListError) ?></span>
 
 				<div class="container-fluid ms-md-4 p-4 pt-lg-5 pb-lg-5">
 					<div class="row section-2">
@@ -200,11 +267,11 @@
 								<label class="mb-1">We want to know if you are an Agency or a Freelancer</label>
 								<hr>
 								<div class="form-check m-2">
-									<input class="form-check-input" type="radio" name="contractor[]" id="flexRadioDefault1" value="freelancer">
+									<input class="form-check-input" type="radio" name="contractor" id="flexRadioDefault1" value="freelancer">
 									<label class="form-check-label text-dark fw-semibold ms-2" for="flexRadioDefault1">Freelancer</label>
 								</div>
 								<div class="form-check m-2">
-									<input class="form-check-input" type="radio" name="contractor[]" id="flexRadioDefault2" value="agency">
+									<input class="form-check-input" type="radio" name="contractor" id="flexRadioDefault2" value="agency">
 									<label class="form-check-label text-dark fw-semibold ms-2" for="flexRadioDefault2">Agency</label>
 								</div>
 									<span class="contractor-radio-error ms-2 hidden" style="color: #E02B1D">You must select an option</span>
@@ -290,6 +357,7 @@
 			<!--################################ CERTIFICATIONS #########################-->
 
 			<div id="2" class="form-section hidden">
+			<span class=<?php echo( $certficateFileError? "error-message": "hidden") ?>><?php  _esc($certficateFileError) ?></span>
 
 				<div class="row justify-content-center mt-5">
 					<div class="col-10 col-md-9">
@@ -325,6 +393,7 @@
 						</div>
 					</div>
 				</div>
+		
 
 				<div class="row justify-content-center mt-2">
 					<div class="container-1 col-10 col-md-9 overflow-y-auto">
@@ -344,7 +413,7 @@
 								<img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/inbox.png" alt="">
 								<h2>Your certificates would appear here</h2>
 						</div>
-					</div>
+					</div>	
 				</div>
 				<div class="row justify-content-center mt-5">
 					<div class="col-10 col-md-9">
@@ -367,6 +436,7 @@
 			<!--############################  LICENCES ############################-->
 
 			<div id="3" class="form-section hidden">
+			<span class=<?php echo( $licenseFileError? "error-message": "hidden") ?>><?php  _esc($licenseFileError) ?></span>
 				<div class="row justify-content-center mt-5">
 					<div class="col-10 col-md-9">
 						<div class="row">
@@ -442,7 +512,8 @@
 
 
 			<!--###########################  RESUME  ###########################-->
-			<div id="4" class="form-section hidden">
+			<div id="4" class="form-section hidden"> 
+			<span class=<?php echo( $resumeError? "error-message": "hidden") ?>><?php  _esc($resumeError) ?></span>
 
 				<div class="container-fluid resume-section mt-5 ms-2">
 

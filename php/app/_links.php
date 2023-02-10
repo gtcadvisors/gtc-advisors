@@ -4,6 +4,7 @@ $link['INDEX2']             = $config['site_url'] . 'index2';
 $link['BECOME-ADVISOR']     = $config['site_url'] . 'become-an-advisor';
 $link['BECOME-ADVISOR-FORM']= $config['site_url'] . 'become-an-advisor-form';
 $link['DASHBOARD']          = $config['site_url'] . 'dashboard';
+$link['ADVISOR-PROFILE']    = $config['site_url'] . 'advisor-profile';
 $link['LISTING']            = $config['site_url'] . 'listing';
 $link['FREELANCERS']        = $config['site_url'] . 'freelancers';
 $link['POST-DETAIL']        = $config['site_url'] . 'job';

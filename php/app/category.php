@@ -131,10 +131,7 @@ if (mysqli_num_rows($result) > 0) {
         $items[$info['id']]['favorite'] = check_user_favorite($info['id']);
         $items[$info['id']]['rating'] = averageRating($info['id'],$info['user_type']);
     }
-}else{
-    header("no_saved_advisors")
-}
-
+} 
 $selected = "";
 if(isset($_GET['category']) && !empty($_GET['cat'])){
     $selected = $_GET['cat'];

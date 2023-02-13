@@ -5,9 +5,9 @@ if(checkloggedin()) {
     $items = array();
     $ses_userdata = get_user_data($_SESSION['user']['username']);
 
-    if($ses_userdata['user_type'] != 'employer'){
-        headerRedirect($link['DASHBOARD']);
-    }
+    // if($ses_userdata['user_type'] != 'employer'){
+    //     headerRedirect($link['DASHBOARD']);
+    // }
 
     if(!isset($_GET['page']))
         $_GET['page'] = 1;

@@ -66,7 +66,7 @@ function check_product_favorite($product_id){
  * @return bool
  */
 function check_user_favorite($user_id){
-
+    
     global $config;
 
     if(checkloggedin()) {
@@ -640,13 +640,13 @@ function get_categories_dropdown($lang){
         if(count($result) > 0){
             $dropdown .= '<li data-ajax-id="'.$cat_id.'" data-cat-type="maincat"> 
             <label class="cb-container"> 
-              <input type="checkbox" name="cat" value="'.$cat_id.'"> 
+              <input type="checkbox" name="category" value="'.$cat_id.'"> 
               <span class="text-small">'.$catname.'</span><span class="checkmark"></span>
           </li>'; 
         }else{
             $dropdown .= '<li data-ajax-id="'.$cat_id.'" data-cat-type="maincat"> 
             <label class="cb-container"> 
-              <input type="checkbox" name="cat" value="'.$cat_id.'"> 
+              <input type="checkbox" name="category" value="'.$cat_id.'"> 
               <span class="text-small">'.$catname.'</span><span class="checkmark"></span>
           </li>';
         }

@@ -17,6 +17,7 @@ $link['MYCOMPANIES']        = $config['site_url'] . 'my-companies';
 $link['MYACCOUNT']          = $config['site_url'] . 'myaccount';
 $link['CREATE-COMPANY']     = $config['site_url'] . 'create-company';
 $link['EDIT-COMPANY']       = $config['site_url'] . 'edit-company';
+$link['NO_SAVED_ADVISORS']       = $config['site_url'] . 'no_saved_advisors';
 $link['EXPERIENCES']        = $config['site_url'] . 'my-experiences'; 
 $link['EXPERT-PROFILE']      = $config['site_url'] . 'expert-profile';
 $link['ADD_EXPERIENCE']     = $config['site_url'] . 'add-experience';

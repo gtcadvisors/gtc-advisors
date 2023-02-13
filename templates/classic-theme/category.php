@@ -74,7 +74,7 @@ include('header_2.php');
         </div>
       </div>
     </div>
-    <!-- Mobile End --> 
+    <!-- Mobile End -->    
   <main class="main bg-white mb-200">    
     <!-- MAIN PAGE VIEW/LAYOUT FOR THE PAGE -->
       <div class="container-fluid d-none d-lg-flex flex-row justify-content-evenly" id="cat_header">
@@ -117,51 +117,62 @@ include('header_2.php');
     <div class="container-fluid container-lg mx-lg-auto mx-md-auto mx-0">
       <div class="row flex-row-reverse flex-md-row-reverse m-0">
         <div class="d-flex d-md-none d-lg-none flex-row justify-content-between mb-20">
-          <p class="ml-20">518 Advisors Available</p>
+          <p class="ml-20"><span class="font-weight-600"><?php _esc($usersfound) ?> <?php _e("Advisors Available") ?></span></p>
           <button style="border-radius: 5px; outline: none; margin-right: 10px;" class="bg-primary text-white pl-15 pr-15 border-0 pt-5 pb-5"  id="fil_but">Filter</button> 
         </div> 
         <div class="col-lg-8 col-md-8 col-sm-12 col-12 float-right">
           <div class="content-page"> 
             
   <div class="row display-list m-0">
-                    
+                <?php foreach ($items as $item){ ?>
             <div class="col-xl-12 col-12" style="width: max-content;">
-                <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list">
-                <div class="image-box d-none d-md-block d-lg-block"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
+                <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list"> 
+                <div class="image-box d-none d-md-block d-lg-block"><img src="<?php _esc($config['site_url'])?>storage/profile/<?php _esc($item['image'])?>" alt="<?php _esc($item['name'])?>" id="user"></div>
                 <div class="dropdown d-block d-md-none d-lg-none"> 
                     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
                     <li class="nav-item dropdown">
                     <i class="fa fa-heart text-danger fa-2x love mt-4"></i>
                     </li>
                 </ul>
-                    <div class="image-box"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Ellipse 82.png" alt="logo" id="user"></div>
+                    <div class="image-box"><img src="<?php _esc($config['site_url'])?>storage/profile/<?php _esc($item['image'])?>" alt="<?php _esc($item['name'])?>" id="user"></div>
                 </div>
                 <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
                     <div class="d-flex flex-row justify-content-lg-between justify-content-md-between justify-content-center">
-                        <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start" id="name">GTC Advisors & Co <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Vector (3).png" alt="">
-                        </p>
+                        <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start" id="name"><?php _esc($item['name'])?> 
+                        <?php if($usertype == 'employer') { ?>
+                          <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/employer.png" alt="employer">
+                                <?php } else {?> 
+                                  <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/User.png" alt="user">
+                                  <?php } ?>
+                      </p>
                         <div class="dropdown d-none d-md-block d-lg-block"> 
                         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                            <li class="nav-item dropdown">
-                            <i class="fa fa-heart text-danger fa-2x love mt-4"></i>
+                            <li class="nav-item dropdown"> 
+                            <i class="fa fa-heart fa-2x love mt-4  <?php if($item['favorite'] == 'employer' || $item['favorite'] == 'user') { echo 'text-danger'; }?>" data-favuser-id="<?php _esc($item['id'])?>" data-userid="<?php _esc($user_id)?>" data-action="setFavUser"></i>
                             </li>
                         </ul>
                         
                         </div>
-                    </div>  
+                    </div>   
                 
                     <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-                    <div class="d-flex flex-row   justify-content-evenly"> 
-                    <a class="ml-0" href="#">Corporate Income Tax</a>
-                    <a class="ml-2" href="#">Tax Dispute</a>
-                    </div>
-                    <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-                    <a class="ml-0" href="#">Personal Income Tax</a>
-                    <a class="ml-2" href="#" id="cat_header2_a">+2</a>
-                    </div>
-                </div>
-                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
-                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Abuja, Nigeria</span></p>
+                    <div class="d-flex flex-row justify-content-evenly justify-content-md-start">  
+                        <?php
+                        if($item['category'] != ""){
+                            echo '<a class="ml-0" href="#">';
+                            _esc($item['category']); 
+                            echo "</a>";
+                        }?>
+                      </div> 
+                   </div>
+                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span> replies in
+                     <?php
+                        if($item['rating'] != ""){
+                            echo _esc($item['rating']).' hour(s)'; 
+                        }else{
+                          echo ' 24 hour';
+                        }?> </span></p>
+                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span ><?php _esc($item['city'])?> <?php _esc($item['country'])?></span></p>
                     <div class="d-flex flex-row justify-content-lg-start justify-content-center justify-content-md-start ml-20 mt-20 mb-20">
                     <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/verified.png" alt="acca-logo" id="b">
                     <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/acca-logo 1.png" alt="acca-logo" class="ml-40" id="b">
@@ -169,6 +180,7 @@ include('header_2.php');
                 </div>
                 </div>
             </div>  
+            <?php } ?>
 
             </div>
           </div> 

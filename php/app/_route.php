@@ -27,6 +27,7 @@ $router->map('GET|POST','/favourite-users/[*:page]?/?', $app_dir.'favourite-user
 $router->map('GET|POST','/applied-jobs/[*:page]?/?', $app_dir.'applied-jobs.php');
 $router->map('GET|POST','/applied-users/[i:id]?', $app_dir.'applied-users.php');
 $router->map('GET|POST','/hidden/[*:page]?/?', $app_dir.'ad-hidden.php');
+$router->map('GET|POST','/no_saved_advisors/?', $app_dir.'no_saved_advisors.php');
 $router->map('GET|POST','/resubmission/[*:page]?/?', $app_dir.'ad-resubmission.php');
 $router->map('GET|POST','/job-alert/?', $app_dir.'job-alert.php');
 $router->map('GET|POST','/companies/?', $app_dir.'companies.php');

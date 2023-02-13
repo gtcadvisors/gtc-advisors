@@ -1,4 +1,7 @@
 <?php
+
+use Stripe\Terminal\Location;
+
 if(!$config['job_seeker_enable']){
     error(__("Page Not Found"), __LINE__, __FILE__, 1);
 }
@@ -24,12 +27,10 @@ if(isset($_GET['subcat']) && !empty($_GET['subcat'])){
     }else{
         $subcat = get_subcategory_id_by_slug($_GET['subcat']);
     }
-}elseif(isset($_GET['cat']) && !empty($_GET['cat'])){
-    if(is_numeric($_GET['cat'])){
-        if(check_category_exists($_GET['cat'])){
-            // $category = array();
-            $category = $_GET['cat'];
-            echo '<script>console.log('.$category.')</script>';
+}elseif(isset($_GET['category']) && !empty($_GET['category'])){
+    if(is_numeric($_GET['category'])){
+        if(check_category_exists($_GET['category'])){ 
+            $category = $_GET['category']; 
         }
     }else{
         $category = get_category_id_by_slug($_GET['category']);
@@ -119,27 +120,30 @@ if (mysqli_num_rows($result) > 0) {
         $items[$info['id']]['salary_min'] = price_format($info['salary_min'], $country_code);
         $items[$info['id']]['salary_max'] = price_format($info['salary_max'], $country_code);
 
+        $items[$info['id']]['country'] = $info['country'];
         $items[$info['id']]['city'] = $info['city'];
         if(!empty($info['city_code'])) {
             $city_detail = get_cityDetail_by_id($info['city_code']);
             $items[$info['id']]['city'] = $city_detail['asciiname'];
-            $items[$info['id']]['city'] .= ', '.get_stateName_by_id($city_detail['subadmin1_code']);
+            $items[$info['id']]['city'] .= ' '.get_stateName_by_id($city_detail['subadmin1_code']).',';
         }
 
         $items[$info['id']]['favorite'] = check_user_favorite($info['id']);
         $items[$info['id']]['rating'] = averageRating($info['id'],$info['user_type']);
     }
+}else{
+    header("no_saved_advisors")
 }
 
 $selected = "";
-if(isset($_GET['cat']) && !empty($_GET['cat'])){
+if(isset($_GET['category']) && !empty($_GET['cat'])){
     $selected = $_GET['cat'];
 }
 // Check Settings For quotes
 $GetCategory = get_maincategory($selected);
 $cat_dropdown = get_categories_dropdown($lang);
 
-if(isset($_GET['cat']) && !empty($category)){
+if(isset($_GET['cat']) || !empty($category)){
     $maincatname = get_maincat_by_id($category);
     $maincatname = $maincatname['cat_name'];
     $mainCategory = $maincatname;

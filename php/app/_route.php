@@ -5,6 +5,7 @@ $router->map('GET|POST','/home/[a:lang]?/?', $app_dir.'home.php');
 $router->map('GET|POST','/home/[a:lang]?/[a:country]?/?', $app_dir.'home.php');
 $router->map('GET|POST','/index2/?', $app_dir.'index2.php');
 $router->map('GET|POST','/dashboard/?', $app_dir.'dashboard.php');
+$router->map('GET|POST','/advisor-profile/[*:username]?/?', $app_dir.'advisor-profile.php');
 $router->map('GET|POST','/become-an-advisor/?', $app_dir.'become-an-advisor.php');
 $router->map('GET|POST','/become-an-advisor-form/?', $app_dir.'become-an-advisor-form.php');
 $router->map('GET|POST','/profile-edit/?', $app_dir.'profile-edit.php');
@@ -37,6 +38,8 @@ $router->map('GET|POST','/edit-job/[i:id]?/[a:lang]?/[a:country]?/[a:action]?/?'
 $router->map('GET|POST','/listing/?', $app_dir.'listing.php');
 $router->map('GET|POST','/freelancers/?', $app_dir.'freelancers.php');
 $router->map('GET|POST','/category/?', $app_dir.'category.php');
+$router->map('GET|POST','/expert-profile/?', $app_dir.'expert-profile.php');
+$router->map('GET|POST','/saved_experts/?', $app_dir.'saved_experts.php');
 $router->map('GET|POST','/category/[*:cat]?/[*:subcat]?/?', $app_dir.'listing.php');
 $router->map('GET|POST','/sub-category/[*:subcat]?/[*:slug]?/?', $app_dir.'listing.php');
 $router->map('GET|POST','/city/[i:city]?/[*:slug]?/?', $app_dir.'listing.php');
@@ -52,4 +55,4 @@ $router->map('GET|POST','/projects/[*:cat]?/[*:subcat]?/?', $app_dir.'project_se
 $router->map('GET|POST','/deposit/?', $app_dir.'project_deposit.php');
 $router->map('GET|POST','/transfer/?', $app_dir.'project_transfer.php');
 $router->map('GET|POST','/withdraw/?', $app_dir.'project_withdraw.php');
-$router->map('GET|POST','/notifications/[*:page]?/?', $app_dir.'project_notifications.php');
+$router->map('GET|POST','/notifications/[*:page]?/?', $app_dir.'project_notifications.php'); 

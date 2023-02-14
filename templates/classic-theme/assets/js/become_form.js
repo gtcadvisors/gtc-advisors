@@ -86,7 +86,7 @@ let certificateCount = 0
 $("#add-certificate-btn").click(function (){
     const certificateName = $("#certificate-name")
     const certificateFrom = $("#certificate-from")
-    const certificateFile = $(".certificate")
+    const certificateFile = $(".certificate") 
     if(checkInput(certificateName) && checkInput(certificateFrom) && checkFileInput(certificateFile, "file")){
         $("#close-cert-modal").click()
         certificateCount ++
@@ -151,7 +151,7 @@ function addCertificate(count, name, from, file){
     cFrom.innerHTML = from.val()
     const deleteBtnContainer = document.createElement("td")
     const deleteBtn = document.createElement("input")
-    setAttributes(deleteBtn, {type:"button", value:"delete"})
+    setAttributes(deleteBtn, {type:"button", value:"Delete"})
     deleteBtn.classList.add("btn","btn-sm","delete-btn-2", "delete-certificate-btn")
     deleteBtn.addEventListener("click", function (e){
         e.target.parentElement.parentElement.remove()
@@ -201,7 +201,7 @@ function addLicense(count, name, from, num, file){
     lNo.innerHTML = num.val()
     const deleteBtnContainer = document.createElement("td")
     const deleteBtn = document.createElement("input")
-    setAttributes(deleteBtn, {type:"button", value:"delete"})
+    setAttributes(deleteBtn, {type:"button", value:"Delete"})
     deleteBtn.classList.add("btn","btn-sm","delete-btn-2", "delete-certificate-btn")
     deleteBtn.addEventListener("click", function (e){
         e.target.parentElement.parentElement.remove()
@@ -458,7 +458,7 @@ function checkFileInput(input, type){
     }
 
     else if(!fileExtensions.includes(input[0].files[0]["name"].split(".")[1])){
-        fileError.text("Invalid File type").removeClass("hidden")
+        fileError.text("Invalid File type, only "+fileExtensions.join(", ")+" file types are allowed").removeClass("hidden")
         return false
     }
 

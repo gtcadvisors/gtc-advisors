@@ -30,8 +30,7 @@ input[type="text"]:disabled {
 }
 .form-group select {
     background: #fff;
-    borderContact GitHub
-: 1px solid #E0E6F6;
+    border: 1px solid #E0E6F6;
     height: 56px !important;
     box-shadow: none;
     padding-left: 20px;
@@ -220,17 +219,10 @@ input[type="text"]:disabled {
 
                           <div class="form-group" id="coun">
                             <label class="form-edit font-sm color-text-mutted mb-10">Country</label>
-                            <!-- <?php if($config['country_type'] == 'multi'){ ?> -->
                             
                             <select id="country" name="country" title="<?php _esc($user_country);?>" class="ml-2- mb-15 form-field-bg form-control select">
                             <option value="">Select Country</option>
-                            <!-- <?php
-                              $country = get_country_list(get_option("country"));
-                              foreach ($country as $value){
-                              echo '<option value="'.$value['code'].'" '.$value['selected'].'>'.$value['asciiname'].'</option>';
-                              } ?> -->
-                              </select>
-                              <!-- <?php } ?> -->
+                            
                             <button class="btn btn-detect-country">Detect</button>
                           </div>
                           
@@ -257,15 +249,6 @@ input[type="text"]:disabled {
                               <option value="0" selected="selected"><?php _e("Select") ?> <?php _e("City") ?></option><option value=""></option>
                                      <i class="city-search fi-rr-search"></i>
                               </select>
-
-
-                              <!-- <select id="city" name="city" data-size="7" title="<?php _e("Select") ?> <?php _e("City") ?>" class="ml-2- mb-15 form-field-bg form-control select">
-                              <option value="0" selected="selected"><?php _e("Select") ?> <?php _e("City") ?></option>
-                              <?php if($city != '')
-                                    echo '<option value="'._esc($city,false).'" selected="selected">'._esc($cityname,false).'</option>';
-                                     ?>
-                                     <i class="city-search fi-rr-search"></i>
-                              </select> -->
                               </div>
       
                           <div class="form-group">

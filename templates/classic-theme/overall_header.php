@@ -67,8 +67,8 @@
         }
     </style>
     <!--Loop for Theme Color codes-->
-    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/globaltax.css" rel="stylesheet">
-    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/mobile.css">
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/globaltax.css" rel="stylesheet"> 
+    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/mobile.css"> 
     <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/litepicker.css" rel="stylesheet" />
     <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/feather.min.js"></script>
 
@@ -108,7 +108,7 @@
     <?php _esc($config['external_code']);?>
     <!-- ===/External Code=== -->
   </head>
-  <body class="<?php _esc($lang_direction);?>" id="page" data-ipapi="<?php _esc($config['live_location_api']);?>" data-showlocationicon="<?php _esc($config['location_track_icon']);?>">
+  <body class="<?php _esc($lang_direction);?>" id="page" data-ipapi="<?php _esc($config['live_location_api']);?>" data-showlocationicon="<?php _esc($config['location_track_icon']);?>" style="overflow-x: hidden !important">
 
    <header class="header">
       <div class="container">
@@ -237,7 +237,7 @@ if ($is_login) {
             <li class="nav-item dropdown no-caret dropdown-user mr--1">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="icon-container">
-                  <img class="rounded-circle" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>" style="max-width:45px;" /><div class="status-circle"></div></div></a>
+                  <img class="rounded-circle" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>" style="width: 45px; height: 45px" /><div class="status-circle"></div></div></a>
                 <div class="dropdown-menu dropdown-menu-end border-0" aria-labelledby="navbarDropdownUserImage">
                   <?php 
                   if($usertype == 'freelancer') {

@@ -56,61 +56,7 @@
   <body>
     
   <?php include_once TEMPLATE_PATH.'/header_2.php'; ?>
-    <!-- END OF THE HEADER -->
-          <!-- Mobile Version -->
-          <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
-            <div class="mobile-header-wrapper-inner">
-              <div class="mobile-header-content-area adv-font">
-                <div class="perfect-scroll">
-                  <a href="signup.html"><span class="signup-btn">Sign Up</span></a>
-                  <div class="mobile-menu-wrap pt-40">
-                    <a href=""><h6 class="adv-font mb-10 mt-35">Log In</h6></a>
-                    <!-- mobile menu start-->
-                    <nav>
-                      <ul class="mobile-menu adv-font" style="list-style:none;">
-                        <li class="adv-font has-children">
-                          <a href="#">Expertise</a>
-                          <ul class="adv-font sub-menu">
-                            <li><a href="#">Tax Audit</a></li>
-                            <li><a href="#">Tax Compliance</a></li>
-                            <li><a href="#">Corporate Income Tax</a></li>
-                            <li><a href="#">Personal Income Tax</a></li>
-                            <li><a href="#">Transfer Pricing</a></li>
-                            <li><a href="#">Tax Dispute</a></li>
-                            <li><a href="#">Value Added Tax</a></li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </nav>
-                    
-                  </div>
-                  <div class="mobile-account">
-                    <ul class="mobile-menu font-heading">
-                      <li><a href="#">Become an Advisor</a></li>
-                      <li><a href="#">General</a></li>
-                      <li><a href="#">Home</a></li>
-      
-                      <li>
-                        <div class="lang_selctor-m">
-                          <i class="fas fa-globe"></i>
-                          <select>
-                          <option value="1">English</option>
-                          <option value="2">العربيّة</option>
-                          <option value="3">Arabic</option>
-                          <option value="3">Deutsch</option>
-                          <option value="3">简体中文</option>
-                          </select>
-                          </div>
-                      </li>
-                    </ul>
-                  </div>
-      
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Mobile End --> 
-    <div class="bdrd-top"></div>
+     <div class="bdrd-top"></div>
     <!-- MAIN PAGE VIEW OR LAYOUT -->
     <main class="main bg-white">
       <section class="section-box">

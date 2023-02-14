@@ -8,19 +8,7 @@
     ================================================== -->
     <div class="dashboard-content-container" data-simplebar>
         <div class="dashboard-content-inner" >
-
-            <!-- Dashboard Headline -->
-            <div class="dashboard-headline">
-                <h3><?php _e("Dashboard") ?></h3>
-                <!-- Breadcrumbs -->
-                <nav id="breadcrumbs" class="dark">
-                    <ul>
-                        <li><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a></li>
-                        <li><?php _e("Dashboard") ?></li>
-                    </ul>
-                </nav>
-            </div>
-
+            
             <!-- Fun Facts Container -->
             <div class="fun-facts-container">
                 <?php if($usertype == "user") { ?>

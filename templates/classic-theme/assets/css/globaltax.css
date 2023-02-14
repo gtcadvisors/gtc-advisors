@@ -3834,7 +3834,7 @@ ul li:last-child .card-list-4 {
 }
 
 .loged-form-find .loged-form-input {
-    border: 2px solid #2C76DC;
+    border: 2px solid #2C76DC !important;
       background: transparent;
       border-radius: 24px;
       padding: 10px 20px 10px 34px;
@@ -4063,7 +4063,7 @@ font-size:21px
 }
 
 .input-keysearch {
-color: #fff !important;
+color: #000 !important;
 }
 .banner-hero .block-banner .list-tags-banner {
   position: relative;

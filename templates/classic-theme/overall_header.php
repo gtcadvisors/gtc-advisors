@@ -125,16 +125,16 @@
           </div>
           <div class="header-nav">
             <div class="loged-form-find d-none d-lg-block">
-            <form autocomplete="off" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
-                 <input class="loged-form-input input-keysearch color-white mr-1" type="text" name="" placeholder="<?php _e("What service are you looking for today?") ?>">
+            <form autocomplete="on" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
+                 <input class="loged-form-input input-keysearch mr-1" type="text" name="" placeholder="<?php _e("What service are you looking for today?") ?>">
                   <button class="btn btn-default font-sm loged-search-button"><li class="fa-22x fas fa-search fa-lg"></i></button>
                 </form>
               </div>
             <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
           </div>
           <?php
-            if($is_login){
-             ?>
+if ($is_login) {
+    ?>
 
           <div class="header-right">
             <nav class="topnav navbar navbar-expand justify-content-between justify-content-sm-start navbar-light">
@@ -153,12 +153,12 @@
                     <h6 class="dropdown-header dropdown-notifications-header">
                         <i class="me-2 fa-regular fa fa-envelope fa-1xx"></i>
                         <?php _e("Inbox") ?> (<?php
-                                        if($unread_message != 0){
-                                            echo '<span>'.$unread_message.'</span>';
-                                        } ?>)
+                               if ($unread_message != 0) {
+                                   echo '<span>'.$unread_message.'</span>';
+                               } ?>)
                     </h6>
                     <div class="dropdown-divider"></div>
-                    <?php foreach($chat as $msg){ ?>
+                    <?php foreach ($chat as $msg) { ?>
                     <a class="dropdown-item dropdown-notifications-item" href="<?php url("MESSAGE") ?>">
                         <img class="dropdown-notifications-item-img status-<?php _esc($msg['status']) ?>" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($msg['image']) ?>" />
                         <div class="dropdown-notifications-item-content">
@@ -179,20 +179,20 @@
                     <h6 class="dropdown-header dropdown-notifications-header">
                         <i class="fa-regular fa fa-bell fa-1xx me-2"></i>
                         Notifications (<?php
-                                        if($unread_note_count != 0){
-                                            echo '<span>'.$unread_note_count.'</span>';
-                                        } ?>)
+                               if ($unread_note_count != 0) {
+                                   echo '<span>'.$unread_note_count.'</span>';
+                               } ?>)
                     </h6>
                     <div class="dropdown-divider"></div>
                     <!-- Example Alert 1-->
                     <?php
-                    foreach($notification as $note){
-                    $id = $note['product_id'];
-                    $sender = $note['sender_name'];
-                    $title = $note['product_title'];
-                    $msg = $note['message'];
-                    ?>
-                    <?php if($note['type'] == "milestone_created"){ ?>
+                    foreach ($notification as $note) {
+                        $id = $note['product_id'];
+                        $sender = $note['sender_name'];
+                        $title = $note['product_title'];
+                        $msg = $note['message'];
+                        ?>
+                    <?php if ($note['type'] == "milestone_created") { ?>
                     <a class="dropdown-item dropdown-notifications-item" href="<?php url("MILESTONE") ?>/<?php _esc($id) ?>">
                         <div class="dropdown-notifications-item-icon bg-warning">
                           <i class="fa-regular fa fa-bell fa-2xx"></i></div>
@@ -202,7 +202,7 @@
                            <div class="dropdown-notifications-item-date">4 Months</div> 
                         </div>
                     </a>
-                    <?php }elseif($note['type'] == "milestone_request_release"){ ?>
+                    <?php } elseif ($note['type'] == "milestone_request_release") { ?>
 
                     <a class="dropdown-item dropdown-notifications-item" href="<?php url("MILESTONE") ?>/<?php _esc($id) ?>">
                         <div class="dropdown-notifications-item-icon bg-warning">
@@ -213,7 +213,7 @@
                            <div class="dropdown-notifications-item-date">4 Months</div> 
                         </div>
                     </a>
-                    <?php }elseif($note['type'] == "milestone_released"){ ?>
+                    <?php } elseif ($note['type'] == "milestone_released") { ?>
                     <a class="dropdown-item dropdown-notifications-item" href="<?php url("MILESTONE") ?>/<?php _esc($id) ?>">
                         <div class="dropdown-notifications-item-icon bg-warning">
                           <i class="fa-regular fa fa-bell fa-2xx"></i></div>
@@ -223,7 +223,7 @@
                            <div class="dropdown-notifications-item-date">4 Months</div> 
                         </div>
                     </a>
-                    <?php }else{ ?>
+                    <?php } else { ?>
 
                 </a>
                 <?php } ?>
@@ -234,19 +234,54 @@
             </li>
            
             <!-- User Dropdown-->
-            <li class="nav-item dropdown mr--1 no-caret dropdown-user">
+            <li class="nav-item dropdown no-caret dropdown-user mr--1">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="icon-container">
                   <img class="rounded-circle" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>" style="max-width:45px;" /><div class="status-circle"></div></div></a>
                 <div class="dropdown-menu dropdown-menu-end border-0" aria-labelledby="navbarDropdownUserImage">
+                  <?php 
+                  if($usertype == 'freelancer') {
+                    ?>
                     <a class="dropdown-item" href="<?php url("PROFILE") ?>/<?php _esc($username)?>">
                       <div class="dropdown-item-icon"><i class=""></i></div>
                       Profile
                   </a>
-                  <a class="dropdown-item" href="<?php url("BECOME-AN-ADVISOR") ?>">
+                  <?php } ?>
+                  <?php 
+                  if($usertype == 'angency') {
+                    ?>
+                    <a class="dropdown-item" href="<?php url("PROFILE") ?>/<?php _esc($username)?>">
+                      <div class="dropdown-item-icon"><i class=""></i></div>
+                      Profile
+                  </a>
+                  <?php } ?>
+
+                  <?php
+                  if ($usertype == 'user') {
+                  ?>
+                  <a class="dropdown-item" href="<?php url("BECOME-ADVISOR") ?>">
                     <div class="dropdown-item-icon"><i class=""></i></div>
                     Become an Advisor
                 </a>
+                <?php } ?>
+                <?php
+                if($usertype == 'freelancer'){
+                                    ?>
+                <a class="dropdown-item" href="<?php url("DASHBOARD") ?>">
+                    <div class="dropdown-item-icon"><i class=""></i></div>
+                    <?php _e("My Dashboard") ?>
+                </a>
+                <?php } ?>
+                
+                <?php
+                if($usertype == 'agency'){
+                                    ?>
+                <a class="dropdown-item" href="<?php url("DASHBOARD") ?>">
+                    <div class="dropdown-item-icon"><i class=""></i></div>
+                    <?php _e("My Dashboard") ?>
+                </a>
+                <?php } ?>
+
                 <a class="dropdown-item" href="<?php url("CATEGORY") ?>">
                   <div class="dropdown-item-icon"><i class=""></i></div>
                   Hire an Advisor
@@ -276,9 +311,9 @@
         </div>
       </div>
       <!-- Mobile Search -->
-      <div class="mobile-form-find mb-30 d-xxl-none d-lg-block wow animate__animated animate__fadeIn" data-wow-delay=".2s">
-      <form autocomplete="off" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
-         <input class="mobile-form-input input-keysearch color-white mr-1" type="text" name="" placeholder="Find services">
+      <div class="mobile-form-find mb-30 d-xxl-none d-lg-block">
+      <form autocomplete="on" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
+         <input class="mobile-form-input input-keysearch mr-1" type="text" name="" placeholder="Find services">
           <button class="btn btn-default font-sm mobile-search-button"><li class="fa-22x fas fa-search fa-lg"></i></button>
         </form>
       </div>
@@ -291,7 +326,7 @@
               <div class="icon-container">
                 <img class="rounded-circle mobi-profile-img" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>" style="max-width:68px;" /><div class="status-circle-1"></div></div></a>
                 <div class="name-title pb-20"><?php _esc($fullname);?><span style="color:black;font-size:16px;font-style:italic;"><br><?php
-                 $usertype = $usertype == 'user' ? 'Advisor': 'Employer';
+                 $usertype = $usertype == 'user' ? 'Freelancer': 'Agency';
                 _esc($usertype);
                 ?></span></div>
 
@@ -299,9 +334,27 @@
                 <div class="perfect-scroll mt--10">
                   <div class="mobile-account">
                     <ul class="mobile-menu font-heading">
+                    <?php
+                if($usertype == 'Freelancer'){ ?>
+                <li><a href="<?php url("DASHBOARD") ?>"> <?php _e("My Dashboard") ?></li>
+                <?php } ?>
+                
+                <?php
+                if($usertype == 'Agency'){ ?>
+                <li><a href="<?php url("DASHBOARD") ?>"><?php _e("My Dashboard") ?></li>
+                <?php } ?>
+
                       <li><a href="<?php url("INDEX") ?>">Home</a></li>
                       <li><a href="<?php url("MESSAGE") ?>">Inbox</a></li>
-                      <li><a href="saved_experts.php">Saved Experts</a></li>
+                      <!-- Hidden for an experts -->
+                      <?php if ($usertype == 'freelancer') { ?>
+                      <li><a href="SAVED_ADVISORS.php">Saved Advisors</a></li>
+                      <?php } ?>
+                      <?php if ($usertype == 'agency') { ?>
+                      <li><a href="SAVED_ADVISORS.php">Saved Advisors</a></li>
+                      <?php } ?>
+                      <!-- end -->
+
                       <li><a href="<?php url("NOTIFICATIONS") ?>">Notifications</a></li>
                     </ul>
                   </div>
@@ -359,13 +412,27 @@ $count = 1;
                   </div>
                   <div class="mobile-account border-bottom pb-20 pt-20">
                   <ul>
+                    <!-- Hidden for an experts -->
+                    <?php if ($usertype == 'freelancer') { ?>
                     <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>">My Profile</a></li>
+                    <?php } ?>
+                    <?php if ($usertype == 'agency') { ?>
+                    <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>">My Profile</a></li>
+                    <?php } ?>
                   </ul>
                   </div>
 
                   <div class="mobile-account border-bottom pb-20">
                     <ul>
-                      <li class="pb-20"><a href="<?php url("BECOME-AN-ADVISOR") ?>">Become an Advisor</a></li>
+                      <!-- Hidden for an experts -->
+                    <?php if ($usertype == 'freelancer') { ?>
+                      <li class="pb-20"><a href="<?php url("BECOME-ADVISOR") ?>">Become an Advisor</a></li>
+                      <?php }?>
+                      <?php if ($usertype == 'agency') { ?>
+                          <li class="pb-20"><a href="<?php url("BECOME-ADVISOR")?>">Become an Advisor</a></li>
+                          <?php } ?>
+                          <!-- end -->
+
                       <li class="pb-20"><a href="<?php url("CATEGORY") ?>">Hire an Advisor</a></li>
                       <li class="pb-20"><a href="#">General</a></li>
                     </ul>

@@ -183,7 +183,7 @@ function overall_header($page_title='', $meta_desc = '', $meta_image = '', $meta
         $count++;
     }
 
-    $page_title = ($page_title != '')? $page_title.' '.$config['site_title'] : $config['site_title'];
+    $page_title = ($page_title != '')? $page_title : $config['site_title'];
     $page_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $tpl_url = $config['site_url'].'templates/'.$config['tpl_name'];
     $lang_direction = get_current_lang_direction();

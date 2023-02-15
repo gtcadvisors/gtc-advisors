@@ -183,7 +183,7 @@ function overall_header($page_title='', $meta_desc = '', $meta_image = '', $meta
         $count++;
     }
 
-    $page_title = ($page_title != '')? $page_title.' '.$config['site_title'] : $config['site_title'];
+    $page_title = ($page_title != '')? $page_title : $config['site_title'];
     $page_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $tpl_url = $config['site_url'].'templates/'.$config['tpl_name'];
     $lang_direction = get_current_lang_direction();
@@ -201,6 +201,125 @@ function overall_header($page_title='', $meta_desc = '', $meta_image = '', $meta
 
     //Print Template 'overall_header'
     HtmlTemplate::display('overall_header', array(
+        'unread_note_count' => $unread_note_count,
+        'notification' => $notification,
+        'unread_message' => $unread_message,
+        'chat' => $chat,
+        'country_code' => $country_code,
+        'countryName' => $countryName,
+        'user_country' => $user_country,
+        'countrylist' => $countrylist,
+        'popularcity' => $popularcity,
+        'states' => $states,
+        'page_title' => $page_title,
+        'page_link' => $page_link,
+        'tpl_url' => $tpl_url,
+        'lang_direction' => $lang_direction,
+        'meta_desc' => $meta_desc,
+        'meta_content' => $meta_content,
+        'meta_image' => $meta_image,
+        'fullname' => $fullname,
+        'balance' => $balance
+    ));
+
+}
+
+
+function overall_header2($page_title='', $meta_desc = '', $meta_image = '', $meta_article = false){
+    global $config;
+    checkinstall();
+    if(isset($_SESSION['user']['id'])) {
+        $unread_note_count = unread_note_count();
+        $unread_message = 0;
+        $notification = get_firebase_notification($_SESSION['user']['id'],5);
+        $chat = array();
+        $userdata = get_user_data(null,$_SESSION['user']['id']);
+        $fullname = $userdata['name'];
+        $balance = $userdata['balance'];
+    }
+    else {
+        $unread_note_count = 0;
+        $unread_message = 0;
+        $notification = array();
+        $chat = array();
+        $fullname = '';
+        $balance = '';
+    }
+    $country_code = check_user_country();
+    $config['lang'] = check_user_lang();
+    $countryName = get_countryName_by_code($country_code);
+    $user_country = strtolower($country_code);
+
+    $countries = new Country();
+    $countrylist = $countries->transAll(get_country_list());
+
+    $popularcity = array();
+    $count = 1;
+
+    if(!isset($config['location_track_icon'])){
+        update_option("location_track_icon",'1');
+        update_option("auto_detect_location",'no');
+        update_option("live_location_api",'ip_api');
+    }
+
+    $result = ORM::for_table($config['db']['pre'].'cities')
+        ->select_many('id','asciiname')
+        ->where(array(
+            'country_code' => $country_code,
+            'active' => '1'
+        ))
+        ->order_by_desc('population')
+        ->limit(18)
+        ->find_many();
+    foreach ($result as $info) {
+        $id = $info['id'];
+        $name = $info['asciiname'];
+        $popularcity[$count]['tpl'] =  '<li><a class="selectme" data-id="'.$id.'" data-name="'.$name.'" data-type="city"><span>'.$name.'</span></a></li>';
+        $count++;
+    }
+
+    $states = array();
+    $count = 1;
+
+    $result = ORM::for_table($config['db']['pre'].'subadmin1')
+        ->select_many('id','code','asciiname')
+        ->where(array(
+            'country_code' => $country_code,
+            'active' => '1'
+        ))
+        ->order_by_asc('asciiname')
+        ->find_many();
+
+    foreach ($result as $info) {
+        $states[$count]['tpl'] = "";
+        $id = $info['id'];
+        $code = $info['code'];
+        $name = $info['asciiname'];
+        if($count == 1){
+            $states[$count]['tpl'] =  '<li class="selected"><a class="selectme" data-id="'.$country_code.'" data-name="'.__('All').' '.$countryName.'" data-type="country"><strong>'.__('All').' '.$countryName.'</strong></a></li>';
+        }
+        $states[$count]['tpl'] .= '<li class=""><a id="region'.$code.'" class="statedata" data-id="'.$code.'" data-name="'.$name.'"><span>'.$name.' <i class="fa fa-angle-right"></i></span></a></li>';
+        $count++;
+    }
+
+    $page_title = ($page_title != '')? $page_title.' '.$config['site_title'] : $config['site_title'];
+    $page_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $tpl_url = $config['site_url'].'templates/'.$config['tpl_name'];
+    $lang_direction = get_current_lang_direction();
+    $meta_desc = ($meta_desc == '')? $config['meta_description']: $meta_desc;
+
+    if($meta_article){
+        $meta_content = 'article';
+        if(empty($meta_image)){
+            $meta_image = $config['site_url'].'storage/logo/'.$config['site_logo'];
+        }
+    }else{
+        $meta_content = 'website';
+        $meta_image = $config['site_url'].'storage/logo/'.$config['site_logo'];
+    }
+
+    //Print Template 'overall_header'
+    HtmlTemplate::display('header_expert', array(
         'unread_note_count' => $unread_note_count,
         'notification' => $notification,
         'unread_message' => $unread_message,

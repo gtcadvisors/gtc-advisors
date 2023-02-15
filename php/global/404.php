@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Error 404 Page Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/404.css" rel="stylesheet">
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 </head>

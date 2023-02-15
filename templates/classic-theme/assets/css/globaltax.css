@@ -320,7 +320,7 @@ section {
 }
 
 body {
-  line-height: 0;
+  line-height: 2;
   font-family: 'Proxima Soft' !important;
 }
 
@@ -11073,7 +11073,7 @@ top: 54px;
 font-family: 'Proxima Soft';
 font-style: normal;
 font-weight: 400;
-font-size: 25px;
+font-size: 12px;
 line-height: 24px;
 color: #2C76DC;
 }

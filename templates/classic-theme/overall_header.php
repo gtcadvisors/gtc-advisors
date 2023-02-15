@@ -249,17 +249,17 @@ if ($is_login) {
                 <div class="icon-container">
                   <img class="rounded-circle" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>" style="width: 45px; height: 45px" /><div class="status-circle"></div></div></a>
                 <div class="dropdown-menu dropdown-menu-end border-0" aria-labelledby="navbarDropdownUserImage">
-                  <?php 
-                  if($usertype == 'freelancer') {
-                    ?>
+                  <?php
+                  if ($usertype == 'freelancer') {
+                      ?>
                     <a class="dropdown-item" href="<?php url("PROFILE") ?>/<?php _esc($username)?>">
                       <div class="dropdown-item-icon"><i class=""></i></div>
                       Profile
                   </a>
                   <?php } ?>
-                  <?php 
-                  if($usertype == 'angency') {
-                    ?>
+                  <?php
+                  if ($usertype == 'angency') {
+                      ?>
                     <a class="dropdown-item" href="<?php url("PROFILE") ?>/<?php _esc($username)?>">
                       <div class="dropdown-item-icon"><i class=""></i></div>
                       Profile
@@ -268,15 +268,15 @@ if ($is_login) {
 
                   <?php
                   if ($usertype == 'user') {
-                  ?>
+                      ?>
                   <a class="dropdown-item" href="<?php url("BECOME-ADVISOR") ?>">
                     <div class="dropdown-item-icon"><i class=""></i></div>
                     Become an Advisor
                 </a>
                 <?php } ?>
                 <?php
-                if($usertype == 'freelancer'){
-                                    ?>
+                if ($usertype == 'freelancer') {
+                    ?>
                 <a class="dropdown-item" href="<?php url("DASHBOARD") ?>">
                     <div class="dropdown-item-icon"><i class=""></i></div>
                     <?php _e("My Dashboard") ?>
@@ -284,8 +284,8 @@ if ($is_login) {
                 <?php } ?>
                 
                 <?php
-                if($usertype == 'agency'){
-                                    ?>
+                if ($usertype == 'agency') {
+                    ?>
                 <a class="dropdown-item" href="<?php url("DASHBOARD") ?>">
                     <div class="dropdown-item-icon"><i class=""></i></div>
                     <?php _e("My Dashboard") ?>
@@ -335,35 +335,20 @@ if ($is_login) {
 
               <div class="icon-container">
                 <img class="rounded-circle mobi-profile-img" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>" style="max-width:68px;" /><div class="status-circle-1"></div></div></a>
-                <div class="name-title pb-20"><?php _esc($fullname);?><span style="color:black;font-size:16px;font-style:italic;"><br><?php
-                 $usertype = $usertype == 'user' ? 'Freelancer': 'Agency';
-                _esc($usertype);
-                ?></span></div>
+                <div class="name-title pb-20"><?php _esc($fullname);?></div>
 
               <div class="mobile-header-content-area adv-font">
                 <div class="perfect-scroll mt--10">
                   <div class="mobile-account">
                     <ul class="mobile-menu font-heading">
-                    <?php
-                if($usertype == 'Freelancer'){ ?>
-                <li><a href="<?php url("DASHBOARD") ?>"> <?php _e("My Dashboard") ?></li>
-                <?php } ?>
-                
-                <?php
-                if($usertype == 'Agency'){ ?>
-                <li><a href="<?php url("DASHBOARD") ?>"><?php _e("My Dashboard") ?></li>
-                <?php } ?>
+                    
 
                       <li><a href="<?php url("INDEX") ?>">Home</a></li>
                       <li><a href="<?php url("MESSAGE") ?>">Inbox</a></li>
-                      <!-- Hidden for an experts -->
-                      <?php if ($usertype == 'freelancer') { ?>
-                      <li><a href="SAVED_ADVISORS.php">Saved Advisors</a></li>
+                      <!-- Hidden for only Advisors -->
+                      <?php if ($usertype == 'user') { ?>
+                      <li><a href="SAVED_ADVISORS">Saved Advisors</a></li>
                       <?php } ?>
-                      <?php if ($usertype == 'agency') { ?>
-                      <li><a href="SAVED_ADVISORS.php">Saved Advisors</a></li>
-                      <?php } ?>
-                      <!-- end -->
 
                       <li><a href="<?php url("NOTIFICATIONS") ?>">Notifications</a></li>
                     </ul>
@@ -377,41 +362,25 @@ $result = ORM::for_table($config['db']['pre'].'catagory_main')
 ->order_by_asc('cat_order')
 ->limit(15)
 ->find_many();
-foreach ($result as $info) {
-if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
-$maincat = get_category_translation("main",$info['cat_id']);
-$info['cat_name'] = $maincat['title'];
-$info['slug'] = $maincat['slug'];
-}
-$category[$info['cat_id']]['slug'] = $info['slug'];
-$category[$info['cat_id']]['name'] = $info['cat_name'];
-$category[$info['cat_id']]['main_id'] = $info['cat_id'];
-$category[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
+    foreach ($result as $info) {
+        if ($config['lang_code'] != 'en' && $config['userlangsel'] == '1') {
+            $maincat = get_category_translation("main", $info['cat_id']);
+            $info['cat_name'] = $maincat['title'];
+            $info['slug'] = $maincat['slug'];
+        }
+        $category[$info['cat_id']]['slug'] = $info['slug'];
+        $category[$info['cat_id']]['name'] = $info['cat_name'];
+        $category[$info['cat_id']]['main_id'] = $info['cat_id'];
+        $category[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
+    }
 
-if(trim($config['home_page']) == "home-freelance"){
-$totalAdsMaincat = ORM::for_table($config['db']['pre'].'project')
-    ->where(array(
-        'category'=> $info['cat_id'],
-        'status'=> 'open'
-        ))
-    ->count();
-}
-else{
-$totalAdsMaincat = get_items_count(false,"active",false,null,$info['cat_id'],true);
-}
-
-$category[$info['cat_id']]['main_ads_count'] = $totalAdsMaincat;
-$count = 1;
-
-}
-
-?>
+    ?>
          <nav>
         <ul class="mobile-menu adv-font" style="list-style:none;">
                         <li class="adv-font has-children">
                           <a href="#">Expertise</a>
                           <ul class="adv-font sub-menu">
-                          <?php foreach($category as $cat){ ?>
+                          <?php foreach ($category as $cat) { ?>
                         <li><a href="<?php echo $cat['link']; ?>"> <?php echo $cat['name']; ?></a>
                         </li>
                         <?php } ?>
@@ -420,31 +389,32 @@ $count = 1;
                       </ul>
                     </nav>
                   </div>
-                  <div class="mobile-account border-bottom pb-20 pt-20">
+                  <div class="mobile-account border-bottom pb-9 pt-20">
                   <ul>
-                    <!-- Hidden for an experts -->
-                    <?php if ($usertype == 'freelancer') { ?>
-                    <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>">My Profile</a></li>
-                    <?php } ?>
-                    <?php if ($usertype == 'agency') { ?>
-                    <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>">My Profile</a></li>
-                    <?php } ?>
+                  <?php
+                if ($usertype == 'freelancer') {
+                    ?>
+                  <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>"><strong>My Profile</strong></a></li>
+                  <?php } ?>
+
+                  <?php
+                if ($usertype == 'agency') {
+                    ?>
+                  <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>"><strong>My Profile</strong></a></li>
+                  <?php } ?>
                   </ul>
                   </div>
 
-                  <div class="mobile-account border-bottom pb-20">
+                  <div class="mobile-account border-bottom pb-2">
                     <ul>
                       <!-- Hidden for an experts -->
-                    <?php if ($usertype == 'freelancer') { ?>
+                    <?php if ($usertype == 'user') { ?>
                       <li class="pb-20"><a href="<?php url("BECOME-ADVISOR") ?>">Become an Advisor</a></li>
-                      <?php }?>
-                      <?php if ($usertype == 'agency') { ?>
-                          <li class="pb-20"><a href="<?php url("BECOME-ADVISOR")?>">Become an Advisor</a></li>
-                          <?php } ?>
-                          <!-- end -->
-
                       <li class="pb-20"><a href="<?php url("CATEGORY") ?>">Hire an Advisor</a></li>
-                      <li class="pb-20"><a href="#">General</a></li>
+                      <?php } ?>
+
+                      
+                      <li class="pb-15"><a href="#"><strong>General</strong></a></li>
                     </ul>
                     </div>
 

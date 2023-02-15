@@ -208,7 +208,7 @@ input[type="text"]:disabled {
                           <div class="form-group">
                               <label class="form-edit font-sm mb-10" for="Username">Username</label>
                               <input class="mb-15 form-field-bg form-control" type="text" name="username" value="<?php _esc($username)?>">
-                              <span class="pt-20 form-sub-text">Your Global Tax Complaince URL: <?php _esc($config['site_url']);?>profile/<?php _esc($username);?></span>
+                              <span class="pt-20 form-sub-text">Your Global Tax Complaince URL: <?php _esc($config['site_url']);?>advisor-profile/<?php _esc($username);?></span>
                           </div>
       
                           <div class="form-group">
@@ -221,33 +221,32 @@ input[type="text"]:disabled {
                             <label class="form-edit font-sm color-text-mutted mb-10">Country</label>
                             
                             <select id="country" name="country" title="<?php _esc($user_country);?>" class="ml-2- mb-15 form-field-bg form-control select">
+                            <option value="<?php _esc($user_country);?>" selected><?php _esc($user_country);?></option>
                             <option value="">Select Country</option>
                             
                             <button class="btn btn-detect-country">Detect</button>
+                          </select>
                           </div>
                           
                           <div class="form-group">
                               <label class="form-edit font-sm color-text-mutted mb-10">Time Zone</label>
-                              <select id="timezone" name="timezone" class="ml-2- mb-15 form-field-bg form-control select">
-                              <?php
-                              $timezone = get_timezone_list(get_option("timezone"));
-                              foreach ($timezone as $value) {
-                              $id = $value['id'];
-                              $country_code = $value['country_code'];
-                              $time_zone_id = $value['time_zone_id'];
-                              $selected = $value['selected'];
-                              echo '<option value="'.$time_zone_id.'" '.$selected.' data-tokens="'.$time_zone_id.'">'.$time_zone_id.'</option>';
-                                } 
-                                ?>
+                              <select name="tagline" class="ml-2- mb-15 form-field-bg form-control select">
+                              <option value="<?php _esc($tagline); ?>" selected><?php _esc($tagline); ?></option>
+                              <option value="(GMT +01:00) Africa/Lagos">(GMT +01:00) Africa/Lagos</option>
+                              <option value="(GMT +01:00) Europe/Berlin">(GMT +01:00) Europe/Berlin</option>
+                              <option value="(GMT +01:00) Africa/Casablanca">(GMT +01:00) Africa/Casablanca</option>
+                              <option value="(GMT +02:00) Africa/Windhoek">(GMT +02:00) Africa/Windhoek</option>
+                              <option value="">(GMT +01:00) Europe/London </option>
                               </select>
                               </div>
                               
       
                               <div class="form-group">
                               <label class="form-edit font-sm color-text-mutted mb-10"><?php _e("City") ?></label>
-                              <select id="region" name="city" data-size="7" title="<?php _e("Select") ?> <?php _e("City") ?>" class="ml-2- mb-15 form-field-bg form-control select">
-                              <option value="0" selected="selected"><?php _e("Select") ?> <?php _e("City") ?></option><option value=""></option>
-                                     <i class="city-search fi-rr-search"></i>
+                              <select id="region" name="city" class="ml-2- mb-15 form-field-bg form-control select">
+                              <option value="<?php _esc($city);?>" selected><?php _esc($city);?></option>
+                              <option value="<?php _esc($city);?>">Select City</option>
+                              <i class="city-search fi-rr-search"></i>
                               </select>
                               </div>
       

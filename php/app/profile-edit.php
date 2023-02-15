@@ -114,16 +114,11 @@ if (checkloggedin()) {
             $user_update->set('name', $_POST['name']);
             $user_update->set('phone', $_POST['phone']);
             $user_update->set('address', validate_input($_POST["address"]));
-            //$user_update->set('sex', validate_input($gender));
             $user_update->set('tagline', isset($_POST["tagline"]) ? validate_input(strlimiter($_POST["tagline"], 200)) : null);
             $user_update->set('description', validate_input($_POST["aboutme"],true));
-            // $user_update->set('city_code', $city);
             $user_update->set('city', $_POST["city"]);
             $user_update->set('country_code', $_POST["country"]);
             $user_update->set('country', $country);
-            $user_update->set('category', validate_input($category));
-            $user_update->set('subcategory', validate_input($subcategory));
-            //$user_update->set('dob', $dob);
             $user_update->set('updated_at', $now);
             if ($avatarName) {
                 $user_update->set('image', $avatarName);
@@ -156,7 +151,7 @@ if (checkloggedin()) {
             if($_POST["user-type"] == 1){
                 $user_update->user_type = 'user';
             }else{
-                $user_update->user_type = 'employer';
+                $user_update->user_type = 'freelancer';
             }
             $user_update->set('updated_at', $now);
             $user_update->save();
@@ -253,63 +248,23 @@ if (checkloggedin()) {
         $skills_limit = '';
     }
 
-//     $countries = array();
-// $count = 1;
-
-// $row = ORM::for_table($config['db']['pre'].'countries')
-//     ->where('active',1)
-//     ->order_by_asc('asciiname')
-//     ->find_many();
-// $total = count($row);
-// $divide = intval($total/4)+1;
-// $col = "";
-// foreach ($row as $info)
-// {
-//     $countrylang = getLangFromCountry($info['languages']);
-//     $countries[$count]['tpl'] = "";
-//     if($count == 1 or $count == $col){
-//         $countries[$count]['tpl'] .= '<div class="flag-list col-3 "><ul>';
-//         $checkEnd = $count+$divide-1;
-//         $col = $count+$divide;
-//     }
-//     $countries[$count]['tpl'] .= '<li><span class="margin-right-5 flag flag-'.strtolower($info['code']).'"></span><a href="'.$config['site_url'].'home/'.$countrylang.'/'.$info['code'].'" data-id="'.$info['id'].'" data-name="'.$info['asciiname'].'">'.$info['asciiname'].'</a></li>';
-
-
-//     if($count == $checkEnd or $count == $total){
-//         $countries[$count]['tpl'] .= '</ul></div>';
-//     }
-//     $count++;
-// }
-    
     
     // Print Template
     HtmlTemplate::display('profile-edit', array(
-        "trial"=> $_POST["city"],
         'authoruname' => ucfirst($ses_userdata['username']),
         'authorname' => ucfirst($ses_userdata['name']),
         'lastactive' => $author_lastactive,
-        'balance' => $ses_userdata['balance'],
         'email' => $ses_userdata['email'],
         'phone' => $ses_userdata['phone'],
-        'website' => $ses_userdata['website'],
-        'facebook' => $ses_userdata['facebook'],
-        'twitter' => $ses_userdata['twitter'],
-        'instagram' => $ses_userdata['instagram'],
-        'linkedin' => $ses_userdata['linkedin'],
-        'youtube' => $ses_userdata['youtube'],
         'address' => stripcslashes(nl2br($ses_userdata['address'])),
-        'gender' => $ses_userdata['sex'],
         'tagline' => $ses_userdata['tagline'],
         'aboutme' => $ses_userdata['description'],
         'cat' => $ses_userdata['category'],
         'subcat' => $ses_userdata['subcategory'],
-        'salary_min' => $ses_userdata['salary_min'],
-        'salary_max' => $ses_userdata['salary_max'],
-        'dob' => $ses_userdata['dob'],
         'user_currency_sign' => $currency_sign,
         'avatar' => !empty($ses_userdata['image']) ? 'small_' . $ses_userdata['image'] : 'small_default_user.png',
         'user_country' => $ses_userdata['country'],
-        'city' => $ses_userdata['city_code'],
+        'city' => $ses_userdata['city'],
         'cityname' => get_cityName_by_id($ses_userdata['city_code']),
         'username_error' => $username_error,
         'email_error' => $email_error,
@@ -322,7 +277,6 @@ if (checkloggedin()) {
         'skills_limit' => $skills_limit,
         'sub_title' => $sub_title,
         'sub_image' => $sub_image,
-        'countrylist' => $countries,
         'errors' => $errors,
         'categories' => get_maincategory($ses_userdata['category']),
         'lang_direction' => get_current_lang_direction()

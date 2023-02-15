@@ -67,8 +67,18 @@
         }
     </style>
     <!--Loop for Theme Color codes-->
-    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/globaltax.css" rel="stylesheet"> 
-    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/mobile.css"> 
+    <?php if($page_title == "advisor profile"){ ?>
+      <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/e.css" rel="stylesheet" type="text/css">
+      <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/e2.css" rel="stylesheet">
+      <link href="<?php _esc(TEMPLATE_URL); ?>/assets/css/e-mobile.css">
+      
+
+    <?php }else{?>
+      <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/globaltax.css" rel="stylesheet"> 
+      <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/mobile.css"> 
+      <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/vendors/style.css" rel="stylesheet" type="text/css">
+    <?php }?>
+
     <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/litepicker.css" rel="stylesheet" />
     <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/feather.min.js"></script>
 
@@ -76,7 +86,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/vendors/line-awesome.min.css">
     <link href="<?php _esc(TEMPLATE_URL);?>/assets/vendors/slick-master/slick/slick.css" rel="stylesheet" type="text/css">
-    <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/vendors/style.css" rel="stylesheet" type="text/css">
+   
     <script src="<?php _esc(TEMPLATE_URL);?>/js/jquery-3.4.1.min.js"></script>
     <script async>var ajaxurl = "<?php _esc($config['app_url']);?>user-ajax.php";</script>
     <script async type="text/javascript">
@@ -278,7 +288,7 @@
       <!-- Mobile Search -->
       <div class="mobile-form-find mb-30 d-xxl-none d-lg-block wow animate__animated animate__fadeIn" data-wow-delay=".2s">
       <form autocomplete="off" method="get" action="<?php url("LISTING") ?>" accept-charset="UTF-8">
-         <input class="mobile-form-input input-keysearch color-white mr-1" type="text" name="" placeholder="Find services">
+         <input class="mobile-form-input input-keysearch mr-1" type="text" name="" placeholder="Find services">
           <button class="btn btn-default font-sm mobile-search-button"><li class="fa-22x fas fa-search fa-lg"></i></button>
         </form>
       </div>

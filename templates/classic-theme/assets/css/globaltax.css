@@ -5125,7 +5125,7 @@ color: #000000;
   color: #fff;
   text-transform: uppercase;
 }
-.lang_selctor-footer i, {
+.lang_selctor-footer i{
   color: #fff;
   margin-top: 20px;
   margin-left: 32px;
@@ -7597,7 +7597,7 @@ margin-left: 93px;
 }
 
 /* desktop view lang select css */
-.lang_selctor_lap i, {
+.lang_selctor_lap i {
   color: #000000;
   margin-top: 18px;
   margin-left: 32px;
@@ -11116,7 +11116,7 @@ flex-grow: 0;
     border: none !important;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    color: #223645 !important !important;
+    color: #223645 !important;
     background-color: #eff1f2 !important;
 }
 .icon-btn-search {
@@ -11967,12 +11967,12 @@ div#card_deck i{
 
 .blue-pill{
     border-color: #ACCDFF;
-    color: #00000;
+    color: #000000;
 }
 
 .black-pill{
-    border-color: #00000;
-    color: #00000;
+    border-color: #000000;
+    color: #000000;
 }
 
 .qucikad-ajaxsearch-close {cursor: pointer;color: #ddd;font-size: 16px }

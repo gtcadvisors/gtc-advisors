@@ -1,469 +1,357 @@
-<?php 
-overall_header(__("Advisor Profile"));
-?>
-    <div class="container-fluid d-none d-lg-flex flex-row justify-content-evenly border-bottom border-2 p-3">
+<?php
+  overall_header("advisor profile")
+  ?>
+<div class="container-fluid d-none d-lg-flex flex-row justify-content-evenly border-bottom border-2 p-3">
         <div class="text-center">
           <div class="list-tabs">
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="mt-3 mb-3"><a href="#"> Tax Audits</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> Sales Tax</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> International</a></li>
-              <li class="mt-3 mb-3"><a href="#"> Financial Planning</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> Corporations</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> IRS Representation</a></li>
-              <li class="mt-3 mb-3"><a  href="#"> Individual Tax Preparation</a></li>
-              <a class="pr-30" href="category.php"> See All</a>
+            <ul class=" nav-tabs d-lg-flex flex-row justify-content-evenly" role="tablist">
+              <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> Tax Audits</a></li>
+              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Sales Tax</a></li>
+              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> International</a></li>
+              <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> Financial Planning</a></li>
+              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Corporations</a></li>
+              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> IRS Representation</a></li>
+              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Individual Tax Preparation</a></li> 
+              <li class="mt-3 mb-3"> <a class="see-all" href="category.php"> See All</a></li> 
             </ul>
           </div>
         </div>
         </div>
-        <div class="container-fluid d-flex  d-lg-none flex-row justify-content-evenly border-bottom border-2 p-3">
+        <div class="container-fluid d-md-flex d-none d-lg-none flex-row justify-content-evenly border-bottom border-2 p-3">
         <div class="text-center">
       <div class="list-tabs mb-3">
         <ul class="nav nav-tabs" role="tablist">
           <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;" href="#"> Tax Pricing</a></li>
           <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#">Corporations</a></li>
           <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;" href="#">Tax Audits</a></li>
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#"> Sales Tax</a></li>
+          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#"> Sales Tax</a></li> 
+          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#">IRS Representation</a></li>
         </ul>
       </div>
     </div>
         </div>
-    <main class="main">
-      <section class="section-box-2">
-        <div class="container">
-          <div class="banner-hero banner-single"></div>
-          <div class="line-4"></div>
-          <div class="box-company-profile">
-            <div class="image-compay"><img class="rounded-circle" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($profileImage)?>" alt="" style="height: 150px; width: 150px;"></div>
+        
+    <div class="container-fluid d-flex d-lg-none d-md-none flex-row border-top border-bottom border-1 header__categories p-3">
+      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
+      <a href="" class="me-3 text-center category-pill text--black">IRS Representation</a>
+      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
+      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
+      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
+      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
+      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
+      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
+      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
+    </div>
 
-            <div class="section agency">
-                <div class="container-fluid">
-                <div class="row">
-                
-                <div class="col-md-6 agency-box agency-cont">
-                <div class="agency-content">
-                    <h2 class="aboutagency-title"><?php _esc($name) ?> <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>"></h2>
-                    <p class="aboutagency mt-2"><?php _esc($bio) ?></p>
-                    <div class="mt-149 mt-20 d-none d-lg-block d-xl-block">
-                      <?php foreach($categories as $category){
-                              echo '<a class="btn service-cat cat mb-5" href="#">'.$category.'</a>';
 
-                            } 
-                            ?>
-                      <!-- <a class="btn service-cat cat mb-5" href="#">Tax Dispute</a>
-                      <a class="btn service-cat cat mb-5 mr-05" href="#">Transfer Pricing</a>
-                      <a class="btn service-cat cat mb-5" href="#">Value Added Tax</a>
-                      <a class="btn service-cat cat mb-5" href="#">Corporate Income Tax</a>
-                      <a class="btn service-cat cat mb-5 mr-06" href="#">Personal Income Tax</a> -->
-                    </div>
-                        <!-- Mobile -->
-                        <div class="row">
-                        <div class="mt-149">
-                        <div class="text-start d-block d-lg-none">
-                          <?php foreach($categories as $category){
-                            echo '<a class="btn btn-tags-sm mb-10" href="jobs-grid.html">'.$category.'</a>';
-
-                          } ?>
-                          <!-- <a class="btn btn-tags-sm mb-10" href="jobs-grid.html">Tax Dispute</a>
-                          <a class="btn btn-tags-sm mb-10" href="#">Transfer Pricing</a>
-                          <a class="btn btn-tags-sm mb-10" href="jobs-grid.html">Value Added Tax</a>
-                          <a class="btn btn-tags-sm mb-10" href="jobs-grid.html">Corporate Income Tax</a>
-                          <a class="btn btn-tags-sm mb-10" href="jobs-grid.html">Personal Income Tax</a> -->
-                      </div>
-                        </div>
-                      </div>
-
-                    <a href="inbox.php" class="btn ag-btn agn-btn">Invite to Job</a>
-                </div>
-                </div>
-                
-                <div class="col-md-6 agency-box-bottom agency-box agency-cont">
-                <div class="agency-content">
-                <p class="ag-detail"><strong class="availability mr---3">Availability: </strong><span class="full-time"> Full-time (24hrs/wk)</span></p>
-                <p class="ag-detail"><strong class="availability mr---4">Language: </strong><span class="full-time"><?php _esc(ucwords(join("/ ", $languages)))?></span></p>
-                <p class="ag-detail"><strong class="availability mr---1">Location: </strong><span class="full-time"> <?php _esc($location) ?></span></p>
-                <p class="ag-detail"><strong class="availability mr---2">Response Rate: </strong><span class="full-time"> Replies within 1 hour</span></p>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#report" class="btn ag-report"><i class="ag-icon-flag fa-regular fa fa-flag"></i> Report Advisor</a>
-                </div>
-                </div>
-
-                </div>
-                </div>
-                </div>
-                </div>
-
-          <div class="box-nav-tabs mt-100 mb-55">
-            <ul class="nav" role="tablist">
-              <li><a class="btn profile mr-15 mb-2 active"style="border-radius:0px !important;" href="#tab-profile" data-bs-toggle="tab" role="tab" aria-controls="tab-profile" aria-selected="true">Profile</a></li> 
-
-              <li><a class="btn certification mr-15 mb-2"style="border-radius:0px !important;" href="#tab-Certification" data-bs-toggle="tab" role="tab" aria-controls="tab-Certification" aria-selected="false">Certification</a></li>
-
-              <li><a class="btn license mb-2"style="border-radius:0px !important;" href="#tab-license" data-bs-toggle="tab" role="tab" aria-controls="tab-license" aria-selected="false">License</a>
-            </li>
-            
-            <li><a class="btn cv-resume mb-2"style="border-radius:0px !important;" href="#tab-cvresume" data-bs-toggle="tab" role="tab" aria-controls="tab-cvresume" aria-selected="false">CV/ Resume</a>
-            </li>
-
-            </ul>
-          </div>
-          <div class="border-bottom"></div>
-        </div>
-      </section>
-      <section class="section-box mt-50">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-12 col-sm-12 col-12">
-              <div class="content-single">
-                <div class="profile-bg tab-content">
-                  
-                    <div class="tab-pane mt-10 fade show active" id="tab-profile" role="tabpanel" aria-labelledby="tab-profile">
-                        <br><br>
-                    <span class="profile-about-title">About</span>
-
-                    <p class="profile-subdes"><?php _esc($description) ?></p>
-                        <br /><span class="mt----"></span>
-                    <div class="border-b-line mt----"></div>
-                    <h4 class="profile-about-title">ORGANIZATION SIZE</h4>
-                    <ul class="org-size">
-                      <li>2- 20 Employees</li>
-                    </ul>
-                    <br />
-                    <div class="border-b-line"></div>
-                    <h4 class="profile-about-title">YEAR FOUNDED</h4>
-                    <ul class="org-size">
-                    <li>2018</li>
-                    </ul>
-                  </div>
-
-                  <div class="tab-pane fade" id="tab-Certification" role="tabpanel" aria-labelledby="tab-Certification">
-                    <br><br>
-                    <span class="certification-title">Certification</span>
-                        <div class="pro-content company-gallery">
-                            <div class="row justify-content-md-center">
-                            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                            <div class="project-widget">
-                            <div class="pro-image">
-                            <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/ACCA.png">
-                            <i class="cert-icon fas fa-image"></i> 
-                            <span class="cert-name">ACCA Certification.png</span>
-                            </a>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                            <div class="project-widget">
-                            <div class="pro-image">
-                            <img class="img-fluid " alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/ANAN.png">
-                            <i class="cert-icon fas fa-image"></i> 
-                            <span class="cert-name">ANAN Certification.png</span>
-                            </a>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                            <div class="project-widget">
-                            <div class="pro-image">
-                            <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/CITN's.png">
-                            <i class="cert-icon fas fa-image"></i> 
-                            <span class="cert-name">CITN’s Certification.png</span>
-                            </a>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                            <div class="project-widget">
-                            <div class="pro-image">
-                            <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/ICAN.png">
-                            <i class="cert-icon fas fa-image"></i> 
-                            <span class="cert-name">ICAN Certification.png</span>
-                            </a>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                <div class="project-widget">
-                                <div style="width:100% !important;height:50% !important;">
-                                <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/Globa.png">
-                                <i class="cert-icon fas fa-file-pdf"></i> 
-                                <span class="cert-name">Globa...Certification.pdf</span>
-                                </a>
-                                </div>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-
-                  <div class="tab-pane fade" id="tab-license" role="tabpanel" aria-labelledby="tab-license">
-                    <br><br>
-                    <span class="profile-about-title">License</span>
-
-                    <div class="pro-content company-gallery">
-                      <div class="row justify-content-md-center">
-
-                      <?php foreach($certificates as $certificate){ ?>
-                        <?php $ext = end(explode(".",$certificate["filename"])); ?>
-                        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                          <div class="project-widget">
-                            <div class="pro-image">
-                              <?php $ext == "pdf"?
-                               ""
-                              
-                              
-                              :"" ?>
-                              <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/ACCA.png">
-                              <i class="cert-icon fas fa-image"></i> 
-                              <span class="cert-name"><?php _esc($certificate["certificate_from"]." ".$certificate["certificate_name"].".".$ext) ?></span>
-                            </div>
-                          </div>
-                        </div>                        
-                      <?php } ?>
-
-                      <!-- <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                      <div class="project-widget">
-                      <div class="pro-image">
-                      <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/ACCA.png">
-                      <i class="cert-icon fas fa-image"></i> 
-                      <span class="cert-name">ACCA Certification.png</span>
-                      </a>
-                      </div>
-                      </div>
-                      </div>
-                      <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                      <div class="project-widget">
-                      <div class="pro-image">
-                      <img class="img-fluid " alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/ANAN.png">
-                      <i class="cert-icon fas fa-image"></i> 
-                      <span class="cert-name">ANAN Certification.png</span>
-                      </a>
-                      </div>
-                      </div>
-                      </div>
-                      <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                      <div class="project-widget">
-                      <div class="pro-image">
-                      <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/CITN's.png">
-                      <i class="cert-icon fas fa-image"></i> 
-                      <span class="cert-name">CITN’s Certification.png</span>
-                      </a>
-                      </div>
-                      </div>
-                      </div>
-                      <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                      <div class="project-widget">
-                      <div class="pro-image">
-                      <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/ICAN.png">
-                      <i class="cert-icon fas fa-image"></i> 
-                      <span class="cert-name">ICAN Certification.png</span>
-                      </a>
-                      </div>
-                      </div>
-                      </div>
-                      </div> -->
-                      </div>
-                      </div>
+      <main class="main">
+        <!-- First Part -->
+        <section class="container d-flex flex-column">
+          <div class="align-self-center mt-4 advisor__profile-info p-3">
+            <img class="advisor__profile-img" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($profileImage)?>" alt="advisor-profile-image" >
+            <h2 class="text--black advisor__profile-name mt-3"><?php _esc($name) ?><img class="advisor__icon" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>"></h2>
+            <p class="advisor__bio text--black mt-2"><?php _esc($bio) ?></p>
+            <div class="d-flex flex-row flex-wrap justify-content-center">
+              <?php foreach($categories as $category){?>
+                <a class="me-1 mb-2 text-center category-pill text--black" href="#"><?php _esc($category)?></a>
+              <?php }?>
+            </div>
+            <button class="advisor__invite-btn mt-2">Invite to Job</button>
+            <div class="container mt-3">
               
-
-              <div class="tab-pane fade" id="tab-cvresume" role="tabpanel" aria-labelledby="tab-cvresume">
-                <br><br>
-                <span class="profile-about-title">CV/Resume</span>
-
-                <div class="pro-content company-gallery">
-                  <div class="row justify-content-md-center">
-                 
-                  <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                      <div class="project-widget">
-                      <div style="width:100% !important;height:50% !important;">
-                      <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/Globa.png">
-                      <i class="cert-icon fas fa-file-pdf"></i> 
-                      <span class="cert-name">Globa...Certification.pdf</span>
-                      </a>
-                      </div>
-                      </div>
-                      </div>
-                      <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                        <div class="project-widget">
-                        <div style="width:100% !important;height:50% !important;">
-                        <img class="img-fluid" alt="User Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/Globa.png">
-                        <i class="cert-icon fas fa-file-pdf"></i> 
-                        <span class="cert-name">Globa...Certification.pdf</span>
-                        </a>
-                        </div>
-                        </div>
-                        </div>
-                        
-                  </div>
-                  </div>
+              <div class="row mb-2">
+                <div class="col-6 ps-4"><span class="profile__text--dark">Availability:</span></div>
+                <div class="col-6"><span class="profile__text--light">Full-time (24hrs/wk)</span></div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-6 ps-4"><span class="profile__text--dark">Language:</span></div>
+                <div class="col-6"><span class="profile__text--light"><?php _esc(ucwords(join("/ ", $languages)))?></span></div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-6 ps-4"><span class="profile__text--dark">Location:</span></div>
+                <div class="col-6"><span class="profile__text--light"><?php _esc($location) ?></span></div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-6 ps-4"><span class="profile__text--dark">Response Rate:</span></div>
+                <div class="col-6"><span class="profile__text--light">Replies within 1 hour</span></div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-6 ps-4"><a href="#" data-bs-toggle="modal" data-bs-target="#report" class="profile__report"><i class="ag-icon-flag fa-regular fa fa-flag"></i> Report Advisor</a></div>
               </div>
 
             </div>
-            </div>
-            </div>
-            <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
-              <div class="sidebar-border">
-                <h5 class="f-18">Similar Profiles</h5>
-                <div class="sidebar-list-job">
-                  <ul>
-                    <li>
-                      <div class="sidebar-icon-item">
-                    <img class="similar-user-img rounded-circle" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/profile/advisors/1.png"></div>
-                      <div class="sidebar-text-info">
-                        <strong class="advi-name-similar">James Nduka</strong>
-                        <span class="text-description">Coporate Income Tax</span>
-                        <br>
-                        <a href="#" class="user-txt-icon"><i class="fa-icon las la-user"></i> Freelancer</a>
-                    </div>
-                    </li>
-                    <li>
-                      <div class="sidebar-icon-item">
-                        <img class="similar-user-img rounded-circle" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/profile/advisors/1.png"></div>
-                      <div class="sidebar-text-info">
-                        <strong class="advi-name-similar">Katrine Chu</strong>
-                        <span class="text-description">Tax Disputes</span>
-                        <br>
-                        <a href="#" class="user-txt-icon"><i class="fa-icon las la-city"></i></i> Agency</a>
-                    </div>
-                    </li>
-                    <li>
-                      <div class="sidebar-icon-item">
-                        <img class="similar-user-img rounded-circle" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/profile/advisors/2.png"></div>
-                      <div class="sidebar-text-info"><strong class="advi-name-similar">Tory Jules</strong>
-                        <span class="text-description">Estate Specialist</span>
-                        <br>
-                        <a href="#" class="user-txt-icon"><i class="fa-icon las la-user"></i> Freelancer</a>
-                    </div>
-                    </li>
-                    <li>
-                      <div class="sidebar-icon-item">
-                        <img class="similar-user-img rounded-circle" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/profile/advisors/avatar-1.jpg"></div>
-                      <div class="sidebar-text-info"><strong class="advi-name-similar">Sarah James</strong>
-                        <span class="text-description">Individual Tax Preparation </span>
-                        <br>
-                        <a href="#" class="user-txt-icon"><i class="fa-icon las la-city"></i> Agency</a>
-                    </div>
-                    </li>
+          </div>
+        </section>
 
-                    <li>
-                        <div class="sidebar-icon-item">
-                          <img class="similar-user-img rounded-circle" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/profile/advisors/3.png"></div>
-                        <div class="sidebar-text-info"><strong class="advi-name-similar">Tobi Bankole</strong>
-                          <span class="text-description">Transfer Pricing </span>
-                          <br>
-                          <a href="#" class="user-txt-icon"><i class="fa-icon las la-user"></i> Freelancer</a>
-                      </div>
-                      </li>
-                  </ul>
+       
+        <!-- second part -->
+
+        <section class="profile__tab--list d-flex flex-wrap container justify-content-center">
+          <!-- Profile -->
+          <input type="radio" name="profile-tab" id="ptab-1" class="tabs__radio" >
+          <label for="ptab-1" class="tabs__label">Profile</label>
+          <div class="tabs__content pt-4">
+            <h3 class="profile__text--dark">ABOUT</h3>
+            <p class="tabs__content__text mt-3"><?php _esc($description) ?></p>
+            <div class="mt-4 <?php _esc($advisorType == "freelancer"? "d-none":"") ?> tabs__content_line pt-3 pb-3">
+              <h3 class="profile__text--dark">ORGANIZATION SIZE</h3>
+              <p class="mt-3 profile__text--dark profile__text--dark--normal">2- 20 Employees</p>
+            </div>
+            <div class="mt-3 <?php _esc($advisorType == "freelancer"? "d-none":"") ?>">
+              <h3 class="profile__text--dark">YEAR FOUNDED</h3>
+              <p class="mt-3 profile__text--dark profile__text--dark--normal">2018</p>
+            </div>
+          </div>
+          
+          <!-- Certification -->
+          <input type="radio" name="profile-tab" id="ptab-2" class="tabs__radio" checked>
+          <label for="ptab-2" class="tabs__label">Certification</label>
+          <div class="tabs__content">
+            <h3 class="profile__text--dark">CERTIFICATION</h3>
+            <div class="container mt-3 d-flex flex-row flex-wrap justify-content-between tabs__img--container">
+              <?php foreach($certificates as $certificate){ ?>
+                <?php $ext = end(explode(".",$certificate["filename"])); ?>
+                <div class="mb-4 d-flex flex-column">
+                  <?php if($ext == "pdf" || $ext == "docx"){?>
+                    <img class="tabs__img" alt="CertificateImage" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/Globa.png"> 
+                  <?php }else{?>
+                    <img class="tabs__img" alt="Certificate Image" src="<?php _esc($config['site_url']);?>storage/certifications/<?php _esc($certificate["filename"])?>">
+                  <?php }?>
+                  <a href="#" class="tabs__img--title mt-3"><i class="fas <?php _esc($ext=="pdf" || $ext == "doc"?"fa-file-pdf":"fa-image")?> me-2"></i><?php _esc($certificate["certificate_from"]." ".$certificate["certificate_name"].".".$ext) ?></a>
+                </div>                        
+              <?php } ?>   
+            </div>
+          </div>
+
+          <!-- Licenses -->
+          <input type="radio" name="profile-tab" id="ptab-3" class="tabs__radio">
+          <label for="ptab-3" class="tabs__label">Licenses</label>
+          <div class="tabs__content">
+            <h3 class="profile__text--dark">LICENSES</h3>
+            <div class="container mt-3 d-flex flex-row flex-wrap justify-content-between tabs__img--container">
+              <?php foreach($licenses as $license){ ?>
+                <?php $ext = end(explode(".",$license["filename"])); ?>
+                <div class="mb-4 d-flex flex-column">
+                  <?php if($ext == "pdf" || $ext == "docx"){?>
+                    <img class="tabs__img" alt="License Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/Globa.png"> 
+                  <?php }else{?>
+                    <img class="tabs__img" alt="License Image" src="<?php _esc($config['site_url']);?>storage/licenses/<?php _esc($license["filename"])?>">
+                  <?php }?>
+                  <a href="#" class="tabs__img--title mt-3"><i class="fas <?php _esc($ext=="pdf" || $ext == "doc"?"fa-file-pdf":"fa-image")?> me-2"></i><?php _esc($license["license_from"]." ".$license["license_name"].".".$ext) ?></a>
+                </div>                        
+              <?php } ?>   
+            </div>
+          </div>
+          
+          <!-- Resume -->
+          <input type="radio" name="profile-tab" id="ptab-4" class="tabs__radio">
+          <label for="ptab-4" class="tabs__label">CV/Resume</label>
+          <div class="tabs__content">
+            <h3 class="profile__text--dark">RESUME</h3>
+            <div class="container mt-3 d-flex flex-row flex-wrap justify-content-between tabs__img--container">
+            <?php $ext = end(explode(".",$resume["filename"])); ?>
+            <div class="mb-4 d-flex flex-column">
+              <?php if($ext == "pdf" || $ext == "docx"){?>
+                <img class="tabs__img" alt="Resume Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/Globa.png"> 
+              <?php }else{?>
+                <img class="tabs__img" alt="Resume Image" src="<?php _esc($config['site_url']);?>storage/resumes/<?php _esc($resume["filename"])?>">
+              <?php }?>
+              <a href="#" class="tabs__img--title mt-3"><i class="fas <?php _esc($ext=="pdf" || $ext == "doc"?"fa-file-pdf":"fa-image")?> me-2"></i><?php _esc("Resume.".$ext) ?></a>
+            </div>    
+            </div>
+          </div>
+                  
+        </section>
+
+        <!-- third part -->
+        <section class="similar-profiles-section container d-flex flex-wrap container justify-content-center">
+          <div class="mb-3">
+            <h3 class="profile__text--dark">Similar Profiles</h3>
+          </div>
+          <div class="border-top border-1 pt-2">
+            <div class="similar-advisor__profile d-flex flex-row justify-content-start align-items-center mt-4">
+                <img class="" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/advisors/1.png">
+                <div class="d-flex flex-column ps-3">
+                  <a class="profile__text--dark">Juan Rodrick</a>
+                  <span class="similar-advisor__profile--expertise">Coporate Income Tax</span>
+                  <span class="similar-advisor__profile--type d-flex align-items-center"><img class="me-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>">Freelancer</span>
                 </div>
             </div>
+        
+            <div class="similar-advisor__profile d-flex flex-row justify-content-start align-items-center mt-4">
+                <img class="" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/advisors/1.png">
+                <div class="d-flex flex-column ps-3">
+                  <a class="profile__text--dark">Juan Rodrick</a>
+                  <span class="similar-advisor__profile--expertise">Coporate Income Tax</span>
+                  <span class="similar-advisor__profile--type d-flex align-items-center"><img class="me-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>">Freelancer</span>
+                </div>
+            </div>
+        
+            <div class="similar-advisor__profile d-flex flex-row justify-content-start align-items-center mt-4">
+                <img class="" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/advisors/1.png">
+                <div class="d-flex flex-column ps-3">
+                  <a class="profile__text--dark">Juan Rodrick</a>
+                  <span class="similar-advisor__profile--expertise">Coporate Income Tax</span>
+                  <span class="similar-advisor__profile--type d-flex align-items-center"><img class="me-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>">Freelancer</span>
+                </div>
+            </div>
+        
+            <div class="similar-advisor__profile d-flex flex-row justify-content-start align-items-center mt-4">
+                <img class="" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/advisors/1.png">
+                <div class="d-flex flex-column ps-3">
+                  <a class="profile__text--dark">Juan Rodrick</a>
+                  <span class="similar-advisor__profile--expertise">Coporate Income Tax</span>
+                  <span class="similar-advisor__profile--type d-flex align-items-center"><img class="me-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>">Freelancer</span>
+                </div>
+            </div>
+        
+            <div class="similar-advisor__profile d-flex flex-row justify-content-start align-items-center mt-4">
+                <img class="" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/advisors/1.png">
+                <div class="d-flex flex-column ps-3">
+                  <a class="profile__text--dark">Juan Rodrick</a>
+                  <span class="similar-advisor__profile--expertise">Coporate Income Tax</span>
+                  <span class="similar-advisor__profile--type d-flex align-items-center"><img class="me-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>">Freelancer</span>
+                </div>
+            </div>
+        
           </div>
-        </div>
-      </section>
+        </section>  
 
-      <section class="section-box mt-50 mb-50">
-        <div class="container-fluid">
-          <div class="text-left">
-            <span class="section-title b-activities b-activities-head mb-10 wow animate__ animate__fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">Based on your activity</span>
-          </div>
-          <div class="b-activities mt-20">
-            <div class="box-swiper style-nav-top">
-              <div class="swiper-container swiper-group-3 swiper swiper-initialized swiper-horizontal swiper-pointer-events">
-                <div class="swiper-wrapper pb-10 pt-5" id="swiper-wrapper" aria-live="off" style="transform: translate3d(-1695px, 0px, 0px); transition-duration: 0ms;">
-                  <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="0" role="group" aria-label="1 / 4" style="width: 309px; margin-right: 0px;">
-                    <div class="card-grid-2 hover-up">
-                      <div class="card-grid">
-                        <div class="card-img-top">
-                        <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/activities/Ade-Lateef.png" alt=""></div>
-                      </div>
-                      <div class="card-block-info">
-                        <span class="advi-name"><a href="job-details.php">Ade Lateef  <i class="las la-user la-lx" style="color:#2C76DC !important;"></i></a></span>
-                        <div class="user-cat mt-5">
-                            <a class="user-cat" href="#">Tax Audits,</a> 
-                            <a class="user-cat" href="#">Financial Planning,</a> 
-                            <a class="user-cat" href="#">IRS Representation, </a> 
-                            <a class="user-cat" href="#"> Sales Tax</a></div>
 
-                        <p class="advi-desc mt-15">I am the perfect guy for the job, I am competent in Tax audits. Contact me.</p>
-                        <div class="advi-repson-time mt-30">Response Rate: Replies within 1 hour</div>
-                        <br>
-                        <div class="divider-bottom"></div>
-                        <div class="card-2-bottom mt-30">
-                          <div class="row">
-                            <div class="col-lg-7 col-7"><i class="favorit-heart fas fa-heart" style="color:#D92E10 !important;"></i></div>
-                            <div class="col-lg-4 col-4 text-end">
-                              <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/Verified Expert Badge Transperent 2.png">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                
+
+            <!-- ############### NEW CARDS SECTION -->
+            <section class="based-on-your-activity-section container d-flex flex-column align-items-center">
+              <div class="d-flex flex-row justify-content-between align-items-center">
+                <span class="fs-6 text--black">Based on your activity</span>
+                <div class="text-center p-2 slick-arrow" >
+                    <i class="fas fa-angle-right"></i>
+                </div>
+              </div>
+              <div class="mt-4 pt-2">
+                <div class="profile-card d-flex flex-column">
+                  <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
+                  <div class="ps-2">
+                    <div class="d-flex align-items-center profile-card-title mt-2">
+                      <h4 class="profile__text--dark profile__text--dark--normal me-2">Ade Lateef</h4>
+                      <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
-                  </div>
-                  <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 309px; margin-right: 30px;">
-                    <div class="card-grid-2 hover-up">
-                      <div class="card-grid">
-                        <div class="card-img-top"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/activities/mary-audu.png" alt=""></div>
-                      </div>
-                      <div class="card-block-info">
-                        <span class="advi-name"><a href="job-details.php">Mary Audu  <i class="las la-user la-lx" style="color:#2C76DC !important;"></i></a></span>
-                        <div class="user-cat mt-5">
-                            <a class="user-cat" href="#">Tax Audits,</a> 
-                            <a class="user-cat" href="#">Financial Planning,</a> 
-                            <a class="user-cat" href="#">IRS Representation, </a> 
-                            <a class="user-cat" href="#"> Sales Tax</a></div>
-
-                        <p class="advi-desc mt-15">I have worked with fifty clients on GTC. Send a message!</p>
-                        <div class="advi-repson-time mt-30">Response Rate: Replies within 1 hour</div>
-                        <br>
-                        <div class="divider-bottom"></div>
-                        <div class="card-2-bottom mt-30">
-                          <div class="row">
-                            <div class="col-lg-7 col-7"><i class="favorit-heart fa-regular fa fa-heart"></i></div>
-                            <div class="col-lg-4 col-4 text-end">
-                              <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/Verified Expert Badge Transperent 2.png">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 309px; margin-right: 30px;">
-                    <div class="card-grid-2 hover-up">
-                      <div class="card-grid">
-                        <div class="card-img-top"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/activities/tony.png" alt=""></div>
-                      </div>
-                      <div class="card-block-info">
-                        <span class="advi-name"><a href="job-details.php">Tony Kunle  <i class="las la-user la-lx" style="color:#2C76DC !important;"></i></a></span>
-                        <div class="user-cat mt-5">
-                            <a class="user-cat" href="#">Tax Audits,</a> 
-                            <a class="user-cat" href="#">Financial Planning,</a> 
-                            <a class="user-cat" href="#">IRS Representation, </a> 
-                            <a class="user-cat" href="#"> Sales Tax</a></div>
-
-                        <p class="advi-desc mt-15">I am ICAN certified in IRS representation. Send me your gigs and projects.</p>
+                    <div>
+                      <p>
                         
-                        <div class="advi-repson-time mt-30">Response Rate: Replies within 1 hour</div>
-                        <br>
-                        <div class="divider-bottom"></div>
-                        <div class="card-2-bottom mt-30">
-                          <div class="row">
-                            <div class="col-lg-7 col-7"><i class="favorit-heart fa-regular fa fa-heart"></i></div>
-                            <div class="col-lg-4 col-4 text-end">
-                              <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/Verified Expert Badge Transperent 2.png">
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+
+
+            <div class="container-fluid mt-50">
+              <div class="text-left">
+                <span class="section-title b-activities b-activities-head mb-10 wow animate__ animate__fadeInUp animated fs-6" style="visibility: visible; animation-name: fadeInUp;">Based on your activity</span>
+              </div>
+              <div class="b-activities mt-20">
+                <div class="box-swiper style-nav-top">
+                      <div class="swiper-container swiper-group-3 swiper swiper-initialized swiper-horizontal swiper-pointer-events">
+                        <div class="swiper-wrapper pb-10 pt-5" id="swiper-wrapper" aria-live="off" style="transform: translate3d(-1695px, 0px, 0px); transition-duration: 0ms;">
+                          <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="0" role="group" aria-label="1 / 4" style="width: 309px; margin-right: 0px;">
+                            <div class="card-grid-2 hover-up">
+                              <div class="card-grid">
+                                <div class="card-img-top">
+                                <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt=""></div>
+                              </div>
+                              <div class="card-block-info">
+                                <span class="advi-name"><a href="job-details.php">Ade Lateef  <i class="las la-user la-lx" style="color:#2C76DC !important;"></i></a></span>
+                                <div class="user-cat mt-5">
+                                    <a class="user-cat" href="#">Tax Audits,</a> 
+                                    <a class="user-cat" href="#">Financial Planning,</a> 
+                                    <a class="user-cat" href="#">IRS Representation, </a> 
+                                    <a class="user-cat" href="#"> Sales Tax</a></div>
+
+                                <p class="advi-desc mt-15">I am the perfect guy for the job, I am competent in Tax audits. Contact me.</p>
+                                <div class="advi-repson-time mt-30">Response Rate: Replies within 1 hour</div>
+                                <br>
+                                <div class="divider-bottom"></div>
+                                <div class="card-2-bottom mt-30">
+                                  <div class="row">
+                                    <div class="col-lg-7 col-7"><i class="favorit-heart fas fa-heart" style="color:#D92E10 !important;"></i></div>
+                                    <div class="col-lg-4 col-4 text-end">
+                                      <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Verified Expert Badge Transperent 2.png">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="1" role="group" aria-label="2 / 3" style="width: 309px; margin-right: 30px;">
+                            <div class="card-grid-2 hover-up">
+                              <div class="card-grid">
+                                <div class="card-img-top"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/mary-audu.png" alt=""></div>
+                              </div>
+                              <div class="card-block-info">
+                                <span class="advi-name"><a href="job-details.php">Mary Audu  <i class="las la-user la-lx" style="color:#2C76DC !important;"></i></a></span>
+                                <div class="user-cat mt-5">
+                                    <a class="user-cat" href="#">Tax Audits,</a> 
+                                    <a class="user-cat" href="#">Financial Planning,</a> 
+                                    <a class="user-cat" href="#">IRS Representation, </a> 
+                                    <a class="user-cat" href="#"> Sales Tax</a></div>
+
+                                <p class="advi-desc mt-15">I have worked with fifty clients on GTC. Send a message!</p>
+                                <div class="advi-repson-time mt-30">Response Rate: Replies within 1 hour</div>
+                                <br>
+                                <div class="divider-bottom"></div>
+                                <div class="card-2-bottom mt-30">
+                                  <div class="row">
+                                    <div class="col-lg-7 col-7"><i class="favorit-heart fa-regular fa fa-heart"></i></div>
+                                    <div class="col-lg-4 col-4 text-end">
+                                      <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Verified Expert Badge Transperent 2.png">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="2" role="group" aria-label="3 / 3" style="width: 309px; margin-right: 30px;">
+                            <div class="card-grid-2 hover-up">
+                              <div class="card-grid">
+                                <div class="card-img-top"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/tony.png" alt=""></div>
+                              </div>
+                              <div class="card-block-info">
+                                <span class="advi-name"><a href="job-details.php">Tony Kunle  <i class="las la-user la-lx" style="color:#2C76DC !important;"></i></a></span>
+                                <div class="user-cat mt-5">
+                                    <a class="user-cat" href="#">Tax Audits,</a> 
+                                    <a class="user-cat" href="#">Financial Planning,</a> 
+                                    <a class="user-cat" href="#">IRS Representation, </a> 
+                                    <a class="user-cat" href="#"> Sales Tax</a></div>
+
+                                <p class="advi-desc mt-15">I am ICAN certified in IRS representation. Send me your gigs and projects.</p>
+                                
+                                <div class="advi-repson-time mt-30">Response Rate: Replies within 1 hour</div>
+                                <br>
+                                <div class="divider-bottom"></div>
+                                <div class="card-2-bottom mt-30">
+                                  <div class="row">
+                                    <div class="col-lg-7 col-7"><i class="favorit-heart fa-regular fa fa-heart"></i></div>
+                                    <div class="col-lg-4 col-4 text-end">
+                                      <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Verified Expert Badge Transperent 2.png">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                      <div class="swiper-button-next swiper-button-next-4" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper"></div>
                     </div>
                   </div>
-                </div>
-              <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-              <div class="swiper-button-next swiper-button-next-4" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper"></div>
             </div>
-          </div>
-        </div>
-      </section>
-    </main>
 
+        
     <!-- report advisor popup modal -->
     <div class="modal fade custom-modal" id="report">
         <div class="modal-dialog modal-lg modal-sm">
@@ -534,7 +422,11 @@ overall_header(__("Advisor Profile"));
             </div>
           </div>
         </div>
+
       </main>
+        
+
 <?php
+// include('footer.php');
 overall_footer();
 ?>

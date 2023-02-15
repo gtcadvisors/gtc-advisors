@@ -19,7 +19,16 @@ if(isset($username)){
     ->where('user_id',$get_userdata["id"])
     ->find_many();
 
- 
+    //licenses
+    $licenses = ORM::for_table($config['db']['pre'].'licenses')
+    ->where('user_id',$get_userdata["id"])
+    ->find_many();
+
+    //resume
+    $resume = ORM::for_table($config['db']['pre'].'resumes')
+    ->where('user_id',$get_userdata["id"])
+    ->find_one();
+
     HtmlTemplate::display('advisor-profile', array(
       "name" => $name,
       "advisorType" => $advisorType,
@@ -30,6 +39,8 @@ if(isset($username)){
       "location" => $city.", ".$country,
       "description" => $description,
       "certificates" => $certificates,
+      "licenses" => $licenses,
+      "resume" => $resume,
 
     ));
     exit;

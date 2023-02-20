@@ -29,6 +29,10 @@ if(isset($username)){
     ->where('user_id',$get_userdata["id"])
     ->find_one();
 
+    if (isset($_GET["download"])){
+      downloadFile($_GET["download"]);
+    }
+
     HtmlTemplate::display('advisor-profile', array(
       "name" => $name,
       "advisorType" => $advisorType,
@@ -41,7 +45,6 @@ if(isset($username)){
       "certificates" => $certificates,
       "licenses" => $licenses,
       "resume" => $resume,
-
     ));
     exit;
 
@@ -59,4 +62,38 @@ if(isset($username)){
 }
 
  
+
+function downloadFile ($file){
+  // $url = $file;
+    $url = ROOTPATH . "/storage/" .$file;
+    //Clear the cache
+    clearstatcache();
+
+    //Check the file path exists or not
+    if(file_exists($url)) {
+
+    //Define header information
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="'.basename($url).'"');
+    header('Content-Length: ' . filesize($url));
+    header('Pragma: public');
+
+    //Clear system output buffer
+    flush();
+
+    //Read the size of the file
+    readfile($url,true);
+
+    //Terminate from the script
+    die();
+  }
+  else{
+    $fileError =  "File path does not exist.";
+  }
+
+}
+
  ?>
+
+

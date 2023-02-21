@@ -244,7 +244,7 @@ function getHtml(name, add_image, add_label, path,site_url)
 			</div>\
 			<div class="multibox uploadButton" onclick="javascript:orakuploaderLoad(\''+name+'\');">\
 			<img src="'+add_image+'"/>\
-			<br/><br/>'+add_label+'\
+			<br/><span style="width: 100%;">'+add_label+'</span>\
 			</div>\
 			<input type="file" class="'+name+'Input orakuploaderFileInput" accept="image/*" multiple/>\
 			<div class="clear"> </div>\

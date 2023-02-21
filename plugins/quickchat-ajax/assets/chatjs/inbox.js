@@ -115,6 +115,7 @@ $(document).on('click', ".start_wchat" ,function(){
     }
     var chatid = $(this).data('chatid');
     var postid = $(this).data('postid');
+    var posttype = $(this).data('posttype');
     var userid = $(this).data('userid');
     var fullname = $(this).data('fullname');
     var userimage = $(this).data('userimage');
@@ -123,10 +124,10 @@ $(document).on('click', ".start_wchat" ,function(){
     $('.start_wchat').removeClass('active');
     $(this).addClass('active');
 
-    chatWith(chatid,userid,fullname,userimage,userstatus,postid);
+    chatWith(chatid,userid,fullname,userimage,userstatus,postid,posttype);
 });
 
-function chatWith(chatid,userid,fullname,userimage,userstatus,postid) {
+function chatWith(chatid,userid,fullname,userimage,userstatus,postid,posttype) {
 
     if(session_uid == userid){
         alert(LANG_ENABLE_CHAT_YOURSELF);
@@ -135,6 +136,7 @@ function chatWith(chatid,userid,fullname,userimage,userstatus,postid) {
     createChatBox({
         chatid: chatid,
         postid: postid,
+        posttype: posttype,
         userid: userid,
         fullname: fullname,
         userimage: userimage,
@@ -171,6 +173,7 @@ function createChatBox($options) {
     var $defaults = {
         chatid: null,
         postid: null,
+        posttype: null,
         userid: null,
         fullname: null,
         userimage: null,
@@ -181,6 +184,7 @@ function createChatBox($options) {
 
     var chatid = $settings.chatid;
     var postid = $settings.postid;
+    var posttype = $settings.posttype;
     var userid = $settings.userid;
     var fullname = $settings.fullname;
     var userimage = $settings.userimage;
@@ -194,10 +198,10 @@ function createChatBox($options) {
         '<div class="input-container">' +
         '<div class="input-emoji">' +
         '<div class="input-placeholder" style="visibility: visible;">'+LANG_TYPE_A_MESSAGE+'</div>' +
-        '<div class="input chatboxtextarea" id="chatboxtextarea" name="chattxt" onkeydown=\'javascript:return checkChatBoxInputKey(event,this,"'+chatid+'",'+postid+',"'+userid+'");\' contenteditable="true" spellcheck="true"></div>' +
+        '<div class="input chatboxtextarea" id="chatboxtextarea" name="chattxt" onkeydown=\'javascript:return checkChatBoxInputKey(event,this,"'+chatid+'","'+userid+'","'+postid+'","'+posttype+'");\' contenteditable="true" spellcheck="true"></div>' +
         '</div>' +
         '</div>' +
-        '<button onclick=\'javascript:return clickTosendMessage(event,"#chatboxtextarea","'+chatid+'",'+postid+',"'+userid+'");\' class="btn-icon icon-send fa fa-paper-plane-o font-24 send-container"></button>' +
+        '<button onclick=\'javascript:return clickTosendMessage(event,"#chatboxtextarea","'+chatid+'","'+userid+'","'+postid+'","'+posttype+'");\' class="btn-icon icon-send fa fa-paper-plane-o font-24 send-container"></button>' +
         '</div>';
 
 
@@ -230,6 +234,7 @@ function createChatBox($options) {
         .data('userid',userid)
         .data('chatid',chatid)
         .data('postid',postid)
+        .data('posttype',posttype)
         .data('fullname',fullname)
         .data('userstatus',userstatus)
         .data('userimage',userimage)
@@ -238,7 +243,7 @@ function createChatBox($options) {
         $("#chatFrom").html(chatFormTpl);
     }
 
-    get_all_msg(siteurl+plugin_directory+"?page=1&action=get_all_msg&client="+userid+"&postid="+postid);
+    get_all_msg(siteurl+plugin_directory+"?page=1&action=get_all_msg&client="+userid+"&postid="+postid+"&posttype="+posttype);
     smiley_tpl(chatid)
     chatBoxeslength = 0;
 
@@ -299,6 +304,7 @@ function chatHeartbeat(){
 
                     var chatid = item.chatid,
                         postid = item.postid,
+                        posttype = item.posttype,
                         name = item.from_name,
                         from_id = item.from_id,
                         senderimg = item.picname,
@@ -326,6 +332,7 @@ function chatHeartbeat(){
                         createChatBox({
                             chatid: chatid,
                             postid: postid,
+                            posttype: posttype,
                             userid: from_id,
                             fullname: name,
                             userimage: senderimg,
@@ -471,21 +478,21 @@ function get_all_msg(url){
         }});
 }
 
-function checkChatBoxInputKey(event,chatboxtextarea,chatid,postid,userid) {
+function checkChatBoxInputKey(event,chatboxtextarea,chatid,userid,postid,posttype) {
     if((event.keyCode == 13 && event.shiftKey == 0) )  {
-        clickTosendMessage(event,chatboxtextarea,chatid,postid,userid);
+        clickTosendMessage(event,chatboxtextarea,chatid,userid,postid,posttype);
         return false;
     }
 }
 
-function clickTosendMessage(event,chatboxtextarea,chatid,postid,userid) {
+function clickTosendMessage(event,chatboxtextarea,chatid,userid,postid,posttype) {
     message = $(chatboxtextarea).html();
     message =  message.replace(/<img(.*?)title="(.*?)"(.*?)>/g,"$2"); // Set imotions
     message = message.replace(/^\s+|\s+$/g,"");
 
 
     if (message != '') {
-        $.post(siteurl+plugin_directory+"?action=sendchat", {wchat: 1, to: userid, postid: postid, message: message} , function(data){
+        $.post(siteurl+plugin_directory+"?action=sendchat", {wchat: 1, to: userid, postid: postid, posttype: posttype, message: message} , function(data){
 
             message = message.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;");
             message = message.replace(/\n/g, "<br />");
@@ -661,6 +668,7 @@ function chatfrindList(limitStart){
                     tpl += '<li class="start_wchat person chatboxhead" id="contact_' + item.chatid + '" ' +
                         'data-chatid="'+item.chatid+'" ' +
                         'data-postid="'+item.postid+'" ' +
+                        'data-posttype="'+item.posttype+'" ' +
                         'data-userid="'+item.userid+'" ' +
                         'data-fullname="'+item.fullname+'" ' +
                         'data-userimage="'+item.userimage+'" ' +
@@ -720,12 +728,13 @@ $('.wchat-chat-msgs').scroll(function(){
         $(".scroll-down").css({'visibility':'visible'});
         var userid = $('.chat.active-chat').data('userid');
         var postid = $('.chat.active-chat').data('postid');
+        var posttype = $('.chat.active-chat').data('posttype');
         var chatid = $('.chat.active-chat').data('chatid');
         if($("#chatbox_"+chatid+" .pagenum:first").val() != $("#chatbox_"+chatid+" .total-page").val()) {
 
             var pagenum = parseInt($("#chatbox_"+chatid+" .pagenum:first").val()) + 1;
 
-            get_all_msg(siteurl+plugin_directory+"?page="+pagenum+"&action=get_all_msg&client="+userid+"&postid="+postid);
+            get_all_msg(siteurl+plugin_directory+"?page="+pagenum+"&action=get_all_msg&client="+userid+"&postid="+postid+"&posttype="+posttype);
 
             if(pagenum != $("#chatbox_"+chatid+" .total-page").val()) {
                 setTimeout(function () {
@@ -749,9 +758,10 @@ $(document).on('input','.chatboxtextarea', function (e) {
 $(document).on('focus','.chatboxtextarea', function (e) {
     var userid = $('.chat.active-chat').data('userid');
     var postid = $('.chat.active-chat').data('postid');
+    var posttype = $('.chat.active-chat').data('posttype');
     var chatid = $('.chat.active-chat').data('chatid');
     if (unseenMessage[chatid]){
-        $.post(siteurl+plugin_directory+"?action=updateSeenmsg", {userid: userid, postid: postid});
+        $.post(siteurl+plugin_directory+"?action=updateSeenmsg", {userid: userid, postid: postid, posttype: posttype});
         $('#contact_'+chatid+' .unread-count').remove();
         delete unseenMessage[chatid];
     }
@@ -760,13 +770,14 @@ $(document).on('focus','.chatboxtextarea', function (e) {
 $(document).on('click', ".uploadFile", function (e){
     var to_id = $('.chat.active-chat').data('userid');
     var postid = $('.chat.active-chat').data('postid');
+    var posttype = $('.chat.active-chat').data('posttype');
     var chatid = $('.chat.active-chat').data('chatid');
     $(function() {
 
         $('#uploader').plupload({
             // General settings
             runtimes : 'html5,flash,silverlight,html4',
-            url: siteurl+"php/upload-chat-file.php?to_id="+to_id+"&chatid="+chatid+"&post_id="+postid,
+            url: siteurl+"php/upload-chat-file.php?to_id="+to_id+"&chatid="+chatid+"&post_id="+postid+"&post_type="+posttype,
 
             // User can upload no more then 20 files in one go (sets multiple_queues to false)
             max_file_count: 5,

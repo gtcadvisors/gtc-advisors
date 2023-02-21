@@ -1,11 +1,5 @@
 <?php
 if(checkloggedin()) {
-
-    if(isset($_GET['postid'])){
-        $postid = base64_url_decode($_GET['postid']);
-    }else{
-        $postid = '';
-    }
     $userid = '';
     $chatid = '';
     $chat_username = '';
@@ -13,11 +7,14 @@ if(checkloggedin()) {
     $chat_userimg = '';
     $chat_userstatus = '';
 
+    $postid = isset($_GET['postid'])? base64_url_decode($_GET['postid']) : "";
+    $posttype = isset($_GET['posttype'])? $_GET['posttype'] : "";
+
     if(isset($_GET['userid'])){
         $userid = base64_url_decode($_GET['userid']);
         $userdata = get_user_data(null,$userid);
         if($userdata){
-            $chatid = $userid.'_'.$postid;
+            $chatid = $userid.'_'.$postid.'_'.$posttype;
             $chat_username = $userdata['username'];
             $chat_fullname = ($userdata['name'] != '')? $userdata['name'] : $userdata['username'];
             $chat_userimg = ($userdata['image'] == "")? "default_user.png" : $userdata['image'];
@@ -34,6 +31,7 @@ if(checkloggedin()) {
             'userimg' => $author_image,
             'chatid' => $chatid,
             'postid' => $postid,
+            'posttype' => $posttype,
             'chat_userid' => $userid,
             'chat_fullname' => $chat_fullname,
             'chat_userimg' => $chat_userimg,

@@ -4,18 +4,18 @@
 
     /* Save the USER ID */
     var pid = $("#review-productId").text();
-
+    var review_type = $("#review-productId").data('review-type');
     /* Get and show the average rating for the product */
-    $.get(siteurl+"plugins/starreviews/current.php?show=average&productid=" + pid + "", function ( data ) {
+    $.get(siteurl+"plugins/starreviews/current.php?show=average&productid=" + pid + "&review_type="+review_type, function ( data ) {
       $("" + e_review + " .average-rating").html(data);
         ratingPassive(".average-rating");
     });
 
     /* Get and show the current reviews for the product */
-    $.get(siteurl+"plugins/starreviews/current.php?productid=" + pid + "", function ( data ) {
+    $.get(siteurl+"plugins/starreviews/current.php?productid=" + pid + "&review_type="+review_type, function ( data ) {
       $("" + e_review + " .show-reviews").html(data);
         //ratingPassive(".show-reviews");
-        starRating('.bid .star-rating');
+        starRating('.show-reviews .star-rating');
         bgTransfer();
     });
 
@@ -64,7 +64,6 @@
 
 function bgTransfer() {
     //disable-on-mobile
-
     $(".bg-transfer").each(function () {
         $(this).css("background-image", "url(" + $(this).find("img").attr("src") + ")");
     });

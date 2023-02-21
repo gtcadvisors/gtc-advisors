@@ -21,8 +21,14 @@
                             <div class="clip"><div class="shadow"><span class="digit firstDigit">4</span></div></div>
                             <div class="msg">OH!<span class="triangle"></span></div>
                         </div>
-                        <h2 class="h1">Sorry! Page not found</h2>
-                        <a href="<?php url("INDEX")?>"><h4 class="gobackhome"> GO BACK HOME</h4></a>
+                        <h2 class="h1 text-uppercase">Page not <span style="color:#2C76DC;">found</span></h2>
+                        <p style="font-size:16px;text-transform:uppercase;color:#161c2d;margin-bottom:0;font-weight:600">Oops! Looks like you followed a bad link.</p>
+                        <p style="font-weight:600;font-size:16px;text-transform:uppercase;color:#161c2d;margin-bottom:0;">If you think this is a problem with us, please tell us.</p>
+                        <!-- <h2 class="h1">Sorry! Page not found</h2> -->
+                        <div class="btn-item">
+                        <a class="btn get-btn" href="<?php url("INDEX")?>">GO TO HOME</a>
+                        <a class="btn courses-btn" href="<?php url("INDEX")?>">BACK</a>
+                        </div>
                     </div>
                 </div>
             </div>

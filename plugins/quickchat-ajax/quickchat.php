@@ -1,4 +1,12 @@
 <?php
+/**
+ * Quickchat - Fully Responsive PHP AJAX Chat Script
+ * @author Bylancer
+ * @version 1.0
+ * @Date: 09/May/2020
+ * @url https://bylancer.com
+ * @Copyright (c) 2015-18 Devendra Katariya (bylancer.com)
+ */
 
 define("ROOTPATH", dirname(dirname(__DIR__)));
 define("APPPATH", ROOTPATH."/php/");
@@ -79,7 +87,8 @@ function updateSeenmsg()
     global $con, $config;
     $userid = $_POST['userid'];
     $postid = $_POST['postid'];
-    $query = "Update `".$config['db']['pre']."messages` set seen='1' where to_id = '".$GLOBALS['sesId']."' AND from_id = '$userid' AND  post_id = '$postid'";
+    $posttype = $_POST['posttype'];
+    $query = "Update `".$config['db']['pre']."messages` set seen='1' where to_id = '".$GLOBALS['sesId']."' AND from_id = '$userid' AND  post_id = '$postid' AND post_type = '$posttype'";
     $con->query($query);
     echo '1';
     die();
@@ -113,15 +122,29 @@ function lastseen() {
 function get_postdata() {
     global $con,$config,$link;
     $postid = $_GET['postid'];
-    $sql = "SELECT product_name from `".$config['db']['pre']."project` WHERE id = '".$postid."' LIMIT 1";
+    $posttype = $_GET['posttype'];
+    if($posttype == "job"){
+        $sql = "SELECT product_name as title  from `".$config['db']['pre']."product` WHERE id = '".$postid."' LIMIT 1";
+        $post_link = $link['POST-DETAIL'].'/'.$postid;
+    }elseif($posttype == "gig"){
+        $sql = "SELECT title from `".$config['db']['pre']."post` WHERE id = '".$postid."' LIMIT 1";
+        $post_link = $link['SERVICE'].'/'.$postid;
+    }else{
+        $sql = "SELECT product_name as title from `".$config['db']['pre']."project` WHERE id = '".$postid."' LIMIT 1";
+        $post_link = $link['PROJECT'].'/'.$postid;
+    }
+
     $query = $con->query($sql);
     $info = mysqli_fetch_array($query);
-    $post_title = $info['product_name'];
-    $post_link = $link['PROJECT-DETAIL'].'/'.$postid;
     $item = array();
-    $item['post_title'] = $post_title;
-    $item['post_link'] = $post_link;
-
+    if(isset($info)){
+        $post_title = $info['title'];
+        $item['post_title'] = $post_title;
+        $item['post_link'] = $post_link;
+    }else{
+        $item['post_title'] = '';
+        $item['post_link'] = '';
+    }
     echo json_encode($item);
     die();
 }
@@ -157,20 +180,19 @@ function chatfrindList() {
 
     $limitCount = 20; // Set how much data you have to fetch on each request
     if(isset($limitStart ) || !empty($limitStart)) {
-//This query shows user contact list by conversation
-        $sql = "select id,username,name,image, message_date, post_id from `".$config['db']['pre']."user` as u
+        //This query shows user contact list by conversation
+        $sql = "select id,username,name,image, message_date, post_id, post_type from `".$config['db']['pre']."user` as u
             INNER JOIN
             (
-                select max(message_id) as message_id,to_id,from_id,message_date,post_id from `".$config['db']['pre']."messages` where to_id = '".$_SESSION['user']['id']."' or from_id = '".$_SESSION['user']['id']."' GROUP BY post_id
+                select max(message_id) as message_id,to_id,from_id,message_date,post_id,post_type from `".$config['db']['pre']."messages` where to_id = '".$_SESSION['user']['id']."' or from_id = '".$_SESSION['user']['id']."' GROUP BY post_id,post_type
             )
-            m ON u.id = m.from_id or u.id = m.to_id  where $where (u.id != '".$_SESSION['user']['id']."') GROUP BY post_id
+            m ON u.id = m.from_id or u.id = m.to_id  where $where (u.id != '".$_SESSION['user']['id']."') GROUP BY post_id,post_type
             ORDER BY message_id DESC ";
         $limit = "limit $limitStart, $limitCount";
         $query = $sql." ".$limit;
 
-        $rowcount = mysqli_num_rows(mysqli_query($con, $sql));
-
         $result = $con->query($query);
+        $rowcount = mysqli_num_rows($result);
         $results = array();
         $results['contact_count'] = $rowcount;
         while ($row = mysqli_fetch_array($result)) {
@@ -179,16 +201,24 @@ function chatfrindList() {
             $fullname = ($row['name'] != '')? $row['name'] : $username;
             $picname = $row['image'];
             $postid = $row['post_id'];
-            $chatid = $id."_".$postid;
+            $posttype = $row['post_type'];
+            $chatid = $id."_".$postid."_".$posttype;
             if($picname == "")
                 $picname = "default_user.png";
 
-            $sql = "SELECT product_name from `".$config['db']['pre']."project` WHERE id = '".$postid."' LIMIT 1";
+            if($posttype == "job"){
+                $sql = "SELECT product_name as title  from `".$config['db']['pre']."product` WHERE id = '".$postid."' LIMIT 1";
+            }elseif($posttype == "gig"){
+                $sql = "SELECT title from `".$config['db']['pre']."post` WHERE id = '".$postid."' LIMIT 1";
+            }else{
+                $sql = "SELECT product_name as title from `".$config['db']['pre']."project` WHERE id = '".$postid."' LIMIT 1";
+            }
+
             $query = $con->query($sql);
             $info = mysqli_fetch_array($query);
-            $post_title = $info['product_name'];
+            $post_title = isset($info['title'])? $info['title'] : "";
 
-            $sql = "SELECT 1 FROM `".$config['db']['pre']."messages` where to_id = '".$_SESSION['user']['id']."' AND from_id = '$id' AND post_id = '".$postid."' and recd = '0'";
+            $sql = "SELECT 1 FROM `".$config['db']['pre']."messages` where to_id = '".$_SESSION['user']['id']."' AND from_id = '$id' AND post_id = '".$postid."' AND post_type = '".$posttype."' and recd = '0'";
             $countrecd = mysqli_num_rows(mysqli_query($con,$sql));
 
             $onofst =  getlastActiveTime($id);
@@ -196,6 +226,7 @@ function chatfrindList() {
             $results['data'][] = array(
                 "chatid"=> $chatid,
                 "postid"=> $postid,
+                "posttype"=> $posttype,
                 "userid"=> $id,
                 "username"=> $username,
                 "fullname"=> $fullname,
@@ -219,7 +250,7 @@ function get_all_msg() {
     $sql = "select * from `".$config['db']['pre']."messages` where  
     ((to_id = '".mysqli_real_escape_string($con, $GLOBALS['sesId'])."' AND from_id = '".mysqli_real_escape_string($con,$_GET['client'])."' AND recd = '1') 
     OR 
-    (to_id = '".mysqli_real_escape_string($con,$_GET['client'])."' AND from_id = '".mysqli_real_escape_string($con,$GLOBALS['sesId'])."')) AND post_id = '".mysqli_real_escape_string($con,$_GET['postid'])."' order by message_id DESC ";
+    (to_id = '".mysqli_real_escape_string($con,$_GET['client'])."' AND from_id = '".mysqli_real_escape_string($con,$GLOBALS['sesId'])."')) AND post_id = '".mysqli_real_escape_string($con,$_GET['postid'])."' AND post_type = '".mysqli_real_escape_string($con,$_GET['posttype'])."' order by message_id DESC ";
 
     $page = 1;
     if(!empty($_GET["page"])) {
@@ -262,11 +293,11 @@ function get_all_msg() {
         if($chat['from_id'] == $GLOBALS['sesId'])
         {
             $position = 'odd';
-            $chatid = $chat['to_id'].'_'.$chat['post_id'];
+            $chatid = $chat['to_id'].'_'.$chat['post_id'].'_'.$chat['post_type'];
         }
         else{
             $position = 'even';
-            $chatid = $chat['from_id'].'_'.$chat['post_id'];
+            $chatid = $chat['from_id'].'_'.$chat['post_id'].'_'.$chat['post_type'];
         }
 
         if (strpos($chat['message_content'], 'file_name') !== false) {
@@ -331,7 +362,8 @@ function chatHeartbeat() {
         $status = $from_userdata['online'];
         $status  = ($status == "0")? "offline" : "online";
         $postid = $chat['post_id'];
-        $chatid = $from_id."_".$postid;
+        $posttype = $chat['post_type'];
+        $chatid = $from_id."_".$postid."_".$posttype;
 
         $chat['message_content'] = escape($chat['message_content'],false);
 
@@ -366,6 +398,7 @@ function chatHeartbeat() {
         $items[] = array(
             "s"=> 0,
             "postid"=> $postid,
+            "posttype"=> $posttype,
             "chatid"=> $chatid,
             "from_name"=> $from_name,
             "from_id"=> $from_id,
@@ -381,6 +414,7 @@ function chatHeartbeat() {
                     "s" => "1",
                     "chatid" => $chatid,
                     "postid" => $postid,
+                    "posttype"=> $posttype,
                     "fullname" => $from_name,
                     "userid" => $from_id,
                     "picname" => $picname,
@@ -393,6 +427,7 @@ function chatHeartbeat() {
                     "s" => "1",
                     "chatid" => $chatid,
                     "postid" => $postid,
+                    "posttype"=> $posttype,
                     "fullname" => $from_name,
                     "userid" => $from_id,
                     "picname" => $picname,
@@ -452,6 +487,7 @@ function sendChat() {
         $from_id = $GLOBALS['sesId'];
         $to_id = $_POST['to'];
         $postid = $_POST['postid'];
+        $posttype = $_POST['posttype'];
 
         $message = sanitize_string($_POST['message']);
         $timenow = date('Y-m-d H:i:s');
@@ -462,7 +498,7 @@ function sendChat() {
             $status = $to_userdata['online'];
             $picname = ($picname == "")? "default_user.png" : $picname;
             $status  = ($status == "0")? "offline" : "online";
-            $chatid = $to_id.'_'.$postid;
+            $chatid = $to_id.'_'.$postid.'_'.$posttype;
 
             if(!isset($_POST['wchat'])) {
                 if (isset($_SESSION['chatHistory'][$chatid])) {
@@ -470,6 +506,7 @@ function sendChat() {
                         "s" => "1",
                         "chatid" => $chatid,
                         "postid" => $postid,
+                        "posttype"=> $posttype,
                         "fullname" => $to_name,
                         "userid" => $to_id,
                         "picname" => $picname,
@@ -482,6 +519,7 @@ function sendChat() {
                         "s" => "1",
                         "chatid" => $chatid,
                         "postid" => $postid,
+                        "posttype"=> $posttype,
                         "fullname" => $to_name,
                         "userid" => $to_id,
                         "picname" => $picname,
@@ -497,7 +535,7 @@ function sendChat() {
                     $_SESSION['chatHistory'][$chatid] = array();
                 }
             }
-            $sql = "insert into `".$config['db']['pre']."messages` (from_id,to_id,message_content,message_type,message_date,post_id) values ('".mysqli_real_escape_string($con,$from_id)."','".mysqli_real_escape_string($con,$to_id)."','".mysqli_real_escape_string($con,$message)."','text','".$timenow."','".mysqli_real_escape_string($con,$postid)."')";
+            $sql = "insert into `".$config['db']['pre']."messages` (from_id,to_id,message_content,message_type,message_date,post_id,post_type) values ('".mysqli_real_escape_string($con,$from_id)."','".mysqli_real_escape_string($con,$to_id)."','".mysqli_real_escape_string($con,$message)."','text','".$timenow."','".mysqli_real_escape_string($con,$postid)."','".mysqli_real_escape_string($con,$posttype)."')";
 
             $con->query($sql);
 

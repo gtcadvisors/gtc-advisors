@@ -70,10 +70,15 @@ function average_Rating($user_id,$user_type)
     echo '<h3>'.__("Average rating").'</h3><p><small><strong>'.$rating.'</strong> '.__("average based on").' <strong>'.$total.'</strong> '.__("Reviews").'.</small></p><div class="rating-passive" data-rating="'.$rating.'"><span class="stars"></span></div>';
 }
 
-if(isset($_GET['productid'])){
-    $user_id = $_GET['productid'];
-    $userdata = get_user_data('',$user_id);
-    $user_type = $userdata['user_type'];
+if(isset($_GET['productid']) && isset($_GET['review_type'])){
+    if($_GET['review_type'] == "gig"){
+        $service_id = $_GET['productid'];
+        $user_type = 'user';
+    }else{
+        $user_id = $_GET['productid'];
+        $userdata = get_user_data('',$user_id);
+        $user_type = $userdata['user_type'];
+    }
 }else{
     echo '<li>'.__("No reviews").'</li>';
     exit();
@@ -81,28 +86,42 @@ if(isset($_GET['productid'])){
 // show average rating
 if (isset($_GET['show'])) {
     if ($_GET['show'] == "average") {
-        average_Rating($user_id,$user_type);
+        if($_GET['review_type'] == "gig"){
+            $service_id = $_GET['productid'];
+            $user_type = 'user';
+            gig_averageRating($service_id);
+        }else{
+            average_Rating($user_id,$user_type);
+        }
     }
 } else {
-
-    if($user_type == 'employer'){
-        $qReviews = ORM::for_table($config['db']['pre'].'reviews')
-            ->where(array(
-                'employer_id' => $user_id,
-                'rated_by'=> 'user'
-            ))
-            ->order_by_desc('created_at')
-            ->find_many();
+    if($_GET['review_type'] == "gig"){
+        $service_id = $_GET['productid'];
+        $where_array = array(
+            'project_id' => $service_id,
+            'rated_by'=> 'employer'
+        );
     }else{
-        $qReviews = ORM::for_table($config['db']['pre'].'reviews')
-            ->where(array(
+        if($user_type == 'employer'){
+            $where_array = array(
+                'employer_id' => $user_id,
+                'rated_by'=> 'user',
+                'post_type' => 'default'
+            );
+        }else{
+            $where_array = array(
                 'freelancer_id' => $user_id,
-                'rated_by'=> 'employer'
-            ))
-            ->order_by_desc('created_at')
-            ->find_many();
+                'rated_by'=> 'employer',
+                'post_type' => 'default'
+            );
+        }
     }
 
+
+    $qReviews = ORM::for_table($config['db']['pre'].'reviews')
+        ->where($where_array)
+        ->order_by_desc('created_at')
+        ->find_many();
     // show reviews
     $rReviews = count($qReviews);
 
@@ -110,18 +129,29 @@ if (isset($_GET['show'])) {
         echo '<li>'.__("No reviews").'</li>';
     } else {
         foreach ($qReviews as $fReviews) {
-
-            $pro = ORM::for_table($config['db']['pre'].'project')
-                ->select('product_name')
-                ->find_one($fReviews['project_id']);
-            $project_id = $fReviews['project_id'];
-            $project_title = $pro['product_name'];
-
-            if($user_type == 'employer'){
-                $user_id = $fReviews['freelancer_id'];
+            if($_GET['review_type'] == "gig"){
+                $pro = ORM::for_table($config['db']['pre'].'post')
+                    ->select('title')
+                    ->find_one($fReviews['project_id']);
+                $project_id = $fReviews['project_id'];
+                $project_title = $pro['title'];
+                $user_id = $fReviews['user_id'];
+                $project_link = $link['SERVICE'].'/'.$project_id;
             }else{
-                $user_id = $fReviews['employer_id'];
+                $pro = ORM::for_table($config['db']['pre'].'project')
+                    ->select('product_name')
+                    ->find_one($fReviews['project_id']);
+                $project_id = $fReviews['project_id'];
+                $project_title = $pro['product_name'];
+                $project_link = $link['PROJECT'].'/'.$project_id;
+
+                if($user_type == 'employer'){
+                    $user_id = $fReviews['freelancer_id'];
+                }else{
+                    $user_id = $fReviews['employer_id'];
+                }
             }
+
             $info = ORM::for_table($config['db']['pre'].'user')
                 ->select_many('name','username','image')
                 ->find_one($user_id);
@@ -141,6 +171,15 @@ if (isset($_GET['show'])) {
             }
 
             $created_at = date('d-M-Y', strtotime($fReviews['created_at']));
+            if($_GET['review_type'] == "gig"){
+                $tpl = '<a href="'.$link['PROFILE'].'/'.$username.'">'.$fullname.'</a> 
+                            <span>@'.$username.'</span>';
+            }else{
+                $tpl = '<a href="'.$project_link.'">'.$project_title.'</a> 
+                            <span>'.$fullname.' 
+                                <a href="'.$link['PROFILE'].'/'.$username.'">@'.$username.'</a>
+                            </span>';
+            }
 
             echo '
             <li id="'.$fReviews['id'].'">
@@ -155,13 +194,7 @@ if (isset($_GET['show'])) {
                     </div>
                     <!-- Content -->
                     <div class="item-content">
-
-                        <h4>
-                            <a href="'.$link['PROJECT'].'/'.$project_id.'">'.$project_title.'</a> 
-                            <span>'.$fullname.' 
-                                <a href="'.$link['PROFILE'].'/'.$username.'">@'.$username.'</a>
-                            </span>
-                        </h4>
+                        <h4>'.$tpl.'</h4>
                         <div class="item-details margin-top-10">
                             <div class="star-rating" data-rating="'.number_format($fReviews['rating'],1).'"></div>
                             <div class="detail-item"><i class="icon-material-outline-date-range"></i> '.$created_at.'</div>

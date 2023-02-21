@@ -153,19 +153,19 @@ if ($is_login) {
            <ul class="navbar-nav align-items-center ms-auto">
             <!-- favorite Dropdown-->
             <li class="nav-item no-caret d-none d-sm-block mr--1 dropdown-notifications">
-                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" href="saved_experts.php"><i class="fa-regular fa fa-heart fa-2x"></i></a>
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" href="<?php url("SAVED-ADVISORS") ?>"><i class="fa-regular fa fa-heart fa-2x"></i></a>
             </li>
 
              <!-- Messages Dropdown-->
              <li class="nav-item dropdown no-caret d-none d-sm-block mr--1 dropdown-notifications">
-                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-regular fa fa-envelope fa-2x"></i></a>
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-bs-toggle="dropdown"><i class="fa-regular fa fa-envelope fa-2x"></i></a>
                 <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
                     <h6 class="dropdown-header dropdown-notifications-header">
                         <i class="me-2 fa-regular fa fa-envelope fa-1xx"></i>
                         <?php _e("Inbox") ?> (<?php
-                               if ($unread_message != 0) {
-                                   echo '<span>'.$unread_message.'</span>';
-                               } ?>)
+                                        if($unread_note_count != 0){
+                                            echo '<span>'.$unread_note_count.'</span>';
+                                        } ?>)
                     </h6>
                     <div class="dropdown-divider"></div>
                     <?php foreach ($chat as $msg) { ?>
@@ -184,7 +184,7 @@ if ($is_login) {
 
             <!-- Alerts Dropdown-->
             <li class="nav-item dropdown no-caret d-none d-sm-block mr--1 dropdown-notifications">
-                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-regular fa fa-bell bx-tada fa-2x"></i></a>
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts" href="javascript:void(0);" role="button" data-bs-toggle="dropdown"><i class="fa-regular fa fa-bell bx-tada fa-2x"></i></a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAlerts">
                     <h6 class="dropdown-header dropdown-notifications-header">
                         <i class="fa-regular fa fa-bell fa-1xx me-2"></i>
@@ -245,57 +245,38 @@ if ($is_login) {
            
             <!-- User Dropdown-->
             <li class="nav-item dropdown no-caret dropdown-user mr--1">
-                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
                 <div class="icon-container">
                   <img class="rounded-circle" src="<?php _esc($config['site_url']);?>storage/profile/<?php _esc($userpic)?>" alt="<?php _esc($username);?>" style="width: 45px; height: 45px" /><div class="status-circle"></div></div></a>
                 <div class="dropdown-menu dropdown-menu-end border-0" aria-labelledby="navbarDropdownUserImage">
-                  <?php
-                  if ($usertype == 'freelancer') {
-                      ?>
-                    <a class="dropdown-item" href="<?php url("PROFILE") ?>/<?php _esc($username)?>">
-                      <div class="dropdown-item-icon"><i class=""></i></div>
-                      Profile
-                  </a>
-                  <?php } ?>
-                  <?php
-                  if ($usertype == 'angency') {
-                      ?>
-                    <a class="dropdown-item" href="<?php url("PROFILE") ?>/<?php _esc($username)?>">
-                      <div class="dropdown-item-icon"><i class=""></i></div>
-                      Profile
+                <?php if($usertype == 'freelancer' || $usertype == 'agency') { ?>
+                    <a class="dropdown-item" href="<?php url("ADVISOR-PROFILE") ?>/<?php _esc($username)?>"><div class="dropdown-item-icon"><i class=""></i></div> My Profile
                   </a>
                   <?php } ?>
 
                   <?php
-                  if ($usertype == 'user') {
-                      ?>
+                  if ($usertype == 'user') { ?>
                   <a class="dropdown-item" href="<?php url("BECOME-ADVISOR") ?>">
                     <div class="dropdown-item-icon"><i class=""></i></div>
                     Become an Advisor
                 </a>
                 <?php } ?>
-                <?php
-                if ($usertype == 'freelancer') {
-                    ?>
-                <a class="dropdown-item" href="<?php url("DASHBOARD") ?>">
-                    <div class="dropdown-item-icon"><i class=""></i></div>
-                    <?php _e("My Dashboard") ?>
-                </a>
-                <?php } ?>
                 
-                <?php
-                if ($usertype == 'agency') {
-                    ?>
+                <?php if($usertype == 'freelancer' || $usertype == 'agency') { ?>
                 <a class="dropdown-item" href="<?php url("DASHBOARD") ?>">
                     <div class="dropdown-item-icon"><i class=""></i></div>
                     <?php _e("My Dashboard") ?>
                 </a>
                 <?php } ?>
 
+                <?php 
+                if ($usertype == 'user'){ ?>
                 <a class="dropdown-item" href="<?php url("CATEGORY") ?>">
                   <div class="dropdown-item-icon"><i class=""></i></div>
                   Hire an Advisor
                 </a>
+                <?php } ?>
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<?php url("EDITPROFILE") ?>">
                       <div class="dropdown-item-icon"><i class=""></i></div>
@@ -345,6 +326,9 @@ if ($is_login) {
 
                       <li><a href="<?php url("INDEX") ?>">Home</a></li>
                       <li><a href="<?php url("MESSAGE") ?>">Inbox</a></li>
+                      <?php if($usertype == 'freelancer' || $usertype == 'agency') { ?>
+                      <li><a href="<?php url("DASHBOARD") ?>">My Dasboard</li>
+                        <?php } ?>
                       <!-- Hidden for only Advisors -->
                       <?php if ($usertype == 'user') { ?>
                       <li><a href="SAVED_ADVISORS">Saved Advisors</a></li>
@@ -391,16 +375,8 @@ $result = ORM::for_table($config['db']['pre'].'catagory_main')
                   </div>
                   <div class="mobile-account border-bottom pb-9 pt-20">
                   <ul>
-                  <?php
-                if ($usertype == 'freelancer') {
-                    ?>
-                  <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>"><strong>My Profile</strong></a></li>
-                  <?php } ?>
-
-                  <?php
-                if ($usertype == 'agency') {
-                    ?>
-                  <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>"><strong>My Profile</strong></a></li>
+                  <?php if($usertype == 'freelancer' || $usertype == 'agency') { ?>
+                  <li><a href="<?php url("ADVISOR-PROFILE") ?>/<?php _esc($username)?>"><strong>My Profile</strong></a></li>
                   <?php } ?>
                   </ul>
                   </div>

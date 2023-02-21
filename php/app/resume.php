@@ -7,8 +7,8 @@ if(checkloggedin())
 {
 	update_lastactive();
 	$ses_userdata = get_user_data($_SESSION['user']['username']);
-	if($ses_userdata['user_type'] == 'freelancer'){
-		headerRedirect($link['DASHBOARD']);
+	if($ses_userdata['user_type'] == 'freelancer' ? : 'agency'){
+		headerRedirect($link['']);
 	}
 	$id = $name = $error = $resume_file = '';
     global $match;

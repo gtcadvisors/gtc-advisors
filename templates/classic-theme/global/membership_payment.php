@@ -1,23 +1,4 @@
-<?php
-overall_header(__("Upgrade Membership"));
-?>
-<div id="titlebar">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2><?php _e("Upgrade Membership") ?></h2>
-                <!-- Breadcrumbs -->
-                <nav id="breadcrumbs">
-                    <ul>
-                        <li><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a></li>
-                        <li><?php _e("Upgrade") ?></li>
-                    </ul>
-                </nav>
-
-            </div>
-        </div>
-    </div>
-</div>
+<?php include_once TEMPLATE_PATH.'/header.php';?>
 <div class="container">
     <div class="row">
         <div class="col-xl-8 col-lg-8 content-right-offset">

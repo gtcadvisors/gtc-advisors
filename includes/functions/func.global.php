@@ -225,7 +225,8 @@ function overall_header($page_title='', $meta_desc = '', $meta_image = '', $meta
 }
 
 
-function overall_header2($page_title='', $meta_desc = '', $meta_image = '', $meta_article = false){
+// Create header 2
+function header_2($page_title='', $meta_desc = '', $meta_image = '', $meta_article = false){
     global $config;
     checkinstall();
     if(isset($_SESSION['user']['id'])) {
@@ -318,8 +319,8 @@ function overall_header2($page_title='', $meta_desc = '', $meta_image = '', $met
         $meta_image = $config['site_url'].'storage/logo/'.$config['site_logo'];
     }
 
-    //Print Template 'overall_header'
-    HtmlTemplate::display('header_expert', array(
+    //Print Template 'header_2'
+    HtmlTemplate::display('header_2', array(
         'unread_note_count' => $unread_note_count,
         'notification' => $notification,
         'unread_message' => $unread_message,

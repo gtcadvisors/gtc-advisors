@@ -1,7 +1,7 @@
 <div class="userback-button-container" id="userback_button_container">
         <div class="userback-button userback-button-e" style="min-width: 120px;">Feedback</div></div>
 <!-- footer start -->
-<footer class="footer mt-50">
+<footer class="footer mt-50" style="line-height: 0 !important;">
       <div class="container">
         <div class="row">
           <div class="d-none d-lg-flex footer-col-1 col-md-8 col-sm-12">
@@ -240,6 +240,5 @@ if($is_login){
         var rtl = false;
     }
 </script>
-<!-- Scripts
   </body>
 </html>

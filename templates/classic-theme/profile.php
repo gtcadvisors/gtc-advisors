@@ -237,6 +237,30 @@
                     </div>
                 <?php } ?>
 
+                <?php
+if($is_login) {
+    if ($config['quickchat_socket_on_off'] == 'on' || $config['quickchat_ajax_on_off'] == 'on') {
+        echo '<button type="button" 
+                                        class="button ripple-effect full-width margin-top-10 margin-bottom-50 start_zechat zechat-hide-under-768px"
+                                    data-chatid="' . _esc($userid, false) . '_' . _esc($userid, false) . '_profile"
+                                    data-userid="' . _esc($userid, false) . '"
+                                    data-username="' . _esc($profileusername, false) . '"
+                                    data-fullname="' . _esc($fullname, false) . '"
+                                    data-userimage="' . _esc($userimage, false) . '"
+                                    data-userstatus="offline"
+                                    data-postid="' . _esc($userid, false) . '"
+                                    data-posttype="profile"
+                                    data-posttitle="' . __("Direct message") . '"
+                                    data-postlink="' . _esc($item_link, false) . '">' . __("Chat now") . '  
+                                    <i class="icon-feather-message-circle"></i></button>';
+
+        echo '<a href="' . _esc($quickchat_url, false) . '" 
+                                        class="button ripple-effect full-width margin-top-10 margin-bottom-50 zechat-show-under-768px">
+                                        ' . __("Chat now") . ' <i class="icon-feather-message-circle"></i></a>';
+    }
+}
+                ?>
+
                 <!-- Widget -->
                 <div class="sidebar-widget">
                     <h3><?php _e("Social Profiles") ?></h3>

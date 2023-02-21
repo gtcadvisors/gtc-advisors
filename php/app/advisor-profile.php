@@ -67,15 +67,16 @@ if(isset($username)){
 
   }
   else{
-    error(__("User Not Found"), __LINE__, __FILE__, 1);
+    header("Location: ".$config['site_url']."404");
   }
 
 
 
 
 
-}else{
-  error(__("Page Not Found"), __LINE__, __FILE__, 1);
+}
+else{
+  header("Location: ".$config['site_url']."category");
 }
 
  
@@ -112,8 +113,8 @@ function downloadFile ($file){
 }
 
 function search_categories($config, $search_values, $exclude_user_id = null) {
-  $query = ORM::for_table($config['db']['pre'].'users')
-      ->order_by_asc('cat_order');
+  $query = ORM::for_table($config['db']['pre'].'users');
+      // ->order_by_asc('cat_order');
   
   // Modify the query based on the number of search values
   switch (count($search_values)) {

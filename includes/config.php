@@ -1,8 +1,8 @@
 <?php
 $config['db']['host'] = 'localhost';
-$config['db']['name'] = 'gtc-advisors';
+$config['db']['name'] = 'taxexperts';
 $config['db']['user'] = 'root';
-$config['db']['pass'] = 'password';
+$config['db']['pass'] = '';
 $config['db']['pre'] = 'tx_';
 
 $config['admin_folder'] = 'admin';

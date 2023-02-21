@@ -39,7 +39,7 @@
         <div class="loged-header main-header">
           <div class="header-left">
             <div class="header-logo2">
-              <a class="d-flex" href="<?php url(INDEX) ?>">
+              <a class="d-flex" href="<?php url("INDEX") ?>">
                 <img alt="" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/gtclogo.png"></a>
             </div>
           </div>

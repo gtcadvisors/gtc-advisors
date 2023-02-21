@@ -1,25 +1,5 @@
-<?php
-overall_header(__("Membership Plan"));
-?>
-<!-- Titlebar
-================================================== -->
-<div id="titlebar" class="gradient">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2><?php _e("Membership Plan") ?></h2>
-                <!-- Breadcrumbs -->
-                <nav id="breadcrumbs">
-                    <ul>
-                        <li><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a></li>
-                        <li><?php _e("Membership Plan") ?></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Page Content
+<?php include_once TEMPLATE_PATH.'/header.php';?><!-- Titlebar
+
 ================================================== -->
 <div class="container">
     <div class="row">

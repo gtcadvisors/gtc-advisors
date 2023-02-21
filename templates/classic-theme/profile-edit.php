@@ -1,6 +1,8 @@
 <?php
 overall_header(__("Profile Edit"));
 ?>
+
+<?php echo($trial) ?></h1>
 <style>
 textarea.form-control {
     min-height: calc(8.5em + 0.75rem + 2px) !important;
@@ -206,7 +208,7 @@ input[type="text"]:disabled {
                           <div class="form-group">
                               <label class="form-edit font-sm mb-10" for="Username">Username</label>
                               <input class="mb-15 form-field-bg form-control" type="text" name="username" value="<?php _esc($username)?>">
-                              <span class="pt-20 form-sub-text">Your Global Tax Complaince URL: <?php _esc($config['site_url']);?>profile/<?php _esc($username);?></span>
+                              <span class="pt-20 form-sub-text">Your Global Tax Complaince URL: <?php _esc($config['site_url']);?>advisor-profile/<?php _esc($username);?></span>
                           </div>
       
                           <div class="form-group">
@@ -217,34 +219,34 @@ input[type="text"]:disabled {
 
                           <div class="form-group" id="coun">
                             <label class="form-edit font-sm color-text-mutted mb-10">Country</label>
-                        
-                            <input class="mb-15 form-field-bg-2 form-control" type="text" value="<?php
-$ip = $_REQUEST['REMOTE_ADDR']; $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ip));
-if($query && $query['status'] == 'success') { echo ''.$query['country'].', '.$query['city'].''; } else {
-  echo 'Unable to get location'; } ?>" readonly>
+                            
+                            <select id="country" name="country" title="<?php _esc($user_country);?>" class="ml-2- mb-15 form-field-bg form-control select">
+                            <option value="<?php _esc($user_country);?>" selected><?php _esc($user_country);?></option>
+                            <option value="">Select Country</option>
+                            
                             <button class="btn btn-detect-country">Detect</button>
+                          </select>
                           </div>
                           
                           <div class="form-group">
                               <label class="form-edit font-sm color-text-mutted mb-10">Time Zone</label>
-                              <select name="price" class="ml-2- mb-15 form-field-bg form-control select">
+                              <select name="tagline" class="ml-2- mb-15 form-field-bg form-control select">
+                              <option value="<?php _esc($tagline); ?>" selected><?php _esc($tagline); ?></option>
                               <option value="(GMT +01:00) Africa/Lagos">(GMT +01:00) Africa/Lagos</option>
-                              <option value="(GMT +01:00) Europe/London ">(GMT +01:00) Europe/London </option>
                               <option value="(GMT +01:00) Europe/Berlin">(GMT +01:00) Europe/Berlin</option>
                               <option value="(GMT +01:00) Africa/Casablanca">(GMT +01:00) Africa/Casablanca</option>
                               <option value="(GMT +02:00) Africa/Windhoek">(GMT +02:00) Africa/Windhoek</option>
+                              <option value="">(GMT +01:00) Europe/London </option>
                               </select>
                               </div>
                               
       
                               <div class="form-group">
                               <label class="form-edit font-sm color-text-mutted mb-10"><?php _e("City") ?></label>
-                              <select id="city" name="city" data-size="7" title="<?php _e("Select") ?> <?php _e("City") ?>" class="ml-2- mb-15 form-field-bg form-control select">
-                              <option value="0" selected="selected"><?php _e("Select") ?> <?php _e("City") ?></option>
-                              <?php if($city != '')
-                                    echo '<option value="'._esc($city,false).'" selected="selected">'._esc($cityname,false).'</option>';
-                                     ?>
-                                     <i class="city-search fi-rr-search"></i>
+                              <select id="region" name="city" class="ml-2- mb-15 form-field-bg form-control select">
+                              <option value="<?php _esc($city);?>" selected><?php _esc($city);?></option>
+                              <option value="<?php _esc($city);?>">Select City</option>
+                              <i class="city-search fi-rr-search"></i>
                               </select>
                               </div>
       
@@ -280,17 +282,18 @@ if($query && $query['status'] == 'success') { echo ''.$query['country'].', '.$qu
                     <div class="row mr--20">
                         <div class="col-lg-7 col-md-12">
                           <div class="form-group">
-                            <label class="form-edit font-sm color-text-mutted mb-10">Old Password <span class="text-danger">*</span></label>
-                            <input class="mb-15 form-field-bg form-control" type="password" name="password" value="" placeholder="Old Password">
+                            <label class="form-edit font-sm color-text-mutted mb-10"><?php _e("New Password") ?> <span class="text-danger">*</span></label>
+                            <input class="mb-15 form-field-bg form-control" type="password" name="password" id="password" placeholder="Old Password" onkeyup="checkAvailabilityPassword()">
                           </div>
       
                           <div class="form-group">
-                              <label class="form-edit font-sm color-text-utted mb-10" for="Password">New Password</label>
-                              <input class="mb-15 form-field-bg form-control" type="text" value="" placeholder="New Password">
+                              <label class="form-edit font-sm color-text-utted mb-10" for="Password"><?php _e("Confirm Password") ?></label>
+                              <input class="mb-15 form-field-bg form-control" id="re_password" type="password" placeholder="Confirm Password" onkeyup="checkRePassword()">
                               <span class="pt-20 form-sub-text">8 characters or longer. Combine upper and lowercase letters and numbers</span>
                           </div>
                           <div class="box-button mt-15">
-                            <button class="btn float-lg-left btn-save-profile"><?php _e("Save Changes") ?></button>
+                          <span id="password-availability-status"><?php if($password_error != ""){ _esc($password_error) ; }?></span>
+                            <button type="submit" name="submit2" class="btn btn-primary float-lg-left btn-save-profile"><?php _e("Save Changes") ?></button>
                           </div>
                          </div>
                          </div>
@@ -448,7 +451,7 @@ if($query && $query['status'] == 'success') { echo ''.$query['country'].', '.$qu
 
 
           </script>
-         <!-- <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/plugins/select2.min.css" rel="stylesheet"/> -->
+         <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/countries.js"></script>
             <script src="<?php _esc(TEMPLATE_URL);?>/assets/js/plugins/select2.min.js"></script>
             <script>
                 $(document).ready(function () {

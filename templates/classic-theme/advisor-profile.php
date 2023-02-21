@@ -1,22 +1,24 @@
 <?php
   overall_header("advisor profile")
   ?>
-<div class="container-fluid d-none d-lg-flex flex-row justify-content-evenly border-bottom border-2 p-3">
+<!-- <div class="container-fluid d-none d-lg-flex flex-row justify-content-evenly border-bottom border-1 border-top pt-1">
         <div class="text-center">
           <div class="list-tabs">
             <ul class=" nav-tabs d-lg-flex flex-row justify-content-evenly" role="tablist">
-              <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> Tax Audits</a></li>
-              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Sales Tax</a></li>
-              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> International</a></li>
-              <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> Financial Planning</a></li>
-              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Corporations</a></li>
-              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> IRS Representation</a></li>
-              <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Individual Tax Preparation</a></li> 
-              <li class="mt-3 mb-3"> <a class="see-all" href="category.php"> See All</a></li> 
-            </ul>
+              <?php foreach($defaultCategories as $cat){?>
+                <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> <?php _esc($cat["cat_name"]) ?></a></li>
+                <?php }?>  
+                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Sales Tax</a></li>
+                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> International</a></li>
+                <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> Financial Planning</a></li>
+                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Corporations</a></li>
+                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> IRS Representation</a></li>
+                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Individual Tax Preparation</a></li> 
+                <li class="mt-3 mb-3"> <a class="see-all" href="category.php"> See All</a></li> 
+              </ul>
           </div>
         </div>
-        </div>
+        </div> -->
         <!-- <div class="container-fluid d-md-flex d-none d-lg-none flex-row justify-content-evenly border-bottom border-2 p-3">
         <div class="text-center">
       <div class="list-tabs mb-3">
@@ -30,19 +32,12 @@
       </div>
     </div>
         </div> -->
-        
-    <div class="container-fluid d-flex d-lg-none flex-row border-top border-bottom border-1 header__categories p-3">
-      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
-      <a href="" class="me-3 text-center category-pill text--black">IRS Representation</a>
-      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
-      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
-      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
-      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
-      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
-      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
-      <a href="" class="me-3 text-center category-pill text--black">Tax Pricing</a>
+    
+    <div class="container-fluid d-flex flex-row border-top border-bottom border-1 header__categories p-3 ps-lg-5">
+      <?php foreach($defaultCategories as $cat){?>
+        <a href="<?php _esc($config['site_url']."categories?category=".$cat["cat_name"]) ?>" class="me-3 text-center category-pill text--black"><?php _esc($cat["cat_name"]) ?></a>
+      <?php }?>  
     </div>
-
 
       <main class="main">
         <!-- First Part -->
@@ -56,7 +51,7 @@
                 <p class="advisor__bio text--black mt-2 mt-lg-3 mb-3"><?php _esc($bio) ?></p>
                 <div class="d-flex flex-row flex-wrap justify-content-center justify-content-lg-start category-pill-container">
                   <?php foreach($categories as $category){?>
-                    <a class="me-1 mb-2 text-center category-pill text--black" href="#"><?php _esc($category)?></a>
+                    <a class="me-1 mb-2 text-center category-pill text--black" href="<?php _esc($config['site_url']."categories?category=".$category) ?>"><?php _esc($category)?></a>
                   <?php }?>
                 </div>
                 <button class="advisor__invite-btn mt-2 mt-lg-3">Invite to Job</button>
@@ -187,7 +182,7 @@
               <div class="similar-advisor__profile d-flex flex-row justify-content-start align-items-center mt-4">
                   <img class="" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/advisors/1.png">
                   <div class="d-flex flex-column ps-3">
-                    <a class="profile__text--dark">Juan Rodrick</a>
+                    <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark">Juan Rodrick</a>
                     <span class="similar-advisor__profile--expertise">Coporate Income Tax</span>
                     <span class="similar-advisor__profile--type d-flex align-items-center"><img class="me-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>">Freelancer</span>
                   </div>
@@ -250,7 +245,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -268,7 +263,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -286,7 +281,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -304,7 +299,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -322,7 +317,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -340,7 +335,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -358,7 +353,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -376,7 +371,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -394,7 +389,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -412,7 +407,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -430,7 +425,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -448,7 +443,7 @@
                   <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
                   <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
                     <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
-                      <h4 class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</h4>
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
                       <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
                     </div>
                     <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
@@ -462,6 +457,79 @@
                     </div>
                   </div>
                 </div>
+                <div class="profile-card d-flex flex-column">
+                  <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
+                  <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
+                    <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
+                      <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
+                    </div>
+                    <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <p class="expertise mb-2">Tax Audits, Financial Planning, IRS Representation</p>
+                      <p class="bio mb-1 mb-md-2 mb-lg-3 d-flex flex-wrap">I am the perfect guy for the job, contact me blah and blah ..........</p>
+                      <p class="response">Response Rate: Replies within 1 hour</p>
+                    </div>
+                    <div class="profile-card-footer d-flex flex-row justify-content-between align-items-center ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <button><i class="fa-heart fa-solid fa-regular like-icon"></i></button>
+                      <img class="g-verified-logo" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Verified Expert Badge Transperent 2.png">
+                    </div>
+                  </div>
+                </div>
+                <div class="profile-card d-flex flex-column">
+                  <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
+                  <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
+                    <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
+                      <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
+                    </div>
+                    <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <p class="expertise mb-2">Tax Audits, Financial Planning, IRS Representation</p>
+                      <p class="bio mb-1 mb-md-2 mb-lg-3 d-flex flex-wrap">I am the perfect guy for the job, contact me blah and blah ..........</p>
+                      <p class="response">Response Rate: Replies within 1 hour</p>
+                    </div>
+                    <div class="profile-card-footer d-flex flex-row justify-content-between align-items-center ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <button><i class="fa-heart fa-solid fa-regular like-icon"></i></button>
+                      <img class="g-verified-logo" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Verified Expert Badge Transperent 2.png">
+                    </div>
+                  </div>
+                </div>
+                <div class="profile-card d-flex flex-column">
+                  <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
+                  <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
+                    <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
+                      <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
+                    </div>
+                    <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <p class="expertise mb-2">Tax Audits, Financial Planning, IRS Representation</p>
+                      <p class="bio mb-1 mb-md-2 mb-lg-3 d-flex flex-wrap">I am the perfect guy for the job, contact me blah and blah ..........</p>
+                      <p class="response">Response Rate: Replies within 1 hour</p>
+                    </div>
+                    <div class="profile-card-footer d-flex flex-row justify-content-between align-items-center ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <button><i class="fa-heart fa-solid fa-regular like-icon"></i></button>
+                      <img class="g-verified-logo" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Verified Expert Badge Transperent 2.png">
+                    </div>
+                  </div>
+                </div>
+                <div class="profile-card d-flex flex-column">
+                  <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/activities/Ade-Lateef.png" alt="profile image">
+                  <div class="ps-2 pe-2 ps-lg-0 pe-lg-0">
+                    <div class="d-flex align-items-center profile-card-title mt-2 mb-1 mt-md-3 mb-md-2 ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <a href="<?php _esc($config['site_url']."advisor-profile/mustapha") ?>" class="profile__text--dark profile__text--dark--normal me-2 me-lg-3">Ade Lateef</a>
+                      <img class="mt-lg-1" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/profile/<?php _esc($advisorType == "freelancer"?"freelancer-icon.png":"agency-icon.png") ?>" alt="">
+                    </div>
+                    <div class="profile-card-body ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <p class="expertise mb-2">Tax Audits, Financial Planning, IRS Representation</p>
+                      <p class="bio mb-1 mb-md-2 mb-lg-3 d-flex flex-wrap">I am the perfect guy for the job, contact me blah and blah ..........</p>
+                      <p class="response">Response Rate: Replies within 1 hour</p>
+                    </div>
+                    <div class="profile-card-footer d-flex flex-row justify-content-between align-items-center ps-md-2 pe-md-2 ps-lg-4 pe-lg-4">
+                      <button><i class="fa-heart fa-solid fa-regular like-icon"></i></button>
+                      <img class="g-verified-logo" src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Verified Expert Badge Transperent 2.png">
+                    </div>
+                  </div>
+                </div>
+               
 
                 </div>
 
@@ -554,6 +622,10 @@
     e.target.classList.add("t-active")
     $(`#${e.target.classList[1]}`).removeClass("d-none")
 
+  })
+
+  $(".based-on-your-activity-section .slick-arrow").click(() =>{
+    document.querySelector(".profile-card-container").scrollLeft += document.querySelector(".profile-card-container").clientWidth
   })
   
  </script>

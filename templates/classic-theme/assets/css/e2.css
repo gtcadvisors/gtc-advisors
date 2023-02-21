@@ -12311,6 +12311,15 @@ div#card_deck i{
   height: 40px;
   border-radius: 100%;
   box-shadow:0px 3px 15px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.based-on-your-activity-section .slick-arrow:hover{
+  opacity: 70%;
 }
 
 .based-on-your-activity-section .slick-arrow i{
@@ -12318,6 +12327,7 @@ div#card_deck i{
 }
 
 .profile-card-container{
+  scroll-behavior: smooth; 
   overflow-x: scroll;
   overflow-y: hidden;
 }
@@ -12573,6 +12583,7 @@ div#card_deck i{
 
 @media screen and (min-width: 1024px) {
 
+
   .advisor__profile-info-container{
     width: 100%;
     max-width: 100%;
@@ -12822,6 +12833,15 @@ div#card_deck i{
   .g-verified-logo{
     width: 90px;
     height: 30px;
+  }
+
+  .based-on-your-activity-section .slick-arrow{
+    width: 56px;
+    height: 56px;
+  }
+
+  .based-on-your-activity-section .slick-arrow i{
+   font-size: 1.2rem;
   }
 
 }

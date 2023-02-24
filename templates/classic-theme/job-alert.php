@@ -1,6 +1,4 @@
-<?php
-overall_header(__("Job Alert"));
-?>
+<?php include_once TEMPLATE_PATH.'/header.php'; ?>
 <!-- Dashboard Container -->
 <div class="dashboard-container">
 
@@ -70,4 +68,4 @@ overall_header(__("Job Alert"));
                 </div>
             </div>
             <!-- Row / End -->
-            <?php include_once TEMPLATE_PATH.'/overall_footer_dashboard.php'; ?>
+            <?php include_once TEMPLATE_PATH.'/footer.php'; ?>

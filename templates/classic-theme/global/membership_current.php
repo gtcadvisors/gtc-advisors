@@ -1,6 +1,4 @@
-<?php
-overall_header(__("Membership"));
-?>
+<?php include_once TEMPLATE_PATH.'/header.php';?>
 <!-- Dashboard Container -->
 <div class="dashboard-container">
 
@@ -12,17 +10,6 @@ overall_header(__("Membership"));
         <div class="dashboard-content-inner" >
 
             <!-- Dashboard Headline -->
-            <div class="dashboard-headline">
-                <h3><?php _e("Current Plan") ?></h3>
-                <!-- Breadcrumbs -->
-                <nav id="breadcrumbs" class="dark">
-                    <ul>
-                        <li><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a></li>
-                        <li><?php _e("Current Plan") ?></li>
-                    </ul>
-                </nav>
-            </div>
-
             <!-- Row -->
             <div class="row">
                 <!-- Dashboard Box -->

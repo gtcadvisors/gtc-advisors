@@ -1,7 +1,7 @@
 <?php
 global $config,$lang,$link;
 if (checkloggedin()) {
-    headerRedirect($link['DASHBOARD']);
+    headerRedirect($link['MYACCOUNT']);
 }
 $start = microtime(true);
 $limit = 6;

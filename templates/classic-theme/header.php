@@ -69,6 +69,7 @@
     <!--Loop for Theme Color codes-->
 
     <link rel="stylesheet" href="<?php _esc($config['site_url']);?>includes/assets/plugins/flags/flags.min.css">
+    <link rel="stylesheet" href="<?php _esc(TEMPLATE_URL);?>/css/dash/bootstrap.min.css">
     <link rel="stylesheet" href="<?php _esc($config['site_url']);?>includes/assets/css/icons.css">
     <link rel="stylesheet" href="<?php _esc(TEMPLATE_URL);?>/css/style.css?ver=<?php _esc($config['version']);?>">
     <link rel="stylesheet" href="<?php _esc(TEMPLATE_URL);?>/css/color.css?ver=<?php _esc($config['version']);?>">
@@ -232,35 +233,68 @@
                         </a>
                     </div>
 
+
+
                     <!-- Main Navigation -->
                     <nav id="navigation">
                         <ul id="responsive">
-                            <?php
-                            if($config['country_type'] == 'multi'){
-                                ?>
-                                <li>
-                                    <a href="#countryModal" class="country-flag popup-with-zoom-anim"
-                                       title="<?php _e("Change Country") ?>"
-                                       data-tippy-placement="right">
+                        
+                        <ul data-submenu-title="<?php _e("") ?>">
+                        <li class="active"><a href="<?php url("DASHBOARD") ?>">
+                        <?php _e("Dashboard") ?></a></li>
+                        <?php if($config['quickchat_socket_on_off'] == 'on' || $config['quickchat_ajax_on_off'] == 'on'){ ?>
+                        <li><a href="<?php url("MESSAGE") ?>">
+                        <?php _e("Inbox") ?></a></li>
+                        <?php } ?>
+                        <li><a href="<?php url("MEMBERSHIP") ?>">
+                        <?php _e("Subscription") ?></a></li>
+                    </ul>
 
-                                        <img src="<?php _esc($config['site_url']);?>includes/assets/plugins/flags/images/<?php _esc($user_country);?>.png"/>
-                                    </a>
-                                </li>
-                            <?php } ?>
-                            <li><a href="<?php url("SEARCH_PROJECTS") ?>"><i class="icon-feather-list"></i>  <?php _e("Browse Projects") ?></a></li>
-                            <li><a href="<?php url("LISTING") ?>"><i class="icon-feather-list"></i> <?php _e("Find") ?> <?php _e("Jobs") ?></a></li>
-                            <?php
-                            if($config['job_seeker_enable']){
-                                ?>
-                                <li><a href="<?php url("FREELANCERS") ?>"><?php _e("Find Freelancers") ?></a></li>
-                                <?php
+                    <ul data-submenu-title="<?php _e("MANAGE PROFILE") ?>">
+                        <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>">
+                        <?php _e("My Profile") ?></a></li>
+                        <li><a href="<?php url("EDITPROFILE") ?>"><?php _e("Edit Profile") ?></a></li>
+                    </ul>
+
+                    <ul data-submenu-title="<?php _e("MANAGE DOCUMENTS") ?>" >
+                        <li>
+                        <?php 
+                        if ($usertype == "freelancer") {
+                            if ($config['resume_enable']) {
+                                echo '<a href="'.url("RESUMES", false).'">'.__("Resumes").'</a>';
                             }
-                            if($config['company_enable']){
-                                ?>
-                                <li><a href="<?php url("COMPANIES") ?>"><?php _e("Companies") ?></a></li>
-                            <?php } ?>
+                        }
+                        ?>
+                        </li>
+                        <li>
+                        <?php 
+                        if ($usertype == "freelancer") {
+                            if ($config['resume_enable']) {
+                                echo '<a href="'.url("LICENSES", false).'">'.__("Licenses").'</a>';
+                            }
+                        }
+                        ?>
+                        </li>
+                        <li>
+                        <?php 
+                        if ($usertype == "freelancer") {
+                            if ($config['resume_enable']) {
+                                echo '<a href="'.url("CERTIFICATES", false).'">'.__("Certificates").'</a>';
+                            }
+                        }
+                        ?>
+                        </li>
+                    </ul>
+
+                    <ul class="border-top" data-submenu-title="">
+                        <!-- <li><a href="<?php url("ACCOUNT_SETTING") ?>"><i class="icon-material-outline-settings"></i> <?php _e("Account Setting") ?></a></li> -->
+                        <li><a href="<?php url("LOGOUT") ?>"><i class="icon-material-outline-power-settings-new"></i> <?php _e("Logout") ?></a></li>
+                    </ul>
                         </ul>
                     </nav>
+
+
+
                     <div class="clearfix"></div>
                     <!-- Main Navigation / End -->
 
@@ -418,10 +452,9 @@
                                             <div class="user-name">
                                                 <?php _esc($fullname);?> <span>
                                                     <?php
-                                                    $usertype = $usertype == 'user' ? 'Freelancer': 'Employer';
+                                                    $usertype = $usertype == 'freelancer' ? 'freelancer' : 'agency';
                                                     _esc($usertype);
                                                     ?></span>
-                                                <div class="dashboard-status-button balance yellow"><?php _esc($config['currency_sign'])?><?php _esc($balance);?></div>
                                             </div>
 
                                         </div>
@@ -436,14 +469,20 @@
                                     </div>
 
                                     <ul class="user-menu-small-nav">
-                                        <li><a href="<?php url("DASHBOARD") ?>"><i class="icon-material-outline-dashboard"></i> <?php _e("Dashboard") ?></a></li>
+                                        <li class="px-2 p-2"><a href="<?php url("ADVISOR-PROFILE") ?>/<?php _esc($username)?>">
+                                        <?php _e("My Profile") ?></a></li>
                                         <?php
                                         if($config['quickchat_ajax_on_off'] == 'on' || $config['quickchat_socket_on_off'] == 'on'){
                                             ?>
-                                            <li><a href="<?php url("MESSAGE") ?>"><i class="icon-feather-message-circle"></i> <?php _e("Message") ?></a></li>
+                                        <li class="px-2 p-2"><a href="<?php url("MESSAGE") ?>"><?php _e("Inbox") ?></a></li>
                                         <?php } ?>
-                                        <li><a href="<?php url("ACCOUNT_SETTING") ?>"><i class="icon-material-outline-settings"></i> <?php _e("Account Setting") ?></a></li>
-                                        <li><a href="<?php url("LOGOUT") ?>"><i class="icon-material-outline-power-settings-new"></i> <?php _e("Logout") ?></a></li>
+                                        <div class="border-top me-auto">
+                                        <li class="px-2 p-2"><a href=""><?php _e("Account Settings") ?></a></li>
+                                        <li class="px-2 p-2"><a href="#"><?php _e("Help & Support") ?></a></li>
+                                        </div>
+                                        
+                                        <li class="px-2 p-2"><a href="<?php url("LOGOUT") ?>">
+                                        <?php _e("Logout") ?></a></li>
                                     </ul>
 
                                 </div>

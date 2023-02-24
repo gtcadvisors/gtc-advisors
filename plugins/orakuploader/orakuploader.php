@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
 if(!isset($_REQUEST['path'])) exit;
 
 $dirback_calc = str_replace('/', '../', preg_replace("#[^\/]#", '', trim($_REQUEST['path'], '/')));
@@ -84,6 +83,7 @@ $lat = array(
     'zh', 'ch', 'sht', 'sh', 'yu', 'a', 'b', 'v', 'g', 'd', 'e', 'z', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'y', 'x', 'q',
     'Zh', 'Ch', 'Sht', 'Sh', 'Yu', 'A', 'B', 'V', 'G', 'D', 'E', 'Z', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'c', 'Y', 'X', 'Q');
 
+
 $filename = str_replace($cyr, $lat, $filename);
 $filename = normalizeChars($filename);
 $bytes = file_put_contents(
@@ -131,7 +131,8 @@ function createThumbnail($imageDirectory, $imageName, $thumbDirectory, $thumbWid
     $origHeight = imagesy($srcImg);
     $ratio = $origHeight/ $origWidth;
     $thumbHeight = $thumbWidth * $ratio;
-
+    $thumbWidth = intval($thumbWidth);
+    $thumbHeight = intval($thumbHeight);
     $thumbImg = imagecreatetruecolor($thumbWidth, $thumbHeight);
 
     if($image_extension == 'png')

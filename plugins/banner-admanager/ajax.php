@@ -2,11 +2,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-ini_set('log_errors', TRUE); // Error/Exception file logging engine.
-ini_set('error_log', 'errors.log'); // Logging file pathini_set('log_errors', TRUE);
+define("ROOTPATH", dirname(dirname(__DIR__)));
+define("APPPATH", ROOTPATH."/php/");
 
-require_once('../../includes/autoload.php');
-require_once('../../includes/lang/lang_'.$config['lang'].'.php');
+require_once ROOTPATH . '/includes/autoload.php';
+require_once ROOTPATH . '/includes/lang/lang_'.$config['lang'].'.php';
 include_once(dirname(__FILE__).'/inc/config.php');
 include_once(dirname(__FILE__).'/inc/settings.php');
 include_once(dirname(__FILE__).'/inc/icdb.php');
@@ -302,11 +302,13 @@ CTR: '.number_format($row["clicks"]*100/$row["shows_displayed"], 2, ".", "").'%'
 									<div style="overflow: hidden; height: 100%; margin-bottom: 10px;">
 										<div style="width: 100%; float: left;">
 											<div style="padding-right: 14px;">
-												<input class="ubm_file" type="file" name="file" title="Please enter banner URL. Your banner will be hyperlinked with this URL." />
+												<input class="ubm_file" type="file" name="file"/>
 											</div>
 										</div>
-										<em class="ubm_comment">Upload your banner image. You can use JPEG, GIF and PNG images. Image size must be exactly the same as per banner type.</em>
+										<em class="ubm_comment">'.__("Upload your banner image. You can use JPEG, GIF and PNG images. Image size must be exactly the same as per banner type.").'</em>
 									</div>
+								
+                                
 									<div style="overflow: hidden; height: 100%; margin-bottom: 10px;">
 										<div style="width: 100%; float: left;">
 											<div style="padding-right: 14px;">
@@ -428,7 +430,7 @@ CTR: '.number_format($row["clicks"]*100/$row["shows_displayed"], 2, ".", "").'%'
 
                 /*These details save in session and get on payment sucecess*/
 
-                $payment_type = "banner-advertise";
+                $payment_type = "banner_advertise";
                 $access_token = uniqid();
                 $banner_trans_desc = htmlspecialchars($type_details["title"], ENT_QUOTES).' ('.$type_details["width"].'x'.$type_details["height"].')';
 

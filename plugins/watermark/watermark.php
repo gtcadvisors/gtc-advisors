@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Quickad Classified Image Watermark - plugin
+ * @author Bylancer
+ * @version 1.0
+ */
 function watermark_image($target, $wtrmrk_file, $newcopy) {
     $watermark = imagecreatefrompng($wtrmrk_file);
     imagealphablending($watermark, false);

@@ -3766,8 +3766,7 @@ ul li:last-child .card-list-4 {
   .loged-form-find {
     background: transparent !important;
     border-radius: 8px;
-    display: inline-block;
-    width: 100%;
+    display: inline-block; 
     height: max-content;
     margin-left: 146px;
     padding: 10px 10px;

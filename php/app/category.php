@@ -24,11 +24,11 @@ if(isset($_GET['subcat']) && !empty($_GET['subcat'])){
     }else{
         $subcat = get_subcategory_id_by_slug($_GET['subcat']);
     }
-}elseif(isset($_GET['category']) && !empty($_GET['category'])){
-    if(is_numeric($_GET['category'])){
-        if(check_category_exists($_GET['category'])){
-            $category = array();
-            $category = $_GET['category'];
+}elseif(isset($_GET['cat']) && !empty($_GET['cat'])){
+    if(is_numeric($_GET['cat'])){
+        if(check_category_exists($_GET['cat'])){
+            // $category = array();
+            $category = $_GET['cat'];
             echo '<script>console.log('.$category.')</script>';
         }
     }else{

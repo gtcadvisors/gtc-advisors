@@ -140,7 +140,7 @@ include('header_2.php');
                     </div>
 
                     <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-                        <div class="d-flex flex-row justify-content-between mx-auto">
+                        <div class="d-flex flex-row justify-content-lg-between justify-content-md-between justify-content-center">
                             <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start">Juan Rodrick <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/User.png" alt="">
                             </p>
                             <div class="dropdown d-none d-md-block d-lg-block"> 

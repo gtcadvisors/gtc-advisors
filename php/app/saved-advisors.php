@@ -5,10 +5,6 @@ if(checkloggedin()) {
     $items = array();
     $ses_userdata = get_user_data($_SESSION['user']['username']);
 
-    if($ses_userdata['user_type'] != 'employer'){
-        headerRedirect($link['DASHBOARD']);
-    }
-
     if(!isset($_GET['page']))
         $_GET['page'] = 1;
 
@@ -59,14 +55,14 @@ FROM `".$config['db']['pre']."user`
 
                 $items[$info['id']]['favorite'] = check_user_favorite($info['id']);
             }
-        }
+        }  
     }
 
     $total_item = favorite_users_count($_SESSION['user']['id']);
     $pagging = pagenav($total_item,$_GET['page'],$limit,$link['FAVUSERS']);
 
     //Print Template
-    HtmlTemplate::display('favourite-users', array(
+    HtmlTemplate::display('saved-advisors', array(
         'items' => $items,
         'totalitem' => $total_item,
         'pages' => $pagging

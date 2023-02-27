@@ -424,6 +424,7 @@ function delete_language_translation($type, $translation_id){
         ->delete_many();
 }
 
+
 /**
  * Get all categories
  *
@@ -1629,9 +1630,7 @@ function favorite_users_count($id){
     global $config;
     $num_rows = ORM::for_table($config['db']['pre'].'fav_users')
         ->table_alias('f')
-        ->where(array(
-            'u.status' => '1',
-            'u.user_type' => 'user',
+        ->where(array(   
             'f.user_id' => $id
         ))
         ->join($config['db']['pre'] . 'user', array('f.fav_user_id', '=', 'u.id'), 'u')

@@ -33,7 +33,17 @@ if(isset($_GET['subcat']) && !empty($_GET['subcat'])){
 
 }
 
- 
+if(isset($_GET['setFav']) && !empty($_GET['setFav'])){ 
+    global $config,$link;
+    $field_fav= ORM::for_table($config['db']['pre'].'fav_users')->create();
+    $field_fav->user_id = $_SESSION['user']['id'];
+    $field_fav->fav_user_id = $_GET['setFav']; 
+    $field_fav->save(); 
+
+    headerRedirect($link['CATEGORY']); 
+    echo '<script>alert("Favourite Saved Successfully");</script>';
+
+ }
 
 if(isset($_GET['city']) && !empty($_GET['city'])){
     $city = $_GET['city'];
@@ -112,9 +122,7 @@ if (mysqli_num_rows($result) > 0) {
             $get_cat = json_decode($info['category']); 
             if(is_array($get_cat)){ 
                 $items[$info['id']]['category'] = $get_cat; 
-            }
-            
-           
+            } 
             
         }
         if(!empty($info['subcategory'])){

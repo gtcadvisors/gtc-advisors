@@ -123,16 +123,16 @@ include('header_2.php');
         <div class="col-lg-8 col-md-8 col-sm-12 col-12 float-right">
           <div class="content-page"> 
             
-  <div class="row display-list m-0">
+       <div class="row display-list m-0">
                 <?php foreach ($items as $item){ ?>
             <div class="col-xl-12 col-12" style="width: max-content;">
                 <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list"> 
                 <div class="image-box d-none d-md-block d-lg-block"><img src="<?php _esc($config['site_url'])?>storage/profile/<?php _esc($item['image'])?>" alt="<?php _esc($item['name'])?>" id="user"></div>
                 <div class="dropdown d-block d-md-none d-lg-none"> 
                     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
-                    <li class="nav-item dropdown">
-                    <i class="fa fa-heart text-danger fa-2x love mt-4"></i>
-                    </li>
+                    <li class="nav-item dropdown"> 
+                           <a> <i class="fa fa-heart fa-2x love mt-4  <?php if($item['favorite'] == 'agency' || $item['favorite'] == 'freelancer') { echo 'text-danger'; }?>"   data-favuser-id="<?php _esc($item['id'])?>" data-userid="<?php _esc($user_id)?>" data-action="setFavUser" ></i></a>
+                            </li>
                 </ul>
                     <div class="image-box"><img src="<?php _esc($config['site_url'])?>storage/profile/<?php _esc($item['image'])?>" alt="<?php _esc($item['name'])?>" id="user"></div>
                 </div>
@@ -148,7 +148,7 @@ include('header_2.php');
                         <div class="dropdown d-none d-md-block d-lg-block"> 
                         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                             <li class="nav-item dropdown"> 
-                            <i class="fa fa-heart fa-2x love mt-4  <?php if($item['favorite'] == 'agency' || $item['favorite'] == 'user') { echo 'text-danger'; }?>" data-favuser-id="<?php _esc($item['id'])?>" data-userid="<?php _esc($user_id)?>" data-action="setFavUser"></i>
+                            <a href="<?php url("CATEGORY") ?>?setFav=<?php _esc($item['id'])?>"><i class="fa fa-heart fa-2x love mt-4  <?php if($item['favorite'] == 'agency' || $item['favorite'] == 'freelancer') { echo 'text-danger'; }?>"  data-favuser-id="<?php _esc($item['id'])?>" data-userid="<?php _esc($user_id)?>" data-action="setFavUser" ></i></a>
                             </li>
                         </ul>
                         
@@ -176,9 +176,15 @@ include('header_2.php');
                       <?php
                         $print_few = 0;
                         if($item['category'] != ""){
+                          
                           $num =  count($item['category']) - 3;
-                          echo  '<a class="ml-2" href="#">'.$item['category'][2].'</a>';
-                          echo  '<a class="ml-2" href="#" id="cat_header2_a">+'.$num.'</a>';
+                          if(!empty($item['category'][2])){
+                            echo  '<a class="ml-2" href="#">'.$item['category'][2].'</a>';
+                            echo  '<a class="ml-2" href="#" id="cat_header2_a">+'.$num.'</a>';
+                          }else{
+                            echo  '<a class="ml-2" href="#" id="cat_header2_a">+0</a>';
+                          }
+                         
 
                           if (++$print_few > 1)
                             break;

@@ -6748,6 +6748,13 @@ ul li:last-child .card-list-4 {
   background-position: left center;
   background-repeat: no-repeat;
 }
+@media (min-width: 1000px){
+.col-xl-12 {
+    width: 650px !important;
+    flex: 0 0 auto;
+}
+}
+
 
 .link-red {
   color: #E45959;

@@ -78,8 +78,43 @@
 	</head>
 	<body>
 		<form method="post" action="#" enctype="multipart/form-data" id="advisor-form">
+			
+		<div class="d-flex align-items-md-center pe-4 border-bottom border-top flex-md-wrap flex-lg-nowrap">
+			<div class="container-fluid p-3 pb-0 ps-md-5 ps-lg-5 d-flex align-items-md-center flex-md-wrap flex-lg-nowrap flex-column flex-md-row">
+				<div class="d-flex align-items-center mb-2 header-circle-cont">
+					<div class="me-3 pb-md-2"><i class="bi bi-1-circle-fill circle-active"></i></div>
+					<div class="me-3 pb-md-2"><span class="text-primary header-text">Personal Information</span></div>
+					<div class="me-3 pb-md-2"><i class="bi bi-chevron-right d-none d-md-block "></i></div>
+				</div>
+				<div class="d-flex align-items-center mb-2 header-circle-cont">
+					<div class="me-3 pb-md-2"><i class="bi bi-2-circle circle"></i></div>
+					<div class="me-3 pb-md-2"><span class="header-text">Professional Information</span></div>
+					<div class="me-3 pb-md-2"><i class="bi bi-chevron-right d-none d-md-block "></i></div>
+				</div>
+				<div class="d-flex align-items-center mb-2 header-circle-cont">
+					<div class="me-3 pb-md-2"><i class="bi bi-3-circle circle"></i></div>
+					<div class="me-3 pb-md-2"><span class="header-text">Certifications</span></div>
+					<div class="me-3 pb-md-2"><i class="bi bi-chevron-right d-none d-md-block "></i></div>
+				</div>
+				<div class="d-flex align-items-center mb-2 header-circle-cont">
+					<div class="me-3 pb-md-2"><i class="bi bi-4-circle circle"></i></div>
+					<div class="me-3 pb-md-2"><span class="header-text">Licenses</span></div>
+					<div class="me-3 pb-md-2"><i class="bi bi-chevron-right d-none d-md-block "></i></div>
+				</div>
+				<div class="d-flex align-items-center mb-2 header-circle-cont">
+					<div class="me-3 pb-md-2"><i class="bi bi-5-circle circle"></i></div>
+					<div class="me-3 pb-md-2"><span class="header-text">Resume</span></div>
+				</div>
+				<div  class="ms-auto align-items-center d-none d-md-block mb-2">
+					<a href="<?php url("BECOME-ADVISOR") ?>" class="mb-2">Exit</a>
+				</div>
+			</div>
+			<div class="d-flex d-md-none">
+				<a href="<?php url("BECOME-ADVISOR") ?>" class="mt-auto mb-2">Exit</a>
+			</div>
+		</div>
 
-			<div class="container-fluid border-bottom border-top p-3">
+			<!-- <div class="container-fluid border-bottom border-top p-3">
 				<div class="row align-items-center ms-lg-2">
 						<div class="col-10 col-md-12 col-lg-10">
 								<div class="row gy-2">
@@ -127,13 +162,13 @@
 							<a href="<?php url("BECOME-ADVISOR") ?>" class="">Exit</a>
 						</div>
 				</div>
-			</div>
+			</div> -->
 					
 
 					
 
 				<!--#########################  PERSONAL INFORMATION  #############################-->
-			<div id="0" class="form-section active">
+			<div id="0" class="form-section active" style="overflow-x: hidden;">
 			<span class=<?php echo( $inputError? "error-message": "hidden") ?>><?php  _esc($inputError) ?></span>
 			<span class=<?php echo( $profileImageError? "error-message": "hidden") ?>><?php  _esc($profileImageError) ?></span>
 			<span class=<?php echo( $languageSelectError? "error-message": "hidden") ?>><?php  _esc($languageSelectError) ?></span>

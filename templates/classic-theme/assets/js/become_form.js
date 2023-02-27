@@ -457,7 +457,7 @@ function checkFileInput(input, type){
         return false
     }
 
-    else if(!fileExtensions.includes(input[0].files[0]["name"].split(".")[1])){
+    else if(!fileExtensions.includes(input[0].files[0]["name"].split(".").slice(-1)[0])){
         fileError.text("Invalid File type, only "+fileExtensions.join(", ")+" file types are allowed").removeClass("hidden")
         return false
     }

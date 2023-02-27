@@ -177,7 +177,7 @@ if (checkloggedin()) {
             create_user_session($loggedin['id'], $loggedin['username'], $loggedin['password'], $loggedin['user_type']);
             
             
-            // transfer($link['EDITPROFILE'], __("Profile Updated Successfully"), __("Profile Updated Successfully"));
+            header("Location: ".$config['site_url']."dashboard");
             exit;
         }
               

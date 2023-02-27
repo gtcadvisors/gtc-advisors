@@ -354,6 +354,7 @@ video {
   }
 }
  
+
 /* CSS DESCRIPTIONS FOR THE BIGGER SCREENS */
 main {
   display: block;
@@ -574,7 +575,7 @@ div#persona{
     margin-left: 0 !important;
   }
   form.login-register{
-    width: 200px
+    /* width: 200px */
   }
   .social-login{
     width: 200px;
@@ -9240,9 +9241,59 @@ ul li:last-child .card-list-4 {
 }
 }
 
+
+
 .button.green{background-color:#449626 !important;}
 span.status-available, span.status-not-available {display: block;padding: 5px;font-size: 14px;margin-bottom: 16px;text-align: center;border-radius: 4px;margin-top: 5px;}
 span.status-available {background: #e0f5d7;color: #449626;}
 span.status-not-available {background-color: #ffe6e6;color: #ea5252;}
+
+/* ############## */
+
+.sign-up__btn{
+  background: #2C76DC;
+  border-radius: 8px;
+  width: 96px;
+  height: 40px;
+  padding: 10px 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Proxima Soft' !important;;
+}
+
+.sign-up__btn:hover{
+  background-color: #ffffff;
+  color: #2C76DC;
+  border: 1px solid #2C76DC;
+}
+
+
+.form-header__text, .form__body__text{
+  font-size: 1rem !important;
+  font-family: 'Proxima Soft' !important;
+  font-weight: 400 !important;
+}
+
+.social-login__btn{
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  font-family: 'Proxima Soft' !important;
+  border-radius: 10px !important;
+
+}
+
+@media screen and ( max-width: 600px) {
+  .form-header__text, .form__body__text{
+    font-size: 0.625rem !important;
+  }
+  
+  .social-login__btn{
+    font-size: 10px !important;
+  }
+}
+
 
 /*# sourceMappingURL=style.css.map */

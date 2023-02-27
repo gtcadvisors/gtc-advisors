@@ -69,3 +69,4 @@ $router->map('GET|POST','/deposit/?', $app_dir.'project_deposit.php');
 $router->map('GET|POST','/transfer/?', $app_dir.'project_transfer.php');
 $router->map('GET|POST','/withdraw/?', $app_dir.'project_withdraw.php');
 $router->map('GET|POST','/notifications/[*:page]?/?', $app_dir.'project_notifications.php'); 
+$router->map('GET|POST','/delete_account/?', $app_dir.'delete-account.php'); 

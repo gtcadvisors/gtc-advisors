@@ -73,29 +73,30 @@
   <body> 
     <!-- ############### THIS IS THE HEADER OF THE SIGNUP PAGE ##########################################-->
     <header class="header sticky-bar">
-      <div class="container">
+      <div class="container-lg-fluid ps-lg-5 ms-lg-3 pe-lg-5 me-lg-3">
         <div class="main-header">
           <div class="burger-icon burger-icon-white float-left"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
          
           <div class="header-left">
-          <?php
-         $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
-         $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
-         ?>
-            <div class="header-logo mr-30 d-none d-md-none d-lg-block">
-            <a class="d-flex" href="<?php url("INDEX") ?>">
-            <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
-            </a></div>
-            
+            <?php
+              $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
+              $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
+            ?>
+            <div class="header-logo mr-20 d-none d-md-none d-lg-block">
+              <a class="d-flex" href="<?php url("INDEX") ?>">
+                <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
+              </a>
+            </div>
+              
             <div class="ml-140 d-md-none d-block d-lg-none">
             <a class="d-flex" href="<?php url("INDEX") ?>">
             <img  src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
             </a></div>
-           
+          
             <div class="header-logo d-none d-md-block d-lg-none" style="margin-left: 240px;">
             <a class="d-flex" href="<?php url("INDEX") ?>">
             <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
-           </a></div>
+          </a></div>
           </div>
 
           <div class="header-nav">
@@ -103,25 +104,33 @@
               <ul class="main-menu">
                 <!-- Each li-tag has a class attr of (has-children for a drop down menu) -->
 
-                <li class="ml-30" ><a style="font-family: 'Proxima Soft';" href="<?php url("CATEGORY") ?>">Expertise</a>
+                <li class="ml-30" ><a class="form-header__text" href="<?php url("CATEGORY") ?>">Expertise</a>
 
                    </li>
-                <li class="#"><a href="#" style="font-family: 'Proxima Soft';">Post a Job</a>
+                <li class=""><a class="form-header__text" href="#">Post a Job</a>
                  </li>
-                <li class="#"><a href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Become an Advisor</a>
+                <li class="#"><a class="form-header__text" href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Become an Advisor</a>
                  </li> 
                 </ul> 
             </nav>
              
               </div>
           <div class="header-right">
-            <div class="block-signin">
-              <a class="text-link-bd-btom hover-up" style="font-family: 'Proxima Soft';">
-              <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px;">English</a>
+            <div class="d-inline-flex align-items-center ms-auto">
+              <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" class="me-2" alt="" width="15px;" >
+              <a href="#" class="me-4 pe-2 form-header__text form-header__language-select">English</a>
+              <a class="text-link-bd-btom me-4 pe-2 form-header__text" href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Log In</a>
+              <a class="btn sign-up__btn" href="<?php url("SIGNUP") ?>">Sign Up</a>
+            </div>
+            <!-- <div class="block-signin">
+              <a class="text-link-bd-btom hover-up " style="font-family: 'Proxima Soft';">
+                <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" class="pt-3" alt="" width="15px;" >
+                <span>English</span>
+              </a>
               <a class="text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Log In</a>
               <a class="btn btn-default btn-shadow ml-40 hover-up d-block d-md-block d-lg-none" href="<?php url("SIGNUP") ?>" style="background-color: #2C76DC;">Sign Up</a>
 
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -205,22 +214,23 @@ $count = 1;
     </div>
     <!-- ####### THIS IS THE MAIN LOGIN FORM ################# -->
     <main class="main">
-      <section class="pt-100 login-register">
+      <section class="pt-50 login-register">
         <div class="container-fluid"> 
           <div class="row login-register-cover">
-            <div class="col-lg-4 col-md-8 col-sm-12 col-11 mx-4 mx-md-auto mx-lg-auto bg-white mb-100 pb-20 pl-60 pt-35 pr-60" id="login-register">
+            <div class="col-lg-4 col-md-8 col-sm-12 col-11 ms-auto me-md-auto mx-lg-auto bg-white mb-100 pb-20 pt-35 ps-5 pe-5" id="login-register">
               <div class="text-center">
               <?php if($config['facebook_app_id'] != "" && $config['google_app_id'] != ""){ ?>
                <h6 class="mb-20 text-brand-1" style="font-style:normal;"> Log In to Global Tax Compliance</h6>      
                 <?php if ($config['facebook_app_id'] != "") { ?>
-                <button class="btn text-white social-login hover-up mb-20 text-center" style="background-color: #4267B2;font-family: 'Proxima Soft Semibold';" onclick="fblogin()"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/fb.png" alt="gtc" id="imgicon"><strong class="text-center">Continue with Facebook</strong>
-                </button>
+                <button class="btn text-white social-login hover-up mb-20 text-center social-login__btn" style="background-color: #4267B2;" onclick="fblogin()"><imgsrc="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/fb.png" alt="gtc" id="imgicon">Continue with Facebook
+                
+              </button>
                 <?php } ?>
                 <?php if ($config['google_app_id'] != "") { ?>
-                <button class="btn social-login hover-up mb-20 text-center" style="font-family: 'Proxima Soft Semibold';" onclick="gmlogin()"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/icon-google.svg" alt="gtc" id="imgicon1"><strong>Continue with Google</strong></button>
+                <button class="btn social-login hover-up mb-20 text-center social-login__btn"  onclick="gmlogin()"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/icon-google.svg" alt="gtc" id="imgicon1"><strong>Continue with Google</strong></button>
                 <?php } ?>
 
-                <button class="btn social-login hover-up mb-20 text-center" style="font-family: 'Proxima Soft Semibold';"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/apple.png" alt="gtc" id="imgicon2"><strong>Continue with Apple</strong></button>
+                <button class="btn social-login hover-up mb-20 text-center social-login__btn"> <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/apple.png" alt="gtc" id="imgicon2"><strong>Continue with Apple</strong></button>
                 <style>
                   img#imgicon1,img#imgicon2{ 
                      margin-right: 50px;
@@ -270,7 +280,7 @@ $count = 1;
                   
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-brand-1 hover-up w-100" type="submit" name="submit" style="background-color:#2C76DC;font-family:'Proxima Soft';">Continue</button>
+                  <button class="btn btn-brand-1 hover-up w-100 form__body__text" type="submit" name="submit" style="background-color:#2C76DC;">Continue</button>
                 </div>
 
                    <div class="d-flex justify-content-between" style="font-size: 12px;">

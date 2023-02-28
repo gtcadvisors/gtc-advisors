@@ -1,5 +1,5 @@
 <?php
-overall_header(__(""));
+include_once TEMPLATE_PATH.'/header.php';
 ?>
 <!-- Dashboard Container -->
 <div class="dashboard-container">
@@ -12,18 +12,7 @@ overall_header(__(""));
     <div class="dashboard-content-container" data-simplebar>
         <div class="dashboard-content-inner" >
 
-            <!-- Dashboard Headline -->
-            <div class="dashboard-headline">
-                <h3><?php _e("Add New Resume") ?></h3>
-                <!-- Breadcrumbs -->
-                <nav id="breadcrumbs" class="dark">
-                    <ul>
-                        <li><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a></li>
-                        <li><?php _e("Add New Resume") ?></li>
-                    </ul>
-                </nav>
-            </div>
-
+    
             <!-- Row -->
             <div class="row">
                 <!-- Dashboard Box -->

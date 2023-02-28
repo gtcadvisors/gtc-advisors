@@ -5803,6 +5803,7 @@
     // Chat start with
     var CHATID = "<?php _esc($chatid)?>";
     var POSTID = "<?php _esc($postid)?>";
+    var POSTTYPE = "<?php _esc($posttype)?>";
     var CHAT_USERID = "<?php _esc($chat_userid)?>";
     var CHAT_FULLNAME = "<?php _esc($chat_fullname)?>";
     var CHAT_USERIMG = "<?php _esc($chat_userimg)?>";
@@ -5891,7 +5892,7 @@
 
 <script type="text/javascript">
     $(window).bind("load", function () {
-        if (CHATID != '' && CHAT_USERID != '' && POSTID != '') {
+        if (CHATID != '' && CHAT_USERID != '' && POSTID != '' && POSTTYPE != '') {
             chatWith(CHATID,CHAT_USERID,CHAT_FULLNAME,CHAT_USERIMG,CHAT_USERSTATUS,POSTID);
         }
     });

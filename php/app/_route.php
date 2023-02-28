@@ -12,9 +12,22 @@ $router->map('GET|POST','/profile-edit/?', $app_dir.'profile-edit.php');
 $router->map('GET|POST','/my-experiences/[*:page]?/?', $app_dir.'my-experiences.php');
 $router->map('GET|POST','/add-experience/?', $app_dir.'user-experience.php');
 $router->map('GET|POST','/edit-experience/[i:id]?', $app_dir.'user-experience.php');
+
+// Advisors Certificates Links
+$router->map('GET|POST','/my-certificates/[*:page]?/?', $app_dir.'my-certificates.php');
+$router->map('GET|POST','/add-certificate/?', $app_dir.'certificate.php');
+$router->map('GET|POST','/edit-certificate/[i:id]?', $app_dir.'certificate.php');
+
+// Advisors Resumes Links
 $router->map('GET|POST','/my-resumes/[*:page]?/?', $app_dir.'my-resumes.php');
 $router->map('GET|POST','/add-resume/?', $app_dir.'resume.php');
 $router->map('GET|POST','/edit-resume/[i:id]?', $app_dir.'resume.php');
+
+// // Advisors Licenses Links
+$router->map('GET|POST','/my-licenses/[*:page]?/?', $app_dir.'my-licenses.php');
+$router->map('GET|POST','/add-license/?', $app_dir.'license.php');
+$router->map('GET|POST','/edit-license/[i:id]?', $app_dir.'license.php');
+
 $router->map('GET|POST','/my-companies/[*:page]?/?', $app_dir.'my-companies.php');
 $router->map('GET|POST','/myaccount/?', $app_dir.'myaccount.php');
 $router->map('GET|POST','/create-company/?', $app_dir.'add-company.php');

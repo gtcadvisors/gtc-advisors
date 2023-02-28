@@ -1133,7 +1133,7 @@ if ($is_logged) {
                                 <select name="category" id="category" class="form-control getsubcatToCatid" data-ajax-action="getsubcatbyid" data-catid="<?php echo $values["cat_id"] ?>" data-selectid="<?php echo $values["sub_cat_id"] ?>"  data-placeholder="Select a Category">
                                     <option value="0">Any Category</option>
                                     <?php
-                                    $cat =  get_maincategory($values["cat_id"]);
+                                    $cat =  get_maincategory('default',$values["cat_id"]);
                                     foreach($cat as $option){
                                         echo '<option value="'.$option['id'].'" '.$option['selected'].'>'.$option['name'].'</option>';
                                     }

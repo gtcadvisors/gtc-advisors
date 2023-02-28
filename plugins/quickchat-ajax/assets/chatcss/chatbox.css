@@ -184,6 +184,13 @@ p {
 .personal-chat .panel-heading span {
     margin-top: 3px;
 }
+.personal-chat .panel-heading .zechat-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 50%;
+    display: inline-block;
+}
 .personal-chat .options .attachment {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
@@ -912,3 +919,7 @@ Contact List Css*/
 .conversation-list::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, .08)
 }
+.tab-content .fade{opacity:0;-webkit-transition:opacity .15s linear;-o-transition:opacity .15s linear;transition:opacity .15s linear}
+.tab-content .fade.in{opacity:1}
+.tab-content>.tab-pane{display:none}
+.tab-content>.active{display:block}

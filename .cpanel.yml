@@ -8,7 +8,8 @@ deployment:
     - /bin/cp -R plugins $DEPLOYPATH
     - /bin/cp -R storage $DEPLOYPATH
     - /bin/cp -R templates $DEPLOYPATH
-
-    
-   
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp loading.gif $DEPLOYPATH
+    - /bin/cp nginx.conf $DEPLOYPATH
  

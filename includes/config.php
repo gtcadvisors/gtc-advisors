@@ -1,8 +1,8 @@
 <?php
 $config['db']['host'] = 'localhost';
-$config['db']['name'] = 'taxexperts';
-$config['db']['user'] = 'root';
-$config['db']['pass'] = '';
+$config['db']['name'] = 'hxnzvimy_tax-experts';
+$config['db']['user'] = 'hxnzvimy_advisor';
+$config['db']['pass'] = 'S)eekE3OVN5q';
 $config['db']['pre'] = 'tx_';
 
 $config['admin_folder'] = 'admin';

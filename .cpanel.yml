@@ -12,5 +12,6 @@ deployment:
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp loading.gif $DEPLOYPATH
     - /bin/cp ngix.conf $DEPLOYPATH
+    
    
  

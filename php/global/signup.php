@@ -25,7 +25,7 @@ if(isset($_GET['confirm']))
         $user_email = $user_info['email'];
 
 
-        message(__("Success"),__("Thanks for signing up"), 'login');
+        header("Location: ".$config['site_url']."myaccount");
     }
     else
     {

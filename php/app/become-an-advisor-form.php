@@ -72,6 +72,16 @@ if (checkloggedin()) {
 
         }
 
+        
+        if($_POST["contractor"] == "agency"){
+            // if()
+            $contractorTypeError = "You must choose a contractor option";
+            $errorPage = 2;
+            $errors ++;
+
+        }
+
+
         if(empty($_POST["expertise"]) && empty($_POST["others"])){
             $expertiseListError = "You must select at least one expertise";
             $errorPage = 2;
@@ -96,7 +106,7 @@ if (checkloggedin()) {
 
 
 
-        // profile image file for errors
+        //check profile image file for errors
         $profileImageError = checkFile($_FILES["profileImage"], "picture");
         if($profileImageError){
             $errorPage = 1;
@@ -216,7 +226,7 @@ function checkFile($fileArray, $fileType=null){
 
         $fileExt = explode(".", $fileName);
         $fileExt = strtolower(end($fileExt));
-        $extensions = $fileType? array("jpg", "jpeg", "png",):array("jpg", "jpeg", "png", "pdf", "docx");
+        $extensions = $fileType? array("jpg", "jpeg", "png", "svg"):array("jpg", "jpeg", "png", "svg", "pdf", "docx");
         
         clearstatcache($fileName);
         if($fileSize){

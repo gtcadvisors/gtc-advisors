@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home4/hxnzvimy/public_html/staging2-globaltaxcompliance-com/
+    - export DEPLOYPATH=/home4/hxnzvimy/public_html/staging-globaltaxcompliance-com/
     - /bin/cp -R admin $DEPLOYPATH
     - /bin/cp -R php $DEPLOYPATH
     - /bin/cp -R includes $DEPLOYPATH

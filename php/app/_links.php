@@ -62,3 +62,4 @@ $link['EDITPROFILE']        = $config['site_url'] . 'profile-edit';
 $link['NOTIFICATIONS']      = $config['site_url'] . 'notifications';
 $link['CATEGORY']        = $config['site_url'] . 'category';
 $link['SAVED-ADVISORS']        = $config['site_url'] . 'saved-advisors';
+$link['DELETE_ACCOUNT']        = $config['site_url'] . 'delete-account';

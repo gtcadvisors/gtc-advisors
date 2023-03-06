@@ -45,6 +45,19 @@ $("#bio").on("input", function (){$("#bio-word-count").text(`${$(this).val().len
 $("#description").on("input", function (){$("#desc-word-count").text(`${$(this).val().length}`)})
 
 
+
+// show agency size and no of organization for agency type of advisors
+$("#freelancer-radiobtn").click(()=>{
+    $(".agency-contents").addClass("hidden")
+})
+
+
+$("#agency-radiobtn").click(()=>{
+    $(".agency-contents").removeClass("hidden")
+})
+
+
+
 // add new expertise
 $("#add-new-expertise").click(function (){
     $(".new-expertise").removeClass("hidden")
@@ -61,7 +74,7 @@ $("#add-expertise").click(function (){
     newExpertiseContainer.classList.add("col-sm-12", "col-md-4")
 
     const newExpertiseLabel = document.createElement("label")
-    newExpertiseLabel.classList.add("form-check-label", "text-dark", "fw-semibold", "ms-3")
+    newExpertiseLabel.classList.add("form-check-label", "text-dark", "ms-3")
     newExpertiseLabel.innerText = value
     newExpertiseLabel.setAttribute("for", id)
 
@@ -85,16 +98,16 @@ $("#add-expertise").click(function (){
 let certificateCount = 0
 $("#add-certificate-btn").click(function (){
     const certificateName = $("#certificate-name")
-    const certificateFrom = $("#certificate-from")
+    // const certificateFrom = $("#certificate-from")
     const certificateFile = $(".certificate") 
-    if(checkInput(certificateName) && checkInput(certificateFrom) && checkFileInput(certificateFile, "file")){
+    if(checkInput(certificateName) && checkFileInput(certificateFile, "file")){
         $("#close-cert-modal").click()
         certificateCount ++
-        addCertificate(certificateCount, certificateName, certificateFrom, certificateFile)
+        addCertificate(certificateCount, certificateName, certificateFile)
         $(".no-cert-placeholder").addClass("hidden")
         $(".cert-table").removeClass("hidden")
         certificateName.val("")
-        certificateFrom.val("")
+        // certificateFrom.val("")
         certificateFile.val("")
         $(".file-error").addClass("hidden")
     }
@@ -132,14 +145,14 @@ $("#add-resume-btn").click(function (){
 })
 
 
-function addCertificate(count, name, from, file){
+function addCertificate(count, name, file){
     //create hidden inputs and adds it to the form
     const cFileInput = file[0].cloneNode(true)
     setAttributes(cFileInput, {name: "certificateFile[]", class: "hidden"})
     const cNameInput = document.createElement("input")
     setAttributes(cNameInput, {type:"hidden", value:name.val(), name:"certificateName[]"})
-    const cFromInput = document.createElement("input")
-    setAttributes(cFromInput, {type: "hidden", value:from.val(), name:"certificateFrom[]"})
+    // const cFromInput = document.createElement("input")
+    // setAttributes(cFromInput, {type: "hidden", value:from.val(), name:"certificateFrom[]"})
     // creates a certificate row and adds it to the table
     const dataRow = document.createElement("tr")
     const cCount = document.createElement("th")
@@ -147,8 +160,8 @@ function addCertificate(count, name, from, file){
     cCount.setAttribute("scope", "row")
     const cName = document.createElement("td")
     cName.innerHTML = name.val()
-    const cFrom = document.createElement("td")
-    cFrom.innerHTML = from.val()
+    // const cFrom = document.createElement("td")
+    // cFrom.innerHTML = from.val()
     const deleteBtnContainer = document.createElement("td")
     const deleteBtn = document.createElement("input")
     setAttributes(deleteBtn, {type:"button", value:"Delete"})
@@ -170,10 +183,10 @@ function addCertificate(count, name, from, file){
     deleteBtnContainer.appendChild(deleteBtn)
     dataRow.appendChild(cCount)
     dataRow.appendChild(cName)
-    dataRow.appendChild(cFrom)
+    // dataRow.appendChild(cFrom)
     dataRow.appendChild(deleteBtnContainer)
     dataRow.appendChild(cNameInput)
-    dataRow.appendChild(cFromInput)
+    // dataRow.appendChild(cFromInput)
     dataRow.appendChild(cFileInput)
     $(".cert-table tbody").append(dataRow)
 
@@ -258,7 +271,7 @@ function updateSectionHeader(sectionId){
         if(i === sectionId){
             headerCircle.classList.remove("circle", `bi-${i+1}-circle`, 'bi-check-circle-fill')
             headerCircle.classList.add("circle-active", `bi-${i+1}-circle-fill`)
-            headerText.classList.add("text-primary")
+            headerText.classList.add("blue__fg")
         }
         else if(i<sectionId){
             headerCircle.classList.remove("circle", `bi-${i+1}-circle-fill`)
@@ -267,7 +280,7 @@ function updateSectionHeader(sectionId){
         else{
             headerCircle.classList.remove("circle-active", `bi-${i+1}-circle-fill`, `bi-check-circle-fill`)
             headerCircle.classList.add("circle", `bi-${i+1}-circle`)
-            headerText.classList.remove("text-primary")
+            headerText.classList.remove("blue__fg")
         }
     }
 }
@@ -342,7 +355,6 @@ function validateForm(formSectionId){
     // validate resume
     if(resume.length>0){
         if(checkFileInput(resume, "file") === false){
-            console.log("yok")
             validate = false
             $("#add-resume-btn").click()
             return validate
@@ -354,15 +366,22 @@ function validateForm(formSectionId){
     // validate radio buttons
     if(radioButtons.length > 0){
         const checkedRadioButtons = $("input[type=radio]:checked")
-        if(checkedRadioButtons.length === 0){
-            console.log("yes")
+        const agencySelected = !$(".agency-contents").hasClass("hidden")
+
+
+        if($("input[name=contractor]:checked").length === 0){
             validate = false
             $(".contractor-radio-error").removeClass("hidden")
-            console.log($(".contractor-radio-error"))
             return validate
-        }
-        else{
+
+        }else if(agencySelected && $("input[name=agencySize]:checked").length === 0){
+            validate = false
+            $(".agency-size-radio-error").removeClass("hidden")
+            return validate
+
+        }else{
             $(".contractor-radio-error").addClass("hidden")
+            $(".agency-size-radio-error").addClass("hidden")
         }
 
     }
@@ -371,7 +390,6 @@ function validateForm(formSectionId){
     // validate check boxes
     if(checkBoxes.length>0){
         const checkedCheckBoxes =  $(`#${formSectionId} input[type=checkbox]:checked`)
-        console.log(checkedCheckBoxes.length)
          if(formSectionId === 4 && checkedCheckBoxes.length < 2){
              validate = false
              $(".checkbox-error").removeClass("hidden")
@@ -445,9 +463,9 @@ function checkInput(input){
 }
 
 function checkFileInput(input, type){
-    let fileExtensions = ["jpg", "jpeg", "png", "pdf", "docx"]
+    let fileExtensions = ["jpg", "jpeg", "png", "svg", "pdf", "docx"]
     if(type === "picture"){
-        fileExtensions.length = 3
+        fileExtensions.length = 4
     }
 
     const fileError = $(".file-error")
@@ -457,7 +475,7 @@ function checkFileInput(input, type){
         return false
     }
 
-    else if(!fileExtensions.includes(input[0].files[0]["name"].split(".")[1])){
+    else if(!fileExtensions.includes(input[0].files[0]["name"].split(".").slice(-1)[0])){
         fileError.text("Invalid File type, only "+fileExtensions.join(", ")+" file types are allowed").removeClass("hidden")
         return false
     }

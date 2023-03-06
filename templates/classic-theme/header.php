@@ -251,7 +251,7 @@
                     </ul>
 
                     <ul data-submenu-title="<?php _e("MANAGE PROFILE") ?>">
-                        <li><a href="<?php url("PROFILE") ?>/<?php _esc($username)?>">
+                        <li><a href="<?php url("ADVISOR-PROFILE") ?>/<?php _esc($username)?>">
                         <?php _e("My Profile") ?></a></li>
                         <li><a href="<?php url("EDITPROFILE") ?>"><?php _e("Edit Profile") ?></a></li>
                     </ul>

@@ -13,7 +13,7 @@ overall_header($pagetitle);
                             <li><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a></li>
                             <?php
                             if($maincategory != ""){
-                                echo '<li>'._esc($maincategory,false).'</li>';
+                                echo '<li>'._esc($maincategory,false).'</li>';  
                             }
                             if($subcategory != ""){
                                 echo '<li>'._esc($subcategory,false).'</li>';

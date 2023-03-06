@@ -372,6 +372,11 @@ div#cat_list{
 div#cat_list img#user{ 
    margin-top: 30px; 
    margin-left: 20px;
+   border-radius: 50%;
+   width: 100px;
+   height: 100px;
+   max-width: 100px;
+   max-height: 100px;
 }
  
 
@@ -6746,6 +6751,13 @@ ul li:last-child .card-list-4 {
   background-position: left center;
   background-repeat: no-repeat;
 }
+@media (min-width: 1000px){
+.col-xl-12 {
+    width: 650px !important;
+    flex: 0 0 auto;
+}
+}
+
 
 .link-red {
   color: #E45959;

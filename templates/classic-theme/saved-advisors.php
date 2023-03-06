@@ -105,7 +105,7 @@ include('header_2.php');
             <p class="mt-4 mb-4 ml-45"> <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/home-2.png" alt="" width="17px" class="mr-5">Home &#10095;  <a id="under_1"> Saved Advisor</a> <br>
             </p>
           </div>
-             
+         
       <section class="section-box mt-30">
         <div class="container-fluid col-11">
             <p class="fs-5 text-dark"><b>Saved Advisors</b></p>
@@ -115,60 +115,105 @@ include('header_2.php');
 
                  <button class="text-white">&#43; Find Advisors</button>
             </div>
+
+
+            <?php if(!$totalitem) {
+                  echo '<img src="'. __(TEMPLATE_URL).'/assets/imgs/Frame 199.png" alt="" class="mt-100 mb-80" height="450px">';
+              }?>
  
-           
+            
             <div class="col-lg-8 col-md-12 col-sm-12 col-10 float-left mt-100">
                 <div class="content-page"> 
+               
                   
                   <!-- <div class="row display-list"> -->
+                     <?php foreach ($items as $item){ ?>
                   <div class="col-xl-12 col-12" style="width: max-content;">
                     <div class="d-flex flex-column flex-lg-row flex-md-row" id="cat_list">
-                    <div class="image-box d-none d-md-block d-lg-block"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Ellipse 12.png" alt="logo" id="user"></div>
+                    <div class="image-box d-none d-md-block d-lg-block"><img src="<?php _esc($config['site_url'])?>storage/profile/<?php _esc($item['image'])?>" alt="<?php _esc($item['name'])?>" id="user"></div>
                     <div class="dropdown d-block d-md-none d-lg-none"> 
                         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 float-right">
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                            <ul class="dropdown-menu dropdown-menu-right bg-white" id="drop_d" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
+                            <ul class="dropdown-menu dropdown-menu-right bg-white" id="drop_d" aria-labelledby="navbarDropdown"> 
+                                <li><a class="dropdown-item text-dark" href="<?php url("SAVED-ADVISORS") ?> ? remove_fav=<?php _esc($item['id'])?>">Remove</a></li>
                                 <li><hr class="dropdown-divider text-dark" /></li>
-                                <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
+                                <li><a class="dropdown-item text-dark" href="#!">Share</a></li> 
                             </ul>
                         </li>
                     </ul>
-                    <div class="image-box"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Ellipse 12.png" alt="logo" id="user"></div>
+                    <div class="image-box"><img src="<?php _esc($config['site_url'])?>storage/profile/<?php _esc($item['image'])?>" alt="<?php _esc($item['name'])?>" id="user"></div>
                         
                     </div>
 
                     <div class="d-flex flex-column flex-lg-column flex-md-column" id="cat_column">
-                        <div class="d-flex flex-row justify-content-between mx-auto">
-                            <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start">Juan Rodrick <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/User.png" alt="">
+                        <div class="d-flex flex-row justify-content-lg-between justify-content-md-between justify-content-center">
+                            <p class="ml-lg-5 fs-5 mt-30 text-dark text-center text-lg-start"><?php _esc($item['name'])?> 
+                            <?php if( $item['user_type'] == 'agency') { ?>
+                          <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/employer.png" alt="agency">
+                                <?php } else if( $item['user_type'] == 'freelancer') {?> 
+                                  <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/User.png" alt="user">
+                                  <?php } ?>
                             </p>
                             <div class="dropdown d-none d-md-block d-lg-block"> 
                             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/Vector (2).png" alt=""  class="love"></a>
-                                    <ul class="dropdown-menu dropdown-menu-end  bg-white" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item text-dark" href="#!">Remove</a></li>
+                                    <ul class="dropdown-menu dropdown-menu-end  bg-white" aria-labelledby="navbarDropdown"> 
+                                        <a class="dropdown-item text-dark" href="<?php url("SAVED-ADVISORS") ?>?remove_fav=<?php _esc($item['id'])?> ">Remove</a>
                                         <li><hr class="dropdown-divider text-dark" /></li>
-                                        <li><a class="dropdown-item text-dark" href="#!">Share</a></li>
+                                        <li><a class="dropdown-item text-dark" href="#!">Share</a></li> 
                                     </ul>
                                 </li>
                             </ul>
-                            
+                             
                             </div>
                             </div> 
                         <div class="container-fluid d-flex flex-column flex-lg-row flex-md-column justify-content-evenly justify-content-md-start" id="cat_header2">
-                        <div class="d-flex flex-row   justify-content-evenly"> 
-                        <a class="m-1 ml-0" href="#">IRS Represntation</a>
-                        <a class="m-1" href="#">Tax Dispute</a>
-                        </div>
-                        <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
-                        <a class="ml-0" href="#">Financial Planning</a>
-                        <a class="m-1" href="#" id="cat_header2_a">+6</a>
-                        </div>
+                        <div class="d-flex flex-row   justify-content-evenly">  
+                        <?php
+                        $print_few = 0;
+                        if($item['category'] != ""){
+                          foreach($item['category'] as $item_category){
+                          $num =  count($item['category']) - 3;
+                         echo  '<a class="ml-0" href="#">';
+                            _esc($item_category);
+                         echo '</a>';
+
+                          if (++$print_few > 1)
+                            break;
+                          }
+                        }  
+                        ?>
+                      </div> 
+                      <div class="d-flex flex-row  justify-content-evenly justify-content-md-start">
+                      <?php
+                        $print_few = 0;
+                        if($item['category'] != ""){
+                          
+                          $num =  count($item['category']) - 3;
+                          if(!empty($item['category'][2])){
+                            echo  '<a class="ml-2" href="#">'.$item['category'][2].'</a>';
+                            echo  '<a class="ml-2" href="#" id="cat_header2_a">+'.$num.'</a>';
+                          }else{
+                            echo  '<a class="ml-2" href="#" id="cat_header2_a">+0</a>';
+                          }
+                         
+
+                          if (++$print_few > 1)
+                            break;
+                        }  
+                        ?>
                     </div>
-                        <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span>replies within 1 hour</span></p>
-                        <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span >Kano, Nigeria</span></p>
+                    </div>
+                    <p class="ml-5 text-dark text-lg-start text-md-start text-center">Response Rate: <span> replies in
+                     <?php
+                        if($item['rating'] != ""){
+                            echo _esc($item['rating']).' hour(s)'; 
+                        }else{
+                          echo ' 24 hour';
+                        }?> </span></p>
+                        <p class="ml-5 text-dark text-lg-start text-md-start text-center">Location: <span ><?php _esc($item['city'])?> <?php _esc($item['country'])?></span></p>
                         <div class="d-flex flex-row justify-content-lg-start justify-content-md-start justify-content-center ml-20 mt-20 mb-20">
                         <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/verified.png" alt="acca-logo" id="b">
                         <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/acca-logo 1.png" alt="acca-logo" class="ml-40" id="b">
@@ -177,21 +222,36 @@ include('header_2.php');
                     </div>
                     </div>   
               
+                    <?php } ?>
           </div>
         </div>
         
       </div>
+      <?php if($totalitem != "0"){ ?>
       <div class="paginations text-center">
         <ul class="pager">
-          <li><a class="pager-prev" href="#"></a></li>
+        <?php
+          foreach($pages as $page) {
+              if ($page['current'] == 0){
+                  ?>
+                  <li><a href="<?php _esc($page['link'])?>" class="pager-number"><?php _esc($page['title'])?></a></li>
+              <?php }else{
+                  ?>
+                  <li><a href="#" class="current-page pager-number"><?php _esc($page['title'])?></a></li>
+              <?php }
+          }
+          ?>
+          <!-- <li><a class="pager-prev" href="#"></a></li>
           <li><a class="pager-number" href="#">1</a></li>
           <li><a class="pager-number" href="#">2</a></li>
           <li><a class="pager-number" href="#">3</a></li>
           <li><a class="pager-number" href="#">4</a></li>
           <li><a class="pager-number" href="#">5</a></li> 
-          <li><a class="pager-next" href="#"></a></li>
+          <li><a class="pager-next" href="#"></a></li> -->
         </ul>
       </div>
+
+      <?php } ?>
 </div>
 
   <hr id="hr_nse"> 

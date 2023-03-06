@@ -1,18 +1,33 @@
 <?php
+
+use Stripe\Terminal\Location;
+
 global $config,$link;
-if(checkloggedin()) {
+ 
+   if(isset($_GET['remove_fav']) && !empty($_GET['remove_fav'])){ 
+      ORM::for_table($config['db']['pre'].'fav_users')
+        ->where(array(
+            'user_id' => $_SESSION['user']['id'],
+            'fav_user_id' => $_GET['remove_fav'] 
+        ))
+        ->delete_many();
+
+ 
+    headerRedirect($link['SAVED-ADVISORS']); 
+ 
+   } 
+
+  
+if(checkloggedin()) { 
+
     update_lastactive();
     $items = array();
     $ses_userdata = get_user_data($_SESSION['user']['username']);
 
-    // if($ses_userdata['user_type'] != 'employer'){
-    //     headerRedirect($link['DASHBOARD']);
-    // }
-
     if(!isset($_GET['page']))
         $_GET['page'] = 1;
 
-    $limit = 10;
+    $limit = 5;
     $page = $_GET['page'];
     $offset = ($page-1)*$limit;
 
@@ -26,7 +41,7 @@ if(checkloggedin()) {
         foreach ($result as $fav) {
             $sql = "SELECT *
 FROM `".$config['db']['pre']."user`
- WHERE status = '1' AND user_type = 'user' AND id = '".$fav['fav_user_id']."' ";
+ WHERE user_type = 'freelancer' OR user_type = 'agency'   AND id = '".$fav['fav_user_id']."' ";
             $info = ORM::for_table($config['db']['pre'].'user')->raw_query($sql)->find_one();
             if (!empty($info)) {
                 $items[$info['id']]['id'] = $info['id'];
@@ -37,9 +52,12 @@ FROM `".$config['db']['pre']."user`
                 $items[$info['id']]['image'] = !empty($info['image'])?$info['image']:'default_user.png';
 
                 $items[$info['id']]['category'] = $items[$info['id']]['subcategory'] = null;
-                if(!empty($info['category'])){
-                    $get_cat = get_maincat_by_id($info['category']);
-                    $items[$info['id']]['category'] = $get_cat['cat_name'];
+                if(!empty($info['category'])){ 
+                    $get_cat = json_decode($info['category']); 
+                    if(is_array($get_cat)){ 
+                        $items[$info['id']]['category'] = $get_cat; 
+                    }
+                     
                 }
                 if(!empty($info['subcategory'])){
                     $get_cat = get_subcat_by_id($info['subcategory']);
@@ -55,21 +73,28 @@ FROM `".$config['db']['pre']."user`
                     $city_detail = get_cityDetail_by_id($info['city_code']);
                     $items[$info['id']]['city'] = $city_detail['asciiname'];
                     $items[$info['id']]['city'] .= ', '.get_stateName_by_id($city_detail['subadmin1_code']);
+                   
                 }
 
                 $items[$info['id']]['favorite'] = check_user_favorite($info['id']);
+                 $items[$info['id']]['rating'] = averageRating($info['id'],$info['user_type']);
+                $items[$info['id']]['user_type'] = $info['user_type'];
             }
-        }
-    }
+        }  
+    }  
+
+    
+       
+        
 
     $total_item = favorite_users_count($_SESSION['user']['id']);
-    $pagging = pagenav($total_item,$_GET['page'],$limit,$link['FAVUSERS']);
+    $pagging = pagenav($total_item,$_GET['page'],$limit,$link['SAVED-ADVISORS']);
 
     //Print Template
-    HtmlTemplate::display('favourite-users', array(
+    HtmlTemplate::display('saved-advisors', array(
         'items' => $items,
         'totalitem' => $total_item,
-        'pages' => $pagging
+        'pages' => $pagging, 
     ));
     exit;
 }
@@ -77,3 +102,4 @@ else{
     error(__("Page Not Found"), __LINE__, __FILE__, 1);
     exit();
 }
+

@@ -202,7 +202,9 @@ if(!$is_login){
     var LANG_YOU_WANT_DELETE = "<?php _e("You want to delete this job") ?>";
     var LANG_YES_DELETE = "<?php _e("Yes, delete it") ?>";
     var LANG_PROJECT_DELETED = "<?php _e("Project has been deleted") ?>";
-    var LANG_RESUME_DELETED = "<?php _e("Resume Deleted.") ?>";
+    var LANG_RESUME_DELETED = "<?php _e("Resume Successfully Deleted.") ?>";
+    var LANG_CERTIFICATE_DELETED = "<?php _e("Certificate Successfully Deleted.") ?>";
+    var LANG_LICENSE_DELETED = "<?php _e("License Successfully Deleted.") ?>";
     var LANG_EXPERIENCE_DELETED = "<?php _e("Experience Deleted.") ?>";
     var LANG_COMPANY_DELETED = "<?php _e("Company Deleted.") ?>";
     var LANG_SHOW = "<?php _e("Show") ?>";

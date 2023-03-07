@@ -35,6 +35,27 @@
     <script src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/assets/chatjs/jquery.min.js"></script>
     <script src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/plugins/smiley/js/emojione.min.js"></script>
     <?php } ?>
+    <script>
+$( document ).ready(function() {
+  $('[data-toggle=search-form]').click(function() {
+      $('.search-form-wrapper').toggleClass('open');
+      $('.search-form-wrapper .search').focus();
+      $('html').toggleClass('search-form-open');
+    });
+    $('[data-toggle=search-form-close]').click(function() {
+      $('.search-form-wrapper').removeClass('open');
+      $('html').removeClass('search-form-open');
+    });
+  $('.search-form-wrapper .search').keypress(function( event ) {
+    if($(this).val() == "Search") $(this).val("");
+  });
+
+  $('.search-close').click(function(event) {
+    $('.search-form-wrapper').removeClass('open');
+    $('html').removeClass('search-form-open');
+  });
+});
+ </script>
     <!-- ===External Code=== -->
     <?php _esc($config['external_code'])?>
     <!-- ===/External Code=== -->
@@ -72,27 +93,9 @@
         }
     </style>
 </head>
-<body class="<?php _esc($language_direction)?>">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-<!-- Preloader -->
-<div class="preloader">
-    <div class="cssload-speeding-wheel"></div>
-</div>
+<body>
 
-<div id="header">
-    <div class="container">
-        <div id="logo">
-            <a href="<?php url("INDEX") ?>"><img src="<?php _esc($config['site_url'])?>storage/logo/<?php _esc($config['site_logo'])?>" alt="<?php _esc($config['site_title'])?>"></a>
-        </div>
-        <a href="<?php url("DASHBOARD") ?>"><?php _e("Dashboard") ?></a>
-    </div>
-</div>
-<div id="quickchat-rtl"></div>
+<?php include_once TEMPLATE_PATH.'/overall_header.php'; ?>
 
 <div id="wchat">
     <div class="wchat-wrapper wchat-wrapper-web wchat-wrapper-main">
@@ -101,202 +104,199 @@
         <div id="get-error"></div>
         <div id="showErrorModal" data-toggle="modal" data-target=".bs-example-modal-sm"></div>
         <div class="pane pane-intro" id="pane-intro" style="visibility: visible">
-          <div class="intro-body">
+          <div class="intro-body ">
             <div class="intro-image" style="opacity: 1; transform: scale(1);"></div>
             <div class="intro-text-container" style="opacity: 1; transform: translateY(0px);">
-              <h1 class="intro-title"><?php _e("Welcome to chat") ?> <?php _esc($username)?></h1>
-              <div class="intro-text"><?php _e("No Conversation sync. Please search users and start chat.") ?></div>
+            <img src="<?php _esc(TEMPLATE_URL); ?>/assets/imgs/ChatsTeardrop.png">
+              <h1 class=" intro-title"><?php _e("Select a Conversation") ?></h1>
+              <div class="intro-text"><?php _e("Try selecting a conversation or searching for someone specific.") ?></div>
             </div>
           </div>
         </div>
         <div id="uploader" style="display: none">
           <p><?php _e("Your browser doesn't have Flash, Silverlight or HTML5 support.") ?></p>
         </div>
-        </span><span class="pane wchat-three" style="transition: all 0.3s ease;"><span class="flow-drawer-container"
-                                                                                       style="transform: translateX(0px);border: 1px solid rgba(0, 0, 0, .08);display:block;">
-        <div class="drawer drawer-info">
-          <header class="wchat-header">
-            <div class="header-close">
-              <button><span class="icon icon-x  ti-close"></span></button>
-            </div>
-            <div class="header-body">
-              <div class="header-main">
-                <div class="header-title"><?php _e("Profile") ?></div>
-              </div>
-            </div>
-          </header>
-          <div class="drawer-body" id="userProfile" data-list-scroll-container="true"><!--Here Profile comes dynamically--></div>
-        </div>
-        </span></span></div>
+        </span>
+        
+      </div>
+
+
             <!-- .chat-left-panel -->
             <div id="side" class="wchat-list wchat-one chat-left-aside left">
-                <div class="open-panel"><i class="ti-angle-right"></i></div>
+                <div class="open-panel"><i class="text-white ti-angle-right"></i></div>
                 <div class="chat-left-inner">
                     <div id="my-profile" style="display: none;"></div>
                     <div id="contact-list">
-                        <header class="wchat-header wchat-chat-header top">
-                            <div class="chat-avatar">
-                                <div class="avatar icon-user-default" style="height: 40px; width: 40px;">
-                                    <div class="avatar-body userimage"><img
-                                                src="<?php _esc($config['site_url'])?>storage/profile/small_<?php _esc($userimg)?>"
-                                                class="avatar-image is-loaded" width="100%"></div>
-                                </div>
-                            </div>
-                            <div class="chat-body">
-                                <div class="chat-main">
-                                    <h2 class="chat-title" dir="auto"><span
-                                                class="wchatellips personName"><?php _esc($username)?></span></h2>
-                                </div>
-                            </div>
-                        </header>
-                        <div class="form-material">
-                            <input class="form-control p-lr-20 live-search-box search_bg" id="searchbox" type="text"
-                                   placeholder="<?php _e("Search By Username or Email") ?>">
-                        </div>
-                        <div class="contact-drawer">
-                            <ul class="chatonline drawer-body contact-list" id="display"
-                                data-list-scroll-container="true">
-                                <!--Dynamic comes conversation list-->
+                    <nav class="navbar navbar-fixed-top pb-45">
+   <div class="container">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+         <span class="sr-only">Toggle navigation</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         </button>
+         <div class="allconversations">All Conversations</div>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+         <div class="hidden-xs navbar-form navbar-right">
+            <a onclick="documentTrack('#search');" class="search-form-tigger search-btn"  data-toggle="search-form"><i class="search-btn fa fa-search" style="color:#2C76DC !important;width:12.67px;height:12.67px;" aria-hidden="true"></i></a>
+         </div>
+		 <div class="visible-xs navbar-form navbar-right">
+            <input type="text" class="p-lr-20 live-search-box search_bg search form-control" placeholder="Search">
+         </div>
+         <!--/.navbar-collapse -->
+      </div>
+   </div>
+</nav>
+<div class="search-form-wrapper">
+   <div class="search-form">
+      <div class="input-group">
+         <input type="text" id="searchbox" class="p-lr-20 live-search-box search_bg search form-control rounded-pill" placeholder="<?php _e("Search") ?>">
+      </div>
+</div>
+</div>
+<!-- Sidebar conversation list -->
+<div class="contact-drawer">
+<ul class="chatonline drawer-body contact-list" id="display"
+  data-list-scroll-container="true">
+   <!--End Sidebar conversation list-->
+</ul>
+  </div>
+   </div>
+ </div>
+</div>
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- .chat-left-panel --><!-- .chat-right-panel -->
-            <div id="main right" class="pane wchat-chat wchat-two chat-right-aside right" style="visibility: hidden;">
+
+ <!-- .chat-left-panel --><!-- .chat-right-panel -->
+        <div id="main right" class="pane wchat-chat wchat-two chat-right-aside right" style="visibility: hidden;">
                 <div class="wchat-chat-tile"></div>
                 <header class="wchat-header wchat-chat-header top" data-user="">
-                    <button class="icon m-r-5 hidden-sm hidden-md hidden-lg open-panel" href="#"><span
-                                class="font-19"><i class="icon ti-arrow-left"></i></span></button>
-                    <div class="chat-avatar" id="launchProfile">
+                    <button class="icon m-r-5 hidden-sm hidden-md hidden-lg open-panel" href="#">
+                  <span class="font-19"><i class="icon ti-arrow-left"></i></span></button>
+                    <div class="chat-avatar">
                         <div class="avatar icon-user-default" style="height: 40px; width: 40px;">
                             <div class="avatar-body userimage profile-picture">&nbsp;</div>
                         </div>
                     </div>
-                    <div class="chat-body">
-                        <div class="chat-main">
-                            <h2 class="chat-title" dir="auto"><span class="wchatellips personName">&nbsp;</span></h2>
-                        </div>
-                        <div class="chat-status wchatellips" id="typing_on" data-userid=""><!--last seen today at 8:52 PM--></div>
-                    </div>
-                    <div class="wchat-chat-controls">
-                        <div class="menu menu-horizontal">
-                            <div class="menu-item active dropdown pull-right">
-                                <button id="MobileChromeplaysound" class="hidden"></button>
-                                <button class="icon dropdown-toggle font-19" data-toggle="dropdown" href="#"
-                                        id="mute-sound"><i class="icon icon-volume-2"></i></button>
-                            </div>
-                            <div class="mega-dropdown  pull-right">
-                                <button class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
-                                        aria-expanded="false"><span class="font-19"><i class="icon fa fa-paperclip"></i></span>
-                                </button>
-                                <ul class="dropdown-menu mega-dropdown-menu animated bounceInDown">
-                                    <li class="col-sm-12 demo-box">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="white-box text-center bg-purple uploadFile" id="uploadFile">
-                                                    <a href="#" class="text-white" data-toggle="tooltip" title=""
-                                                       data-original-title="<?php _e("Photos") ?>"><i
-                                                                class="icon ti-gallery font-19"></i></a></div>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="white-box text-center bg-success uploadFile"><a href="#"
-                                                                                                            class="text-white"
-                                                                                                            data-toggle="tooltip"
-                                                                                                            title=""
-                                                                                                            data-original-title="<?php _e("Videos") ?>"><i
-                                                                class="icon icon-camrecorder font-19"></i></a></div>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="white-box text-center bg-info uploadFile"><a href="#"
-                                                                                                         class="text-white"
-                                                                                                         data-toggle="tooltip"
-                                                                                                         title=""
-                                                                                                         data-original-title="<?php _e("Documents") ?>"><i
-                                                                class="icon icon-doc font-19"></i></a></div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item active dropdown pull-right">
-                                <button class="icon dropdown-toggle" data-toggle="dropdown" href="#"><span
-                                            class="font-19"><i class="icon icon-options-vertical"></i></span></button>
-                                <ul class="dropdown-menu dropdown-user animated flipInY">
-                                    <li><a href="#" onclick="javascript:ShowProfile();"><i
-                                                    class="ti-user"></i> <?php _e("View Profile") ?></a></li>
-                                    <li><a href="<?php url("DASHBOARD") ?>"><i class="ti-wallet"></i> <?php _e("Dashboard") ?></a></li>
-                                    <li><a href="<?php url("LOGOUT") ?>"><i class="fa fa-power-off"></i> <?php _e("Logout") ?></a></li>
-                                </ul>
-                                <!-- /.dropdown-user --></div>
-                            <div class="menu-item right-side-toggle hidden-xs hidden">
-                                <button class="icon ti-settings font-20" title="Attach"></button>
-                                <span></span></div>
-                        </div>
-                    </div>
-                </header>
-                <div class="wchat-body wchat-chat-tile-container" style="background-size: cover;">
-                    <div><span>
-            <div class="scroll-down" style="transform: scaleX(1) scaleY(1); opacity: 1; visibility:hidden;"><span
-                        class="ti-angle-down"></span></div>
-            </span>
-                        <div class="wchat-chat-msgs wchat-chat-body lastTabIndex">
-                            <div class="wchat-chat-empty"></div>
-                            <div class="message-list">
-                                <div class="chat-list" id="resultchat"><!--Here content comes dynamically--></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wchat-filler" style="height: 0px;"></div>
-                <footer class="wchat-footer wchat-chat-footer">
-                    <div id="chatFrom"><!--TextArea Dinamic --></div>
-                    <div class="wchat-box-items-positioning-container">
-                        <div class="wchat-box-items-overlay-container">
-                            <div style="display: none" class="target-emoji">
-                                <div class="smiley-panel">
-                                    <!-- Nav tabs -->
-                                    <ul class="nav customtab2 nav-tabs menu-tabs" role="tablist" style="padding: 0;">
-                                        <li role="presentation" class="menu-item active"><a href="#people"
-                                                                                            aria-controls="people"
-                                                                                            role="tab" data-toggle="tab"
-                                                                                            aria-expanded="true"><i
-                                                        class="ti-face-smile"></i></a></li>
-                                        <li role="presentation" class="menu-item"><a href="#nature"
-                                                                                     aria-controls="nature" role="tab"
-                                                                                     data-toggle="tab"
-                                                                                     aria-expanded="false"><i
-                                                        class="ti-gallery"></i></a></li>
-                                        <li role="presentation" class="menu-item"><a href="#food" aria-controls="food"
-                                                                                     role="tab" data-toggle="tab"
-                                                                                     aria-expanded="false"><i
-                                                        class="fa fa-cutlery"></i></a></li>
-                                        <li role="presentation" class="menu-item"><a href="#activity"
-                                                                                     aria-controls="activity" role="tab"
-                                                                                     data-toggle="tab"
-                                                                                     aria-expanded="false"><i
-                                                        class="ti-basketball"></i></a></li>
-                                        <li role="presentation" class="menu-item"><a href="#travel"
-                                                                                     aria-controls="travel" role="tab"
-                                                                                     data-toggle="tab"
-                                                                                     aria-expanded="false"><i
-                                                        class="fa fa-car"></i></a></li>
-                                        <li role="presentation" class="menu-item"><a href="#objects"
-                                                                                     aria-controls="objects" role="tab"
-                                                                                     data-toggle="tab"
-                                                                                     aria-expanded="false"><i
-                                                        class="ti-light-bulb"></i></a></li>
-                                        <li role="presentation" class="menu-item"><a href="#symbols"
-                                                                                     aria-controls="symbols" role="tab"
-                                                                                     data-toggle="tab"
-                                                                                     aria-expanded="false"><i
-                                                        class="ti-heart"></i></a></li>
-                                        <li role="presentation" class="menu-item"><a href="#flags" aria-controls="flags"
-                                                                                     role="tab" data-toggle="tab"
-                                                                                     aria-expanded="false"><i
-                                                        class="ti-flag-alt"></i></a></li>
-                                    </ul>
+            
+            <div class="chat-body">
+            <div class="chat-main">
+            <h2 class="chat-title" dir="auto"><span class="wchatellips personName">&nbsp;</span></h2>
+             </div>
+            <div class="chat-status wchatellips" id="typing_on" data-userid="">
+            <!--Last seen: 2 weeks ago| Local time Sep 1, 5:05pm-->
+             </div>
+            </div>
+
+      <div class="wchat-chat-controls">
+      <div class="menu menu-horizontal">
+            <div class="d-none menu-item active dropdown pull-right">
+            <button id="MobileChromeplaysound" class="hidden"></button>
+             <button class="icon dropdown-toggle font-19" data-toggle="dropdown" href="#"
+            id="mute-sound"><i class="icon icon-volume-2"></i>
+            </button>
+            </div>
+
+
+
+
+<div class="mega-dropdown  pull-right">
+<button class=" dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"aria-expanded="false"><span class="font-19"><i class="icon fa fa-paperclip"></i></span>
+</button>
+<ul class="dropdown-menu mega-dropdown-menu animated bounceInDown">
+<li class="col-sm-12 demo-box">
+<div class="row">
+<div class="col-sm-12">
+<div class="white-box text-center bg-purple uploadFile" id="uploadFile">
+<a href="#" class="text-white" data-toggle="tooltip" title="" data-original-title="<?php _e("Photos") ?>"><i class="icon ti-gallery font-19"></i>
+</a>
+</div>
+ </div>
+      <div class="col-sm-12">
+      <div class="white-box text-center bg-success uploadFile"><a href="#" class="text-white"data-toggle="tooltip"title=""data-original-title="<?php _e("Videos") ?>"><i class="icon icon-camrecorder font-19"></i>
+</a></div>
+</div>
+   <div class="col-sm-12">
+    <div class="white-box text-center bg-info uploadFile"><a href="#"class="text-white"data-toggle="tooltip" title=""data-original-title="<?php _e("Documents") ?>"><i class="icon icon-doc font-19"></i></a>
+</div>
+</div>
+</div>
+</li>
+</ul>
+ </div>
+
+<div class="menu-item right-side-toggle hidden-xs hidden">
+<button class="icon ti-settings font-20" title="Attach"></button>
+<span></span></div>
+</div>
+</div>
+</header>
+
+
+<div class="wchat-body wchat-chat-tile-container" style="background-size: cover;">
+<div><span>
+<div class="scroll-down" style="transform: scaleX(1) scaleY(1); opacity: 1; visibility:hidden;">
+<span class="ti-angle-down"></span></div> 
+</span>
+
+<div class="wchat-chat-msgs wchat-chat-body lastTabIndex">
+ <div class="wchat-chat-empty"></div>
+   <div class="message-list">
+     <div class="chat-list" id="resultchat">
+       <!--Here content comes dynamically-->
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="wchat-filler" style="height: 0px;"></div>
+                
+                
+<footer class="wchat-footer wchat-chat-footer">
+<div id="chatFrom"><!--TextArea Dinamic --></div>
+<div class="wchat-box-items-positioning-container">
+<div class="wchat-box-items-overlay-container">
+<div style="display: none" class="target-emoji">
+<div class="smiley-panel">
+<!-- Nav tabs -->
+<ul class="nav customtab2 nav-tabs menu-tabs" role="tablist" style="padding: 0;">
+<li role="presentation" class="menu-item active">
+<a href="#people" aria-controls="people" role="tab" data-toggle="tab" aria-expanded="true">
+<i class="ti-face-smile"></i>
+</a>
+</li>
+
+<li role="presentation" class="menu-item">
+<a href="#nature" aria-controls="nature" role="tab" data-toggle="tab" aria-expanded="false">
+<i class="ti-gallery"></i></a>
+</li>
+
+<li role="presentation" class="menu-item"><a href="#food" aria-controls="food" role="tab" data-toggle="tab" aria-expanded="false">
+<i class="fa fa-cutlery"></i></a>
+</li>
+
+<li role="presentation" class="menu-item">
+<a href="#activity" aria-controls="activity" role="tab" data-toggle="tab" aria-expanded="false">
+<i class="ti-basketball"></i></a>
+</li>
+
+<li role="presentation" class="menu-item"><a href="#travel" aria-controls="travel" role="tab"
+data-toggle="tab" aria-expanded="false"><i class="fa fa-car"></i></a>
+</li>
+
+<li role="presentation" class="menu-item"><a href="#objects" aria-controls="objects" role="tab"
+data-toggle="tab" aria-expanded="false"><i class="ti-light-bulb"></i>
+</a>
+</li>
+<li role="presentation" class="menu-item"><a href="#symbols" aria-controls="symbols" role="tab" data-toggle="tab" aria-expanded="false"><i class="ti-heart"></i>
+</a>
+</li>
+<li role="presentation" class="menu-item"><a href="#flags" aria-controls="flags" role="tab" data-toggle="tab" aria-expanded="false"><i class="ti-flag-alt"></i>
+</a>
+</li>
+
+</ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content" style="margin: 0;text-align: center;">
                                         <div role="tabpanel" class="tab-pane fade active in" id="people">
@@ -5789,7 +5789,8 @@
                             </div>
                         </div>
                     </div>
-                    <span class="mentions-positioning-container"></span></footer>
+                    <span class="mentions-positioning-container"></span>
+                  </footer>
                 <span></span></div>
             <!-- .chat-right-panel -->
         </div>
@@ -5872,6 +5873,11 @@
         $('#quickchat-rtl').append('<link rel="stylesheet" type="text/css" href="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/assets/chatcss/inbox-rtl.css">');
     }
 </script>
+<script src="<?php _esc(TEMPLATE_URL);?>/assets/js/main.js"></script>
+<script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/bootstrap.bundle.min.js"></script>
+<script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="<?php _esc(TEMPLATE_URL);?>/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+
 
 <script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/assets/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/plugins/smiley/smiley.js"></script>

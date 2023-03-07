@@ -477,7 +477,7 @@
                                         <li class="px-2 p-2"><a href="<?php url("MESSAGE") ?>"><?php _e("Inbox") ?></a></li>
                                         <?php } ?>
                                         <div class="border-top me-auto">
-                                        <li class="px-2 p-2"><a href=""><?php _e("Account Settings") ?></a></li>
+                                        <li class="px-2 p-2"><a href="<?php url("EDITPROFILE") ?>"><?php _e("Account Settings") ?></a></li>
                                         <li class="px-2 p-2"><a href="#"><?php _e("Help & Support") ?></a></li>
                                         </div>
                                         

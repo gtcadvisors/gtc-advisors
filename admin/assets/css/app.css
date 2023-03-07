@@ -96,26 +96,33 @@ Author: zeunix
 }
 
 .nav-drawer > li > a {
-	border-left: 3px solid transparent;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
 	padding-top: 14px;
 	padding-bottom: 13px;
 }
 
 .nav-drawer > .active > a {
 	background-color: transparent;
-	border-color: #7dc855;
+	border-color: #2C76DC;
 }
 
 .nav-drawer > .active > a:hover, .nav-drawer > .active > a:focus, .nav-drawer > .active > a:active {
-	border-color: #7dc855;
+	border-color: #2C76DC;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #f9f9f9;
+    border-color: #2C76DC !important;
 }
 
 /* Nav icon */
 .nav-drawer > li > a > i {
 	position: absolute;
-	left: 21px;
-	font-size: 1.25em;
-	line-height: 1.25;
+    left: 21px;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    color: #2C76DC;
 }
 
 .nav-drawer-header {
@@ -169,7 +176,7 @@ Author: zeunix
 }
 
 .nav-subnav > .active > a {
-    color: #7dc855;
+    color: #2C76DC;
 }
 
 .drawer-footer {
@@ -991,7 +998,7 @@ Author: zeunix
 }
 
 .switch-app input:checked + span {
-	background-color: #7dc855;
+	background-color: #2C76DC;
 }
 
 .switch-green input:checked + span {
@@ -1190,6 +1197,9 @@ Author: zeunix
 
 .card:not([class*="bg-"]) {
 	background-color: #fff;
+	border-radius: 10px;
+	width: 100%;
+	min-height: 100%;
 }
 
 /* Card links */
@@ -1392,6 +1402,7 @@ a.card:not(.bg-inverse):hover {
 
 .card-header + .card-block {
 	padding-top: 16px;
+	height: 400px;
 }
 
 /* Card image */

@@ -302,14 +302,17 @@ if ($is_logged) {
                             if ($width != $type_details["width"] || $height != $type_details["height"]) $errors[] = 'Banner image size must be '.$type_details["width"].'x'.$type_details["height"];
                             else {
                                 $file = "banner_".random_string(16).$ext;
-                                if (!move_uploaded_file($_FILES["file"]["tmp_name"], ABSPATH."/files/".$file)) {
-                                    $errors[] = 'Can not save uploaded banner image';
-                                    $file = "";
-                                } else {
+
+                                $target_dir = ABSPATH."/files/";
+                                $result = quick_file_upload('file',$target_dir);
+                                if($result['success']){
+                                    $file = $result['file_name'];
                                     if (!empty($banner_details["file"]) && empty($errors)) {
                                         if (file_exists(ABSPATH."/files/".$banner_details["file"]) && is_file(ABSPATH."/files/".$banner_details["file"]))
                                             unlink(ABSPATH."/files/".$banner_details["file"]);
                                     }
+                                }else{
+                                    $errors[] = $result['error'];
                                 }
                             }
                         }

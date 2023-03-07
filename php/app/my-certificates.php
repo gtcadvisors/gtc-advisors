@@ -1,5 +1,5 @@
 <?php
-// if resume is disable
+// if certificate is disable
 if(!$config['resume_enable']){
     error(__("Page Not Found"), __LINE__, __FILE__, 1);
 }
@@ -20,7 +20,7 @@ if(checkloggedin())
 
     if(!empty($_GET['keywords'])){
     	$keywords = $_GET['keywords'];
-    	$orm->where_like('name','%'.$keywords.'%');
+    	$orm->where_like('certificate_name','%'.$keywords.'%');
     }
 
     $result = $orm->find_many();
@@ -38,7 +38,7 @@ if(checkloggedin())
     //Print Template
     HtmlTemplate::display('my-certificates', array(
         'items' => $items,
-        'certifications' => resumes_count($_SESSION['user']['id']),
+        'certifications' => certifications_count($_SESSION['user']['id']),
         'keywords' => $keywords
     ));
     exit;

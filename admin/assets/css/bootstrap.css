@@ -7874,15 +7874,15 @@ a.bg-inverse, a.bg-inverse:hover, a.bg-inverse:focus {
 /* App buttons */
 .btn-app {
 	color: #fff;
-	background-color: #7dc855;
-	border-color: #7dc855;
+	background-color: #2C76DC;
+	border-color: #2C76DC;
 }
 
 .btn-app:hover, .btn-app:focus, .btn-app.focus, .btn-app:active, .btn-app.active,
 .open > .btn-app.dropdown-toggle {
 	color: #fff;
-	background-color: #6dc140;
-	border-color: #6fc243;
+	background-color: #278EFF;
+	border-color: #278EFF;
 }
 
 .btn-app:active, .btn-app.active,

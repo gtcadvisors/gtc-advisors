@@ -8,7 +8,7 @@ require_once ROOTPATH . '/includes/lang/lang_'.$config['lang'].'.php';
 admin_session_start();
 
 if (isset($_SESSION['admin']['id'])) {
-    echo '<script>window.location="index.php"</script>';
+    echo '<script>window.location="dashboard.php"</script>';
 }
 
 if(isset($_POST['username']))
@@ -56,7 +56,7 @@ if(isset($_POST['username']))
     if($recaptcha_responce){
         if(adminlogin($_POST['username'],$_POST['password']))
         {
-            echo '<script>window.location="index.php"</script>';
+            echo '<script>window.location="dashboard.php"</script>';
             exit;
         }
         else
@@ -89,7 +89,7 @@ if(isset($_POST['username']))
     <meta name="robots" content="noindex, nofollow" />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="16x16" href=../storage/logo/<?php echo $config['site_favicon']?>">
+    <link rel="shortcut icon" href="<?php _esc($config['site_url']);?>storage/logo/<?php _esc($config['site_favicon']);?>">
 
     <!-- Google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
@@ -114,8 +114,9 @@ if(isset($_POST['username']))
                         <!-- Login card -->
                         <div class="col-md-6 col-md-offset-3">
                             <div class="text-center"><img class="img-responsive" src="../storage/logo/<?php echo $config['site_admin_logo']?>"/></div>
+                            <br />
                             <div class="card" id="admin_login_card">
-                                <h3 class="card-header h4">Login</h3>
+                                <h3 class="card-header h4">Admin Login</h3>
                                 <div class="card-block">
                                     <span style="color:#df6c6e;">
                                         <?php

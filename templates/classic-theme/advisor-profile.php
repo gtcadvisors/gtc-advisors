@@ -54,7 +54,8 @@
                     <a class="me-1 mb-2 text-center category-pill text--black" href="<?php _esc($config['site_url']."categories?category=".$category) ?>"><?php _esc($category)?></a>
                   <?php }?>
                 </div>
-                <button class="advisor__invite-btn mt-2 mt-lg-3">Invite to Job</button>
+                <a href="">
+                <button class="advisor__invite-btn mt-2 mt-lg-3">Invite to Job</button></a>
               </div>
             </div>
 

@@ -63,6 +63,7 @@ Contact List Css*/
 }
 .zechat-contacts h2 {margin: 0 83.2px 20.8px 0;}
 .zechat-contacts .fa-bars {right: 28.8px;}
+.zechat-contacts .fa-envelope-o { left: 28.8px; }
 .zechat-contacts:hover {
     -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%);

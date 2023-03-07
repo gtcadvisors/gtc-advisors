@@ -33,7 +33,7 @@ if(isset($_SESSION['admin']['id'])){
     <title><?php echo $config['site_title'] ?> - Admin Panel</title>
 
     <meta name="description" content="<?php echo $config['site_title'] ?> - Admin Dashboard" />
-    <meta name="author" content="Bylancer" />
+    <meta name="author" content="" />
     <meta name="robots" content="noindex, nofollow" />
 
     <!-- Favicons -->
@@ -93,7 +93,7 @@ if(isset($_SESSION['admin']['id'])){
             <div class="app-layout-drawer-scroll">
                 <!-- Drawer logo -->
                 <div id="logo" class="drawer-header">
-                    <a href="<?php echo ADMINURL; ?>index.php">
+                    <a href="<?php echo ADMINURL; ?>dashboard.php">
                         <img class="img-responsive" src="<?php echo $config['site_url'];?>storage/logo/<?php echo $config['site_admin_logo']?>" title="admin" alt="admin" /></a>
                 </div>
 
@@ -103,44 +103,20 @@ if(isset($_SESSION['admin']['id'])){
                         <li class="nav-item nav-drawer-header">Apps</li>
 
                         <li class="nav-item">
-                            <a href="<?php echo ADMINURL; ?>index.php"><i class="ion-ios-speedometer-outline"></i> Dashboard</a>
+                            <a href="<?php echo ADMINURL; ?>dashboard.php"><i class="ion-ios-speedometer-outline"></i> Dashboard</a>
                         </li>
 
-                        <li class="nav-item nav-drawer-header">Manage Project</li>
-                        <li class="nav-item nav-item-has-subnav">
-                            <a href="#"><i class="ion-briefcase"></i> Projects</a>
-                            <ul class="nav nav-subnav">
-                                <li><a href="<?php echo ADMINURL; ?>app/projects.php?status=open">Open</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>app/projects.php?status=under_development">Ongoing</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>app/projects.php?status=completed">Completed</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>app/projects.php?status=close">Closed</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>app/projects.php">All Projects List</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item nav-drawer-header">Manage Jobs</li>
-                        <li class="nav-item nav-item-has-subnav">
-                            <a href="#"><i class="ion-briefcase"></i> Jobs</a>
-                            <ul class="nav nav-subnav">
-                                <li><a href="<?php echo ADMINURL; ?>app/post_active.php">Active Jobs</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>app/post_pending.php">Pending Jobs</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>app/post_hidden.php">Hidden by User</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>app/post_resubmit.php">Resubmitted Jobs</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>app/post_expire.php">Expire Jobs</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>app/posts.php">All Jobs List</a></li>
-                            </ul>
+                        <li class="nav-item nav-drawer-header">Manage Documents</li>
+                        <li class="nav-item">
+                            <a href="<?php echo ADMINURL; ?>app/certificates.php"><i><img src="<?php echo ADMINURL; ?>assets/images/certificate.png" style="max-width:20px;filter:sepia(100%) hue-rotate(190deg) saturate(500%);"></i> Certificates</a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo ADMINURL; ?>app/companies.php"><i class="fa fa-bank"></i> Companies</a>
+                            <a href="<?php echo ADMINURL; ?>app/licenses.php"><i><img src="<?php echo ADMINURL; ?>assets/images/license.png" style="max-width:20px;filter:sepia(100%) hue-rotate(190deg) saturate(500%);"></i> Licenses</a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo ADMINURL; ?>app/post-types.php"><i class="fa fa-suitcase"></i> Job Types</a>
+                            <a href="<?php echo ADMINURL; ?>app/resumes.php"><i><img src="<?php echo ADMINURL; ?>assets/images/cv.png" style="max-width:20px;filter:sepia(100%) hue-rotate(190deg) saturate(500%);"></i> Resumes</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="<?php echo ADMINURL; ?>app/salary-types.php"><i class="fa fa-dollar"></i> Salary Types</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo ADMINURL; ?>app/resumes.php"><i class="fa fa-paperclip"></i> Resumes</a>
-                        </li>
+                        
                         <li class="nav-item nav-drawer-header">Management</li>
                         <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>app/category.php"><i class="ion-ios-list-outline"></i> Category</a>
@@ -149,7 +125,7 @@ if(isset($_SESSION['admin']['id'])){
                             <a href="<?php echo ADMINURL; ?>app/custom_field.php"><i class="ion-android-options"></i> Custom Fields</a>
                         </li>
                         <li class="nav-item nav-item-has-subnav">
-                            <a href="#"><i class="ion-bag"></i> Membership</a>
+                            <a href="#"><i class="ion-bag"></i> Users Subscription</a>
                             <ul class="nav nav-subnav">
                                 <li><a href="<?php echo ADMINURL; ?>global/membership_plan.php">Plans</a></li>
                                 <li><a href="<?php echo ADMINURL; ?>global/membership_plan_custom.php">Custom Settings</a></li>
@@ -161,15 +137,15 @@ if(isset($_SESSION['admin']['id'])){
                         <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>global/payment_methods.php"><i class="fa fa-bank"></i> Payment Methods</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>global/taxes.php"><i class="fa fa-file-text-o"></i> Taxes</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>global/transactions.php"><i class="ion-arrow-graph-up-right"></i> Transactions</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>app/withdrawal.php"><i class="fa fa-bank"></i> Withdrawal Request</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>global/email-template.php"><i class="ion-ios-email"></i> Email Template </a>
                         </li>
@@ -188,7 +164,7 @@ if(isset($_SESSION['admin']['id'])){
                         </li>
 
                         <li class="nav-item nav-drawer-header">Content</li>
-                        <li class="nav-item nav-item-has-subnav">
+                        <!-- <li class="nav-item nav-item-has-subnav">
                             <a href="#"><i class="ion-ios-paper-outline"></i> Blog </a>
                             <ul class="nav nav-subnav">
                                 <li><a href="<?php echo ADMINURL; ?>global/blog.php">All Blog</a></li>
@@ -196,8 +172,8 @@ if(isset($_SESSION['admin']['id'])){
                                 <li><a href="<?php echo ADMINURL; ?>global/blog-cat.php">Categories</a></li>
                                 <li><a href="<?php echo ADMINURL; ?>global/blog-comments.php">Comments</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
+                        </li> -->
+                        <!-- <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>global/testimonials.php"><i class="ion-document"></i> Testimonials</a>
                         </li>
                         <li class="nav-item">
@@ -205,13 +181,13 @@ if(isset($_SESSION['admin']['id'])){
                         </li>
                         <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>global/faq_entries.php"><i class="ion-clipboard"></i> FAQ</a>
-                        </li>
-                        <li class="nav-item nav-drawer-header">Account</li>
+                        </li> -->
+                        <li class="nav-item nav-drawer-header">Account Management</li>
                         <li class="nav-item">
-                            <a href="<?php echo ADMINURL; ?>global/users.php"><i class="ion-ios-people"></i> Users</a>
+                            <a href="<?php echo ADMINURL; ?>global/users.php"><i class="ion-ios-people"></i> Manage Users</a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo ADMINURL; ?>global/admins.php"><i class="ion-android-contact"></i> Admin</a>
+                            <a href="<?php echo ADMINURL; ?>global/admins.php"><i class="ion-android-contact"></i>Manage Admin</a>
                         </li>
                         <li class="nav-item nav-item-has-subnav">
                             <a href="#"><i class="fa fa-weixin"></i> Chat </a>
@@ -282,8 +258,7 @@ if(isset($_SESSION['admin']['id'])){
                     </div>
                     <div class="collapse navbar-collapse" id="header-navbar-collapse">
                         <ul id="main-menu" class="nav navbar-nav navbar-left">
-                            <li><a href="<?php echo ADMINURL; ?>global/banner-ad-manage.php">Banner Ads Manager</a></li>
-                            <li><a href="<?php echo ADMINURL; ?>global/setting.php">Settings</a></li>
+                            <li><a href="<?php echo ADMINURL; ?>global/setting.php">Geneal Settings</a></li>
                         </ul>
                         <!-- .navbar-left -->
 

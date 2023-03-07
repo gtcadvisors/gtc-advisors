@@ -98,70 +98,7 @@
     <script src="<?php _esc(TEMPLATE_URL);?>/js/user-ajax.js?ver=<?php _esc($config['version']);?>"></script>
 <script src="<?php _esc(TEMPLATE_URL);?>/js/custom.js?ver=<?php _esc($config['version']);?>"></script>
 
-<?php
-if($is_login){
-    if($config['quickchat_socket_on_off'] == "on"){
-        ?>
-        <script>
-            var ws_protocol = window.location.href.indexOf("https://")==0?"wss":"ws";
-            var ws_host = '<?php _esc($config['socket_host'])?>';
-            var ws_port = '<?php _esc($config['socket_port'])?>';
-            var WEBSOCKET_URL = ws_protocol+'://'+ws_host+':'+ws_port+'/quickchat';
-            var filename = "<?php _esc($config['quickchat_socket_secret_file'])?>.php";
-            var plugin_directory = "plugins/quickchat-socket/"+filename;
-        </script>
-        <link type="text/css" rel="stylesheet" media="all" href="<?php _esc($config['site_url']);?>plugins/quickchat-socket/assets/chatcss/chatbox.css"/>
-        <div id="quickchat-rtl"></div>
-        <script>
-            if ($("body").hasClass("rtl")) {
-                $('#quickchat-rtl').append('<link rel="stylesheet" type="text/css" href="<?php _esc($config['site_url']);?>plugins/quickchat-socket/assets/chatcss/chatbox-rtl.css">');
-                var rtl = true;
-            }else{
-                var rtl = false;
-            }
-        </script>
-        <!--Websocket Version Js-->
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-socket/assets/chatjs/quickchat-websocket.js"></script>
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-socket/plugins/smiley/js/emojione.min.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-socket/plugins/smiley/smiley.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-socket/assets/chatjs/lightbox.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-socket/assets/chatjs/chatbox.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-socket/assets/chatjs/chatbox_custom.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-socket/plugins/uploader/plupload.full.min.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-socket/plugins/uploader/jquery.ui.plupload/jquery.ui.plupload.js"></script>
-        <table id="lightbox" style="display: none;height: 100%">
-            <tr><td height="10px"><p><img src="<?php _esc($config['site_url']);?>plugins/quickchat-socket/plugins/images/close-icon-white.png" width="30px" style="cursor: pointer"/></p></td></tr>
-            <tr><td valign="middle"><div id="content"><img src="#"/></div></td></tr>
-        </table>
-        <?php
-    }
-    else if($config['quickchat_ajax_on_off'] == "on"){
-        ?>
-        <script>
-            var filename = "<?php _esc($config['quickchat_ajax_secret_file'])?>.php";
-            var plugin_directory = "plugins/quickchat-ajax/"+filename;
-        </script>
-        <link type="text/css" rel="stylesheet" media="all" href="<?php _esc($config['site_url']);?>plugins/quickchat-ajax/assets/chatcss/chatbox.css"/>
-        <div id="quickchat-rtl"></div>
-    
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-ajax/plugins/smiley/js/emojione.min.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-ajax/plugins/smiley/smiley.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-ajax/assets/chatjs/lightbox.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-ajax/assets/chatjs/chatbox.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-ajax/assets/chatjs/chatbox_custom.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-ajax/plugins/uploader/plupload.full.min.js"></script>
-        <script type="text/javascript" src="<?php _esc($config['site_url']);?>plugins/quickchat-ajax/plugins/uploader/jquery.ui.plupload/jquery.ui.plupload.js"></script>
-        <table id="lightbox" style="display: none;height: 100%">
-            <tr><td height="10px"><p><img src="<?php _esc($config['site_url']);?>plugins/quickchat-ajax/plugins/images/close-icon-white.png" width="30px" style="cursor: pointer"/></p></td></tr>
-            <tr><td valign="middle"><div id="content"><img src="#"/></div></td></tr>
-        </table>
 
-        <?php
-    }
-}
-?>
     <script>
       $(document).ready(function(){
     $('.trusted-logos').slick({
@@ -195,50 +132,108 @@ if($is_login){
 });
    
 </script>
+
+
+<!--Style Switcher -->
+<!--ChatJs -->
 <script>
-    var session_uname = "<?php _esc($username)?>";
+    var siteurl = '<?php _esc($config['site_url'])?>';
+    // Chat start with
+    var CHATID = "<?php _esc($chatid)?>";
+    var POSTID = "<?php _esc($postid)?>";
+    var POSTTYPE = "<?php _esc($posttype)?>";
+    var CHAT_USERID = "<?php _esc($chat_userid)?>";
+    var CHAT_FULLNAME = "<?php _esc($chat_fullname)?>";
+    var CHAT_USERIMG = "<?php _esc($chat_userimg)?>";
+    var CHAT_USERSTATUS = "<?php _esc($chat_userstatus)?>";
+    var session_uname = '<?php _esc($username)?>';
     var session_uid = "<?php _esc($user_id)?>";
-    var session_img = "<?php _esc($userpic)?>";
+    var session_img = '<?php _esc($userimg)?>';
     // Language Var
-    var LANG_ERROR_TRY_AGAIN = "<?php _e("Error: Please try again.") ?>";
-    var LANG_LOGGED_IN_SUCCESS = "<?php _e("Logged in successfully. Redirecting...") ?>";
-    var LANG_ERROR = "<?php _e("Error") ?>";
-    var LANG_CANCEL = "<?php _e("Cancel") ?>";
-    var LANG_DELETED = "<?php _e("Deleted") ?>";
-    var LANG_ARE_YOU_SURE = "<?php _e("Are you sure?") ?>";
-    var LANG_YOU_WANT_DELETE = "<?php _e("You want to delete this job") ?>";
-    var LANG_YES_DELETE = "<?php _e("Yes, delete it") ?>";
-    var LANG_PROJECT_DELETED = "<?php _e("Project has been deleted") ?>";
-    var LANG_RESUME_DELETED = "<?php _e("Resume Deleted.") ?>";
-    var LANG_EXPERIENCE_DELETED = "<?php _e("Experience Deleted.") ?>";
-    var LANG_COMPANY_DELETED = "<?php _e("Company Deleted.") ?>";
-    var LANG_SHOW = "<?php _e("Show") ?>";
-    var LANG_HIDE = "<?php _e("Hide") ?>";
-    var LANG_HIDDEN = "<?php _e("Hidden") ?>";
-    var LANG_TYPE_A_MESSAGE = "<?php _e("Type a message") ?>";
-    var LANG_ADD_FILES_TEXT = "<?php _e("Add files to the upload queue and click the start button.") ?>";
-    var LANG_ENABLE_CHAT_YOURSELF = "<?php _e("Could not able to chat yourself.") ?>";
+    var LANG_PREVIEW = '<?php _e("Preview") ?>';
     var LANG_JUST_NOW = "<?php _e("Just now") ?>";
-    var LANG_PREVIEW = "<?php _e("Preview") ?>";
-    var LANG_SEND = "<?php _e("Send") ?>";
-    var LANG_FILENAME = "<?php _e("Filename") ?>";
-    var LANG_STATUS = "<?php _e("Status") ?>";
-    var LANG_SIZE = "<?php _e("Size") ?>";
-    var LANG_DRAG_FILES_HERE = "<?php _e("Drag files here") ?>";
-    var LANG_STOP_UPLOAD = "<?php _e("Stop Upload") ?>";
-    var LANG_ADD_FILES = "<?php _e("Add files") ?>";
-    var LANG_CHATS = "<?php _e("Chats") ?>";
+    var LANG_SEND = '<?php _e("Send") ?>';
+    var LANG_FILENAME = '<?php _e("Filename") ?>';
+    var LANG_STATUS = '<?php _e("Status") ?>';
+    var LANG_SIZE = '<?php _e("Size") ?>';
+    var LANG_DRAG_FILES_HERE = '<?php _e("Drag files here") ?>';
+    var LANG_STOP_UPLOAD = '<?php _e("Stop Upload") ?>';
+    var LANG_ADD_FILES = '<?php _e("Add files") ?>';
+    var LANG_TYPE_A_MESSAGE = '<?php _e("Type a message") ?>';
+    var LANG_ADD_FILES_TEXT = '<?php _e("Add files to the upload queue and click the start button.") ?>';
     var LANG_NO_MSG_FOUND = "<?php _e("No message found") ?>";
     var LANG_ONLINE = "<?php _e("Online") ?>";
     var LANG_OFFLINE = "<?php _e("Offline") ?>";
     var LANG_TYPING = "<?php _e("Typing...") ?>";
     var LANG_GOT_MESSAGE = "<?php _e("You got a message") ?>";
+    var LANG_NAME = "<?php _e("Name") ?>";
+    var LANG_GENDER = "<?php _e("Gender") ?>";
+    var LANG_ABOUT = "<?php _e("About") ?>";
+    var LANG_ENABLE_CHAT_YOURSELF = "<?php _e("Could not able to chat yourself.") ?>";
+</script>
+<?php if($config['quickchat_socket_on_off'] == "on"){ ?>
+<script>
+    var ws_protocol = window.location.href.indexOf("https://")==0?"wss":"ws";
+    var ws_host = '<?php _esc($config['socket_host'])?>';
+    var ws_port = '<?php _esc($config['socket_port'])?>';
+    var WEBSOCKET_URL = ws_protocol+'://'+ws_host+':'+ws_port+'/quickchat';
+    var filename = "<?php _esc($config['quickchat_socket_secret_file'])?>.php";
+    var plugin_directory = "plugins/quickchat-socket/"+filename;
 
     if ($("body").hasClass("rtl")) {
-        var rtl = true;
-    }else{
-        var rtl = false;
+        $('#quickchat-rtl').append('<link rel="stylesheet" type="text/css" href="<?php _esc($config['site_url'])?>plugins/quickchat-socket/assets/chatcss/inbox-rtl.css">');
     }
+</script>
+<!--Websocket Version Js-->
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-socket/assets/chatjs/quickchat-websocket.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-socket/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-socket/plugins/smiley/smiley.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-socket/assets/chatjs/lightbox.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-socket/assets/chatjs/inbox.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-socket/assets/chatjs/inbox_custom.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-socket/plugins/uploader/plupload.full.min.js"></script>
+<script type="text/javascript"
+        src="<?php _esc($config['site_url'])?>plugins/quickchat-socket/plugins/uploader/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+<!--This div for modal light box chat box image-->
+<div id="lightbox" style="display: none;">
+    <p><img src="<?php _esc($config['site_url'])?>plugins/quickchat-socket/plugins/images/close-icon-white.png" width="30px" style="cursor: pointer"/></p>
+    <div id="content"><img src="#"/></div>
+</div>
+<!--This div for modal light box chat box image-->
+<?php }else{ ?>
+<script>
+    var filename = "<?php _esc($config['quickchat_ajax_secret_file'])?>.php";
+    var plugin_directory = "plugins/quickchat-ajax/"+filename;
+
+    if ($("body").hasClass("rtl")) {
+        $('#quickchat-rtl').append('<link rel="stylesheet" type="text/css" href="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/assets/chatcss/inbox-rtl.css">');
+    }
+</script>
+
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/plugins/smiley/smiley.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/assets/chatjs/lightbox.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/assets/chatjs/inbox.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/assets/chatjs/inbox_custom.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/plugins/uploader/plupload.full.min.js"></script>
+<script type="text/javascript"
+        src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/plugins/uploader/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+<!--This div for modal light box chat box image-->
+<div id="lightbox" style="display: none;">
+    <p><img src="<?php _esc($config['site_url'])?>plugins/quickchat-ajax/plugins/images/close-icon-white.png" width="30px" style="cursor: pointer"/></p>
+    <div id="content"><img src="#"/></div>
+</div>
+<!--This div for modal light box chat box image-->
+<?php } ?>
+
+<script type="text/javascript">
+    $(window).bind("load", function () {
+        if (CHATID != '' && CHAT_USERID != '' && POSTID != '' && POSTTYPE != '') {
+            chatWith(CHATID,CHAT_USERID,CHAT_FULLNAME,CHAT_USERIMG,CHAT_USERSTATUS,POSTID);
+        }
+    });
 </script>
   </body>
 </html>

@@ -13,9 +13,9 @@ function mynl2br($text)
     return strtr($text, array("\r\n" => '<br />', "\r" => '<br />', "\n" => '<br />')); 
 } 
 
-$login_error_msg = '<p><strong><font color="red">'.__("Error").':</font></strong> '.$lang['RATING_LOGIN_EROR'].'</p>';
-$error_msg = '<p><strong><font color="red">'.__("Error").':</font></strong> '.$lang['RATING_SAVE_ERROR'].'</p>';
-$success_msg = '<div style="background:#B6FABE; border:solid 1px #82D18B; padding-left:10px;"><p class="saved-success"><strong>'.$lang['THANKS_YOU'].'!</strong> '.$lang['RATING_SAVED'].'<p></div>';
+$login_error_msg = '<p><strong><font color="red">'.__("Error").':</font></strong> '.__('Your review could not be saved! Please Login for write review.').'</p>';
+$error_msg = '<p><strong><font color="red">'.__("Error").':</font></strong> '.__('Your review could not be saved! Try it again later.').'</p>';
+$success_msg = '<div style="background:#B6FABE; border:solid 1px #82D18B; padding-left:10px;"><p class="saved-success"><strong>'.__('Thank you').'!</strong> '.__('Your review has been saved.').'<p></div>';
          
 if (isset($_POST['rating'])) {
 

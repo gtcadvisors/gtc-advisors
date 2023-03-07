@@ -92,7 +92,7 @@ foreach ($items as $item){
 <a href="<?php _esc($config['site_url']);?>storage/certifications/<?php _esc($item['filename'])?>" title="<?php _esc($item['filename'])?>" target="_blank" class="file-circle me-2"><i class="fas fa-cloud-download-alt"></i></a>
 <a href="<?php url("EDIT-CERTIFICATE") ?>/<?php _esc($item['id'])?>" class="file-circle me-2"><i class="fas fa-pen"></i></a>
 
-<a href="#" class="file-circle ico ajax-delete-resume" data-tippy-placement="top" title="<?php _e("Delete") ?>"><i class="fas fa-trash-alt"></i></a>
+<a href="#" class="file-circle ico ajax-delete-certificate" data-tippy-placement="top" title="<?php _e("Delete") ?>"><i class="fas fa-trash-alt"></i></a>
 </div>
 </td>
 <?php }

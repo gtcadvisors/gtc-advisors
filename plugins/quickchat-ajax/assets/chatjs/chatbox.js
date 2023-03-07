@@ -157,11 +157,11 @@ function createChatBox($options) {
         .data('fullname',fullname)
         .data('userstatus',userstatus)
         .data('userimage',userimage)
-        .html('<div class="chatbox-icon" onclick="javascript:toggleChatBoxGrowth(\''+chatid+'\')" href="#"><div class="contact-floating red"><img class="chat-image img-circle pull-left" src="'+siteurl+'storage/profile/small_'+userimage+'"><small class="unread-msg">2</small><small class="status"></small></div></div>' +
+        .html('<div class="chatbox-icon" onclick="javascript:toggleChatBoxGrowth(\''+chatid+'\')" href="#"><div class="contact-floating red"><img class="chat-image img-circle pull-left" src="'+siteurl+'storage/profile/'+userimage+'"><small class="unread-msg">2</small><small class="status"></small></div></div>' +
         '<div class="panel personal-chat"> ' +
         '<div class="panel-heading chatboxhead"> ' +
         '<div class="panel-title">' +
-        '<img class="chat-image img-circle pull-left" height="36" width="36" src="'+siteurl+'storage/profile/small_'+userimage+'" alt="avatar-image"> ' +
+        '<img class="chat-image img-circle pull-left" height="36" width="36" src="'+siteurl+'storage/profile/'+userimage+'" alt="avatar-image"> ' +
         '<div class="header-elements"><span class="zechat-name">'+fullname+'</span><br> ' +
         '<small class="status '+status+'"><b>'+status+'</b></small> ' +
         '<div class="pull-right options"> ' +
@@ -680,7 +680,7 @@ function chatfrindList(limitStart){
                     'data-userimage="'+item.userimage+'" ' +
                     'data-userstatus="'+item.userstatus+'">' +
                     '<div class="zechat-contact">' +
-                    '<div class="zechat-pic" style="background-image: url('+siteurl+'storage/profile/small_'+item.userimage+')";></div>' +
+                    '<div class="zechat-pic" style="background-image: url('+siteurl+'storage/profile/'+item.userimage+')";></div>' +
                     unread_count +
                     '<div class="zechat-name">'+item.fullname+'</div>' +
                     '<div class="zechat-message"><i class="fa fa-file-text-o"></i> ' +

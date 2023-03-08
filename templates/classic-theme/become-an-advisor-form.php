@@ -114,61 +114,10 @@
 			</div>
 		</div>
 
-			<!-- <div class="container-fluid border-bottom border-top p-3">
-				<div class="row align-items-center ms-lg-2">
-						<div class="col-10 col-md-12 col-lg-10">
-								<div class="row gy-2">
-									<div class="col-sm-12 col-md-auto">
-											<div class="row align-items-center header-circle-cont">
-												<div class="col-auto"><i class="bi bi-1-circle-fill circle-active"></i></div>
-												<div class="col-auto"><span class="blue__fg header-text">Personal Information</span></div>
-												<div class="col-auto"><i class="bi bi-chevron-right d-none d-md-block "></i></div>
-											</div>
-									</div>
-										
-									<div class="col-sm-12 col-md-auto">
-											<div class="row align-items-center header-circle-cont">
-												<div class="col-auto"><i class="bi bi-2-circle circle"></i></div>
-												<div class="col-auto"><span class="header-text">Professional Information</span></div>
-												<div class="col-auto"><i class="bi bi-chevron-right d-none d-md-block "></i></div>
-											</div>
-									</div>
-										
-									<div class="col-sm-12 col-md-auto">
-											<div class="row align-items-center header-circle-cont">
-												<div class="col-auto"><i class="bi bi-3-circle circle"></i></div>
-												<div class="col-auto"><span class="header-text">Certifications</span></div>
-												<div class="col-auto"><i class="bi bi-chevron-right d-none d-md-block "></i></div>
-											</div>
-									</div>
-										
-									<div class="col-sm-12 col-md-auto">
-											<div class="row align-items-center header-circle-cont">
-												<div class="col-auto"><i class="bi bi-4-circle circle"></i></div>
-												<div class="col-auto"><span class="header-text">Licenses</span></div>
-												<div class="col-auto"><i class="bi bi-chevron-right d-none d-md-block "></i></div>
-											</div>
-									</div>
-									
-									<div class="col-sm-12 col-md-auto">
-											<div class="row align-items-center header-circle-cont">
-												<div class="col-auto"><i class="bi bi-5-circle circle"></i></div>
-												<div class="col-auto"><span class="header-text">Resume</span></div>
-											</div>
-									</div>
-								</div>
-						</div>
-						<div class="col-1 ms-auto text-end me-2 exit-btn mt-auto mt-lg-1">
-							<a href="<?php url("BECOME-ADVISOR") ?>" class="">Exit</a>
-						</div>
-				</div>
-			</div> -->
-					
-
 					
 
 				<!--#########################  PERSONAL INFORMATION  #############################-->
-			<div id="0" class="form-section hidden" style="overflow-x: hidden;">
+			<div id="0" class="form-section active" style="overflow-x: hidden;">
 			<span class=<?php echo( $inputError? "error-message": "hidden") ?>><?php  _esc($inputError) ?></span>
 			<span class=<?php echo( $profileImageError? "error-message": "hidden") ?>><?php  _esc($profileImageError) ?></span>
 			<span class=<?php echo( $languageSelectError? "error-message": "hidden") ?>><?php  _esc($languageSelectError) ?></span>
@@ -279,6 +228,7 @@
 			<div id="1" class="form-section hidden">
 
 			<span class=<?php echo( $contractorTypeError? "error-message": "hidden") ?>><?php  _esc($contractorTypeError) ?></span>
+			<span class=<?php echo( $agencySizeError? "error-message": "hidden") ?>><?php  _esc($agencySizeError) ?></span>
 			<span class=<?php echo( $expertiseListError? "error-message": "hidden") ?>><?php  _esc($expertiseListError) ?></span>
 
 				<div class="container-fluid ms-md-4 p-4 pt-lg-5 pb-lg-5">
@@ -348,7 +298,7 @@
 										<label class="">Choose the year your agency was founded </label>
 										<hr>
 										<div class="year-founded-container">
-											<input type="text" class="yearpicker form-input mb-4 year-picker-input" value="" readonly />
+											<input type="text" class="yearpicker form-input mb-4 year-picker-input"  name="yearFounded" value="" readonly />
 										</div>
 										
 									</div>
@@ -437,7 +387,7 @@
 
 			<!--################################ CERTIFICATIONS #########################-->
 
-			<div id="2" class="form-section active">
+			<div id="2" class="form-section hidden">
 			<span class=<?php echo( $certficateFileError? "error-message": "hidden") ?>><?php  _esc($certficateFileError) ?></span>
 
 				<div class="row justify-content-center mt-5">
@@ -458,12 +408,52 @@
 									<br>
 									<label class="mb-1">Include any certificates or awards that are relevant to the services you are offering.</label>
 									<div class="row mt-4">
-										<input type="file" class="certificate"  capture="user">
+										<div class="ps-2 pe-2">
+											<div class="select--radio-dropdown-container mb-4">
+												<input class="select--radio-dropdown" type="text" id="certificate-select"  placeholder="Select Certificate" disabled>
+												<img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/icons/CaretDown.svg" class="dropdown--caret">
+												<div class="mt-4 ps-2 pt-2 select--radio-dropdown-items hidden">
+
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="certificateType" id="ct1" value="ICAN" >
+														<label class="form-check-label text-dark ms-2" for="ct1">ICAN</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="certificateType" id="ct2" value="ANAN" >
+														<label class="form-check-label text-dark ms-2" for="ct2">ANAN</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="certificateType" id="ct3" value="ACCA" >
+														<label class="form-check-label text-dark ms-2" for="ct3">ACCA</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="certificateType" id="ct4" value="CITN" >
+														<label class="form-check-label text-dark ms-2" for="ct4">CITN</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="certificateType" id="ct5" value="CIMA" >
+														<label class="form-check-label text-dark ms-2" for="ct5">CIMA</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="certificateType" id="ct6" value="CFA" >
+														<label class="form-check-label text-dark ms-2" for="ct6">CFA</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="certificateType" id="ct7" value="CPA" >
+														<label class="form-check-label text-dark ms-2" for="ct7">CPA</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="certificateType" id="ctother" value="Other" >
+														<label class="form-check-label text-dark ms-2" for="ctother">Other</label>
+													</div>	
+												</div>
+											</div>
+
+										</div>
+										<div class="col-9 mb-3 hidden"><input class="form-input-2" id="certificate-name" placeholder="Certificate Name"></div>
+
+										<input type="file" class="certificate" accept="image/*,.pdf*"  capture="user">
 										<span class="file-error hidden"></span>
-									</div>
-									<div class="row">
-										<div class="col-9 col-md-6 mt-3"><input class="form-input-2" id="certificate-name" placeholder="Certificate Name"></div>
-										<!-- <div class="col-9 col-md-6 mt-3 "><input class="form-input-2" id="certificate-from" placeholder="Certificate From (e.g ICAN)"></div> -->
 									</div>
 								</div>
 							</div>
@@ -532,19 +522,60 @@
 						<div class="modal-content">
 							<div class="modal-body">
 								<div class="container-fluid" id="license-section">
-										<label class="text-dark fw-bold fs-6 text mb-3">License <span class="text text-danger">*</span></label>
-										<br>
-										<label class="mb-1">Include any license that are relevant to the services you are offering.</label>
-										<div class="row mt-4">
-											<input type="file" class="license"  accept="image/*,.pdf*" capture="user">
-											<span class="file-error hidden"></span>
+									<label class="text-dark fw-bold fs-6 text mb-3">License </label>
+									<br>
+									<label class="mb-1">Include any license that are relevant to the services you are offering.</label>
+									<div class="row mt-4">
+										<div class="ps-2 pe-2">
+											<div class="select--radio-dropdown-container mb-4">
+												<input class="select--radio-dropdown" id="license-select" type="text"  placeholder="Select License" disabled>
+												<img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/icons/CaretDown.svg" class="dropdown--caret">
+												<div class="mt-4 ps-2 pt-2 select--radio-dropdown-items hidden">
+
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="licenseType" id="lt1" value="ICAN" onclick="return false;">
+														<label class="form-check-label text-dark ms-2" for="lt1">ICAN</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="licenseType" id="lt2" value="ANAN" onclick="return false;">
+														<label class="form-check-label text-dark ms-2" for="lt2">ANAN</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="licenseType" id="lt3" value="ACCA" onclick="return false;">
+														<label class="form-check-label text-dark ms-2" for="lt3">ACCA</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="licenseType" id="lt4" value="CITN" onclick="return false;">
+														<label class="form-check-label text-dark ms-2" for="lt4">CITN</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="licenseType" id="lt5" value="CIMA" onclick="return false;">
+														<label class="form-check-label text-dark ms-2" for="lt5">CIMA</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="licenseType" id="lt6" value="CFA" onclick="return false;">
+														<label class="form-check-label text-dark ms-2" for="lt6">CFA</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="licenseType" id="lt7" value="CPA" onclick="return false;">
+														<label class="form-check-label text-dark ms-2" for="lt7">CPA</label>
+													</div>	
+													<div class="select--radio-dropdown-item form-check pt-2 pb-2 ps-4">
+														<input class="form-check-input" type="radio" name="licenseType" id="ltother" value="Other" onclick="return false;">
+														<label class="form-check-label text-dark ms-2" for="ltother">Other</label>
+													</div>	
+												</div>
+											</div>
+
 										</div>
-										<div class="row">
-											<div class="col-9 col-md-6 mt-3 "><input class="form-input-2" id="license-name" placeholder="License Name"></div>
-											<div class="col-9 col-md-6 mt-3 "><input class="form-input-2" id="license-from" placeholder="License From (e.g ICAN)"></div>
-											<div class="col-12 col-md-12 mt-3 "><input class="form-input-2" id="license-number" placeholder="National organization membership number"></div>
-										</div>
+										<div class="col-9 mb-3 hidden"><input class="form-input-2" id="license-name" placeholder="License Name"></div>
+
+										<input type="file" class="license" accept="image/*,.pdf*" capture="user">
+										<span class="file-error hidden"></span>
 									</div>
+										
+										
+								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-license-modal">Close</button>
@@ -561,8 +592,6 @@
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">License Name</th>
-									<th scope="col">License From</th>
-									<th scope="col">License Number</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
@@ -607,7 +636,7 @@
 									<input class="btn blue__btn ps-3 pt-2 pb-2 pe-3 rounded-3" type="button" id="add-resume-btn" value="Upload your CV / Resume">
 								</div>
 								<div class="hidden resume-upload-container">
-									<input type="file" id="resume-upload" class="mt-3" accept=".docx*,.pdf*,.jpeg*,.jpg*" name="resume" capture="user">
+									<input type="file" id="resume-upload" class="mt-3" accept="image/*,.pdf*,.docx*" name="resume" capture="user">
 										<span class="file-error hidden"></span>
 									<p class="mt-1">JPG, PDF or DOCX. Max size of 2MB</p>
 								</div>
@@ -624,7 +653,7 @@
 
 								<div class="row mt-4">
 										<div class="col">
-												<a href="#	" class="blue__fg">Privacy Policy | Terms of Use</a>
+												<a href="#	" class="text-primary">Privacy Policy | Terms of Use</a>
 										</div>
 								</div>
 							

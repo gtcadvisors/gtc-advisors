@@ -789,6 +789,8 @@ function get_user_data($username=null, $userid=null){
         $userinfo['description']= stripslashes($info['description']);
         $userinfo['bio']        = stripslashes($info['bio']);
         $userinfo['languages']  = $info['languages'];
+        $userinfo['yearFounded']  = $info['yearfounded'];
+        $userinfo['agencySize']  = $info['agencysize'];
         $userinfo['category']   = $info['category'];
         $userinfo['others']     = $info['others'];
         $userinfo['subcategory']= $info['subcategory'];

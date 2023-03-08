@@ -58,6 +58,51 @@ $("#agency-radiobtn").click(()=>{
 
 
 
+// radio--select dropdown functionality
+$(".dropdown--caret").click((e)=>{//control the drop down menu
+    e.target.parentElement.children[2].classList.toggle("hidden")
+})
+
+// $(document).ready(function () {
+//     $('.select--radio-dropdown-items input[type = "radio"]').click(function () {
+//         return false;
+//     });
+// });
+
+$(".select--radio-dropdown-item").click((e)=>{
+    e.target.parentElement.parentElement.children[0].classList.remove("select--radio-dropdown-error")
+    e.target.children[0].checked = true
+    const value = e.target.children[0].value
+    e.target.parentElement.parentElement.children[0].setAttribute("value", value)
+    e.target.parentElement.parentElement.children[2].classList.add("hidden")
+    if(value === "Other"){
+        e.target.parentElement.parentElement.parentElement.parentElement.children[1].classList.remove("hidden")
+    }else{
+        e.target.parentElement.parentElement.parentElement.parentElement.children[1].classList.add("hidden")
+    }
+})
+
+$(".select--radio-dropdown-item input[type ='radio']").click((e)=>{
+    e.target.parentElement.parentElement.children[0].classList.remove("select--radio-dropdown-error")
+    const value = e.target.value
+    e.target.parentElement.parentElement.parentElement.children[0].setAttribute("value", value)
+    e.target.parentElement.parentElement.parentElement.children[2].classList.add("hidden")
+    if(value === "Other"){
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].classList.remove("hidden")
+    }else{
+        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].classList.add("hidden")
+    }
+})
+
+$(".select--radio-dropdown-item label").click((e)=>{
+    return false
+    }
+)
+
+
+
+
+
 // add new expertise
 $("#add-new-expertise").click(function (){
     $(".new-expertise").removeClass("hidden")
@@ -94,44 +139,46 @@ $("#add-expertise").click(function (){
 
 
 
-//certifications
+//add certifications
 let certificateCount = 0
 $("#add-certificate-btn").click(function (){
-    const certificateName = $("#certificate-name")
-    // const certificateFrom = $("#certificate-from")
+    const certificateName = $("#certificate-select").val() === "Other"? $("#certificate-name"):$("#certificate-select")
     const certificateFile = $(".certificate") 
-    if(checkInput(certificateName) && checkFileInput(certificateFile, "file")){
-        $("#close-cert-modal").click()
-        certificateCount ++
-        addCertificate(certificateCount, certificateName, certificateFile)
-        $(".no-cert-placeholder").addClass("hidden")
-        $(".cert-table").removeClass("hidden")
-        certificateName.val("")
-        // certificateFrom.val("")
-        certificateFile.val("")
-        $(".file-error").addClass("hidden")
+    if(certificateName.val()){
+        if(checkFileInput(certificateFile)){
+            $("#close-cert-modal").click()
+            certificateCount ++
+            addCertificate(certificateCount, certificateName, certificateFile)
+            $(".no-cert-placeholder").addClass("hidden")
+            $(".cert-table").removeClass("hidden")
+            certificateFile.val("")
+            $(".file-error").addClass("hidden")
+        }
+    }else{
+        $("#certificate-select").val() !== "Other"?$("#certificate-select").addClass("select--radio-dropdown-error")
+        :checkInput($("#certificate-name"))    
     }
 
 })
 
-//licenses
+//add licenses
 let licenseCount = 0
 $("#add-license-btn").click(function (){
-    const licenseName = $("#license-name")
-    const licenseFrom = $("#license-from")
-    const licenseNo = $("#license-number")
+    const licenseName = $("#license-select").val() === "Other"? $("#license-name"):$("#license-select")
     const licenseFile = $(".license")
-    if(checkInput(licenseName) && checkInput(licenseFrom) && checkInput(licenseNo) && checkFileInput(licenseFile, "file")){
-        $("#close-license-modal").click()
-        licenseCount ++
-        addLicense(licenseCount, licenseName, licenseFrom, licenseNo, licenseFile)
-        $(".no-license-placeholder").addClass("hidden")
-        $(".license-table").removeClass("hidden")
-        licenseName.val("")
-        licenseFrom.val("")
-        licenseNo.val("")
-        licenseFile.val("")
-        $(".file-error").addClass("hidden")
+    if(licenseName.val()){
+        if(checkFileInput(licenseFile, "file")){
+            $("#close-license-modal").click()
+            licenseCount ++
+            addLicense(licenseCount, licenseName, licenseFile)
+            $(".no-license-placeholder").addClass("hidden")
+            $(".license-table").removeClass("hidden")
+            licenseFile.val("")
+            $(".file-error").addClass("hidden")
+        }
+    }else{
+        $("#license-select").val() !== "Other"?$("#license-select").addClass("select--radio-dropdown-error")
+        :checkInput($("#license-name"))    
     }
 
 })
@@ -145,23 +192,23 @@ $("#add-resume-btn").click(function (){
 })
 
 
+
+
+
+
 function addCertificate(count, name, file){
     //create hidden inputs and adds it to the form
-    const cFileInput = file[0].cloneNode(true)
-    setAttributes(cFileInput, {name: "certificateFile[]", class: "hidden"})
     const cNameInput = document.createElement("input")
     setAttributes(cNameInput, {type:"hidden", value:name.val(), name:"certificateName[]"})
-    // const cFromInput = document.createElement("input")
-    // setAttributes(cFromInput, {type: "hidden", value:from.val(), name:"certificateFrom[]"})
-    // creates a certificate row and adds it to the table
+    const cFileInput = file[0].cloneNode(true)
+    setAttributes(cFileInput, {name: "certificateFile[]", class: "hidden"})
+    // creates a data row and add it to the file
     const dataRow = document.createElement("tr")
     const cCount = document.createElement("th")
     cCount.innerHTML = `${count}`
     cCount.setAttribute("scope", "row")
     const cName = document.createElement("td")
     cName.innerHTML = name.val()
-    // const cFrom = document.createElement("td")
-    // cFrom.innerHTML = from.val()
     const deleteBtnContainer = document.createElement("td")
     const deleteBtn = document.createElement("input")
     setAttributes(deleteBtn, {type:"button", value:"Delete"})
@@ -183,22 +230,17 @@ function addCertificate(count, name, file){
     deleteBtnContainer.appendChild(deleteBtn)
     dataRow.appendChild(cCount)
     dataRow.appendChild(cName)
-    // dataRow.appendChild(cFrom)
     dataRow.appendChild(deleteBtnContainer)
     dataRow.appendChild(cNameInput)
-    // dataRow.appendChild(cFromInput)
     dataRow.appendChild(cFileInput)
     $(".cert-table tbody").append(dataRow)
 
 }
 
-function addLicense(count, name, from, num, file){
+function addLicense(count, name, file){
+    //create hidden inputs and adds it to the form
     const lNameInput = document.createElement("input")
     setAttributes(lNameInput, {type:"hidden", value:name.val(), name:"licenseName[]"})
-    const lFromInput = document.createElement("input")
-    setAttributes(lFromInput, {type: "hidden", value:from.val(), name:"licenseFrom[]"})
-    const lNoInput = document.createElement("input")
-    setAttributes(lNoInput, {type: "hidden", value:num.val(), name:"licenseNumber[]"})
     const lFileInput = file[0].cloneNode(true)
     setAttributes(lFileInput, {name: "licenseFile[]", class: "hidden"})
     // creates a license row and adds it to the table
@@ -208,10 +250,6 @@ function addLicense(count, name, from, num, file){
     lCount.setAttribute("scope", "row")
     const lName = document.createElement("td")
     lName.innerHTML = name.val()
-    const lFrom = document.createElement("td")
-    lFrom.innerHTML = from.val()
-    const lNo = document.createElement("td")
-    lNo.innerHTML = num.val()
     const deleteBtnContainer = document.createElement("td")
     const deleteBtn = document.createElement("input")
     setAttributes(deleteBtn, {type:"button", value:"Delete"})
@@ -232,12 +270,8 @@ function addLicense(count, name, from, num, file){
     deleteBtnContainer.appendChild(deleteBtn)
     dataRow.appendChild(lCount)
     dataRow.appendChild(lName)
-    dataRow.appendChild(lFrom)
-    dataRow.appendChild(lNo)
     dataRow.appendChild(deleteBtnContainer)
     dataRow.appendChild(lNameInput)
-    dataRow.appendChild(lFromInput)
-    dataRow.appendChild(lNoInput)
     dataRow.appendChild(lFileInput)
     $(".license-table tbody").append(dataRow)
 }
@@ -364,26 +398,30 @@ function validateForm(formSectionId){
 
 
     // validate radio buttons
-    if(radioButtons.length > 0){
-        const checkedRadioButtons = $("input[type=radio]:checked")
-        const agencySelected = !$(".agency-contents").hasClass("hidden")
+    if(!(formSectionId === 2 || formSectionId === 3)){
+        console.log(formSectionId)
 
-
-        if($("input[name=contractor]:checked").length === 0){
-            validate = false
-            $(".contractor-radio-error").removeClass("hidden")
-            return validate
-
-        }else if(agencySelected && $("input[name=agencySize]:checked").length === 0){
-            validate = false
-            $(".agency-size-radio-error").removeClass("hidden")
-            return validate
-
-        }else{
-            $(".contractor-radio-error").addClass("hidden")
-            $(".agency-size-radio-error").addClass("hidden")
+        if(radioButtons.length > 0){
+            const checkedRadioButtons = $("input[type=radio]:checked")
+            const agencySelected = !$(".agency-contents").hasClass("hidden")
+    
+    
+            if($("input[name=contractor]:checked").length === 0){
+                validate = false
+                $(".contractor-radio-error").removeClass("hidden")
+                return validate
+    
+            }else if(agencySelected && $("input[name=agencySize]:checked").length === 0){
+                validate = false
+                $(".agency-size-radio-error").removeClass("hidden")
+                return validate
+    
+            }else{
+                $(".contractor-radio-error").addClass("hidden")
+                $(".agency-size-radio-error").addClass("hidden")
+            }
+    
         }
-
     }
 
 
@@ -404,20 +442,6 @@ function validateForm(formSectionId){
 
         else{
             $(".checkbox-error").addClass("hidden")
-        }
-    }
-
-    //validate certificate and licenses
-    if(fileDataList.length > 0){
-        const fileData =  $(`#${formSectionId} tbody tr`)
-        if(fileData.length === 0){
-            validate = false
-            $(`#${formSectionId} .add-file`).click()
-            $(".file-error").text("Required").removeClass("hidden")
-            return validate
-        }
-        else{
-            $(".files-table-empty-error").addClass("hidden")
         }
     }
 

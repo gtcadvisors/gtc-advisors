@@ -19,6 +19,8 @@ else{
       $city = $get_userdata["city"];
       $country = $get_userdata["country"];
       $description = $get_userdata["description"];
+      $agencySize = $get_userdata["agencySize"];
+      $yearFounded = $get_userdata["yearFounded"];
   
       //certficates
       $certificates = ORM::for_table($config['db']['pre'].'certifications')
@@ -63,6 +65,8 @@ else{
         "categories" => $categories,
         "languages" => $languages,
         "location" => $city.", ".$country,
+        "agencySize" => $agencySize,
+        "yearFounded" => $yearFounded,
         "description" => $description,
         "certificates" => $certificates,
         "licenses" => $licenses,

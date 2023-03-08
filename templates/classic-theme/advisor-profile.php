@@ -1,37 +1,7 @@
 <?php
   overall_header("advisor profile")
   ?>
-<!-- <div class="container-fluid d-none d-lg-flex flex-row justify-content-evenly border-bottom border-1 border-top pt-1">
-        <div class="text-center">
-          <div class="list-tabs">
-            <ul class=" nav-tabs d-lg-flex flex-row justify-content-evenly" role="tablist">
-              <?php foreach($defaultCategories as $cat){?>
-                <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> <?php _esc($cat["cat_name"]) ?></a></li>
-                <?php }?>  
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Sales Tax</a></li>
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> International</a></li>
-                <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> Financial Planning</a></li>
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Corporations</a></li>
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> IRS Representation</a></li>
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Individual Tax Preparation</a></li> 
-                <li class="mt-3 mb-3"> <a class="see-all" href="category.php"> See All</a></li> 
-              </ul>
-          </div>
-        </div>
-        </div> -->
-        <!-- <div class="container-fluid d-md-flex d-none d-lg-none flex-row justify-content-evenly border-bottom border-2 p-3">
-        <div class="text-center">
-      <div class="list-tabs mb-3">
-        <ul class="nav nav-tabs" role="tablist">
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;" href="#"> Tax Pricing</a></li>
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#">Corporations</a></li>
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;" href="#">Tax Audits</a></li>
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#"> Sales Tax</a></li> 
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#">IRS Representation</a></li>
-        </ul>
-      </div>
-    </div>
-        </div> -->
+
     
     <div class="container-fluid d-flex flex-row border-top border-bottom border-1 header__categories p-3 ps-lg-5">
       <?php foreach($defaultCategories as $cat){?>
@@ -103,11 +73,11 @@
               <p class="tabs__content__text mt-3 mt-lg-4"><?php _esc($description) ?></p>
               <div class="mt-4 <?php _esc($advisorType == "freelancer"? "d-none":"") ?> tabs__content_line pt-3 pb-3">
                 <h3 class="profile__text--dark">ORGANIZATION SIZE</h3>
-                <p class="mt-3 mt-lg-4 profile__text--dark profile__text--dark--normal">2- 20 Employees</p>
+                <p class="mt-3 mt-lg-4 profile__text--dark profile__text--dark--normal"><?php _esc($agencySize)?></p>
               </div>
               <div class="mt-3 mt-lg-4 <?php _esc($advisorType == "freelancer"? "d-none":"") ?>">
                 <h3 class="profile__text--dark">YEAR FOUNDED</h3>
-                <p class="mt-3 mt-lg-4 profile__text--dark profile__text--dark--normal">2018</p>
+                <p class="mt-3 mt-lg-4 profile__text--dark profile__text--dark--normal"><?php _esc($yearFounded)?></p>
               </div>
             </div>
             

@@ -26,7 +26,7 @@ if (checkloggedin()) {
             if($_POST["user-type"] == 1){
                 $user_update->user_type = 'user';
             }else{
-                $user_update->user_type = 'employer';
+                $user_update->user_type = 'freelancer';
             }
             $user_update->set('updated_at', $now);
             $user_update->save();
@@ -44,41 +44,42 @@ if (checkloggedin()) {
     $country_code = !empty($ses_userdata['country_code']) ? $ses_userdata['country_code'] : check_user_country();
     $currency_info = set_user_currency($country_code);
     $currency_sign = $currency_info['html_entity'];
+    
 
-    $win_project = 0;
-    $posted_project = 0;
-    $posted_jobs = 0;
-    $completed_projects = 0;
-    if($_SESSION['user']['user_type'] == 'user'){
-        $win_project = ORM::for_table($config['db']['pre'].'project')
-            ->where('freelancer_id' , $_SESSION['user']['id'])
-            ->count();
-        $completed_projects = ORM::for_table($config['db']['pre'].'project')
-            ->where(array(
-                'freelancer_id' => $_SESSION['user']['id'],
-                'status'=> 'completed'
-            ))
-            ->count();
-        $review_count = ORM::for_table($config['db']['pre'].'reviews')
-            ->where(array(
-                'freelancer_id' => $_SESSION['user']['id'],
-                'rated_by'=> 'employer'
-            ))
-            ->count();
-    }else{
-        $posted_project = ORM::for_table($config['db']['pre'].'project')
-            ->where('user_id' , $_SESSION['user']['id'])
-            ->count();
-        $posted_jobs = ORM::for_table($config['db']['pre'].'product')
-            ->where('user_id' , $_SESSION['user']['id'])
-            ->count();
-        $review_count = ORM::for_table($config['db']['pre'].'reviews')
-            ->where(array(
-                'employer_id' => $_SESSION['user']['id'],
-                'rated_by'=> 'user'
-            ))
-            ->count();
-    }
+    // $win_project = 0;
+    // $posted_project = 0;
+    // $posted_jobs = 0;
+    // $completed_projects = 0;
+    // if($_SESSION['user']['user_type'] == 'user'){
+    //     $win_project = ORM::for_table($config['db']['pre'].'project')
+    //         ->where('freelancer_id' , $_SESSION['user']['id'])
+    //         ->count();
+    //     $completed_projects = ORM::for_table($config['db']['pre'].'project')
+    //         ->where(array(
+    //             'freelancer_id' => $_SESSION['user']['id'],
+    //             'status'=> 'completed'
+    //         ))
+    //         ->count();
+    //     $review_count = ORM::for_table($config['db']['pre'].'reviews')
+    //         ->where(array(
+    //             'freelancer_id' => $_SESSION['user']['id'],
+    //             'rated_by'=> 'employer'
+    //         ))
+    //         ->count();
+    // }else{
+    //     $posted_project = ORM::for_table($config['db']['pre'].'project')
+    //         ->where('user_id' , $_SESSION['user']['id'])
+    //         ->count();
+    //     $posted_jobs = ORM::for_table($config['db']['pre'].'product')
+    //         ->where('user_id' , $_SESSION['user']['id'])
+    //         ->count();
+    //     $review_count = ORM::for_table($config['db']['pre'].'reviews')
+    //         ->where(array(
+    //             'employer_id' => $_SESSION['user']['id'],
+    //             'rated_by'=> 'user'
+    //         ))
+    //         ->count();
+    // }
 
     $page = 1;
     $limit = 10;
@@ -116,19 +117,20 @@ if (checkloggedin()) {
         $sub_image = '';
 
     }
-    //Print Template 'Home/index Page'
+    //Print Template 'Advisor/Dashboard Page'
     HtmlTemplate::display('dashboard', array(
         'sub_title' => $sub_title,
         'sub_image' => $sub_image,
         'type_error' => $type_error,
         'notification' => $notification,
         'lastactive' => $author_lastactive,
-        'win_project' => $win_project,
-        'completed_projects' => $completed_projects,
-        'review_count' => $review_count,
-        'posted_project' => $posted_project,
-        'posted_jobs' => $posted_jobs,
-        'balance' => $ses_userdata['balance'],
+        'item_view' => $item_view,
+        //'win_project' => $win_project,
+        //'completed_projects' => $completed_projects,
+        // 'review_count' => $review_count,
+        // 'posted_project' => $posted_project,
+        // 'posted_jobs' => $posted_jobs,
+        //'balance' => $ses_userdata['balance'],
         'notify' => $ses_userdata['notify'],
         'currency_sign' => $currency_sign,
         'authorname' => $author_name,

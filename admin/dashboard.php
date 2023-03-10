@@ -281,7 +281,7 @@ $total_user = ORM::for_table($config['db']['pre'].'user')->where('user_type','us
                                 foreach ($rows as $info) {
                                     $username = $info['username'];
                                     $status = $info['status'];
-                                    $type = $info['user_type'] == 'user' ? 'Freelancer': 'Employer';
+                                    $type = $info['user_type'] == 'user' ? 'Freelancer': 'Agency';
                                     if ($status == "0"){
                                         $status = '<span class="label label-info">ACTIVE</span>';
                                     }

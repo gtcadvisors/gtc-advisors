@@ -5,6 +5,9 @@ if(isset($username)){
   $get_userdata = get_user_data($username);
   if(is_array($get_userdata)){
     $name = $get_userdata["name"];
+    //update_profileview($user_id);
+    $user_type = $get_userdata['user_type'];
+    //$user_view = thousandsCurrencyFormat($get_userdata['view']);
     $advisorType = $get_userdata["user_type"];
     $profileImage = $get_userdata["image"]; 
     $bio = $get_userdata["bio"];
@@ -47,13 +50,17 @@ if(isset($username)){
     //   )
     // // -> where_not_equal("user_id", 5)
     // ->find_many();
-
+    // $user_id = base64_url_encode($user_id);
+    // $qcuserid = base64_url_encode($user_id);
+    // $quickchat_url = $link['MESSAGE']."/?userid=$qcuserid";
     // print_r($similarAdvisors[0]["name"]);
     HtmlTemplate::display('advisor-profile', array(
       "defaultCategories" => $defaultCategories,
       "name" => $name,
       "advisorType" => $advisorType,
       "profileImage" => $profileImage,
+      //'user_view' => $user_view,
+      'quickchat_url' => $quickchat_url,
       "bio" => $bio,
       "categories" => $categories,
       "languages" => $languages,

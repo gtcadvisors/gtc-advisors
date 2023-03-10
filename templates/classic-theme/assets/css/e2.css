@@ -12649,10 +12649,14 @@ div#card_deck i{
 
   .advisor__invite-btn{
     border-radius: 8px;
+    border: 2px;
     width: fit-content;
     height: fit-content;
     font-size: 0.875rem;
     box-sizing: content-box;
+  }
+  .advisor__invite-btn:hover{
+    color: #fff !important;
   }
 
   .profile__text--dark{

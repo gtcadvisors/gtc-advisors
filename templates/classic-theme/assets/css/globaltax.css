@@ -2992,7 +2992,7 @@ max-width: 50px !important;
 
 .card-bg-white .card-grid-2 {
   background-color: #ffffff;
-}
+} 
 
 .card-image-top {
   border: 1px solid #E0E6F7;
@@ -11239,7 +11239,7 @@ div#cat_header {
 
 @media (min-width: 480px){
 .container-fluid {
-    padding: 1px !important;
+    padding: 1px;
 }
 }
 

@@ -77,6 +77,7 @@
       <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/globaltax.css" rel="stylesheet"> 
       <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/mobile.css"> 
       <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/vendors/style.css" rel="stylesheet" type="text/css">
+      <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/category.css" rel="stylesheet" />
     <?php }?>
 
     <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/litepicker.css" rel="stylesheet" />

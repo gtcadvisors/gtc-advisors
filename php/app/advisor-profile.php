@@ -55,7 +55,7 @@ else{
 
       $savedAdvisors = "";
 
-      print_r($similarAdvisors[0]["name"]);
+      
       HtmlTemplate::display('advisor-profile', array(
         "defaultCategories" => $defaultCategories,
         "name" => $name,

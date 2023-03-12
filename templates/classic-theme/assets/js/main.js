@@ -683,15 +683,15 @@ var swiper = new Swiper(".slide-content", {
   const fil_but = document.getElementById('fil_but');
   const filter_column = document.getElementById('filter_column');
 
-window.onclick = function check_clear(event){
-    if(event.target.id != "filter_column2" && event.target.tagName != "BUTTON" && event.target.tagName != "I" && event.target.tagName != "SELECT" && event.target.tagName != "SPAN" && event.target.tagName != "INPUT"){
-        filter_column.style.display = "none"; 
+// window.onclick = function check_clear(event){
+//     if(event.target.id != "filter_column2" && event.target.tagName != "BUTTON" && event.target.tagName != "I" && event.target.tagName != "SELECT" && event.target.tagName != "SPAN" && event.target.tagName != "INPUT"){
+//         filter_column.style.display = "none"; 
 
-    }else if (event.target.id != "filter_column2" && event.target.id == "fil_but"){
-        filter_column.style.display = "flex";
-    }
+//     }else if (event.target.id != "filter_column2" && event.target.id == "fil_but"){
+//         filter_column.style.display = "flex";
+//     }
     // console.log(event.target.tagName);
-}  
+// }  
 
 
     

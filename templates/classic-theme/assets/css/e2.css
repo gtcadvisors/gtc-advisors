@@ -12140,6 +12140,7 @@ div#card_deck i{
 .advisor__invite-btn{
   padding: 10px 20px;
   width: 94px;
+  min-width: 94px;
   height: 35px;
   background: #2C76DC;
   border-radius: 4px;

@@ -70,55 +70,67 @@
     <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/forms_header.css?ver=<?php _esc($config['version']);?>" rel="stylesheet"> 
     <link href="<?php _esc(TEMPLATE_URL);?>/assets/css/forms.css?ver=<?php _esc($config['version']);?>" rel="stylesheet">
   </head>
-  <body> 
+  <body style="overflow-y: hidden;"> 
     <!-- ############### THIS IS THE HEADER OF THE SIGNUP PAGE ##########################################-->
     <header class="header sticky-bar">
-      <div class="container">
+      <div class="container-lg-fluid ps-lg-5 ms-lg-3 pe-lg-5 me-lg-3">
         <div class="main-header">
           <div class="burger-icon burger-icon-white float-left"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
          
           <div class="header-left">
-          <?php
-         $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
-         $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
-         ?>
-            <div class="header-logo mr-30 d-none d-md-none d-lg-block">
+            <?php
+              $logo_dark = $config['site_url'].'storage/logo/'.$config['site_logo'];
+              $logo_white = $config['site_url'].'storage/logo/'.$config['site_logo_footer'];
+            ?>
+            <div class="header-logo mr-20 d-none d-md-none d-lg-block">
+              <a class="d-flex" href="<?php url("INDEX") ?>">
+                <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
+              </a>
+            </div>
+              
+            <div class="d-md-none d-block d-lg-none">
             <a class="d-flex" href="<?php url("INDEX") ?>">
-            <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
+           <img class="gtc__logo" src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
             </a></div>
-            
-            <div class="ml-140 d-md-none d-block d-lg-none">
-            <a class="d-flex" href="<?php url("INDEX") ?>">
-            <img  src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
-            </a></div>
-           
+          
             <div class="header-logo d-none d-md-block d-lg-none" style="margin-left: 240px;">
             <a class="d-flex" href="<?php url("INDEX") ?>">
-            <img src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
-           </a></div>
+            <img class="gtc__logo" src="<?php _esc($logo_dark);?>" alt="<?php _esc($config['site_title']);?>">
+          </a></div>
           </div>
-
+          <a class="me-3 d-md-none mobile-header__signup-text" href="<?php url("SIGNUP") ?>">Sign Up</a>
           <div class="header-nav">
             <nav class="nav-main-menu">
-              <ul class="main-menu">
+              <ul class="d-flex ">
                 <!-- Each li-tag has a class attr of (has-children for a drop down menu) -->
-                <li class="ml-30" ><a style="font-family: 'Proxima Soft';" href="#">Expertise</a>
-                   </li>
-                <li class="#"><a href="#" style="font-family: 'Proxima Soft';">Post a Job</a>
+
+                <li class="ml-30" >
+                  <a class="form-header__text" href="<?php url("CATEGORY") ?>">Expertise</a>
+                </li>
+                <li class="ms-5"><a class="form-header__text" href="#">Post a Job</a>
                  </li>
-                <li class="#"><a href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Become an Advisor</a>
+                <li class="ms-5"><a class="form-header__text" href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Become an Advisor</a>
                  </li> 
                 </ul> 
             </nav>
              
               </div>
           <div class="header-right">
-            <div class="block-signin">
-              <a class="text-link-bd-btom hover-up" style="font-family: 'Proxima Soft';">
-              <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px;">English</a>
+            <div class="d-inline-flex align-items-center ms-auto">
+              <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" class="me-2" alt="" width="15px;" >
+              <span class="me-4 pe-2 form-header__text form-header__language-select">English</span>
+              <a class="text-link-bd-btom me-4 pe-2 form-header__text" href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Log In</a>
+              <a class="btn sign-up__btn" href="<?php url("SIGNUP") ?>">Sign Up</a>
+            </div>
+            <!-- <div class="block-signin">
+              <a class="text-link-bd-btom hover-up " style="font-family: 'Proxima Soft';">
+                <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" class="pt-3" alt="" width="15px;" >
+                <span>English</span>
+              </a>
               <a class="text-link-bd-btom ml-10 hover-up" href="<?php url("LOGIN") ?>" style="font-family: 'Proxima Soft';">Log In</a>
               <a class="btn btn-default btn-shadow ml-40 hover-up d-block d-md-block d-lg-none" href="<?php url("SIGNUP") ?>" style="background-color: #2C76DC;">Sign Up</a>
-            </div>
+
+            </div> -->
           </div>
         </div>
       </div>
@@ -128,63 +140,100 @@
       <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-content-area">
           <div class="perfect-scroll">
-            <div class="mobile-search mobile-header-border mb-30">
+            <div class="mobile-search mobile-header-border">
               
               
-                <a class="btn btn-default btn-shadow ml-40 hover-up d-block d-md-block d-lg-none" style="width: 100px;" href="<?php url("SIGNUP") ?>"> Sign Up</a>
-            
-    
+                <a class=" d-lg-none sign-up__btn mt-50" href="<?php url("SIGNUP") ?>"> Sign Up</a>
+          
             </div>
             <div class="mobile-menu-wrap mobile-header-border">
+              <!-- Categories for mobile sidebar list -->
+<?php
+
+$result = ORM::for_table($config['db']['pre'].'catagory_main')
+->order_by_asc('cat_order')
+->limit(15)
+->find_many();
+foreach ($result as $info) {
+if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
+$maincat = get_category_translation("main",$info['cat_id']);
+$info['cat_name'] = $maincat['title'];
+$info['slug'] = $maincat['slug'];
+}
+$category[$info['cat_id']]['slug'] = $info['slug'];
+$category[$info['cat_id']]['name'] = $info['cat_name'];
+$category[$info['cat_id']]['main_id'] = $info['cat_id'];
+$category[$info['cat_id']]['link'] = $config['site_url'].'projects/'.$info['slug'];
+
+if(trim($config['home_page']) == "home-freelance"){
+$totalAdsMaincat = ORM::for_table($config['db']['pre'].'project')
+    ->where(array(
+        'category'=> $info['cat_id'],
+        'status'=> 'open'
+        ))
+    ->count();
+}
+else{
+$totalAdsMaincat = get_items_count(false,"active",false,null,$info['cat_id'],true);
+}
+
+$category[$info['cat_id']]['main_ads_count'] = $totalAdsMaincat;
+$count = 1;
+
+}
+
+?>
               <!-- mobile menu start-->
               <nav>
                 <ul class="mobile-menu font-heading">
                   <li class="has-children">
-                  <a class="active" href="<?php url("LOGIN") ?>">Log In</a></li>
-                  <li class="has-children"><a href="#">Expertise</a>
+                  <a class="active form-header__text mt-4" href="<?php url("LOGIN") ?>">Log In</a></li>
+                  <li class="has-children"><a href="#" class=" form-header__text">Expertise</a>
                     <ul class="sub-menu">
                     <?php foreach($category as $cat){ ?>
-                        <li><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?></a>
+                        <li><a href="<?php echo $cat['link']; ?>" class="form-header__text"><?php echo $cat['name']; ?></a>
                         </li>
                     <?php } ?>
                     </ul>
                   </li>
-                  <li class="has-children"><a href="become">Become An Advisor</a></li> 
-                    <li><h6 class="mb-10">General</h6></li>
+                  <li class="has-children"><a href="become" class="form-header__text">Become An Advisor</a></li> 
+                    <li><h6 class="mb-10 form-header__text">General</h6></li>
                 </ul>
               </nav>
             </div>
             <div class="mobile-account">
                 <ul class="mobile-menu font-heading">
-                <li><a href="<?php url("INDEX") ?>">Home</a></li>
-                <li><a href="#">English <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px; margin-top: 5px;"></a></li> 
+                <li><a href="<?php url("INDEX") ?>" class="form-header__text">Home</a></li>
+                <li><a href="#" class="form-header__text">English <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/Globe.png" alt="" width="15px;" style="margin-right: 5px; margin-top: 5px;"></a></li> 
               </ul>
             </div> 
           </div>
         </div>
       </div>
+
     </div>
     <!-- ####### THIS IS THE MAIN LOGIN FORM ################# -->
     <main class="main">
-      <section class="pt-100 login-register">
+      <section class="pt-50 login-register">
         <div class="container-fluid"> 
           <div class="row login-register-cover">
-            <div class="col-lg-4 col-md-8 col-sm-12 col-11 mx-4 mx-md-auto mx-lg-auto bg-white mb-100 pb-60 pl-60 pt-40 pr-60" id="login-register">
+            <div class="col-lg-4 col-md-8 col-sm-12 col-11 ms-auto me-auto mx-lg-auto bg-white mb-100 pt-35 ps-5 pe-5" id="login-register">
               <div class="text-center">
                <h6 class="mb-20 text-brand-1"> Sign Up on Global Tax Compliance</h6> 
-               <button class="btn text-white social-login hover-up mb-20 text-center sign-up-1 <?php echo((isset($page))? "d-none": "");?>" style="background-color: #4267B2;font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">
-               <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/fb.png" alt="gtc" id="imgicon"><strong class="text-center">Continue with Facebook</strong></button>
-                <button class="btn social-login hover-up mb-20 text-center sign-up-1 <?php echo((isset($page))? "d-none": "");?>" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';">
-                <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/icon-google.svg" alt="gtc" id="imgicon1"><strong>Continue with Google</strong></button>
-                <button class="btn social-login hover-up mb-20 text-center sign-up-1 <?php echo((isset($page))? "d-none": "");?>" style="font-family: 'FONTSPRING DEMO - Proxima Nova Semibold';"><img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/apple.png" alt="gtc" id="imgicon2"><strong>Continue with Apple</strong></button>
-                <style>
-                  img#imgicon1,img#imgicon2{ 
-                     margin-right: 50px;
-                  }
-                  img#imgicon{ 
-                     margin-right: 30px;
-                  }
-                 </style>
+               <div id="facebook-btn" class="btn text-white social-login mb-20 social-login__btn d-flex align-items-center justify-content-center justify-content-md-start ps-md-5 pe-md-5 sign-up-1 <?php echo((isset($page))? "d-none": "");?>" >
+                  <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/akar-icons_facebook-fill.svg" alt="gtc" class="default-icon">
+                  <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/facebook-1.svg" alt="gtc" class="filled-icon">
+                  <span class="ms-3 ms-md-5 ps-md-3">Continue with Facebook</span>  
+                </div>
+                <div class="btn social-login mb-20 social-login__btn d-flex align-items-center justify-content-center justify-content-md-start ps-md-5 pe-md-5 sign-up-1 <?php echo((isset($page))? "d-none": "");?>">
+                  <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/icon-google.svg" alt="gtc" class="">
+                  <Span class="ms-3 ms-md-5 ps-md-3">Continue with Google</Span>
+                </div>
+                <div class="btn social-login mb-20  social-login__btn d-flex align-items-center justify-content-center justify-content-md-start ps-md-5 pe-md-5 sign-up-1 <?php echo((isset($page))? "d-none": "");?>" >
+                  <img src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/template/icons/apple.png" alt="gtc" class="" >
+                  <span class="ms-3 ms-md-5 ps-md-3">Continue with Apple</span>
+                </div>
+             
                 <div class="divider-text-center sign-up-1 <?php echo((isset($page))? "d-none": "");?>"><span>Or</span></div>
               </div>
               <form class="login-register text-start mt-20" method="post" id="register-account-form" action="#" accept-charset="UTF-8"> 
@@ -198,44 +247,60 @@
                     <div class="login_footer form-group d-flex justify-content-between">
                     </div>
                     <div class="form-group">
-                      <button class="btn btn-brand-1 hover-up w-100" type="button" name="login" style="background-color:  #2C76DC;" onclick="displayForm2()">Continue</button>
-                      <p style="font-size: 12px; text-align:center" class="mt-10">By joining I agree to receive emails from Global Tax Compliance</p>
+                      <button class="btn btn-brand-1 continue__btn w-100" type="button" name="login" onclick="displayForm2()">Continue</button>
+                      <p style="text-align:center" class="mt-3 text--black">By joining I agree to receive emails from Global Tax Compliance</p>
                     </div>
                     <hr>
-                    <div class="text-muted text-center mb-20">Already a Member? <a href="<?php url("LOGIN") ?>" class="text-primary">Log in</a></div>
+                    <div class="text--black text-center mb-20">Already a Member? <a href="<?php url("LOGIN") ?>" class="text--blue">Log in</a></div>
                 </div>
 
                 <div class="sign-up-2 <?php echo((isset($page))? : "d-none");?>">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="<?php _e("Username") ?>" value="<?php _esc($username_field)?>" id="Rusername" name="username" oninput="checkAvailabilityUsername()" required/>
+                        <input type="text" class="form-control" placeholder="<?php _e("Choose a Username") ?>" value="<?php _esc($username_field)?>" id="Rusername" name="username" oninput="checkAvailabilityUsername()" required/>
                   
                         <span id="user-availability-status"><?php if($username_error != ""){ _esc($username_error) ; }?></span>
                     </div>
-                    <div class="form-group"> 
-                      <input type="password" class="input-text with-border" placeholder="<?php _e("Password") ?>" id="Rpassword" name="password" oninput="checkAvailabilityPassword()" required/>
-                      <i class="fa fi-rr-eye-crossed" id="ieye" style="display: block;"></i>
-                      <span id="password-availability-status"><?php if($password_error != ""){ _esc($password_error) ; }?></span>
+                    <div class="form-group mb-0"> 
+                      <input type="password" class="input-text with-border" placeholder="<?php _e("Choose a Password") ?>" id="Rpassword" name="password" oninput="checkAvailabilityPassword()" required/>
+                      <i class="fa fi-rr-eye-crossed" id="ieye" style="display: block;" onclick="toggleFunc()"></i>
+                      
                       <style>
                         i#ieye{
                             position: absolute;
                             right: 20px;
                             left: auto;
+                            top: 30px;
                         }
                       </style>
+                      <script>
+                          const ieye = document.getElementById("ieye");
+                          const passwordInput = document.getElementById("Rpassword");
+                          
+                          
+                          function toggleFunc() {
+                            // console.log("yes")
+                            ieye.classList.toggle("fi-rr-eye")
+                            ieye.classList.contains("fi-rr-eye")? passwordInput.setAttribute("type", "text")
+                            :passwordInput.setAttribute("type", "password")
+                          }
+
+                      </script>
+
                   </div>
-                    <span style="font-size: 12px;">8 characters or longer. Combine upper and lowercase letters and numbers</span>
+                  <span id="password-availability-status"><?php if($password_error != ""){ _esc($password_error) ; }?></span>
+                    
                   <div class="login_footer form-group d-flex justify-content-between">
                     
                   </div>
                   <div class="form-group">
-                    <button class="btn btn-brand-1 hover-up w-100" name="submit" type="submit" style="background-color:  #2C76DC;"><?php _e("Join")?></button> 
+                    <button class="btn btn-brand-1 w-100 form-body__text continue__btn" name="submit" type="submit"><?php _e("Join")?></button> 
                     
-                    <p style="font-size: 12px; text-align:center" class="mt-10">By joining you agree to Global Tax Compliance's <a href="#" style="color: blue; font-size: 10px">Terms of Service</a>,
+                    <p style="text-align:center" class="mt-10 text--light">By joining you agree to Global Tax Compliance's <a href="#" style="color: #2C76DC; font-size: 12px">Terms of Service</a>,
 
                   as well as to receive occassional emails from us.</p>
                   </div>
                   <hr>
-                  <div class="text-muted text-center mb-20">Already a Member? <a href="<?php url("LOGIN") ?>" class="text-primary">Log in</a></div>
+                  <div class="text-center mb-20 text--black">Already a Member? <a href="<?php url("LOGIN") ?>" class="text--blue">Log in</a></div>
                 </div>  
                  
                   
@@ -246,6 +311,9 @@
         </div>
       </section>
     </main>
+  
+  
+
                   
     <script>
 
@@ -332,8 +400,7 @@
         });
     }
     function checkAvailabilityPassword() {
-        toggleFunc()
-        $("#loaderIcon").show();
+        // $("#loaderIcon").show();
         jQuery.ajax({
             url: "<?php _esc($config['app_url'])?>check_availability.php",
             data: 'password=' + $("#Rpassword").val(),
@@ -368,14 +435,10 @@
         }
      }
 
-     var ieye = document.getElementById("ieye");
-                        
-      function toggleFunc() {
-          if (ieye.style.display == "block"){
-              ieye.style.display = "none";
-          }
-      }
-      
+
+  
+
+
 
 </script>
 

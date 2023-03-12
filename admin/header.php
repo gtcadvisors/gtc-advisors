@@ -121,9 +121,9 @@ if(isset($_SESSION['admin']['id'])){
                         <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>app/category.php"><i class="ion-ios-list-outline"></i> Category</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>app/custom_field.php"><i class="ion-android-options"></i> Custom Fields</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item nav-item-has-subnav">
                             <a href="#"><i class="ion-bag"></i> Users Subscription</a>
                             <ul class="nav nav-subnav">
@@ -187,6 +187,14 @@ if(isset($_SESSION['admin']['id'])){
                             <a href="<?php echo ADMINURL; ?>global/users.php"><i class="ion-ios-people"></i> Manage Users</a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?php echo ADMINURL; ?>global/freelancers.php"><i><img src="<?php echo ADMINURL; ?>assets/images/freelance.png" style="max-width:20px;filter:sepia(100%) hue-rotate(190deg) saturate(500%);"></i> Manage Freelancers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo ADMINURL; ?>global/agencies.php"><i>
+                            <img src="<?php echo ADMINURL; ?>assets/images/office-building.png" style="max-width:20px;filter:sepia(100%) hue-rotate(190deg) saturate(500%);">
+                            </i> Manage Agencies</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?php echo ADMINURL; ?>global/admins.php"><i class="ion-android-contact"></i>Manage Admin</a>
                         </li>
                         <li class="nav-item nav-item-has-subnav">
@@ -207,20 +215,10 @@ if(isset($_SESSION['admin']['id'])){
                                 <li><a href="<?php echo ADMINURL; ?>global/setting.php#quickad_international">International</a></li>
                                 <li><a href="<?php echo ADMINURL; ?>global/setting.php#quickad_email">Email Setting</a></li>
                                 <li><a href="<?php echo ADMINURL; ?>global/setting.php#quickad_theme_setting">Theme Setting</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>global/setting.php#quickad_frontend_submission">Ad Post Setting</a></li>
                                 <li><a href="<?php echo ADMINURL; ?>global/setting.php#quickad_social_login_setting">Social Login Setting</a></li>
                                 <li><a href="<?php echo ADMINURL; ?>global/setting.php#quickad_recaptcha">Google reCAPTCHA</a></li>
-                                <li><a href="<?php echo ADMINURL; ?>global/setting.php#quickad_blog">Blog Setting <span class="label label-success">New</span></a></li>
-                                <li><a href="<?php echo ADMINURL; ?>global/setting.php#quickad_testimonials">Testimonials Setting </a></li>
-                                <li><a href="<?php echo ADMINURL; ?>global/xml_manage.php">XML Manage</a></li>
                                 <li><a href="<?php echo ADMINURL; ?>global/themes.php">Change Theme</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo ADMINURL; ?>global/advertising.php"><i class="ion-ios-monitor-outline"></i> Advertising</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo ADMINURL; ?>global/themes.php"><i class="fa fa-television"></i> Change Theme</a>
                         </li>
                         <li class="nav-item">
                             <a href="logout.php"><i class="ion-ios-people-outline"></i> Logout</a>

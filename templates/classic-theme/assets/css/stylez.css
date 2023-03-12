@@ -3766,8 +3766,7 @@ ul li:last-child .card-list-4 {
   .loged-form-find {
     background: transparent !important;
     border-radius: 8px;
-    display: inline-block;
-    width: 100%;
+    display: inline-block; 
     height: max-content;
     margin-left: 146px;
     padding: 10px 10px;
@@ -4339,11 +4338,7 @@ color: #495C77 !important;
 }
 .header.stick {
   padding: 14px 0px;
-}
-.header.header-2 {
-  background-color: #F8FAFF;
-}
-
+} 
 .block-icon{
 padding-top: 12px;
 }

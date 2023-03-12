@@ -157,9 +157,9 @@
         <div class="mobile-header-wrapper-inner">
           <div class="mobile-header-content-area adv-font">
             <div class="perfect-scroll">
-              <a href=""><span class="signup-btn">Sign Up</span></a>
+              <a href="<?php url("SIGNUP") ?>"><span class="signup-btn">Sign Up</span></a>
               <div class="mobile-menu-wrap pt-40">
-                <a href="login.php"><h6 class="adv-font mb-10 mt-35">Log In</h6></a>
+                <a href="<?php url("LOGIN") ?>"><h6 class="adv-font mb-10 mt-35">Log In</h6></a>
                 <!-- mobile menu start-->
                 <nav>
                   <ul class="mobile-menu adv-font" style="list-style:none;">

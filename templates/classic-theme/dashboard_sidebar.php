@@ -37,7 +37,8 @@
                     <ul data-submenu-title="<?php _e("MANAGE DOCUMENTS") ?>" >
                         <li>
                         <?php 
-                        if ($usertype == 'freelancer' || $usertype == 'agency') {
+                        if ($usertype == "freelancer" || $usertype == "agency")  
+                        {
                             if ($config['resume_enable']) {
                                 echo '<a href="'.url("RESUMES", false).'">'.__("Resumes").'</a>';
                             }
@@ -46,7 +47,7 @@
                         </li>
                         <li>
                         <?php 
-                        if ($usertype == 'freelancer' || $usertype == 'agency') {
+                        if ($usertype == "freelancer" || $usertype == "agency") {
                             if ($config['resume_enable']) {
                                 echo '<a href="'.url("LICENSES", false).'">'.__("Licenses").'</a>';
                             }
@@ -55,7 +56,7 @@
                         </li>
                         <li>
                         <?php 
-                        if ($usertype == 'freelancer' || $usertype == 'agency') {
+                        if ($usertype == "freelancer" || $usertype == "agency") {
                             if ($config['resume_enable']) {
                                 echo '<a href="'.url("CERTIFICATES", false).'">'.__("Certificates").'</a>';
                             }

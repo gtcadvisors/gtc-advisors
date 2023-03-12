@@ -335,7 +335,7 @@ video {
     width: 100px;
   }
   .container-fluid{
-    padding-left: 2px !important;
+    /* padding-left: 2px !important; */
   }
 }
 @media screen and (min-width: 320px) and (max-width: 400px){
@@ -354,6 +354,7 @@ video {
   }
 }
  
+
 /* CSS DESCRIPTIONS FOR THE BIGGER SCREENS */
 main {
   display: block;
@@ -371,6 +372,11 @@ div#cat_list{
 div#cat_list img#user{ 
    margin-top: 30px; 
    margin-left: 20px;
+   border-radius: 50%;
+   width: 100px;
+   height: 100px;
+   max-width: 100px;
+   max-height: 100px;
 }
  
 
@@ -566,6 +572,9 @@ div#persona{
   box-shadow: 1px 5px 10px grey;
   border-radius: 5px;
 }
+
+
+
 @media screen and (min-width: 310px) and (max-width: 410px){
   div#persona,div#personan{
     width: 300px;
@@ -574,7 +583,7 @@ div#persona{
     margin-left: 0 !important;
   }
   form.login-register{
-    width: 200px
+    /* width: 200px */
   }
   .social-login{
     width: 200px;
@@ -1667,12 +1676,13 @@ h4 {
 /*TYPOGRAPHY*/
 body {
   color: #05264E;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: "Proxima Soft", sans-serif;
   font-size: 14px;
   line-height: 24px;
   font-style: normal;
   font-weight: 400;
   margin: 0;
+  background-color: #F0FAFF;
 }
 
 h1,
@@ -2059,14 +2069,12 @@ span.btn {
   border: 1px solid #E0E6F6;
   width: 100%;
   line-height: 53px;
-  display: flex;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
+
   margin-bottom: 15px;
 }
 .social-login img {
-  margin-right: 4px;
+  width: 24px;
+  height: 24px;
 }
 .social-login:hover {
   color: #3C65F5;
@@ -4148,7 +4156,7 @@ ul li:last-child .card-list-4 {
   height: 20px;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-  top: 17px;
+  /* top: 17px; */
   margin-right: 20px;
   left: 15px;
   display: none;
@@ -6743,6 +6751,13 @@ ul li:last-child .card-list-4 {
   background-position: left center;
   background-repeat: no-repeat;
 }
+@media (min-width: 1000px){
+.col-xl-12 {
+    width: 650px !important;
+    flex: 0 0 auto;
+}
+}
+
 
 .link-red {
   color: #E45959;
@@ -7722,9 +7737,10 @@ ul li:last-child .card-list-4 {
 }
 
 .login-register-cover {
-  border-bottom: 1px solid #E0E6F6;
+  /* border-bottom: 1px solid #E0E6F6; */
   position: relative;
   width: 100%;
+  margin-left: 0;
 }
 .login-register-cover .img-1 {
   position: absolute;
@@ -9240,9 +9256,164 @@ ul li:last-child .card-list-4 {
 }
 }
 
+
+
 .button.green{background-color:#449626 !important;}
 span.status-available, span.status-not-available {display: block;padding: 5px;font-size: 14px;margin-bottom: 16px;text-align: center;border-radius: 4px;margin-top: 5px;}
 span.status-available {background: #e0f5d7;color: #449626;}
 span.status-not-available {background-color: #ffe6e6;color: #ea5252;}
+
+/* ############## */
+
+.sign-up__btn{
+  background: #2C76DC;
+  border-radius: 8px;
+  width: 96px;
+  height: 40px;
+  padding: 10px 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Proxima Soft' !important;;
+}
+
+.sign-up__btn:hover{
+  background-color: #ffffff;
+  color: #2C76DC;
+  border: 1px solid #2C76DC;
+}
+
+
+.form-header__text, .form__body__text{
+  font-size: 1rem !important;
+  font-family: 'Proxima Soft' !important;
+  font-weight: 400 !important;
+}
+
+.social-login__btn{
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  font-family: 'Proxima Soft' !important;
+  border-radius: 10px !important;
+
+}
+
+.continue__btn{
+  background-color:#2C76DC;
+}
+
+.continue__btn:hover{
+  color: #2C76DC;
+  background-color: #ffffff;
+  border: 1px solid #2C76DC;
+}
+
+#facebook-btn{
+  background-color: #4267B2;
+}
+
+#facebook-btn:hover{
+  background-color: white;
+  border: 1px solid #4267B2;
+  color: #4267B2 !important;
+}
+
+#facebook-btn .filled-icon{
+  display: none;
+}
+
+#facebook-btn:hover .filled-icon{
+  display: block;
+}
+#facebook-btn:hover .default-icon{
+  display: none;
+}
+
+#Rpassword:active +i{
+  top: 30px
+}
+
+.text--blue{
+  color: #2C76DC;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.text--light{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+
+  color: #495C77;
+}
+
+.text--black{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+#remember-me{
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and ( max-width: 600px) {
+  .form-header__text{
+    color: #000000 !important;
+  }
+
+  .mobile-header__signup-text{
+    color: #000000;
+    font-size: 0.875rem;  
+  
+  }
+  
+  .social-login__btn{
+    font-size: 10px !important;
+  }
+
+  .social-login img{
+    width: 16px;
+    height: 16px;
+  }
+
+  .sign-up__btn{
+    border-radius: 4px;
+  }
+
+  .gtc__logo{
+    width: 122px;
+  }
+
+  .header-left{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #remember-me{
+    width: 12px;
+    height: 12px;
+  }
+
+  #remember-me+label{
+    font-size: 10px;
+  }
+
+  .text--blue{
+    font-size: 10px;
+  }
+
+  .text--black{
+    font-size: 10px;
+  }
+
+ 
+}
+
 
 /*# sourceMappingURL=style.css.map */

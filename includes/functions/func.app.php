@@ -34,7 +34,7 @@ function check_product_favorite($product_id,$post_type){
  * @return bool
  */
 function check_user_favorite($user_id){
-
+    
     global $config;
 
     if(checkloggedin()) {
@@ -285,25 +285,43 @@ function check_sub_category_exists($cat_id){
  * @param string $slug
  * @return int|bool
  */
+
 function get_category_id_by_slug($slug){
     global $config;
-    $info = ORM::for_table($config['db']['pre'].'catagory_main')
-        ->select('cat_id')
-        ->where('slug', $slug)
-        ->find_one();
+    $info = ORM::for_table($config['db']['pre'].'user') 
+    // ->select('sub_cat_id')
+    // ->where('slug', $slug)
+    // ->find_one();
+        ->find_many(); 
 
-    if(!empty($info)){
-        return $info['cat_id'];
-    }else{
-        $info = ORM::for_table($config['db']['pre'].'category_translation')
-            ->select('translation_id')
-            ->where(array(
-                'slug' => $slug,
-                'category_type' => 'main',
-            ))
-            ->find_one();
-        return $info['translation_id'];
-    }
+    if(!empty($info)){ 
+
+        $cat = array();
+
+        foreach ($info as $key => $value){
+            $cat[$key]['category'] = json_decode($value['category']);  
+            $cat[$key]['id'] =  $value['id'];
+                if(in_array($slug, $cat[$key]['category'])){ 
+
+                    echo '<script>console.log("'.$cat[$key]['id'].'")</script>';  
+                      //Update here
+                      $pdo = ORM::get_db();
+                      $status = 2;
+                      $query = "UPDATE `".$config['db']['pre']."user` set status = '".$status."' where id = '".$cat[$key]['id']."'";
+                      $pdo->query($query);
+                    // return  $cat[$key]['id']; 
+
+                }   else {
+                    
+                     echo '<script>console.log("'.$cat[$key]['id'].' does not have the search key available")</script>';
+                     $pdo = ORM::get_db();
+                     $status = 0;
+                     $query = "UPDATE `".$config['db']['pre']."user` set status = '".$status."' where id = '".$cat[$key]['id']."'";
+                     $pdo->query($query);
+                }
+        }
+  
+    }  
 }
 
 /**
@@ -417,6 +435,7 @@ function delete_language_translation($type, $translation_id){
         ))
         ->delete_many();
 }
+
 
 /**
  * Get all categories
@@ -666,9 +685,17 @@ function get_categories_dropdown($post_type = 'default'){
             ->order_by_asc('cat_order')
             ->find_many();
         if(count($result) > 0){
-            $dropdown .= '<li><a href="#" data-ajax-id="'.$cat_id.'" data-cat-type="maincat">'.$icon.' '.$catname.'</a><span class="dropdown-arrow"><i class="fa fa-angle-right"></i></span><ul>';
+            $dropdown .= '<li data-ajax-id="'.$cat_id.'" data-cat-type="maincat"> 
+            <label class="cb-container"> 
+              <input type="checkbox" name="category" value="'.$catname.'"> 
+              <span class="text-small">'.$catname.'</span><span class="checkmark"></span>
+          </li>'; 
         }else{
-            $dropdown .= '<li><a href="#" class="no-arrow" data-ajax-id="'.$cat_id.'" data-cat-type="maincat">'.$icon.' '.$catname.'</a>';
+            $dropdown .= '<li data-ajax-id="'.$cat_id.'" data-cat-type="maincat"> 
+            <label class="cb-container"> 
+              <input type="checkbox" name="category" value="'.$catname.'"> 
+              <span class="text-small">'.$catname.'</span><span class="checkmark"></span>
+          </li>';
         }
         foreach($result as $info){
             $subcat_id = $info['sub_cat_id'];
@@ -1643,9 +1670,7 @@ function favorite_users_count($id){
     global $config;
     $num_rows = ORM::for_table($config['db']['pre'].'fav_users')
         ->table_alias('f')
-        ->where(array(
-            'u.status' => '1',
-            'u.user_type' => 'user',
+        ->where(array(   
             'f.user_id' => $id
         ))
         ->join($config['db']['pre'] . 'user', array('f.fav_user_id', '=', 'u.id'), 'u')

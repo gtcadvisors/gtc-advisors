@@ -1,37 +1,7 @@
 <?php
   overall_header("advisor profile")
   ?>
-<!-- <div class="container-fluid d-none d-lg-flex flex-row justify-content-evenly border-bottom border-1 border-top pt-1">
-        <div class="text-center">
-          <div class="list-tabs">
-            <ul class=" nav-tabs d-lg-flex flex-row justify-content-evenly" role="tablist">
-              <?php foreach($defaultCategories as $cat){?>
-                <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> <?php _esc($cat["cat_name"]) ?></a></li>
-                <?php }?>  
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Sales Tax</a></li>
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> International</a></li>
-                <li class="mt-3 mb-3"><a href="#" class="ps-3 pe-3"> Financial Planning</a></li>
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Corporations</a></li>
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> IRS Representation</a></li>
-                <li class="mt-3 mb-3"><a  href="#" class="ps-3 pe-3"> Individual Tax Preparation</a></li> 
-                <li class="mt-3 mb-3"> <a class="see-all" href="category.php"> See All</a></li> 
-              </ul>
-          </div>
-        </div>
-        </div> -->
-        <!-- <div class="container-fluid d-md-flex d-none d-lg-none flex-row justify-content-evenly border-bottom border-2 p-3">
-        <div class="text-center">
-      <div class="list-tabs mb-3">
-        <ul class="nav nav-tabs" role="tablist">
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;" href="#"> Tax Pricing</a></li>
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#">Corporations</a></li>
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;" href="#">Tax Audits</a></li>
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#"> Sales Tax</a></li> 
-          <li><a style="font-size:10px !important;padding:6px 15px !important; font-weight: 400 !important;"  href="#">IRS Representation</a></li>
-        </ul>
-      </div>
-    </div>
-        </div> -->
+
     
     <div class="container-fluid d-flex flex-row border-top border-bottom border-1 header__categories p-3 ps-lg-5">
       <?php foreach($defaultCategories as $cat){?>
@@ -109,11 +79,11 @@
               <p class="tabs__content__text mt-3 mt-lg-4"><?php _esc($description) ?></p>
               <div class="mt-4 <?php _esc($advisorType == "freelancer"? "d-none":"") ?> tabs__content_line pt-3 pb-3">
                 <h3 class="profile__text--dark">ORGANIZATION SIZE</h3>
-                <p class="mt-3 mt-lg-4 profile__text--dark profile__text--dark--normal">2- 20 Employees</p>
+                <p class="mt-3 mt-lg-4 profile__text--dark profile__text--dark--normal"><?php _esc($agencySize)?></p>
               </div>
               <div class="mt-3 mt-lg-4 <?php _esc($advisorType == "freelancer"? "d-none":"") ?>">
                 <h3 class="profile__text--dark">YEAR FOUNDED</h3>
-                <p class="mt-3 mt-lg-4 profile__text--dark profile__text--dark--normal">2018</p>
+                <p class="mt-3 mt-lg-4 profile__text--dark profile__text--dark--normal"><?php _esc($yearFounded)?></p>
               </div>
             </div>
             
@@ -131,7 +101,7 @@
                     <?php }else{?>
                       <img class="tabs__img" alt="Certificate Image" src="<?php _esc($config['site_url']);?>storage/certifications/<?php _esc($certificate["filename"])?>">
                     <?php }?>
-                    <a href="mustapha?download=certifications/<?php _esc($certificate["filename"])?>" class="tabs__img--title mt-3"><i class="fas <?php _esc($ext=="pdf" || $ext == "doc"?"fa-file-pdf":"fa-image")?> me-2"></i><?php _esc($certificate["certificate_from"]." ".$certificate["certificate_name"].".".$ext) ?></a>
+                    <a target="_blank" href="<?php _esc($config['site_url']);?>storage/certifications/<?php _esc($certificate['filename'])?>" class="tabs__img--title mt-3"><i class="fas <?php _esc($ext=="pdf" || $ext == "doc"?"fa-file-pdf":"fa-image")?> me-2"></i><?php _esc($certificate["certificate_from"]." ".$certificate["certificate_name"].".".$ext) ?></a>
                   </div>                        
                 <?php } ?>   
               </div>
@@ -151,7 +121,7 @@
                     <?php }else{?>
                       <img class="tabs__img" alt="License Image" src="<?php _esc($config['site_url']);?>storage/licenses/<?php _esc($license["filename"])?>">
                     <?php }?>
-                    <a href="mustapha?download=licenses/<?php _esc($license["filename"])?>" class="tabs__img--title mt-3"><i class="fas <?php _esc($ext=="pdf" || $ext == "doc"?"fa-file-pdf":"fa-image")?> me-2"></i><?php _esc($license["license_from"]." ".$license["license_name"].".".$ext) ?></a>
+                    <a target="_blank" href="<?php _esc($config['site_url']);?>storage/licenses/<?php _esc($license['filename'])?>" class="tabs__img--title mt-3"><i class="fas <?php _esc($ext=="pdf" || $ext == "doc"?"fa-file-pdf":"fa-image")?> me-2"></i><?php _esc($license["license_from"]." ".$license["license_name"].".".$ext) ?></a>
                   </div>                        
                 <?php } ?>   
               </div>
@@ -162,16 +132,21 @@
             <label for="ptab-4" class="tabs__label">CV/Resume</label> -->
             <div class="tabs__content d-none" id="resume-tab">
               <h3 class="profile__text--dark">RESUME</h3>
-              <div class="container mt-3 d-flex flex-row flex-wrap justify-content-between tabs__img--container">
-              <?php $ext = end(explode(".",$resume["filename"])); ?>
-              <div class="mb-4 d-flex flex-column">
-                <?php if($ext == "pdf" || $ext == "docx"){?>
-                  <img class="tabs__img" alt="Resume Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/Globa.png"> 
-                <?php }else{?>
-                  <img class="tabs__img" alt="Resume Image" src="<?php _esc($config['site_url']);?>storage/resumes/<?php _esc($resume["filename"])?>">
-                <?php }?>
-                <a href="mustapha?download=resumes/<?php _esc($resume["filename"])?>" class="tabs__img--title mt-3"><i class="fas <?php _esc($ext=="pdf" || $ext == "doc"?"fa-file-pdf":"fa-image")?> me-2"></i><?php _esc("Resume.".$ext) ?></a>
-              </div>    
+              <div class="container mt-3 d-flex flex-row flex-wrap justify-content-between justify-content-lg-start tabs__img--container">
+                <?php foreach($resumes as $resume){?>
+                  
+                  <?php $ext = end(explode(".",$resume["filename"])); ?>
+                  <div class="mb-4 d-flex flex-column">
+                    <?php if($ext == "pdf" || $ext == "docx"){?>
+                      <img class="tabs__img" alt="Resume Image" src="<?php _esc(TEMPLATE_URL);?>/assets/imgs/certifications/Globa.png"> 
+                    <?php }else{?>
+                      <img class="tabs__img" alt="Resume Image" src="<?php _esc($config['site_url']);?>storage/resumes/<?php _esc($resume["filename"])?>">
+                    <?php }?>
+                    <a target="_blank" href="<?php _esc($config['site_url']);?>storage/resumes/<?php _esc($resume['filename'])?>" class="tabs__img--title mt-3"><i class="fas <?php _esc($ext=="pdf" || $ext == "doc"?"fa-file-pdf":"fa-image")?> me-2"></i>
+                      <?php _esc($resume["name"]? $resume["name"].".".$ext : "Resume.".$ext) ?>
+                    </a>
+                  </div>                        
+                <?php } ?>   
               </div>
             </div>
                     

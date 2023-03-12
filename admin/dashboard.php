@@ -94,7 +94,7 @@ $total_user = ORM::for_table($config['db']['pre'].'user')->where('user_type','us
             </div>
 
             <div class="col-sm-6 col-lg-3">
-                <a class="card bg-cyan bg-inverse" href="#">
+                <a class="card bg-cyan bg-inverse" href="global/freelancers.php">
                     <div class="card-block clearfix">
                         <div class="pull-right">
                             <p class="h6 text-muted m-t-0 m-b-xs" style="text-transform:uppercase;">Freelancers</p>
@@ -107,7 +107,7 @@ $total_user = ORM::for_table($config['db']['pre'].'user')->where('user_type','us
                 </a>
             </div>
             <div class="col-sm-6 col-lg-3">
-                <a class="card bg-teal bg-inverse" href="#">
+                <a class="card bg-teal bg-inverse" href="global/agencies.php">
                     <div class="card-block clearfix">
                         <div class="pull-right">
                             <p class="h6 text-muted m-t-0 m-b-xs" style="text-transform:uppercase;">Agencies</p>

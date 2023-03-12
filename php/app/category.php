@@ -1,4 +1,6 @@
 <?php
+use Stripe\Terminal\Location;
+
 if(!$config['job_seeker_enable']){
     error(__("Page Not Found"), __LINE__, __FILE__, 1);
 }
@@ -24,18 +26,24 @@ if(isset($_GET['subcat']) && !empty($_GET['subcat'])){
     }else{
         $subcat = get_subcategory_id_by_slug($_GET['subcat']);
     }
-}elseif(isset($_GET['category']) && !empty($_GET['category'])){
-    if(is_numeric($_GET['category'])){
-        if(check_category_exists($_GET['category'])){
-            $category = array();
-            $category = $_GET['category'];
-            echo '<script>console.log('.$category.')</script>';
-        }
-    }else{
-        $category = get_category_id_by_slug($_GET['category']);
-    }
+}elseif(isset($_GET['category']) && !empty($_GET['category'])){ 
+       
+   get_category_id_by_slug($_GET['category']);    
+   $category = 2;
+
 }
- 
+
+if(isset($_GET['setFav']) && !empty($_GET['setFav'])){ 
+    global $config,$link;
+    $field_fav= ORM::for_table($config['db']['pre'].'fav_users')->create();
+    $field_fav->user_id = $_SESSION['user']['id'];
+    $field_fav->fav_user_id = $_GET['setFav']; 
+    $field_fav->save(); 
+
+    headerRedirect($link['CATEGORY']); 
+    echo '<script>alert("Favourite Saved Successfully");</script>';
+
+ }
 
 if(isset($_GET['city']) && !empty($_GET['city'])){
     $city = $_GET['city'];
@@ -47,48 +55,52 @@ $total = 0;
 
 $where = '';
 $order_by = 'u.id DESC';
-if(isset($_GET['keywords']) && !empty($_GET['keywords'])){
-    $where.= "AND (u.username LIKE '%$keywords%' or u.name LIKE '%$keywords%' or u.tagline LIKE '%$keywords%' or u.description LIKE '%$keywords%') ";
-    $order_by = "(CASE
-    WHEN u.username = '$keywords' THEN 1
-    WHEN u.name = '$keywords' THEN 2
-    WHEN u.name LIKE '$keywords%' THEN 3
-    WHEN u.name LIKE '%$keywords%' THEN 4
-    WHEN u.tagline = '$keywords' THEN 5
-    WHEN u.tagline LIKE '$keywords%' THEN 6
-    WHEN u.tagline LIKE '%$keywords%' THEN 7
-    WHEN u.description LIKE '$keywords%' THEN 8
-    WHEN u.description LIKE '%$keywords%' THEN 9
-    ELSE 10
-  END)";
+// if(isset($_GET['keywords']) && !empty($_GET['keywords'])){
+//     $where.= "AND (u.username LIKE '%$keywords%' or u.name LIKE '%$keywords%' or u.tagline LIKE '%$keywords%' or u.description LIKE '%$keywords%') ";
+//     $order_by = "(CASE
+//     WHEN u.username = '$keywords' THEN 1
+//     WHEN u.name = '$keywords' THEN 2
+//     WHEN u.name LIKE '$keywords%' THEN 3
+//     WHEN u.name LIKE '%$keywords%' THEN 4
+//     WHEN u.tagline = '$keywords' THEN 5
+//     WHEN u.tagline LIKE '$keywords%' THEN 6
+//     WHEN u.tagline LIKE '%$keywords%' THEN 7
+//     WHEN u.description LIKE '$keywords%' THEN 8
+//     WHEN u.description LIKE '%$keywords%' THEN 9
+//     ELSE 10
+//   END)";
+// }
+
+if(isset($category) && !empty($category)){ 
+    $where.= "AND (u.status = '$category')";
 }
 
-if(isset($category) && !empty($category)){
-    $where.= "AND (u.category = '$category') ";
-}
-
-if(isset($_GET['subcat']) && !empty($_GET['subcat'])){
-    $where.= "AND (u.subcategory = '$subcat') ";
-}
-
-
-if (!empty($_GET['range1'])) {
-    $range1 = str_replace('.', '', $_GET['range1']);
-    $range2 = str_replace('.', '', $_GET['range2']);
-    $where.= ' AND (u.salary_min BETWEEN '.$range1.' AND '.$range2.') OR (u.salary_max BETWEEN '.$range1.' AND '.$range2.')';
-}
-
-if (!empty($_GET['age_range1'])) {
-    $age_range1 = $_GET['age_range1'];
-    $age_range2 = $_GET['age_range2'];
-    $where.= ' AND (DATEDIFF(CURRENT_DATE, u.dob) BETWEEN ('.$age_range1.' * 365.25) AND ('.$age_range2.' * 365.25))';
+if(isset($_GET['freelancer']) || isset($_GET['agency'])){
+    $freelancer = $_GET['freelancer'];
+    $agency = $_GET['agency'];
+    if(isset($freelancer) && !empty($freelancer)){ 
+        $where.= "AND (u.user_type = 'freelancer')";
+    }
+    if(isset($agency) && !empty($agency)){ 
+        $where.= "AND (u.user_type = 'agency')";
+    }
+    
 }
 
 
-$total = mysqli_num_rows(mysqli_query($mysqli, "SELECT 1 FROM `".$config['db']['pre']."user` u where u.status = '1' AND u.user_type = 'user' $where"));
+if(isset($_GET['coun'])){
+    $coun = $_GET['coun'];
+    if(isset($coun) && !empty($coun)){
+        $where.= "AND (u.country = '$coun')";
+    }
+}
+
+ 
+
+$total = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM `".$config['db']['pre']."user` u where  u.group_id = 'free' $where"));
 
 $query = "SELECT u.* FROM `".$config['db']['pre']."user` u
-     where u.status = '1' AND u.user_type = 'user' $where ORDER BY $order_by LIMIT ".($page_number-1)*$limit.",$limit";
+     where u.group_id = 'free' $where ORDER BY $order_by";
 
 $count = 0;
 $noresult_id = "";
@@ -106,9 +118,12 @@ if (mysqli_num_rows($result) > 0) {
         $items[$info['id']]['image'] = !empty($info['image'])?$info['image']:'default_user.png';
 
         $items[$info['id']]['category'] = $items[$info['id']]['subcategory'] = null;
-        if(!empty($info['category'])){
-            $get_cat = get_maincat_by_id($info['category']);
-            $items[$info['id']]['category'] = $get_cat['cat_name'];
+        if(!empty($info['category'])){ 
+            $get_cat = json_decode($info['category']); 
+            if(is_array($get_cat)){ 
+                $items[$info['id']]['category'] = $get_cat; 
+            } 
+            
         }
         if(!empty($info['subcategory'])){
             $get_cat = get_subcat_by_id($info['subcategory']);
@@ -119,27 +134,29 @@ if (mysqli_num_rows($result) > 0) {
         $items[$info['id']]['salary_min'] = price_format($info['salary_min'], $country_code);
         $items[$info['id']]['salary_max'] = price_format($info['salary_max'], $country_code);
 
+        $items[$info['id']]['country'] = $info['country'];
         $items[$info['id']]['city'] = $info['city'];
         if(!empty($info['city_code'])) {
             $city_detail = get_cityDetail_by_id($info['city_code']);
             $items[$info['id']]['city'] = $city_detail['asciiname'];
-            $items[$info['id']]['city'] .= ', '.get_stateName_by_id($city_detail['subadmin1_code']);
+            $items[$info['id']]['city'] .= ' '.get_stateName_by_id($city_detail['subadmin1_code']).','; 
         }
 
         $items[$info['id']]['favorite'] = check_user_favorite($info['id']);
         $items[$info['id']]['rating'] = averageRating($info['id'],$info['user_type']);
+        $items[$info['id']]['user_type'] = $info['user_type'];
     }
-}
+}  
 
 $selected = "";
-if(isset($_GET['cat']) && !empty($_GET['cat'])){
+if(isset($_GET['category']) && !empty($_GET['cat'])){
     $selected = $_GET['cat'];
 }
 // Check Settings For quotes
 $GetCategory = get_maincategory($selected);
 $cat_dropdown = get_categories_dropdown($lang);
 
-if(isset($_GET['cat']) && !empty($category)){
+if(isset($_GET['cat']) || !empty($category)){
     $maincatname = get_maincat_by_id($category);
     $maincatname = $maincatname['cat_name'];
     $mainCategory = $maincatname;

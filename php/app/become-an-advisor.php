@@ -1,8 +1,8 @@
 <?php
 global $config,$lang,$link;
-if(!checkloggedin()){
-  headerRedirect($link['LOGIN']);
-}
+// if(!checkloggedin()){
+//   headerRedirect($link['LOGIN']);
+// }
 
 
 

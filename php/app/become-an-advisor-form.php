@@ -12,6 +12,7 @@ if (checkloggedin()) {
         $languageSelectError = "";
         $expertiseListError = "";
         $contractorTypeError = "";
+        $agencySizeError = "";
         $certificateFileError = "";
         $licenseFileError = "";
         $certificates = array();
@@ -38,11 +39,7 @@ if (checkloggedin()) {
                 }
             }
         }
-        else{
-            $licenseFileError =  "Atleast one License is Required";
-            $errorPage = 4;
-            $errors ++;
-        }
+        
 
         // checking certificate files for errors
         if(!empty($_FILES["certificateFile"])){
@@ -56,12 +53,7 @@ if (checkloggedin()) {
                 }
             }
         }
-        else{
-            $certificateFileError =  "Atleast one certificate is Required";
-            $errorPage = 3;
-            $errors ++;
-        }
-
+        
     
 
 
@@ -71,6 +63,15 @@ if (checkloggedin()) {
             $errors ++;
 
         }
+
+        
+        if($_POST["contractor"] == "agency" && empty($_POST["agencySize"])){
+            $agencySizeError = "You must choose an agency size";
+            $errorPage = 2;
+            $errors ++;
+
+        }
+
 
         if(empty($_POST["expertise"]) && empty($_POST["others"])){
             $expertiseListError = "You must select at least one expertise";
@@ -96,7 +97,7 @@ if (checkloggedin()) {
 
 
 
-        // profile image file for errors
+        //check profile image file for errors
         $profileImageError = checkFile($_FILES["profileImage"], "picture");
         if($profileImageError){
             $errorPage = 1;
@@ -115,6 +116,8 @@ if (checkloggedin()) {
             $user_update->set('user_type', $_POST["contractor"]);
             $user_update->set('category', json_encode(validate_input($_POST["expertise"])));
             $user_update->set('others', json_encode(validate_input($_POST["others"])));
+            $user_update->set('agencySize', $_POST["agencySize"]);
+            $user_update->set('yearfounded', $_POST["yearFounded"]);
 
             
             // saving profile Image
@@ -134,7 +137,6 @@ if (checkloggedin()) {
                 $cert_create = ORM::for_table($config['db']['pre'].'certifications')->create();
                 $cert_create->user_id = $_SESSION['user']['id'];
 				$cert_create->certificate_name = validate_input($_POST['certificateName'][$certificateNo]);
-				$cert_create->certificate_from = validate_input($_POST['certificateFrom'][$certificateNo]);
 				$cert_create->filename = $certificateFileName;
 				$cert_create->created_at = $now;
 				$cert_create->updated_at = $now;
@@ -152,8 +154,6 @@ if (checkloggedin()) {
                 $license_create = ORM::for_table($config['db']['pre'].'licenses')->create();
                 $license_create->user_id = $_SESSION['user']['id'];
 				$license_create->license_name = validate_input($_POST['licenseName'][$licenseNo]);
-				$license_create->license_from = validate_input($_POST['licenseFrom'][$licenseNo]);
-				$license_create->license_number = validate_input($_POST['licenseNumber'][$licenseNo]);
 				$license_create->filename = $licenseFileName;
 				$license_create->created_at = $now;
 				$license_create->updated_at = $now;
@@ -177,12 +177,11 @@ if (checkloggedin()) {
             create_user_session($loggedin['id'], $loggedin['username'], $loggedin['password'], $loggedin['user_type']);
             
             
-            // transfer($link['EDITPROFILE'], __("Profile Updated Successfully"), __("Profile Updated Successfully"));
+            header("Location: ".$config['site_url']."dashboard");
             exit;
         }
               
     }
-
 
     //Print Template
     HtmlTemplate::display('become-an-advisor-form', array(
@@ -196,6 +195,7 @@ if (checkloggedin()) {
         'certficateFileError' => $certificateFileError,
         'licenseFileError' => $licenseFileError,
         'resumeError' => $resumeError,
+        'agencySizeError' => $agencySizeError,
         "errorPage" =>  $errorPage,
 
  
@@ -216,7 +216,7 @@ function checkFile($fileArray, $fileType=null){
 
         $fileExt = explode(".", $fileName);
         $fileExt = strtolower(end($fileExt));
-        $extensions = $fileType? array("jpg", "jpeg", "png",):array("jpg", "jpeg", "png", "pdf", "docx");
+        $extensions = $fileType? array("jpg", "jpeg", "png", "svg"):array("jpg", "jpeg", "png", "svg", "pdf", "docx");
         
         clearstatcache($fileName);
         if($fileSize){

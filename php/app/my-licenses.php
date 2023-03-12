@@ -1,6 +1,6 @@
 <?php
-// if resume is disable
-if(!$config['resume_enable']){
+// if License is disable
+if(!$config['license_enable']){
     error(__("Page Not Found"), __LINE__, __FILE__, 1);
 }
 
@@ -20,7 +20,7 @@ if(checkloggedin())
 
     if(!empty($_GET['keywords'])){
     	$keywords = $_GET['keywords'];
-    	$orm->where_like('name','%'.$keywords.'%');
+    	$orm->where_like('license_name','%'.$keywords.'%');
     }
 
     $result = $orm->find_many();
@@ -39,7 +39,7 @@ if(checkloggedin())
     //Print Template
     HtmlTemplate::display('my-licenses', array(
         'items' => $items,
-        'licenses' => resumes_count($_SESSION['user']['id']),
+        'licenses' => licenses_count($_SESSION['user']['id']),
         'keywords' => $keywords
     ));
     exit;

@@ -36,10 +36,11 @@ emojione.imagePathSVG = siteurl+'plugins/quickchat-ajax/plugins/smiley/assets/sv
 function msg_eventpl(chatid,message_content,msgtype,time,position){
 
     var wchat_eventpl = '<div class="wchat-message '+msgtype+'">'+
-                '<p>'+message_content+'</p>'+
-                '<span class="qc-metadata">' +
-                '<span>'+time+'</span>' +
-                '</span>' +
+            '<span class="qc-metadata">' +
+            '<span class="text-white">'+time+'</span>' +
+            '</span>' +    
+            '<p>'+message_content+'</p>'+
+                
                 '</div>';
 
     if(position == "append"){
@@ -64,9 +65,9 @@ function msg_oddtpl(chatid,message_content,msgtype,time,position,icontype){
     }
 
     var wchat_oddtpl = '<div class="wchat-message odd '+msgtype+'">' +
-        '<p>'+message_content+'</p> ' +
         '<span class="qc-metadata">' +
         '<span>'+time+'</span>' +
+        '<p style="color:black !important;">'+message_content+'</p> ' +
         '<span class="msg-status msg-'+status+' ">'+icon+'</span>' +
         '</span>' +
         '</div>';
@@ -160,8 +161,8 @@ function chatWith(chatid,userid,fullname,userimage,userstatus,postid,posttype) {
 
         $('#typing_on').html(lang_status);
         $('#typing_on').attr('data-userid',userid);
-        $('.right .top .personName').html(fullname);
-        var userImage = '<img src="' + siteurl + 'storage/profile/small_' + userimage + '" class="avatar-image is-loaded bg-theme" width="100%" alt="' + fullname + '">';
+        $('.username .right .top .personName').html(fullname);
+        var userImage = '<img src="' + siteurl + 'storage/profile/' + userimage + '" class="avatar-image is-loaded bg-theme" width="100%" alt="' + fullname + '">';
         $('.right .top .userimage').html(userImage);
         $('.chat').removeClass('active-chat');
         $("#chatbox_"+chatid).addClass('active-chat');
@@ -198,10 +199,11 @@ function createChatBox($options) {
         '<div class="input-container">' +
         '<div class="input-emoji">' +
         '<div class="input-placeholder" style="visibility: visible;">'+LANG_TYPE_A_MESSAGE+'</div>' +
+        // '<div class="btn-file btn"><i class="fa fa-paperclip"></i><input type="file"></div>'+
         '<div class="input chatboxtextarea" id="chatboxtextarea" name="chattxt" onkeydown=\'javascript:return checkChatBoxInputKey(event,this,"'+chatid+'","'+userid+'","'+postid+'","'+posttype+'");\' contenteditable="true" spellcheck="true"></div>' +
         '</div>' +
         '</div>' +
-        '<button onclick=\'javascript:return clickTosendMessage(event,"#chatboxtextarea","'+chatid+'","'+userid+'","'+postid+'","'+posttype+'");\' class="btn-icon icon-send fa fa-paper-plane-o font-24 send-container"></button>' +
+        '<button onclick=\'javascript:return clickTosendMessage(event,"#chatboxtextarea","'+chatid+'","'+userid+'","'+postid+'","'+posttype+'");\' class="mobile-sendbtn btn-icon icon-send fa fa-paper-plane-o font-24 send-container"></button>' +
         '</div>';
 
 
@@ -550,47 +552,47 @@ function lastseen(chatid,userid){
     });
 }
 
-function userProfile(userid){
-    $.ajax({
-        url: siteurl + plugin_directory+"?action=userProfile&userid="+userid,
-        cache: false,
-        dataType: "json",
-        type: "POST",
-        success: function (data) {
-            var username = data.username,
-                name = data.name,
-                email = data.email,
-                sex = data.sex,
-                about = data.about,
-                image = data.image;
+// function userProfile(userid){
+//     $.ajax({
+//         url: siteurl + plugin_directory+"?action=userProfile&userid="+userid,
+//         cache: false,
+//         dataType: "json",
+//         type: "POST",
+//         success: function (data) {
+//             var username = data.username,
+//                 name = data.name,
+//                 email = data.email,
+//                 sex = data.sex,
+//                 about = data.about,
+//                 image = data.image;
 
-            var profile_tpl = '<div class="">\n' +
-                '            <div class="user-bg">\n' +
-                '                <div class="overlay-box">\n' +
-                '                    <div class="user-content"> <a href="#">\n' +
-                '                            <img class="thumb-lg img-circle" src="'+siteurl+'storage/profile/small_'+image+'" alt="'+name+'"></a>\n' +
-                '                        <h4 class="text-white">'+username+'</h4>\n' +
-                '                        <h5 class="text-white">'+email+'</h5>\n' +
-                '                    </div>\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '            <div class="user-btm-box">\n' +
-                '                <div class="row text-center m-t-10">\n' +
-                '                    <div class="col-md-6 b-r"><strong>'+LANG_NAME+'</strong><p>'+name+'</p></div>\n' +
-                '                    <div class="col-md-6"><strong>'+LANG_GENDER+'</strong><p>'+sex+'</p></div>\n' +
-                '                </div>\n' +
-                '                <hr>\n' +
-                '                <div class="row text-center m-t-10">\n' +
-                '                    <div class="col-md-12"><strong>'+LANG_ABOUT+'</strong><p>'+about+'</p></div>\n' +
-                '                </div>\n' +
-                '                <hr>\n' +
-                '                <div class="col-md-1 col-sm-1 text-center">&nbsp;</div>\n' +
-                '            </div>\n' +
-                '        </div>';
-            $("#userProfile").html(profile_tpl);
-        }
-    });
-}
+//             var profile_tpl = '<div class="">\n' +
+//                 '            <div class="user-bg">\n' +
+//                 '                <div class="overlay-box">\n' +
+//                 '                    <div class="user-content"> <a href="#">\n' +
+//                 '                            <img class="thumb-lg img-circle" src="'+siteurl+'storage/profile/'+image+'" alt="'+name+'"></a>\n' +
+//                 '                        <h4 class="text-white">'+username+'</h4>\n' +
+//                 '                        <h5 class="text-white">'+email+'</h5>\n' +
+//                 '                    </div>\n' +
+//                 '                </div>\n' +
+//                 '            </div>\n' +
+//                 '            <div class="user-btm-box">\n' +
+//                 '                <div class="row text-center m-t-10">\n' +
+//                 '                    <div class="col-md-6 b-r"><strong>'+LANG_NAME+'</strong><p>'+name+'</p></div>\n' +
+//                 '                    <div class="col-md-6"><strong>'+LANG_GENDER+'</strong><p>'+sex+'</p></div>\n' +
+//                 '                </div>\n' +
+//                 '                <hr>\n' +
+//                 '                <div class="row text-center m-t-10">\n' +
+//                 '                    <div class="col-md-12"><strong>'+LANG_ABOUT+'</strong><p>'+about+'</p></div>\n' +
+//                 '                </div>\n' +
+//                 '                <hr>\n' +
+//                 '                <div class="col-md-1 col-sm-1 text-center">&nbsp;</div>\n' +
+//                 '            </div>\n' +
+//                 '        </div>';
+//             $("#userProfile").html(profile_tpl);
+//         }
+//     });
+// }
 
 function toggleChatBoxGrowth(chatid) {
 
@@ -660,6 +662,7 @@ function chatfrindList(limitStart){
             $('.contact-list').data('contact_count',contact_count);
             if(result.data) {
                 $.each(result.data, function (i, item) {
+                    console.log(item)
                     if (item.unread_msg != 0) {
                         var unread_count = '<span class="icon-meta unread-count">' + item.unread_msg + '</span>';
                     } else {
@@ -671,15 +674,16 @@ function chatfrindList(limitStart){
                         'data-posttype="'+item.posttype+'" ' +
                         'data-userid="'+item.userid+'" ' +
                         'data-fullname="'+item.fullname+'" ' +
+                        'data-message_content"'+item.message_content+'" ' +
                         'data-userimage="'+item.userimage+'" ' +
                         'data-userstatus="'+item.userstatus+'">' +
                         '<a href="#">' +
-                        '<span class="userimage profile-picture min-profile-picture"><img src="' + siteurl + 'storage/profile/small_' + item.userimage + '" class="avatar-image is-loaded bg-theme" width="100%" alt="' + item.fullname + '"></span>' +
+                        '<span class="userimage profile-picture min-profile-picture"><img src="' + siteurl + 'storage/profile/' + item.userimage + '" class="avatar-image is-loaded bg-theme" width="100%" alt="' + item.fullname + '"></span>' +
                         '<span>' +
-                        '<span class="bname personName">' + item.fullname + '</span>' +
-                        '<span class="personStatus"><span class="time ' + item.userstatus + '"> <i class="fa fa-circle" aria-hidden="true"></i></span></span> ' +
+                        '<span class="username personName">' + item.fullname + '</span>' +
+                        '<span class="last-chat-time"><span class="time">1 Month</span></span> ' +
                         '<span class="count">' + unread_count + '</span><br>' +
-                        '<small class="preview"><i class="fa fa-file-text-o"></i> ' + item.post_title + '</small>' +
+                        '<div class="user-last-chat">Juan: '+ item.message_content +' <i class="pl--70 fa fa-envelope-open"></i></div>' +
                         '</span>' +
                         '</a>' +
                         '</li>';

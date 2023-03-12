@@ -22,7 +22,7 @@ if(isset($_POST['submit']))
             $installing_version = 'pro';
             $site_url = $config['site_url'];
 
-            $url = "https://bylancer.com/api/api.php?verify-purchase=" . $code . "&version=" . $installing_version . "&site_url=" . $site_url . "&email=" . $buyer_email;
+            //$url = "https://bylancer.com/api/api.php?verify-purchase=" . $code . "&version=" . $installing_version . "&site_url=" . $site_url . "&email=" . $buyer_email;
             // Open cURL channel
             $ch = curl_init();
 
@@ -126,86 +126,86 @@ if(isset($_POST['submit']))
                     }
                 }
 
-                break;
-            case 'wchat' :
-                if(isset($_POST['wchat_on_off'])){
-                    $wchat_purchase = get_option("wchat_purchase_code");
-                    if($wchat_purchase == "") {
-                        $message .= '<span style="color:red;">( Enter Your Valid Wchat Purchase Code.)</span>';
-                    }
-                    else{
-                        update_option("wchat_on_off",$_POST['wchat_on_off']);
-                    }
-                }
-                else{
-                    update_option("wchat_on_off","off");
-                }
+            //     break;
+            // case 'wchat' :
+            //     if(isset($_POST['wchat_on_off'])){
+            //         $wchat_purchase = get_option("wchat_purchase_code");
+            //         if($wchat_purchase == "") {
+            //             $message .= '<span style="color:red;">( Enter Your Valid Wchat Purchase Code.)</span>';
+            //         }
+            //         else{
+            //             update_option("wchat_on_off",$_POST['wchat_on_off']);
+            //         }
+            //     }
+            //     else{
+            //         update_option("wchat_on_off","off");
+            //     }
 
-                if(isset($_POST['wchat_purchase_code'])){
-                    if($_POST['wchat_purchase_code'] != "") {
-                        $code = $_POST['wchat_purchase_code'];
-                        $output = install_chat_setting($code);
+            //     if(isset($_POST['wchat_purchase_code'])){
+            //         if($_POST['wchat_purchase_code'] != "") {
+            //             $code = $_POST['wchat_purchase_code'];
+            //             $output = install_chat_setting($code);
 
-                        if ($output['success']) {
-                            if(isset($config['wchat_secret_file']) && $config['wchat_secret_file'] != ""){
-                                $fileName = $config['wchat_secret_file'];
-                            }else{
-                                $fileName = get_random_string();
-                            }
-                            file_put_contents('../plugins/wchat/' . $fileName . '.php', $output['data']);
-                            $success = true;
-                            update_option("wchat_secret_file",$fileName);
-                            update_option("wchat_purchase_code",$_POST['wchat_purchase_code']);
-                            $message = 'Wchat Purchase code verified successfully';
-                            transfer("chat_setting.php",$message);
-                            exit;
-                        } else {
-                            $error = $output['error'];
-                            $message .= '<span style="color:red;">'.$error.'</span>';
-                        }
-                    }
-                }
+            //             if ($output['success']) {
+            //                 if(isset($config['wchat_secret_file']) && $config['wchat_secret_file'] != ""){
+            //                     $fileName = $config['wchat_secret_file'];
+            //                 }else{
+            //                     $fileName = get_random_string();
+            //                 }
+            //                 file_put_contents('../plugins/wchat/' . $fileName . '.php', $output['data']);
+            //                 $success = true;
+            //                 update_option("wchat_secret_file",$fileName);
+            //                 update_option("wchat_purchase_code",$_POST['wchat_purchase_code']);
+            //                 $message = 'Wchat Purchase code verified successfully';
+            //                 transfer("chat_setting.php",$message);
+            //                 exit;
+            //             } else {
+            //                 $error = $output['error'];
+            //                 $message .= '<span style="color:red;">'.$error.'</span>';
+            //             }
+            //         }
+            //     }
 
-                break;
-            case 'zechat' :
-                if(isset($_POST['zechat_on_off'])){
-                    $zechat_purchase = get_option("zechat_purchase_code");
-                    if($zechat_purchase == NULL) {
-                        $message .= '<span style="color:red;">( Enter Your Valid Zechat Purchase Code.)</span>';
-                    }
-                    else{
-                        update_option("zechat_on_off",$_POST['zechat_on_off']);
-                    }
-                }
-                else{
-                    update_option("zechat_on_off","off");
-                }
+            //     break;
+            // case 'zechat' :
+            //     if(isset($_POST['zechat_on_off'])){
+            //         $zechat_purchase = get_option("zechat_purchase_code");
+            //         if($zechat_purchase == NULL) {
+            //             $message .= '<span style="color:red;">( Enter Your Valid Zechat Purchase Code.)</span>';
+            //         }
+            //         else{
+            //             update_option("zechat_on_off",$_POST['zechat_on_off']);
+            //         }
+            //     }
+            //     else{
+            //         update_option("zechat_on_off","off");
+            //     }
 
-                if(isset($_POST['zechat_purchase_code'])){
-                    if($_POST['zechat_purchase_code'] != "") {
-                        $code = $_POST['zechat_purchase_code'];
-                        $output = install_chat_setting($code);
+            //     if(isset($_POST['zechat_purchase_code'])){
+            //         if($_POST['zechat_purchase_code'] != "") {
+            //             $code = $_POST['zechat_purchase_code'];
+            //             $output = install_chat_setting($code);
 
-                        if ($output['success']) {
-                            if(isset($config['zechat_secret_file']) && $config['zechat_secret_file'] != ""){
-                                $fileName = $config['zechat_secret_file'];
-                            }else{
-                                $fileName = get_random_string();
-                            }
-                            file_put_contents('../plugins/zechat/' . $fileName . '.php', $output['data']);
-                            $success = true;
-                            update_option("zechat_secret_file",$fileName);
-                            update_option("zechat_purchase_code",$_POST['zechat_purchase_code']);
-                            $message = 'Zechat Purchase code verified successfully';
-                            transfer("chat_setting.php",$message);
-                            exit;
-                        } else {
-                            $error = $output['error'];
-                            $message .= '<span style="color:red;">'.$error.'</span>';
-                        }
+            //             if ($output['success']) {
+            //                 if(isset($config['zechat_secret_file']) && $config['zechat_secret_file'] != ""){
+            //                     $fileName = $config['zechat_secret_file'];
+            //                 }else{
+            //                     $fileName = get_random_string();
+            //                 }
+            //                 file_put_contents('../plugins/zechat/' . $fileName . '.php', $output['data']);
+            //                 $success = true;
+            //                 update_option("zechat_secret_file",$fileName);
+            //                 update_option("zechat_purchase_code",$_POST['zechat_purchase_code']);
+            //                 $message = 'Zechat Purchase code verified successfully';
+            //                 transfer("chat_setting.php",$message);
+            //                 exit;
+            //             } else {
+            //                 $error = $output['error'];
+            //                 $message .= '<span style="color:red;">'.$error.'</span>';
+            //             }
 
-                    }
-                }
+            //         }
+            //     }
 
                 break;
         }
@@ -235,8 +235,8 @@ if(isset($_POST['submit']))
                                     <ul class="quickad-nav" role="tablist">
                                         <li class="quickad-nav-item hidden" data-target="#quickchat_websocket" data-toggle="tab">Quickchat WebSocket</li>
                                         <li class="quickad-nav-item active" data-target="#quickchat_ajax" data-toggle="tab">Quickchat Php Ajax</li>
-                                        <li class="quickad-nav-item" data-target="#wchat" data-toggle="tab">Wchat</li>
-                                        <li class="quickad-nav-item" data-target="#zechat" data-toggle="tab">Zechat</li>
+                                        <!-- <li class="quickad-nav-item" data-target="#wchat" data-toggle="tab">Wchat</li>
+                                        <li class="quickad-nav-item" data-target="#zechat" data-toggle="tab">Zechat</li> -->
                                     </ul>
                                 </div>
                                 <div id="quickad_settings_controls" class="col-sm-8">
@@ -247,7 +247,6 @@ if(isset($_POST['submit']))
                                                 <div class="tab-pane hidden" id="quickchat_websocket">
                                                     <div class="form-group">
                                                         <h4>Quickchat WebSocket</h4>
-                                                        <p class="help-block">For more information on how to start websocket see this <a href="https://bylancer.ticksy.com/article/15905/" target="_blank">article</a>.</p>
                                                     </div>
                                                     <form action="#quickchat_websocket" name="form2" class="form form-horizontal" method="post">
 
@@ -285,7 +284,7 @@ if(isset($_POST['submit']))
 
 
 
-                                                        <div class="form-group">
+                                                        <div class="form-group" style="display:none !important;">
                                                             <label class="col-sm-4 control-label">Quickchat WebSocket Purchase Code:</label>
                                                             <div class="col-sm-6">
                                                                 <?php
@@ -297,7 +296,7 @@ if(isset($_POST['submit']))
                                                                 }
                                                                 ?>
                                                                 <input name="quickchat_socket_purchase_code" type="password" class="form-control" value="" autocomplete="false">
-                                                                <span class="font-14"><code style="color: green">Get Purchase code From Here.</code><a href="https://codecanyon.net/user/bylancer/portfolio" target="_blank">Buy Quickchat WebSocket</a></span>
+                                                                
                                                             </div>
                                                         </div>
 
@@ -330,7 +329,7 @@ if(isset($_POST['submit']))
                                                         }
                                                         ?>
 
-                                                        <div class="form-group">
+                                                        <div class="form-group" style="display:none">
                                                             <label class="col-sm-4 control-label">Quickchat Purchase Code:</label>
                                                             <div class="col-sm-6">
                                                                 <?php
@@ -342,7 +341,6 @@ if(isset($_POST['submit']))
                                                                 }
                                                                 ?>
                                                                 <input name="quickchat_ajax_purchase_code" type="password" class="form-control" value="">
-                                                                <span class="font-14"><code style="color: green">Get Purchase code From Here.</code><a href="https://codentheme.com/item/quickchat-realtime-ajax-chat-messaging-plugin/" target="_blank">Buy Quickchat realtime AJAX chat</a></span>
                                                             </div>
                                                         </div>
 
@@ -352,97 +350,10 @@ if(isset($_POST['submit']))
                                                             <button class="btn btn-default" type="reset">Reset</button>
                                                         </div>
                                                     </form>
-                                                </div>
-
-                                                <div class="tab-pane" id="wchat">
-                                                    <div class="form-group">
-                                                        <h4>Wchat</h4>
-                                                    </div>
-                                                    <form action="#wchat" name="form2" class="form form-horizontal" method="post">
-                                                        <?php
-                                                        if(isset($config['wchat_purchase_code']) && $config['wchat_purchase_code'] != ""){
-                                                            ?>
-                                                            <div class="form-group bt-switch">
-                                                                <label class="col-sm-4 control-label">Wchat on/off:</label>
-                                                                <div class="col-sm-6">
-                                                                    <label class="css-input switch switch-success">
-                                                                        <input  name="wchat_on_off" type="checkbox" <?php if (get_option("wchat_on_off") == 'on') { echo "checked"; } ?> /><span></span>
-                                                                    </label>
-
-                                                                </div>
                                                             </div>
+                                        
 
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Wchat Purchase Code:</label>
-                                                            <div class="col-sm-6">
-                                                                <?php
-                                                                if(isset($config['wchat_purchase_code']) && $config['wchat_purchase_code'] != ""){
-                                                                    ?>
-                                                                    <div class="alert alert-success">
-                                                                        <strong>Success!</strong> Wchat Purchase code verified, you can on/off</div>
-                                                                <?php
-                                                                }
-                                                                ?>
-                                                                <input name="wchat_purchase_code" type="password" class="form-control" value="">
-                                                                <span class="font-14"><code style="color: green">Get Purchase code From Here.</code><a href="https://codecanyon.net/item/wchat-fully-responsive-phpajax-chat/18047319?clickthrough_id=18047319&license=regular&open_purchase_for_item_id=18047319&purchasable=source&redirect_back=true&ref=bylancer&utm_source=item_desc_link" target="_blank">Buy Wchat</a></span>
-                                                            </div>
-                                                        </div>
 
-                                                        <div class="panel-footer">
-                                                            <input name="chat_type" type="hidden" class="form-control" value="wchat">
-                                                            <button name="submit" type="submit" class="btn btn-primary btn-radius save-changes">Save</button>
-                                                            <button class="btn btn-default" type="reset">Reset</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                                <div class="tab-pane" id="zechat">
-                                                    <div class="form-group">
-                                                        <h4>Zechat</h4>
-                                                    </div>
-                                                    <form action="#zechat" name="form2" class="form form-horizontal" method="post">
-                                                        <?php
-                                                        if(isset($config['zechat_purchase_code']) && $config['zechat_purchase_code'] != ""){
-                                                            ?>
-                                                            <div class="form-group bt-switch">
-                                                                <label class="col-sm-4 control-label">Zechat on/off:</label>
-                                                                <div class="col-sm-6">
-                                                                    <label class="css-input switch switch-success">
-                                                                        <input  name="zechat_on_off" type="checkbox" <?php if (get_option("zechat_on_off") == 'on') { echo "checked"; } ?> /><span></span>
-                                                                    </label>
-
-                                                                </div>
-                                                            </div>
-                                                        <?php
-                                                        }
-                                                        ?>
-
-                                                        <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Zechat Purchase Code:</label>
-                                                            <div class="col-sm-6">
-                                                                <?php
-                                                                if(isset($config['zechat_purchase_code']) && $config['zechat_purchase_code'] != ""){
-                                                                    ?>
-                                                                    <div class="alert alert-success">
-                                                                        <strong>Success!</strong> Zechat Purchase code verified, you can on/off</div>
-                                                                <?php
-                                                                }
-                                                                ?>
-                                                                <input name="zechat_purchase_code" type="password" class="form-control" value="">
-                                                                <span class="font-14"><code style="color: green">Get Purchase code From Here.</code><a href="https://codecanyon.net/item/facebook-style-php-ajax-chat-zechat/16491266?clickthrough_id=16491266&license=regular&open_purchase_for_item_id=16491266&purchasable=source&redirect_back=true&ref=bylancer&utm_source=item_desc_link" target="_blank">Buy Zechat</a></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="panel-footer">
-                                                            <input name="chat_type" type="hidden" class="form-control" value="zechat">
-                                                            <button name="submit" type="submit" class="btn btn-primary btn-radius save-changes">Save</button>
-                                                            <button class="btn btn-default" type="reset">Reset</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

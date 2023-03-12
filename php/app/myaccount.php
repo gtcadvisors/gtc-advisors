@@ -1,8 +1,8 @@
 
 <?php
 global $config,$lang,$link;
-if (checkloggedin()) {
-    headerRedirect($link['']);
+if(!checkloggedin()){
+  headerRedirect($link['LOGIN']);
 }
 $start = microtime(true);
 $limit = 6;

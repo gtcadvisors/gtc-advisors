@@ -1,44 +1,11 @@
 <?php
 /**
- * Check rating exist
- *
- * @param int $project_id
- * @return bool
- */
-function rating_exist($project_id){
-    global $config;
-
-    if($_SESSION['user']['user_type'] == 'employer'){
-        $num_rows = ORM::for_table($config['db']['pre'] . 'reviews')
-            ->where(array(
-                'project_id'=> $project_id,
-                'employer_id'=> validate_input($_SESSION['user']['id']),
-                'rated_by'=> 'employer'
-            ))
-            ->count();
-    }else{
-        $num_rows = ORM::for_table($config['db']['pre'] . 'reviews')
-            ->where(array(
-                'project_id'=> $project_id,
-                'freelancer_id'=> validate_input($_SESSION['user']['id']),
-                'rated_by'=> 'user'
-            ))
-            ->count();
-    }
-
-    if($num_rows == 1)
-        return true;
-    else
-        return false;
-}
-
-/**
  * Check product is favorite
  *
  * @param int $product_id
  * @return bool
  */
-function check_product_favorite($product_id){
+function check_product_favorite($product_id,$post_type){
 
     global $config;
 
@@ -46,7 +13,8 @@ function check_product_favorite($product_id){
         $num_rows = ORM::for_table($config['db']['pre'].'favads')
             ->where(array(
                 'product_id' => $product_id,
-                'user_id' => $_SESSION['user']['id']
+                'user_id' => $_SESSION['user']['id'],
+                'post_type' => $post_type
             ))
             ->count();
         if($num_rows == 1)
@@ -168,6 +136,33 @@ function check_valid_author($product_id){
 }
 
 /**
+ * Check login user is the post owner
+ *
+ * @param int $post_id
+ * @return bool
+ */
+function check_valid_seller($post_id){
+
+    global $config;
+
+    if(checkloggedin()) {
+        $num_rows = ORM::for_table($config['db']['pre'].'post')
+            ->where(array(
+                'id' => $post_id,
+                'user_id' => $_SESSION['user']['id']
+            ))
+            ->count();
+        if($num_rows == 1)
+            return true;
+        else
+            return false;
+
+    }else{
+        return false;
+    }
+}
+
+/**
  * Check product status
  *
  * @param int $product_id
@@ -179,6 +174,23 @@ function check_item_status($product_id){
     $info = ORM::for_table($config['db']['pre'].'product')
         ->select('status')
         ->where('id',$product_id)
+        ->find_one();
+
+    return $info->status;
+}
+
+/**
+ * Check Post status
+ *
+ * @param int $post_id
+ * @return string|null
+ */
+function check_post_status($post_id){
+
+    global $config;
+    $info = ORM::for_table($config['db']['pre'].'post')
+        ->select('status')
+        ->where('id',$post_id)
         ->find_one();
 
     return $info->status;
@@ -428,15 +440,16 @@ function delete_language_translation($type, $translation_id){
 /**
  * Get all categories
  *
+ * @param string $post_type 'default' or 'gig'
  * @param string $selected
  * @param string $selected_text
  * @return array
  */
-function get_maincategory($selected="", $selected_text='selected'){
+function get_maincategory($post_type='default',$selected="", $selected_text='selected'){
     global $config,$link;
     $cat = array();
-
     $result = ORM::for_table($config['db']['pre'].'catagory_main')
+        ->where('post_type',$post_type)
         ->order_by_asc('cat_order')
         ->find_many();
     foreach ($result as $info) {
@@ -446,8 +459,13 @@ function get_maincategory($selected="", $selected_text='selected'){
 
         if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
             $maincat = get_category_translation("main",$info['cat_id']);
-            $cat[$info['cat_id']]['name'] = $maincat['title'];
-            $cat[$info['cat_id']]['slug'] = $maincat['slug'];
+            if(is_array($maincat) && count($maincat) > 0) {
+                $cat[$info['cat_id']]['name'] = $maincat['title'];
+                $cat[$info['cat_id']]['slug'] = $maincat['slug'];
+            }else{
+                $cat[$info['cat_id']]['name'] = $info['cat_name'];
+                $cat[$info['cat_id']]['slug'] = $info['slug'];
+            }
         }else{
             $cat[$info['cat_id']]['name'] = $info['cat_name'];
             $cat[$info['cat_id']]['slug'] = $info['slug'];
@@ -455,6 +473,9 @@ function get_maincategory($selected="", $selected_text='selected'){
 
         $cat[$info['cat_id']]['link'] = $config['site_url'].'category/'.$cat[$info['cat_id']]['slug'];
         $cat[$info['cat_id']]['project_link'] = $link['SEARCH_PROJECTS'].'/'.$cat[$info['cat_id']]['slug'];
+        $cat[$info['cat_id']]['service_link'] = $link['SEARCH_SERVICES'].'/'.$cat[$info['cat_id']]['slug'];
+
+        $cat[$info['cat_id']]['selected'] = "";
         if($selected!="")
         {
             if(is_array($selected))
@@ -511,8 +532,10 @@ function get_maincat_by_id($id){
         ->find_one();
     if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
         $maincat = get_category_translation("main",$info['cat_id']);
-        $info['cat_name'] = $maincat['title'];
-        $info['slug'] = $maincat['slug'];
+        if(is_array($maincat) && count($maincat) > 0){
+            $info['cat_name'] = $maincat['title'];
+            $info['slug'] = $maincat['slug'];
+        }
     }
     return $info;
 }
@@ -536,8 +559,10 @@ function get_subcategories(){
 
         if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
             $subcat_trans = get_category_translation("sub",$value['sub_cat_id']);
-            $subcat[$key]['name'] = $subcat_trans['title'];
-            $subcat[$key]['slug'] = $subcat_trans['slug'];
+            if(is_array($subcat_trans) && count($subcat_trans) > 0) {
+                $subcat[$key]['name'] = $subcat_trans['title'];
+                $subcat[$key]['slug'] = $subcat_trans['slug'];
+            }
         }
     }
 
@@ -557,8 +582,10 @@ function get_subcat_by_id($id){
         ->find_one();
     if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
         $subcat = get_category_translation("sub",$info['sub_cat_id']);
-        $info['sub_cat_name'] = $subcat['title'];
-        $info['slug'] = $subcat['slug'];
+        if(is_array($subcat) && count($subcat) > 0) {
+            $info['sub_cat_name'] = $subcat['title'];
+            $info['slug'] = $subcat['slug'];
+        }
     }
     return $info;
 }
@@ -584,15 +611,14 @@ function get_subcat_of_maincat($category_id, $adcount=false, $selected="", $sele
         $subcat[$info['sub_cat_id']]['id'] = $info['sub_cat_id'];
         $subcat[$info['sub_cat_id']]['photo_show'] = $info['photo_show'];
         $subcat[$info['sub_cat_id']]['price_show'] = $info['price_show'];
-
+        $subcat[$info['sub_cat_id']]['name'] = $info['sub_cat_name'];
+        $subcat[$info['sub_cat_id']]['slug'] =  $info['slug'];
         if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
             $subcategory = get_category_translation("sub",$info['sub_cat_id']);
-
-            $subcat[$info['sub_cat_id']]['name'] = $subcategory['title'];
-            $subcat[$info['sub_cat_id']]['slug'] = $subcategory['slug'];
-        }else{
-            $subcat[$info['sub_cat_id']]['name'] = $info['sub_cat_name'];
-            $subcat[$info['sub_cat_id']]['slug'] =  $info['slug'];
+            if(is_array($subcategory) && count($subcategory) > 0) {
+                $subcat[$info['sub_cat_id']]['name'] = $subcategory['title'];
+                $subcat[$info['sub_cat_id']]['slug'] = $subcategory['slug'];
+            }
         }
 
         $get_main = get_maincat_by_id($category_id);
@@ -601,35 +627,36 @@ function get_subcat_of_maincat($category_id, $adcount=false, $selected="", $sele
         $subcat_slug = $subcat[$info['sub_cat_id']]['slug'];
         $subcat[$info['sub_cat_id']]['link'] = $config['site_url'].'category/'.$category_slug.'/'.$subcat_slug;
         $subcat[$info['sub_cat_id']]['project_link'] = $link['SEARCH_PROJECTS'].'/'.$category_slug.'/'.$subcat_slug;
+        $subcat[$info['sub_cat_id']]['service_link'] = $link['SEARCH_SERVICES'].'/'.$category_slug.'/'.$subcat_slug;
+
         if($adcount){
             $subcat[$info['sub_cat_id']]['adcount'] = get_items_count(false,"active",false,$info['sub_cat_id'],null,true);
         }
 
+        $subcat[$info['sub_cat_id']]['selected'] = "";
         if($selected!="") {
             if($selected==$info['sub_cat_id'] || $selected==$info['sub_cat_name'])
             {
                 $subcat[$info['sub_cat_id']]['selected'] = $selected_text;
             }
-        }else
-        {
-            $subcat[$info['sub_cat_id']]['selected'] = "";
         }
     }
 
     return $subcat;
 }
- 
+
+
 /**
- * Get categories dropdown
- *
- * @param array $lang
+ * @param string $post_type 'default' or 'gig'
  * @return string
  */
-function get_categories_dropdown($lang){
+function get_categories_dropdown($post_type = 'default'){
     global $config;
-    $dropdown = '';
+    $dropdown = '<ul class="dropdown-menu category-change" id="category-change">
+                          <li><a href="#" class="no-arrow" data-cat-type="all"><i class="fa fa-th"></i>'.__("All Categories").'</a></li>';
 
     $result1 = ORM::for_table($config['db']['pre'].'catagory_main')
+        ->where('post_type',$post_type)
         ->order_by_asc('cat_order')
         ->find_many();
 
@@ -642,7 +669,9 @@ function get_categories_dropdown($lang){
         $cat_picture = $info1['picture'];
         if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
             $maincat = get_category_translation("main",$info1['cat_id']);
-            $catname = $maincat['title'];
+            if(is_array($maincat) && count($maincat) > 0) {
+                $catname = $maincat['title'];
+            }
         }
 
         if($cat_picture != ""){
@@ -650,7 +679,6 @@ function get_categories_dropdown($lang){
         }else{
             $icon = '<i class="'.$cat_icon.'"></i>';
         }
-
 
         $result = ORM::for_table($config['db']['pre'].'catagory_sub')
             ->where('main_cat_id',$cat_id)
@@ -669,20 +697,26 @@ function get_categories_dropdown($lang){
               <span class="text-small">'.$catname.'</span><span class="checkmark"></span>
           </li>';
         }
-        // foreach($result as $info){
-        //     $subcat_id = $info['sub_cat_id'];
+        foreach($result as $info){
+            $subcat_id = $info['sub_cat_id'];
+            $subcat_name = $info['sub_cat_name'];
+            if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
+                $subcat = get_category_translation("sub",$info['sub_cat_id']);
+                if(is_array($subcat) && count($subcat) > 0) {
+                    $subcat_name = $subcat['title'];
+                }
+            }
 
-        //     if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
-        //         $subcat = get_category_translation("sub",$info['sub_cat_id']);
-        //         $subcat_name = $subcat['title'];
-        //     }else{
-        //         $subcat_name = $info['sub_cat_name'];
-        //     }
+            $dropdown .= '<li><a href="#" data-ajax-id="'.$subcat_id.'" data-cat-type="subcat">'.$subcat_name.'</a></li>';
+        }
+        if(count($result) > 0){
+            $dropdown .= '</ul>';
+        }
 
-        //     $dropdown .= '<li><a href="#" data-ajax-id="'.$subcat_id.'" data-cat-type="subcat">'.$subcat_name.'</a></li>';
-        // } 
-        $dropdown .= '';
-    } 
+        $dropdown .= '</li>';
+    }
+
+    $dropdown .= '</ul>';
 
     return $dropdown;
 }
@@ -746,7 +780,9 @@ function get_categories($selected=array(), $selected_text='selected'){
 
             if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
                 $maincat = get_category_translation("main",$info1['cat_id']);
-                $jobtypes[$info['parent_id']][$info['sub_cat_id']]['main_title'] = $maincat['title'];
+                if(is_array($maincat) && count($maincat) > 0) {
+                    $jobtypes[$info['parent_id']][$info['sub_cat_id']]['main_title'] = $maincat['title'];
+                }
             }
 
             if($k == 1)
@@ -774,10 +810,15 @@ function get_categories($selected=array(), $selected_text='selected'){
 
         if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
             $subcat = get_category_translation("sub",$info['sub_cat_id']);
-            $jobtypes[$info['parent_id']][$info['sub_cat_id']]['title'] = $subcat['title'];
+            if(is_array($subcat) && count($subcat) > 0) {
+                $jobtypes[$info['parent_id']][$info['sub_cat_id']]['title'] = $subcat['title'];
+            }else{
+                $jobtypes[$info['parent_id']][$info['sub_cat_id']]['title'] = stripslashes($info['sub_cat_name']);
+            }
         }else{
             $jobtypes[$info['parent_id']][$info['sub_cat_id']]['title'] = stripslashes($info['sub_cat_name']);
         }
+
         $jobtypes[$info['parent_id']][$info['sub_cat_id']]['id'] = $info['sub_cat_id'];
         $jobtypes[$info['parent_id']][$info['sub_cat_id']]['selected'] = '';
         $jobtypes[$info['parent_id']][$info['sub_cat_id']]['parent_id'] = $info['parent_id'];
@@ -1019,7 +1060,7 @@ $where ORDER BY $order_by $pagelimit";
                 $item[$info['id']]['skills'] = '';
             }
 
-            $item[$info['id']]['favorite'] = check_product_favorite($info['id']);
+            $item[$info['id']]['favorite'] = check_product_favorite($info['id'],'project');
 
             if($info['tag'] != ''){
                 $item[$info['id']]['showtag'] = "1";
@@ -1048,8 +1089,8 @@ $where ORDER BY $order_by $pagelimit";
             if(check_user_upgrades($info['user_id']))
             {
                 $sub_info = get_user_membership_detail($info['user_id']);
-                $item[$info['id']]['sub_title'] = $sub_info['sub_title'];
-                $item[$info['id']]['sub_image'] = $sub_info['sub_image'];
+                $item[$info['id']]['sub_title'] = $sub_info['name'];
+                $item[$info['id']]['sub_image'] = $sub_info['badge'];
             }else{
                 $item[$info['id']]['sub_title'] = '';
                 $item[$info['id']]['sub_image'] = '';
@@ -1193,7 +1234,7 @@ $where ORDER BY $order_by $pagelimit";
 
             $item[$info['id']]['image'] = !empty($info['screen_shot'])?$info['screen_shot']:$item[$info['id']]['company_image'];
 
-            $item[$info['id']]['favorite'] = check_product_favorite($info['id']);
+            $item[$info['id']]['favorite'] = check_product_favorite($info['id'],'job');
 
             if($info['tag'] != ''){
                 $item[$info['id']]['showtag'] = "1";
@@ -1227,8 +1268,8 @@ $where ORDER BY $order_by $pagelimit";
             if(check_user_upgrades($info['user_id']))
             {
                 $sub_info = get_user_membership_detail($info['user_id']);
-                $item[$info['id']]['sub_title'] = $sub_info['sub_title'];
-                $item[$info['id']]['sub_image'] = $sub_info['sub_image'];
+                $item[$info['id']]['sub_title'] = $sub_info['name'];
+                $item[$info['id']]['sub_image'] = $sub_info['badge'];
             }else{
                 $item[$info['id']]['sub_title'] = '';
                 $item[$info['id']]['sub_image'] = '';
@@ -1347,7 +1388,7 @@ function get_items_count($userid=false, $status=null, $premium=false, $getbysubc
  */
 function get_resubmited_items($userid=false, $status=null, $page=null, $limit=null, $sort="id"){
 
-    global $config,$lang;
+    global $config,$link;
     $where = '';
     $item = array();
     if($userid){
@@ -1409,7 +1450,7 @@ function get_resubmited_items($userid=false, $status=null, $page=null, $limit=nu
             $catslug = $get_main['slug'];
             $subcatslug = $get_sub['slug'];
 
-            $item[$info['id']]['favorite'] = check_product_favorite($info['id']);
+            $item[$info['id']]['favorite'] = check_product_favorite($info['id'],'job');
 
             $tag = explode(',', $info['tag']);
             $tag2 = array();
@@ -1424,7 +1465,6 @@ function get_resubmited_items($userid=false, $status=null, $page=null, $limit=nu
             $pro_url = create_slug($info['product_name']);
 
             $item[$info['id']]['link'] = $link['POST-DETAIL'].'/' . $info['id'] . '/'.$pro_url;
-
 
             $userinfo = get_user_data(null,$info['user_id']);
 
@@ -1652,21 +1692,34 @@ function resumes_count($id){
     return $num_rows;
 }
 
+
 /**
- * get cert count
+ * get licenses count
  *
  * @param int $id
  * @return int
  */
-function cert_count($id){
+function licenses_count($id){
     global $config;
-    $num_rows = ORM::for_table($config['db']['pre'].'certificates')
+    $num_rows = ORM::for_table($config['db']['pre'].'licenses')
         ->where('user_id' , $id)
         ->count();
     return $num_rows;
 }
 
-
+/**
+ * get certificates count
+ *
+ * @param int $id
+ * @return int
+ */
+function certifications_count($id){
+    global $config;
+    $num_rows = ORM::for_table($config['db']['pre'].'certifications')
+        ->where('user_id' , $id)
+        ->count();
+    return $num_rows;
+}
 
 /**
  * get companies count
@@ -1718,6 +1771,74 @@ function count_user_review($user_id, $user_type){
         ->where($array)
         ->count();
     return $count;
+}
+
+/**
+ * Get average rating
+ *
+ * @param int $user_id
+ * @param string $user_type
+ * @return string
+ */
+function gig_averageRating($post_id)
+{
+    global $config;
+
+    $array = array('project_id' => $post_id, 'post_type' => 'gig', 'rated_by' => 'employer');
+
+    $q_star1_result = ORM::for_table($config['db']['pre'].'reviews')
+        ->where(array(
+            'rating' => '1',
+            'publish' => '1'
+        ))
+        ->where($array)
+        ->count();
+
+    $q_star2_result = ORM::for_table($config['db']['pre'].'reviews')
+        ->where(array(
+            'rating' => '2',
+            'publish' => '1'
+        ))
+        ->where($array)
+        ->count();
+
+    $q_star3_result = ORM::for_table($config['db']['pre'].'reviews')
+        ->where(array(
+            'rating' => '3',
+            'publish' => '1'
+        ))
+        ->where($array)
+        ->count();
+
+    $q_star4_result = ORM::for_table($config['db']['pre'].'reviews')
+        ->where(array(
+            'rating' => '4',
+            'publish' => '1'
+        ))
+        ->where($array)
+        ->count();
+
+    $q_star5_result = ORM::for_table($config['db']['pre'].'reviews')
+        ->where(array(
+            'rating' => '5',
+            'publish' => '1'
+        ))
+        ->where($array)
+        ->count();
+
+    $total = $q_star1_result + $q_star2_result + $q_star3_result + $q_star4_result + $q_star5_result;
+
+    if ($total != 0) {
+        $rating = ($q_star1_result*1 + $q_star2_result*2 + $q_star3_result*3 + $q_star4_result*4 + $q_star5_result*5) / $total;
+    } else {
+        $rating = 0;
+    }
+
+    $rating = round($rating * 2) / 2;
+    $rating = number_format($rating,1);
+
+    return '<span class="star-rating" data-rating="'.$rating.'"></span><span class="total-rating">('.$total.')</span>';
+    /* '<h3>'.__("Average rating").'</h3><p><small><strong>'.$rating.'</strong> '.__("average based on").' <strong>'.$total.'</strong> '.__("Reviews").'.</small></p><div class="rating-passive" data-rating="'.$rating.'"><span class="stars"></span></div>';*/
 }
 
 /**
@@ -1787,31 +1908,92 @@ function averageRating($user_id, $user_type)
 
     $rating = round($rating * 2) / 2;
     return $rating = number_format($rating,1);
-    /* '<h3>'.__("Average rating").'</h3><p><small><strong>'.$rating.'</strong> '.__("average based on").' <strong>'.$total.'</strong> '.__("Reviews").'.</small></p><div class="rating-passive" data-rating="'.$rating.'"><span class="stars"></span></div>';*/
 }
+
+/**
+ * Check rating exist
+ * @param string $post_type 'default' or 'gig'
+ * @param int $project_id
+ * @return bool
+ */
+function rating_exist($project_id,$post_type='default'){
+    global $config;
+
+    if($_SESSION['user']['user_type'] == 'employer'){
+        $num_rows = ORM::for_table($config['db']['pre'] . 'reviews')
+            ->where(array(
+                'project_id' => $project_id,
+                'post_type' =>$post_type,
+                'employer_id' => validate_input($_SESSION['user']['id']),
+                'rated_by' => 'employer'
+            ))
+            ->count();
+    }else{
+        $num_rows = ORM::for_table($config['db']['pre'] . 'reviews')
+            ->where(array(
+                'project_id'=> $project_id,
+                'post_type' => $post_type,
+                'freelancer_id'=> validate_input($_SESSION['user']['id']),
+                'rated_by'=> 'user'
+            ))
+            ->count();
+    }
+
+
+    if($num_rows == 1)
+        return true;
+    else
+        return false;
+}
+
 
 /**
  * update product view
  *
- * @param int $product_id
+ * @param int $post_id
  */
-function update_itemview($product_id){
+function update_itemview($post_id){
     global $config;
-    $product = ORM::for_table($config['db']['pre'].'product')->find_one($product_id);
-    $product->set_expr('view', 'view+1');
-    $product->save();
+
+    if (!isset($_COOKIE['quickjob_view_counted']) || (isset($_COOKIE['quickjob_view_counted']) && $_COOKIE['quickjob_view_counted'] != $post_id)) {
+        setcookie('quickjob_view_counted', $post_id, time() + (60), "/"); // 60 = 1 minutes
+
+        $product = ORM::for_table($config['db']['pre'].'product')->find_one($post_id);
+        $product->set_expr('view', 'view+1');
+        $product->save();
+    }
 }
 
 /**
  * update project view
  *
- * @param int $project_id
+ * @param int $post_id
  */
-function update_projectview($project_id){
+function update_projectview($post_id){
     global $config;
-    $product = ORM::for_table($config['db']['pre'].'project')->find_one($project_id);
-    $product->set_expr('view', 'view+1');
-    $product->save();
+
+    if (!isset($_COOKIE['quickproject_view_counted']) || (isset($_COOKIE['quickproject_view_counted']) && $_COOKIE['quickproject_view_counted'] != $post_id)) {
+        setcookie('quickproject_view_counted', $post_id, time() + (60), "/"); // 60 = 1 minutes
+
+        $product = ORM::for_table($config['db']['pre'].'project')->find_one($post_id);
+        $product->set_expr('view', 'view+1');
+        $product->save();
+    }
+}
+
+/**
+ * update Service view
+ *
+ * @param int $post_id
+ */
+function update_serviceview($post_id){
+    $views = get_post_option($post_id,'views');
+    $view_increment = ($views+1);
+
+    if (!isset($_COOKIE['quickgig_view_counted']) || (isset($_COOKIE['quickgig_view_counted']) && $_COOKIE['quickgig_view_counted'] != $post_id)) {
+        setcookie('quickgig_view_counted', $post_id, time() + (60), "/"); // 60 = 1 minutes
+        update_post_option($post_id,'views',$view_increment);
+    }
 }
 
 /**
@@ -1837,14 +2019,12 @@ function get_customField_exist_id($id){
 function get_salaryType_title_by_id($id){
     global $config;
     $custom_fields_title = "";
-
     $info = ORM::for_table($config['db']['pre'].'salary_type')
         ->select_many('title', 'translation_lang', 'translation_name')
         ->where('id' , $id)
         ->find_one();
-
     if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
-        if($info['translation_lang'] != '' && $info['translation_name'] != ''){
+        if(isset($info['translation_lang']) && $info['translation_lang'] != '' && $info['translation_name'] != ''){
             $translation_lang = explode(',',$info['translation_lang']);
             $translation_name = explode(',',$info['translation_name']);
 
@@ -1859,18 +2039,19 @@ function get_salaryType_title_by_id($id){
                 }
             }
 
-            $trans_name = (isset($translation[$config['lang_code']]))? $translation[$config['lang_code']] : '';
+            $trans_name = isset($translation[$config['lang_code']]) ? $translation[$config['lang_code']] : '';
 
             if($trans_name != ''){
                 $custom_fields_title = $trans_name;
             }else{
-                $custom_fields_title = (isset($info['title']))? $info['title'] : '';
+                $custom_fields_title = $info['title'];
             }
         }
-    }else{
-
-        $custom_fields_title = (isset($info['title']))? $info['title'] : '';
     }
+    else{
+        $custom_fields_title = isset($info['title'])? $info['title'] : "";
+    }
+
     return $custom_fields_title;
 }
 
@@ -1909,11 +2090,11 @@ function get_productType_title_by_id($id){
             if($trans_name != ''){
                 $custom_fields_title = stripslashes($trans_name);
             }else{
-                $custom_fields_title = (isset($info['title']))? $info['title'] : '';
+                $custom_fields_title = $info['title'];
             }
         }
     }else{
-        $custom_fields_title = (isset($info['title']))? $info['title'] : '';
+        $custom_fields_title = $info['title'];
     }
     return $custom_fields_title;
 }
@@ -1954,11 +2135,11 @@ function get_customField_title_by_id($id){
             if($trans_name != ''){
                 $custom_fields_title = stripslashes($trans_name);
             }else{
-                $custom_fields_title = (isset($info['title']))? $info['title'] : '';
+                $custom_fields_title = $info['title'];
             }
         }
     }else{
-        $custom_fields_title = (isset($info['title']))? $info['title'] : '';
+        $custom_fields_title = $info['title'];
     }
     return $custom_fields_title;
 }
@@ -1979,9 +2160,11 @@ function get_customOption_by_id($option_id){
 
     if($config['lang_code'] != 'en' && $config['userlangsel'] == '1'){
         $customoption = get_category_translation("custom_option",$option_id);
-        $info['title'] = $customoption['title'];
+        if(is_array($customoption) && count($customoption) > 0) {
+            $info['title'] = $customoption['title'];
+        }
     }
-    return (!empty($info['title']))? $info['title'] : '';
+    return $info['title'];
 }
 
 /**
@@ -1990,11 +2173,12 @@ function get_customOption_by_id($option_id){
  * @param int $category_id
  * @param int $subcategory_id
  * @param int $product_id
+ * @param string $post_type 'default' or 'gig'
  */
-function add_post_customField_data($category_id, $subcategory_id, $product_id){
+function add_post_customField_data($category_id, $subcategory_id, $product_id, $post_type = 'default'){
 
     global $config;
-    $custom_fields = get_customFields_by_catid($category_id, $subcategory_id);
+    $custom_fields = get_customFields_by_catid('default', $category_id, $subcategory_id);
 
     foreach ($custom_fields as $key => $value) {
         if ($value['userent']) {
@@ -2010,6 +2194,7 @@ function add_post_customField_data($category_id, $subcategory_id, $product_id){
                 $exist = ORM::for_table($config['db']['pre'].'custom_data')
                     ->where(array(
                         'product_id' => $product_id,
+                        'post_type' => $post_type,
                         'field_id' => $field_id
                     ))
                     ->count();
@@ -2017,7 +2202,7 @@ function add_post_customField_data($category_id, $subcategory_id, $product_id){
                 if($exist > 0){
                     //Update here
                     $pdo = ORM::get_db();
-                    $query = "UPDATE `".$config['db']['pre']."custom_data` set field_type = '".$field_type."', field_data = '".$field_data."' where product_id = '".$product_id."' and field_id = '".$field_id."' LIMIT 1";
+                    $query = "UPDATE `".$config['db']['pre']."custom_data` set field_type = '".$field_type."', field_data = '".$field_data."' where post_type = '".$post_type."' and product_id = '".$product_id."' and field_id = '".$field_id."' LIMIT 1";
                     $pdo->query($query);
 
                 }else{
@@ -2039,6 +2224,7 @@ function add_post_customField_data($category_id, $subcategory_id, $product_id){
 /**
  * Get custom fields by cat id
  *
+ * @param string $post_type 'default' or 'gig'
  * @param int|null $maincatid
  * @param int|null $subcatid
  * @param bool $require
@@ -2046,17 +2232,18 @@ function add_post_customField_data($category_id, $subcategory_id, $product_id){
  * @param array $data
  * @return array
  */
-function get_customFields_by_catid($maincatid=null, $subcatid=null, $require=true, $fields=array(), $data=array()){
+function get_customFields_by_catid($post_type = 'default',$maincatid=null, $subcatid=null, $require=true, $fields=array(), $data=array()){
 
     global $config,$lang;
     $custom_fields = array();
     $pdo = ORM::get_db();
     if(isset($subcatid) && $subcatid != "" && is_numeric($subcatid)){
-        $query = "SELECT * FROM `".$config['db']['pre']."custom_fields` WHERE find_in_set($subcatid,custom_subcatid) <> 0 order by custom_id ASC";
+        $query = "SELECT * FROM `".$config['db']['pre']."custom_fields` WHERE find_in_set($subcatid,custom_subcatid) <> 0 and post_type = '".$post_type."' order by custom_id ASC";
     }elseif(isset($maincatid) && $maincatid != "" && is_numeric($maincatid)){
-        $query = "SELECT * FROM `".$config['db']['pre']."custom_fields` WHERE find_in_set($maincatid,custom_catid) <> 0 order by custom_id ASC";
+        $query = "SELECT * FROM `".$config['db']['pre']."custom_fields` WHERE find_in_set($maincatid,custom_catid) <> 0 and post_type = '".$post_type."' order by custom_id ASC";
     }else{
-        $query = "SELECT * FROM `".$config['db']['pre']."custom_fields` WHERE custom_anycat = 'any' order by custom_id ASC";
+        $query = "SELECT * FROM `".$config['db']['pre']."custom_fields` WHERE custom_anycat = 'any' and post_type = '".$post_type."' order by custom_id ASC";
+
     }
     $result = $pdo->query($query);
     foreach ($result as $info)
@@ -2296,7 +2483,7 @@ function minus_balance($user_id, $amount){
     $trans_insert = ORM::for_table($config['db']['pre'].'transaction')->create();
     $trans_insert->product_name = 'Site Comission Fee';
     $trans_insert->product_id = null;
-    $trans_insert->seller_id = $user_id;
+    $trans_insert->user_id = $user_id;
     $trans_insert->status = 'success';
     $trans_insert->amount = $amount;
     $trans_insert->transaction_gatway = 'Wallet';
@@ -2313,7 +2500,7 @@ function minus_balance($user_id, $amount){
  * @param int $user_id
  * @param float $amount
  */
-function add_balance($user_id, $amount){
+function add_balance($user_id, $amount, $type){
     global $config;
 
     $user = ORM::for_table($config['db']['pre'] . 'user')
@@ -2329,15 +2516,15 @@ function add_balance($user_id, $amount){
     $now = time();
     $ip = encode_ip($_SERVER, $_ENV);
     $trans_insert = ORM::for_table($config['db']['pre'].'transaction')->create();
-    $trans_insert->product_name = 'Amount Added';
+    $trans_insert->product_name = $type;
     $trans_insert->product_id = '';
-    $trans_insert->seller_id = $user_id;
+    $trans_insert->user_id = $user_id;
     $trans_insert->status = 'success';
     $trans_insert->amount = $amount;
     $trans_insert->transaction_gatway = 'Wallet';
     $trans_insert->transaction_ip = $ip;
     $trans_insert->transaction_time = $now;
-    $trans_insert->transaction_description = 'Amount Added';
+    $trans_insert->transaction_description = $type;
     $trans_insert->transaction_method = 'refund';
     $trans_insert->save();
 }
@@ -2395,7 +2582,6 @@ function get_firebase_notification($user_id, $limit=null)
             ->find_many();
     }
 
-
     foreach ($rows as $info)
     {
         $note['sender_id'] = $info['sender_id'];
@@ -2404,7 +2590,7 @@ function get_firebase_notification($user_id, $limit=null)
         $note['owner_name'] = $info['owner_name'];
         $note['product_id'] = $info['product_id'];
         $note['product_title'] = $info['product_title'];
-        $note['type'] = $info['type'];
+        $note['nottype'] = $info['type'];
         $note['message'] = $info['message'];
 
         $notification[] = $note;
@@ -2540,43 +2726,62 @@ function unread_chat_count(){
  * @return array
  */
 function get_last_unread_message($limit) {
-    global $config;
+    global $config,$mysqli;
 
     $message = array();
+    $pdo = ORM::get_db();
 
     $result = ORM::for_table($config['db']['pre'].'messages')
         ->where('to_id', $_SESSION['user']['id'])
         ->order_by_asc('message_id')
         ->limit($limit)
         ->find_many();
+    /*$query = "select id,username,name,image,message_id,message_content,message_date,post_id,post_type from `".$config['db']['pre']."user` as u
+            INNER JOIN
+            (
+                select max(message_id) as message_id,message_content,to_id,from_id,message_date,post_id,post_type from `".$config['db']['pre']."messages` where to_id = '".$_SESSION['user']['id']."' or from_id = '".$_SESSION['user']['id']."' GROUP BY post_id,post_type
+            )
+            m ON u.id = m.from_id or u.id = m.to_id  where (u.id != '".$_SESSION['user']['id']."') GROUP BY post_id,post_type
+            ORDER BY message_id DESC LIMIT $limit";*/
 
-    foreach($result as $chat)
-    {
-        $info = ORM::for_table($config['db']['pre'].'project')
-            ->select('product_name')
-            ->find_one($chat['post_id']);
-        $post_title = $info['product_name'];
-        $picname = ($chat['image'] == "")? "default_user.png" : $chat['image'];
-        $status  = ($info['online'] == "0")? "offline" : "online";
-        $from_name = ($chat['name'] != '')? $chat['name'] : $chat['username'];
-        $chat['message_content'] = escape($chat['message_content']);
+    /*$query = "SELECT
+       m.post_id, m.post_type, max(m.message_id) as message_id
+FROM `".$config['db']['pre']."messages` m
+LEFT JOIN `".$config['db']['pre']."user` u ON u.id = m.from_id or u.id = m.to_id
+WHERE ( m.to_id = '".$_SESSION['user']['id']."' or m.from_id = '".$_SESSION['user']['id']."' )
+  AND (u.id != '".$_SESSION['user']['id']."') 
+GROUP BY 
+  m.post_id, 
+  m.post_type 
+ORDER BY m.message_id DESC LIMIT 5";*/
 
-        if (strpos($chat['message_content'], 'file_name') !== false) {
 
-        }
-        else{
-            // The Regular Expression filter
-            $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,10}(\/\S*)?/";
 
-            // Check if there is a url in the text
-            if (preg_match($reg_exUrl, $chat['message_content'], $url)) {
+    $result = $pdo->query($query);
+    $totalRecords = $result->rowCount();
+    $message = array();
 
-                // make the urls hyper links
-                $chat['message_content'] = preg_replace($reg_exUrl, "<a href='{$url[0]}'>{$url[0]}</a>", $chat['message_content']);
+    if($totalRecords > 0){
+        foreach($result as $chat)
+        {
+            $from_id = $chat['id'];
+            $username = $chat['username'];
+            $fullname = ($chat['name'] != '')? $chat['name'] : $username;
+            $picname = ($chat['image'] == "")? "default_user.png" : $chat['image'];
+            $postid = $chat['post_id'];
+            $posttype = $chat['post_type'];
+            $chatid = $from_id."_".$postid."_".$posttype;
+            $from_data = get_user_data(null,$from_id);
+            $status  = ($from_data['online'] == "0")? "offline" : "online";
+            $chat['message_content'] = escape($chat['message_content']);
 
-            } else {
+
+            if (strpos($chat['message_content'], 'file_name') !== false) {
+
+            }
+            else{
                 // The Regular Expression filter
-                $reg_exUrl = "/(www)\.[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,10}(\/\S*)?/";
+                $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,10}(\/\S*)?/";
 
                 // Check if there is a url in the text
                 if (preg_match($reg_exUrl, $chat['message_content'], $url)) {
@@ -2584,19 +2789,50 @@ function get_last_unread_message($limit) {
                     // make the urls hyper links
                     $chat['message_content'] = preg_replace($reg_exUrl, "<a href='{$url[0]}'>{$url[0]}</a>", $chat['message_content']);
 
+                } else {
+                    // The Regular Expression filter
+                    $reg_exUrl = "/(www)\.[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,10}(\/\S*)?/";
+
+                    // Check if there is a url in the text
+                    if (preg_match($reg_exUrl, $chat['message_content'], $url)) {
+
+                        // make the urls hyper links
+                        $chat['message_content'] = preg_replace($reg_exUrl, "<a href='{$url[0]}'>{$url[0]}</a>", $chat['message_content']);
+
+                    }
                 }
             }
+
+            $timeago = timeAgo($chat['message_date']);
+            $chatContent = stripslashes($chat['message_content']);
+
+            if($chat['post_type'] == "gig"){
+                $info = ORM::for_table($config['db']['pre'].'post')
+                    ->select('title')
+                    ->find_one($chat['post_id']);
+                $post_title = $info['title'];
+            }
+            elseif($chat['post_type'] == "job"){
+                $info = ORM::for_table($config['db']['pre'].'product')
+                    ->select('product_name')
+                    ->find_one($chat['post_id']);
+                $post_title = $info['product_name'];
+            }
+            else{
+                $info = ORM::for_table($config['db']['pre'].'project')
+                    ->select('product_name')
+                    ->find_one($chat['post_id']);
+                $post_title = $info['product_name'];
+            }
+
+            $message[$chat['message_id']]['image'] = $picname;
+            $message[$chat['message_id']]['status'] = $status;
+            $message[$chat['message_id']]['from_name'] = $fullname;
+            $message[$chat['message_id']]['post_title'] = $post_title;
+            $message[$chat['message_id']]['message'] = strlimiter(strip_tags($chatContent),45);;
+            $message[$chat['message_id']]['time'] = $timeago;
         }
-
-        $timeago = timeAgo($chat['message_date']);
-        $chatContent = stripslashes($chat['message_content']);
-
-        $message[$chat['message_id']]['image'] = $picname;
-        $message[$chat['message_id']]['status'] = $status;
-        $message[$chat['message_id']]['from_name'] = $from_name;
-        $message[$chat['message_id']]['post_title'] = $post_title;
-        $message[$chat['message_id']]['message'] = strlimiter(strip_tags($chatContent),45);;
-        $message[$chat['message_id']]['time'] = $timeago;
     }
+
     return $message;
 }

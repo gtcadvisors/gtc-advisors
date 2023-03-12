@@ -75,8 +75,8 @@ foreach ($queryRecords as $row) {
                 </label>
             </td>';
     $row1 = '<td class="text-center">
-                <a href="'.$config['site_url'].'storage/resumes/'.$filename.'" title="'.$filename.'" class="btn btn-primary" download>
-                    <i class="fa fa-download"></i> Download
+                <a href="'.$config['site_url'].'storage/resumes/'.$filename.'" title="'.$filename.'" class="btn btn-primary" target="_blank">
+                    <i class="fa fa-eye"></i> Preview
                 </a>
             </td>';
     $row2 = '<td>'.$title.'</td>';

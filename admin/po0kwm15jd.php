@@ -81,6 +81,8 @@ if(isset($_GET['action'])){
 
     if ($_GET['action'] == "deleteCompany") { deleteCompany(); }
     if ($_GET['action'] == "deleteResume") { deleteResume(); }
+    if ($_GET['action'] == "deleteCert") { deleteCert(); }
+    if ($_GET['action'] == "deleteLicen") {deleteLicen(); }
 
     if ($_GET['action'] == "openlocatoionPopup") { openlocatoionPopup(); }
     if ($_GET['action'] == "getlocHomemap") { getlocHomemap(); }
@@ -1469,6 +1471,7 @@ function deleteCompany(){
     }
 }
 
+// Delete Functions 
 function deleteResume(){
     global $con,$config;
     if(isset($_POST['id']))
@@ -1518,6 +1521,108 @@ function deleteResume(){
         die();
     }
 }
+
+// Functions to Delete Certificates
+function deleteCert(){
+    global $con,$config;
+    if(isset($_POST['id']))
+    {
+        $_POST['list'][] = $_POST['id'];
+    }
+
+    if (is_array($_POST['list']))
+    {
+        $count = 0;
+        $sql = "DELETE FROM `".$config['db']['pre']."certifications` ";
+        $sql2 = "SELECT filename FROM `".$config['db']['pre']."certifications` ";
+        foreach ($_POST['list'] as $value)
+        {
+            if($count == 0)
+            {
+                $sql.= "WHERE `id` = '" . $value . "'";
+                $sql2.= "WHERE `id` = '" . $value . "'";
+            }
+            else
+            {
+                $sql.= " OR `id` = '" . $value . "'";
+                $sql2.= " OR `id` = '" . $value . "'";
+            }
+            $count++;
+        }
+        $sql.= " LIMIT " . count($_POST['list']);
+
+        if(check_allow()){
+            if ($result = $con->query($sql2)) {
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    $uploaddir =  "../storage/certifications/";
+                    // delete logo
+                    $file = $uploaddir.$row['filename'];
+                    if(file_exists($file))
+                        unlink($file);
+                }
+            }
+            mysqli_query($con,$sql);
+        }
+
+        echo 1;
+        die();
+    }else {
+        echo 0;
+        die();
+    }
+}
+
+// Functions to Delete Licenses
+function deleteLicen(){
+    global $con,$config;
+    if(isset($_POST['id']))
+    {
+        $_POST['list'][] = $_POST['id'];
+    }
+
+    if (is_array($_POST['list']))
+    {
+        $count = 0;
+        $sql = "DELETE FROM `".$config['db']['pre']."licenses` ";
+        $sql2 = "SELECT filename FROM `".$config['db']['pre']."licenses` ";
+        foreach ($_POST['list'] as $value)
+        {
+            if($count == 0)
+            {
+                $sql.= "WHERE `id` = '" . $value . "'";
+                $sql2.= "WHERE `id` = '" . $value . "'";
+            }
+            else
+            {
+                $sql.= " OR `id` = '" . $value . "'";
+                $sql2.= " OR `id` = '" . $value . "'";
+            }
+            $count++;
+        }
+        $sql.= " LIMIT " . count($_POST['list']);
+
+        if(check_allow()){
+            if ($result = $con->query($sql2)) {
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    $uploaddir =  "../storage/licenses/";
+                    // delete logo
+                    $file = $uploaddir.$row['filename'];
+                    if(file_exists($file))
+                        unlink($file);
+                }
+            }
+            mysqli_query($con,$sql);
+        }
+
+        echo 1;
+        die();
+    }else {
+        echo 0;
+        die();
+    }
+} 
 
 function deleteResubmitItem()
 {

@@ -123,28 +123,42 @@ function get_postdata() {
     global $con,$config,$link;
     $postid = $_GET['postid'];
     $posttype = $_GET['posttype'];
-    if($posttype == "job"){
-        $sql = "SELECT product_name as title  from `".$config['db']['pre']."product` WHERE id = '".$postid."' LIMIT 1";
-        $post_link = $link['POST-DETAIL'].'/'.$postid;
-    }elseif($posttype == "gig"){
-        $sql = "SELECT title from `".$config['db']['pre']."post` WHERE id = '".$postid."' LIMIT 1";
-        $post_link = $link['SERVICE'].'/'.$postid;
+    if($posttype == "profile"){
+        $sql = "SELECT username  from `".$config['db']['pre']."user` WHERE id = '".$postid."' LIMIT 1";
+        $query = $con->query($sql);
+        $info = mysqli_fetch_array($query);
+        $item = array();
+        if(isset($info)){
+            $username = $info['username'];
+            $item['post_title'] = __("Direct Message");
+            $item['post_link'] = $link['PROFILE'].'/'.$username;
+        }
+
     }else{
-        $sql = "SELECT product_name as title from `".$config['db']['pre']."project` WHERE id = '".$postid."' LIMIT 1";
-        $post_link = $link['PROJECT'].'/'.$postid;
+        if($posttype == "job"){
+            $sql = "SELECT product_name as title  from `".$config['db']['pre']."product` WHERE id = '".$postid."' LIMIT 1";
+            $post_link = $link['POST-DETAIL'].'/'.$postid;
+        }elseif($posttype == "gig"){
+            $sql = "SELECT title from `".$config['db']['pre']."post` WHERE id = '".$postid."' LIMIT 1";
+            $post_link = $link['SERVICE'].'/'.$postid;
+        }else{
+            $sql = "SELECT product_name as title from `".$config['db']['pre']."project` WHERE id = '".$postid."' LIMIT 1";
+            $post_link = $link['PROJECT'].'/'.$postid;
+        }
+
+        $query = $con->query($sql);
+        $info = mysqli_fetch_array($query);
+        $item = array();
+        if(isset($info)){
+            $post_title = $info['title'];
+            $item['post_title'] = $post_title;
+            $item['post_link'] = $post_link;
+        }else{
+            $item['post_title'] = '';
+            $item['post_link'] = '';
+        }
     }
 
-    $query = $con->query($sql);
-    $info = mysqli_fetch_array($query);
-    $item = array();
-    if(isset($info)){
-        $post_title = $info['title'];
-        $item['post_title'] = $post_title;
-        $item['post_link'] = $post_link;
-    }else{
-        $item['post_title'] = '';
-        $item['post_link'] = '';
-    }
     echo json_encode($item);
     die();
 }
@@ -181,10 +195,10 @@ function chatfrindList() {
     $limitCount = 20; // Set how much data you have to fetch on each request
     if(isset($limitStart ) || !empty($limitStart)) {
         //This query shows user contact list by conversation
-        $sql = "select id,username,name,image, message_date, post_id, post_type from `".$config['db']['pre']."user` as u
+        $sql = "select id,username,name,image, message_date, post_id, message_content, post_type from `".$config['db']['pre']."user` as u
             INNER JOIN
             (
-                select max(message_id) as message_id,to_id,from_id,message_date,post_id,post_type from `".$config['db']['pre']."messages` where to_id = '".$_SESSION['user']['id']."' or from_id = '".$_SESSION['user']['id']."' GROUP BY post_id,post_type
+                select max(message_id) as message_id,to_id,from_id,message_date,message_content,post_id,post_type from `".$config['db']['pre']."messages` where to_id = '".$_SESSION['user']['id']."' or from_id = '".$_SESSION['user']['id']."' GROUP BY post_id,post_type
             )
             m ON u.id = m.from_id or u.id = m.to_id  where $where (u.id != '".$_SESSION['user']['id']."') GROUP BY post_id,post_type
             ORDER BY message_id DESC ";
@@ -200,23 +214,30 @@ function chatfrindList() {
             $username = $row['username'];
             $fullname = ($row['name'] != '')? $row['name'] : $username;
             $picname = $row['image'];
+            $message_content =$row['message_content'];
             $postid = $row['post_id'];
             $posttype = $row['post_type'];
             $chatid = $id."_".$postid."_".$posttype;
             if($picname == "")
                 $picname = "default_user.png";
 
-            if($posttype == "job"){
-                $sql = "SELECT product_name as title  from `".$config['db']['pre']."product` WHERE id = '".$postid."' LIMIT 1";
-            }elseif($posttype == "gig"){
-                $sql = "SELECT title from `".$config['db']['pre']."post` WHERE id = '".$postid."' LIMIT 1";
+            if($posttype == "profile"){
+                $post_title = __("Direct Message");
             }else{
-                $sql = "SELECT product_name as title from `".$config['db']['pre']."project` WHERE id = '".$postid."' LIMIT 1";
+                if($posttype == "message"){
+                    $sql = "SELECT message_content as title  from `".$config['db']['pre']."messages` WHERE id = '".$message_id."' LIMIT 1";
+                }elseif($posttype == "gig"){
+                    $sql = "SELECT title from `".$config['db']['pre']."post` WHERE id = '".$message_id."' LIMIT 1";
+                }else{
+                    $sql = "SELECT message_content as title from `".$config['db']['pre']."messages` WHERE id = '".$message_id."' LIMIT 1";
+                }
+
+                $query = $con->query($sql);
+                $info = mysqli_fetch_array($query);
+
+                $post_title = isset($info['title'])? $info['title'] : "";
             }
 
-            $query = $con->query($sql);
-            $info = mysqli_fetch_array($query);
-            $post_title = isset($info['title'])? $info['title'] : "";
 
             $sql = "SELECT 1 FROM `".$config['db']['pre']."messages` where to_id = '".$_SESSION['user']['id']."' AND from_id = '$id' AND post_id = '".$postid."' AND post_type = '".$posttype."' and recd = '0'";
             $countrecd = mysqli_num_rows(mysqli_query($con,$sql));
@@ -233,8 +254,10 @@ function chatfrindList() {
                 "userimage"=> $picname,
                 "userstatus"=> $onofst,
                 "post_title"=> $post_title,
-                "unread_msg"=> $countrecd
+                "unread_msg"=> $countrecd,
+                "message_content"=>$message_content
             );
+
 
         }
         echo json_encode($results);

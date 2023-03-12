@@ -188,7 +188,7 @@ if (isset($_GET['show'])) {
                         <div class="freelancer-avatar">
                             <div class="verified-badge"></div>
                             <a href="'.$link['PROFILE'].'/'.$username.'">
-                                <img src="'.$config['site_url'].'storage/profile/small_'.$image.'" alt="'.$fullname.'">
+                                <img src="'.$config['site_url'].'storage/profile/'.$image.'" alt="'.$fullname.'">
                             </a>
                         </div>
                     </div>

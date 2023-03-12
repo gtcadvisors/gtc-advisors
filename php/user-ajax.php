@@ -16,6 +16,8 @@ if (isset($_GET['action'])){
     if ($_GET['action'] == "email_contact_seller") { email_contact_seller(); }
     if ($_GET['action'] == "deleteMyAd") { deleteMyAd(); }
     if ($_GET['action'] == "deleteResume") { deleteResume(); }
+    if ($_GET['action'] == "deleteCert") { deleteCert(); }
+    if ($_GET['action'] == "deleteLicen") { deleteLincen(); }
     if ($_GET['action'] == "deleteExperience") { deleteExperience(); }
     if ($_GET['action'] == "deleteCompany") { deleteCompany(); }
     if ($_GET['action'] == "deleteResumitAd") { deleteResumitAd(); }
@@ -1747,6 +1749,78 @@ function deleteResume()
         }
 
         ORM::for_table($config['db']['pre'].'resumes')
+            ->where(array(
+                'id' => $_POST['id'],
+                'user_id' => $_SESSION['user']['id'],
+            ))
+            ->delete_many();
+
+
+        echo 1;
+        die();
+    }else {
+        echo 0;
+        die();
+    }
+}
+
+// Functions for user to delete his/her Certifcates
+function deleteCert()
+{
+    global $config;
+    if(isset($_POST['id']))
+    {
+        $row = ORM::for_table($config['db']['pre'].'certifications')
+            ->select('filename')
+            ->where(array(
+                'id' => $_POST['id'],
+                'user_id' => $_SESSION['user']['id'],
+            ))
+            ->find_one();
+
+        if (!empty($row)) {
+            $file = dirname(__DIR__) . "/storage/certifications/" . $row['filename'];
+            if (file_exists($file))
+                unlink($file);
+        }
+
+        ORM::for_table($config['db']['pre'].'certifications')
+            ->where(array(
+                'id' => $_POST['id'],
+                'user_id' => $_SESSION['user']['id'],
+            ))
+            ->delete_many();
+
+
+        echo 1;
+        die();
+    }else {
+        echo 0;
+        die();
+    }
+}
+
+// Functions for user to delete his/her Licenses
+function deleteCert()
+{
+    global $config;
+    if(isset($_POST['id']))
+    {
+        $row = ORM::for_table($config['db']['pre'].'licenses')
+            ->select('filename')
+            ->where(array(
+                'id' => $_POST['id'],
+                'user_id' => $_SESSION['user']['id'],
+            ))
+            ->find_one();
+
+        if (!empty($row)) {
+            $file = dirname(__DIR__) . "/storage/licenses/" . $row['filename'];
+            if (file_exists($file))
+                unlink($file);
+        }
+
+        ORM::for_table($config['db']['pre'].'licenses')
             ->where(array(
                 'id' => $_POST['id'],
                 'user_id' => $_SESSION['user']['id'],

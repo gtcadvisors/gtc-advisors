@@ -24,6 +24,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_sub_signup_details'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{USER_ID}', $user_id, $html);
         $html = str_replace ('{USERNAME}', $username, $html);
         $html = str_replace ('{EMAIL}', $user_email, $html);
@@ -35,6 +36,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_message_signup_details'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{USER_ID}', $user_id, $html);
         $html = str_replace ('{USERNAME}', $username, $html);
         $html = str_replace ('{EMAIL}', $user_email, $html);
@@ -56,6 +58,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_sub_signup_confirm'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{USER_ID}', $user_id, $html);
         $html = str_replace ('{USERNAME}', $username, $html);
         $html = str_replace ('{EMAIL}', $user_email, $html);
@@ -66,6 +69,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_message_signup_confirm'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{USER_ID}', $user_id, $html);
         $html = str_replace ('{USERNAME}', $username, $html);
         $html = str_replace ('{EMAIL}', $user_email, $html);
@@ -84,6 +88,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_sub_ad_approve'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{ADTITLE}', $item_title, $html);
         $html = str_replace ('{SELLER_NAME}', $user_fullname, $html);
         $html = str_replace ('{SELLER_EMAIL}', $user_email, $html);
@@ -91,6 +96,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_message_ad_approve'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{ADTITLE}', $item_title, $html);
         $html = str_replace ('{ADLINK}', $ad_link, $html);
         $html = str_replace ('{SELLER_NAME}', $user_fullname, $html);
@@ -106,6 +112,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
 
         $html = $config['email_sub_re_ad_approve'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{ADTITLE}', $item_title, $html);
         $html = str_replace ('{ADLINK}', $ad_link, $html);
         $html = str_replace ('{SELLER_NAME}', $user_fullname, $html);
@@ -114,6 +121,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
 
         $html = $config['email_message_re_ad_approve'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{ADTITLE}', $item_title, $html);
         $html = str_replace ('{ADLINK}', $ad_link, $html);
         $html = str_replace ('{SELLER_NAME}', $user_fullname, $html);
@@ -129,6 +137,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_sub_contact_seller'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{ADTITLE}', $item_title, $html);
         $html = str_replace ('{ADLINK}', $ad_link, $html);
         $html = str_replace ('{SELLER_NAME}', $user_fullname, $html);
@@ -140,6 +149,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
 
         $html = $config['email_message_contact_seller'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{ADTITLE}', $item_title, $html);
         $html = str_replace ('{ADLINK}', $ad_link, $html);
         $html = str_replace ('{SELLER_NAME}', $user_fullname, $html);
@@ -158,6 +168,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_sub_contact'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{CONTACT_SUBJECT}', $_POST['subject'], $html);
         $html = str_replace ('{NAME}', $_POST['name'], $html);
         $html = str_replace ('{EMAIL}', $_POST['email'], $html);
@@ -166,6 +177,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_message_contact'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{NAME}', $_POST['name'], $html);
         $html = str_replace ('{EMAIL}', $_POST['email'], $html);
         $html = str_replace ('{CONTACT_SUBJECT}', $_POST['subject'], $html);
@@ -179,6 +191,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_sub_feedback'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{FEEDBACK_SUBJECT}', $_POST['subject'], $html);
         $html = str_replace ('{NAME}', $_POST['name'], $html);
         $html = str_replace ('{EMAIL}', $_POST['email'], $html);
@@ -186,6 +199,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_message_feedback'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{NAME}', $_POST['name'], $html);
         $html = str_replace ('{EMAIL}', $_POST['email'], $html);
         $html = str_replace ('{PHONE}', $_POST['phone'], $html);
@@ -200,6 +214,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_sub_report'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{EMAIL}', $_POST['email'], $html);
         $html = str_replace ('{NAME}', $_POST['name'], $html);
         $html = str_replace ('{USERNAME}', $_POST['username'], $html);
@@ -209,6 +224,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         
         $html = $config['email_message_report'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{EMAIL}', $_POST['email'], $html);
         $html = str_replace ('{NAME}', $_POST['name'], $html);
         $html = str_replace ('{USERNAME}', $_POST['username'], $html);
@@ -225,6 +241,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         /*User : Withdraw request rejected*/
         $html = $config['email_sub_withdraw_rejected'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{USER_ID}', $user_id, $html);
         $html = str_replace ('{USERNAME}', $username, $html);
         $html = str_replace ('{EMAIL}', $user_email, $html);
@@ -233,6 +250,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
 
         $html = $config['emailHTML_withdraw_rejected'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{USER_ID}', $user_id, $html);
         $html = str_replace ('{USERNAME}', $username, $html);
         $html = str_replace ('{EMAIL}', $user_email, $html);
@@ -246,6 +264,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
         /*User : Withdraw request accepted*/
         $html = $config['email_sub_withdraw_accepted'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{USER_ID}', $user_id, $html);
         $html = str_replace ('{USERNAME}', $username, $html);
         $html = str_replace ('{EMAIL}', $user_email, $html);
@@ -254,6 +273,7 @@ function email_template($template, $user_id=null, $password=null, $product_id=nu
 
         $html = $config['emailHTML_withdraw_accepted'];
         $html = str_replace ('{SITE_TITLE}', $config['site_title'], $html);
+        $html = str_replace ('{SITE_URL}', $config['site_url'], $html);
         $html = str_replace ('{USER_ID}', $user_id, $html);
         $html = str_replace ('{USERNAME}', $username, $html);
         $html = str_replace ('{EMAIL}', $user_email, $html);

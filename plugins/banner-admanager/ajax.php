@@ -409,9 +409,18 @@ CTR: '.number_format($row["clicks"]*100/$row["shows_displayed"], 2, ".", "").'%'
                     if ($width != $type_details["width"] || $height != $type_details["height"]) $error .= '<li>Image size must be '.$type_details["width"].'x'.$type_details["height"].'.</li>';
                     else {
                         $image = "banner_".md5(microtime().$_FILES["file"]["tmp_name"]).$ext;
-                        if (!move_uploaded_file($_FILES["file"]["tmp_name"], ABSPATH."/files/".$image)) {
-                            $error .= '<li>Can not save uploaded image.</li>';
+
+                        $target_dir = ABSPATH."/files/";
+                        $result = quick_file_upload('file',$target_dir);
+                        if($result['success']){
+                            $image = $result['file_name'];
+                        }else{
+                            $error .= $result['error'];
                         }
+
+                        /*if (!move_uploaded_file($_FILES["file"]["tmp_name"], ABSPATH."/files/".$image)) {
+                            $error .= '<li>Can not save uploaded image.</li>';
+                        }*/
                     }
                 }
             } else $error .= '<li>Banner image must be uploaded.</li>';

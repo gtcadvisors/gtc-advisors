@@ -1,4 +1,23 @@
-<?php include_once TEMPLATE_PATH.'/header.php';?>
+<?php
+overall_header(__("Upgrade Membership"));
+?>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2><?php _e("Upgrade Membership") ?></h2>
+                <!-- Breadcrumbs -->
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="<?php url("INDEX") ?>"><?php _e("Home") ?></a></li>
+                        <li><?php _e("Upgrade") ?></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-xl-8 col-lg-8 content-right-offset">
@@ -16,6 +35,23 @@
                     <?php }else{ ?>
                         <?php
                         $i = 0;
+                        if($user_balance >= $amount){ ?>
+                            <div class="payment-tab payment-tab-active">
+                                <div class="payment-tab-trigger">
+                                    <input name="payment_method_id" class="payment_method_id" id="<?php _esc("wallet");?>"
+                                           type="radio" value="wallet" data-name="<?php _esc("wallet");?>">
+                                    <label for="wallet"><?php _e("Wallet");?></label>
+                                    <div class="payment-logo"><?php _esc(price_format($user_balance),true) ?></div>
+                                </div>
+                                <div class="payment-tab-content">
+                                    <p><?php _e("You will be charge from your wallet amount.") ?></p>
+
+                                </div>
+                            </div>
+
+                            <?php $i++; } ?>
+                        <!--WALLET PAYMENT-->
+                        <?php
                         foreach($payment_types as $payment){
                             ?>
                             <div class="payment-tab <?php if($i == 0){ echo 'payment-tab-active';} ?>">
@@ -317,6 +353,7 @@
             }
 
             switch (paymentMethod) {
+                case 'wallet':
                 case 'wire_transfer':
                 case 'paypal':
                 case 'stripe':
@@ -331,6 +368,7 @@
                 case 'telr':
                 case 'razorpay':
                 case 'flutterwave':
+                case 'yoomoney':
                 case 'trial':
                     $form.submit();
                     break;

@@ -11,8 +11,12 @@ $thumbnail_path = $dirback.$_REQUEST["thumbnail_path"];
 
 if(isset($_GET['delete']))
 {
-    unlink($main_path."/".$_GET['delete']);
-    unlink($thumbnail_path."/".$_GET['delete']);
+    if(!is_dir($main_path."/".$_GET['delete'])){
+        if(file_exists($main_path."/".$_GET['delete'])) unlink($main_path."/".$_GET['delete']);
+    }
+    if(!is_dir($thumbnail_path."/".$_GET['delete'])){
+        if(file_exists($thumbnail_path."/".$_GET['delete'])) unlink($thumbnail_path."/".$_GET['delete']);
+    }
     if(file_exists($main_path."/cache/".$_GET['delete'])) unlink($main_path."/cache/".$_GET['delete']);
     if(file_exists($thumbnail_path."/cache/".$_GET['delete'])) unlink($thumbnail_path."/cache/".$_GET['delete']);
     exit;
@@ -274,7 +278,7 @@ function addWatermark($watermark, $imageDirectory, $imageName, $x = 0, $y = 0)
         if((int)$y <= 0)
             $y = $imageSize[1]/2 - $newWatermarkHeight/2;
 
-        imagecopyresized($im, $stamp, $x, $y, 0, 0, $newWatermarkWidth, $newWatermarkHeight, imagesx($stamp), imagesy($stamp));
+        imagecopyresized($im, $stamp, intval($x), intval($y), 0, 0, intval($newWatermarkWidth), intval($newWatermarkHeight), intval(imagesx($stamp)), intval(imagesy($stamp)));
 
         switch($image_extension)
         {
